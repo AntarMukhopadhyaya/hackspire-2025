@@ -1,42 +1,57 @@
 @import "tailwindcss";
 
+/* Blanka Font */
+@font-face {
+  font-family: "Blanka";
+  src: url("/fonts/Blanka-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 17, 24, 39;       /* ashenBlack: deep bluish-black */
-  --background-end-rgb: 91, 33, 182;        /* shaktiPurple: rich divine purple */
+  --background-start-rgb: 17, 24, 39; /* ashenBlack: deep bluish-black */
+  --background-end-rgb: 91, 33, 182; /* shaktiPurple: rich divine purple */
 }
 
 /* ✨ Background with cosmic depth and subtle grid shimmer */
 body {
   color: rgb(var(--foreground-rgb));
-  background:
-    linear-gradient(
-      to bottom,
-      transparent,
-      rgba(var(--background-end-rgb), 0.9)
-    ),
-    rgb(var(--background-start-rgb));
-  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  font-family: "Poppins", sans-serif;
   min-height: 100vh;
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
-/* Subtle glowing dot grid overlay */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image: radial-gradient(#ffffff0d 1px, transparent 1px);
-  background-size: 40px 40px;
-  opacity: 0.07;
-  z-index: -1;
-  pointer-events: none;
+html {
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #fcd34d, #f59e0b, #ef4444);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #fbbf24, #f97316, #dc2626);
 }
 
 /* 🫧 Slow pulse animation for magical elements */
 @keyframes pulseSlow {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.9;
   }
   50% {
@@ -50,10 +65,30 @@ body::after {
 
 /* Bengali Font Utility */
 .font-noto-bengali {
-  font-family: 'Noto Sans Bengali', sans-serif;
+  font-family: "Noto Sans Bengali", sans-serif;
 }
 
 /* Optional: glow utility */
 .glow-text {
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.15), 0 0 15px rgba(255, 255, 255, 0.1);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.15),
+    0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+/* Hero Section Styles */
+.durga-holographic {
+  filter: drop-shadow(0 0 50px rgba(251, 191, 36, 0.6));
+  mix-blend-mode: screen;
+}
+
+.hero-title {
+  font-family: "Blanka", Impact, "Arial Black", sans-serif;
+  line-height: 1.1;
+  padding-bottom: 0.1em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Particles Styles */
+.particles-container {
+  z-index: 0;
 }

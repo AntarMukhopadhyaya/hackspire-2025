@@ -25,6 +25,7 @@ module.exports = {
       },
       fontFamily: {
         "noto-bengali": ['"Noto Sans Bengali"', "serif"],
+        'blanka': ['Blanka', 'Impact', 'Arial Black', 'sans-serif'],
       },
     },
   },

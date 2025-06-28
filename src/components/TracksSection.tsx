@@ -1,40 +1,53 @@
 "use client";
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
+import ChromaGrid from "./blocks/Components/ChromaGrid/ChromaGrid";
 
 const tracks = [
   {
-    name: "Cyber Shakti",
-    icon: "🛡️",
-    color: "from-red-500 to-amber-500",
-    description: "Cybersecurity warfare and digital protection"
+    image: "https://i.pravatar.cc/300?img=1",
+    title: "Cyber Shakti",
+    subtitle: "Cybersecurity warfare and digital protection",
+    handle: "🛡️",
+    borderColor: "#EF4444",
+    gradient: "linear-gradient(145deg, #EF4444, #F59E0B)",
+    url: "#cyber-shakti",
   },
   {
-    name: "Smart Shristi",
-    icon: "🧠",
-    color: "from-blue-400 to-cyan-500",
-    description: "AI solutions for modern India"
+    image: "https://i.pravatar.cc/300?img=2",
+    title: "Smart Shristi",
+    subtitle: "AI solutions for modern India",
+    handle: "🧠",
+    borderColor: "#3B82F6",
+    gradient: "linear-gradient(180deg, #3B82F6, #06B6D4)",
+    url: "#smart-shristi",
   },
   {
-    name: "Code Trance",
-    icon: "🌀",
-    color: "from-purple-500 to-fuchsia-500",
-    description: "Web3 and blockchain revolution"
+    image: "https://i.pravatar.cc/300?img=3",
+    title: "Code Trance",
+    subtitle: "Web3 and blockchain revolution",
+    handle: "🌀",
+    borderColor: "#8B5CF6",
+    gradient: "linear-gradient(165deg, #8B5CF6, #EC4899)",
+    url: "#code-trance",
   },
   {
-    name: "LokNaath Connect",
-    icon: "🌾",
-    color: "from-emerald-400 to-green-500",
-    description: "Rural tech for grassroots impact"
-  }
+    image: "https://i.pravatar.cc/300?img=4",
+    title: "LokNaath Connect",
+    subtitle: "Rural tech for grassroots impact",
+    handle: "🌾",
+    borderColor: "#10B981",
+    gradient: "linear-gradient(195deg, #10B981, #059669)",
+    url: "#loknaath-connect",
+  },
 ];
 
 export default function TracksSection() {
   return (
-    <section className="relative py-32 overflow-hidden">
+    <section className="relative py-20 overflow-hidden">
       {/* Grid background */}
-      <div className="absolute inset-0 z-0 opacity-10 [background-image:linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-      
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="absolute inset-0 z-0 opacity-10 [background-image:linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:40px_40px]" />
+
+      <div className="px-4 md:px-8 lg:px-16 max-w-6xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -48,39 +61,26 @@ export default function TracksSection() {
             </span>
           </h2>
           <p className="text-xl max-w-3xl mx-auto">
-            Choose your battlefield in these four domains where technology meets tradition
+            Choose your battlefield in these four domains where technology meets
+            tradition
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {tracks.map((track, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
-              className="relative group"
-            >
-              <div className="absolute -inset-0.5 bg-gradient-to-r rounded-lg from-pink-600 to-purple-600 opacity-75 group-hover:opacity-100 blur transition duration-500 group-hover:duration-200"></div>
-              <div className="relative bg-gray-900 rounded-lg p-8 h-full flex flex-col">
-                <div className={`text-5xl mb-6 w-20 h-20 rounded-full flex items-center justify-center bg-gradient-to-br ${track.color}`}>
-                  {track.icon}
-                </div>
-                <h3 className="text-2xl font-bold mb-3">{track.name}</h3>
-                <p className="text-gray-300 mb-6">{track.description}</p>
-                <div className="mt-auto">
-                  <button className="text-sm font-medium bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-full transition-all duration-300 flex items-center group">
-                    Explore Track
-                    <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          style={{ height: "600px", position: "relative" }}
+        >
+          <ChromaGrid
+            items={tracks}
+            radius={300}
+            damping={0.45}
+            fadeOut={0.6}
+            ease="power3.out"
+          />
+        </motion.div>
       </div>
     </section>
   );
