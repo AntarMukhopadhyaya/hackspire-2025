@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ParticlesClient from "@/components/ParticlesClient";
 import SplashCursor from "@/components/blocks/Animations/SplashCursor/SplashCursor";
+import { NavbarDemo } from "@/components/NavbarDemo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,14 +34,17 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black`}
         suppressHydrationWarning
       >
+        {/* Navbar */}
+        <NavbarDemo />
+
         {/* Global Holographic Overlay */}
-        <div
+        {/* <div
           className="fixed inset-0 z-0 pointer-events-none"
           style={{
             background:
               "radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.6) 75%)",
           }}
-        />
+        /> */}
         {/* <SplashCursor /> */}
         <ParticlesClient />
 

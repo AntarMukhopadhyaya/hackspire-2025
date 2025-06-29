@@ -15,6 +15,7 @@ export interface ChromaItem {
   borderColor?: string;
   gradient?: string;
   url?: string;
+  imageHover?: string;
 }
 
 export interface ChromaGridProps {
@@ -156,7 +157,7 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
       ref={rootRef}
       onPointerMove={handleMove}
       onPointerLeave={handleLeave}
-      className={`relative w-full h-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-center items-center ${className}`}
+      className={`relative w-full h-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 justify-center items-center ${className}`}
       style={
         {
           "--r": `${radius}px`,
@@ -170,58 +171,54 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
           key={i}
           onMouseMove={handleCardMove}
           onClick={() => handleCardClick(c.url)}
-          className="group relative flex flex-col rounded-lg overflow-hidden border-2 border-transparent transition-colors duration-300 cursor-pointer items-center"
+          className="group relative flex flex-col rounded-xl overflow-hidden transition-colors duration-300 cursor-pointer items-center h-[200px] md:h-[250px] lg:h-[300px]"
           style={
             {
-              "--card-border": c.borderColor || "transparent",
+              "--card-border": c.borderColor || "gray",
               "--spotlight-color": "rgba(255,255,255,0.3)",
             } as React.CSSProperties
           }
         >
+          {/* Inner border for hover effect */}
+          <div
+            className="pointer-events-none absolute inset-0 z-30 rounded-xl border-2 border-transparent group-hover:border-[var(--card-border)] transition-colors duration-300"
+            aria-hidden="true"
+          />
           <div
             className="absolute inset-0 z-0 transition-all duration-500 grayscale brightness-90 group-hover:grayscale-0 group-hover:brightness-100"
             style={{ background: c.gradient }}
           />
-          <div className="relative z-10 flex flex-col flex-1 w-full h-full p-8 items-center justify-center">
+          {c.imageHover && (
+            <img
+              src={c.imageHover}
+              alt="hover background"
+              className="absolute inset-0 w-full h-full object-cover z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+            />
+          )}
+          {/* Gradient overlay for text readability */}
+          <div
+            className="absolute bottom-0 left-0 w-full h-2/3 z-20 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.0) 70%)",
+            }}
+          />
+          <div className="relative z-40 flex flex-col flex-1 w-full h-full p-6 md:p-8 lg:p-10 items-center justify-center">
             {c.handle && (
               <div
-                className={`text-5xl mb-6 w-20 h-20 rounded-full flex items-center justify-center bg-gradient-to-br ${
+                className={`text-4xl md:text-5xl lg:text-6xl mb-4 w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full flex items-center justify-center bg-gradient-to-br ${
                   c.borderColor || ""
                 }`}
               >
                 {c.handle}
               </div>
             )}
-            <h3 className="text-2xl font-bold mb-3 text-center text-white">
+            <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-2 text-center text-white drop-shadow-lg">
               {c.title}
             </h3>
-            <p className="text-gray-300 mb-6 text-center flex-1">
+            <p className="text-sm md:text-base lg:text-lg text-gray-300 mb-2 text-center drop-shadow">
               {c.subtitle}
             </p>
-            <div className="mt-auto w-full flex justify-center">
-              <button
-                className="text-sm font-medium bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-full transition-all duration-300 flex items-center group"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleCardClick(c.url);
-                }}
-              >
-                Explore Track
-                <svg
-                  className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M14 5l7 7m0 0l-7 7m7-7H3"
-                  ></path>
-                </svg>
-              </button>
-            </div>
           </div>
         </article>
       ))}

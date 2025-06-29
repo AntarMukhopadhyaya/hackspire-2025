@@ -11,6 +11,8 @@ const tracks = [
     borderColor: "#EF4444",
     gradient: "linear-gradient(145deg, #EF4444, #F59E0B)",
     url: "#cyber-shakti",
+    imageHover:
+      "https://images.unsplash.com/photo-1614064548237-096f735f344f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     image: "https://i.pravatar.cc/300?img=2",
@@ -47,13 +49,13 @@ export default function TracksSection() {
       {/* Grid background */}
       <div className="absolute inset-0 z-0 opacity-10 [background-image:linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:40px_40px]" />
 
-      <div className="px-4 md:px-8 lg:px-16 max-w-6xl mx-auto relative z-10">
+      <div className="px-4 md:px-8 lg:px-16 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-6"
         >
           <h2 className="text-5xl font-bold mb-6 glitch-text-sm">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500">
@@ -71,7 +73,7 @@ export default function TracksSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          style={{ height: "600px", position: "relative" }}
+          style={{ height: "450px", position: "relative" }}
         >
           <ChromaGrid
             items={tracks}

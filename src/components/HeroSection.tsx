@@ -1,8 +1,75 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import DecryptedText from "./blocks/TextAnimations/DecryptedText/DecryptedText";
+import { useEffect, useState } from "react";
 
 export default function HeroSection() {
+  // Add looping decrypted text logic
+  const decryptedTexts = [
+    "AI & Machine Learning",
+    "Blockchain Revolution",
+    "Web3 & Decentralization",
+    "Cybersecurity",
+    "Quantum Computing",
+    "Sustainable Tech",
+    "Hackspire 2025",
+  ];
+  const [currentIdx, setCurrentIdx] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIdx((prev) => (prev + 1) % decryptedTexts.length);
+    }, 3000); // Change text every 3 seconds
+    return () => clearInterval(interval);
+  }, []);
+
+  // Multi-line decrypted text block (now for looping)
+  const decryptedLines = [
+    "Blockchain is revolutionizing trust.",
+    "AI powers the future of innovation.",
+    "Machine Learning enables smart solutions.",
+    "Web3 decentralizes the internet.",
+    "Cybersecurity protects our data.",
+    "Quantum Computing breaks new ground.",
+    "Sustainable Tech shapes tomorrow.",
+    "Hackspire 2025 ignites ideas.",
+  ];
+
+  // Looping decrypt/encrypt logic
+  const [showDecrypted, setShowDecrypted] = useState(true);
+  const [phase, setPhase] = useState<"decrypting" | "hold" | "encrypting">(
+    "decrypting"
+  );
+
+  // Animation timing
+  const decryptSpeed = 90;
+  const encryptSpeed = 60;
+  const decryptIterations = 24;
+  const encryptIterations = 16;
+  const holdDuration = 1500; // ms to show fully revealed text
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    if (phase === "decrypting") {
+      // Wait for decrypt animation to finish, then hold
+      timeout = setTimeout(
+        () => setPhase("hold"),
+        decryptIterations * decryptSpeed
+      );
+    } else if (phase === "hold") {
+      // Hold fully revealed text
+      timeout = setTimeout(() => setPhase("encrypting"), holdDuration);
+    } else if (phase === "encrypting") {
+      // Wait for encrypt animation, then next text
+      timeout = setTimeout(() => {
+        setCurrentIdx((prev) => (prev + 1) % decryptedLines.length);
+        setPhase("decrypting");
+      }, encryptIterations * encryptSpeed);
+    }
+    return () => clearTimeout(timeout);
+  }, [phase, decryptedLines.length]);
+
   return (
     <section className="relative w-full h-screen overflow-hidden flex flex-col justify-center items-center">
       {/* Background and Durga projection (absolute, layered) */}
@@ -20,7 +87,7 @@ export default function HeroSection() {
           </div>
         </div>
         {/* Holographic Durga projection */}
-        <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center z-20">
+        {/* <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center z-20">
           <div className="relative w-full h-full">
             <Image
               src="/images/durga.svg"
@@ -31,13 +98,14 @@ export default function HeroSection() {
             />
             <div className="absolute inset-0 [background:radial-gradient(circle_at_center,transparent_0%)]"></div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* Hero Text (centered vertically and horizontally) */}
       <div className="relative z-30 flex flex-col items-center justify-center w-full pt-32 pb-16">
         <div className="text-center px-4 w-full max-w-5xl mx-auto">
-          <h1 className="flex items-center justify-center text-5xl md:text-7xl lg:text-8xl font-bold mb-6 relative text-transparent bg-clip-text bg-gradient-to-r from-goldGlow via-white to-shaktiRed animate-pulse hero-title leading-none">
+          <h1 className="flex items-center justify-center text-5xl md:text-7xl lg:text-8xl font-bold mb-6 relative text-white animate-pulse hero-title leading-none">
+            {/* <h1 className="flex items-center justify-center text-5xl md:text-7xl lg:text-8xl font-bold mb-6 relative text-transparent bg-clip-text bg-gradient-to-r from-goldGlow via-white to-shaktiRed animate-pulse hero-title leading-none"> */}
             <img
               src="/icons/logoicon.svg"
               alt="Hackspire Logo Icon"
@@ -57,6 +125,35 @@ export default function HeroSection() {
               Meets <span className="text-white font-bold">Innovation</span>
             </p>
             <div className="h-1 w-24 mx-auto bg-gradient-to-r from-yellow-300 via-orange-400 to-red-500 rounded-full shadow-md" />
+
+            {/* DecryptedText Looping Area (centered under tagline) */}
+            <div className="hidden lg:flex w-full justify-center items-center -mt-2 pointer-events-none">
+              <div
+                className="relative w-auto min-w-[220px] max-w-[90vw] flex items-center justify-center"
+                style={{ pointerEvents: "auto" }}
+              >
+                <DecryptedText
+                  key={currentIdx + "-" + phase}
+                  text={decryptedLines[currentIdx]}
+                  animateOn="view"
+                  revealDirection="center"
+                  speed={phase === "decrypting" ? decryptSpeed : encryptSpeed}
+                  maxIterations={
+                    phase === "decrypting"
+                      ? decryptIterations
+                      : encryptIterations
+                  }
+                  className="text-base lg:text-lg font-normal text-white text-center transition-opacity duration-200"
+                  encryptedClassName="text-base lg:text-lg font-normal text-white text-center transition-opacity duration-200"
+                  parentClassName="w-full"
+                  characters={
+                    phase === "decrypting"
+                      ? undefined
+                      : "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+"
+                  }
+                />
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>
