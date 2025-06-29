@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import DecryptedText from "./blocks/TextAnimations/DecryptedText/DecryptedText";
 import { useEffect, useState } from "react";
+import Threads from "./blocks/Backgrounds/Threads/Threads";
 
 export default function HeroSection() {
   // Add looping decrypted text logic
@@ -72,6 +73,18 @@ export default function HeroSection() {
 
   return (
     <section className="relative w-full h-screen overflow-hidden flex flex-col justify-center items-center">
+      {/* Threads Animated Background (behind hero text) */}
+      {/**
+      <div className="absolute inset-0 w-full h-full z-0" style={{ pointerEvents: "none" }}>
+        <Threads
+          amplitude={1}
+          distance={0}
+          enableMouseInteraction={true}
+          className="w-full h-full"
+          style={{ width: "100%", height: "100%", position: "absolute", top: 0, left: 0 }}
+        />
+      </div>
+      */}
       {/* Diagonal Strip Image (top-left, absolute, no text) */}
       <div
         className="absolute z-20 pointer-events-none"

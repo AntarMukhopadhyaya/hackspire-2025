@@ -7,7 +7,7 @@ import {
   useMotionValueEvent,
 } from "framer-motion";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 interface NavbarProps {
   children: React.ReactNode;
@@ -114,6 +114,11 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
 export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
   const [hovered, setHovered] = useState<number | null>(null);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
   return (
     <motion.div
@@ -129,7 +134,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
           onClick={() => setActiveIndex(idx)}
           className={`relative px-4 py-2 transition-colors duration-200 rounded-full
             ${
-              hovered === idx || activeIndex === idx
+              hasMounted && (hovered === idx || activeIndex === idx)
                 ? "bg-white text-black"
                 : "text-white"
             }`}

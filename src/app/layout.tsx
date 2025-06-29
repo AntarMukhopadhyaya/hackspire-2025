@@ -4,6 +4,7 @@ import "./globals.css";
 import ParticlesClient from "@/components/ParticlesClient";
 import SplashCursor from "@/components/blocks/Animations/SplashCursor/SplashCursor";
 import { NavbarDemo } from "@/components/NavbarDemo";
+import Threads from "@/components/blocks/Backgrounds/Threads/Threads";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
