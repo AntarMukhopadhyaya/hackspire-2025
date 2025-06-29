@@ -21,6 +21,23 @@
   font-display: swap;
 }
 
+/* Distancia Font */
+@font-face {
+  font-family: "Distancia";
+  src: url("/fonts/Distancia-500-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Distancia";
+  src: url("/fonts/Distancia-900-Heavy.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 17, 24, 39; /* ashenBlack: deep bluish-black */
@@ -77,14 +94,14 @@ body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
     45deg,
-    #3533cd 0%,
-    #0b053b 15%,
-    #3533cd 30%,
-    #0b053b 45%,
-    #3533cd 60%,
-    #0b053b 75%,
-    #3533cd 90%,
-    #0b053b 100%
+    #063bc4 0%,
+    #081664 15%,
+    #063bc4 30%,
+    #081664 45%,
+    #063bc4 60%,
+    #081664 75%,
+    #063bc4 90%,
+    #081664 100%
   );
   background-size: 400% 400%;
   animation: movingBackground 25s ease-in-out infinite;
@@ -124,14 +141,14 @@ body::before {
 html {
   background: linear-gradient(
     45deg,
-    #3533cd 0%,
-    #0b053b 15%,
-    #3533cd 30%,
-    #0b053b 45%,
-    #3533cd 60%,
-    #0b053b 75%,
-    #3533cd 90%,
-    #0b053b 100%
+    #063bc4 0%,
+    #081664 15%,
+    #063bc4 30%,
+    #081664 45%,
+    #063bc4 60%,
+    #081664 75%,
+    #063bc4 90%,
+    #081664 100%
   );
   background-size: 400% 400%;
   animation: movingBackground 25s ease-in-out infinite;
@@ -280,4 +297,40 @@ html {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Glitchy animation for PUSH LIMITS */
+@keyframes glitch {
+  0% {
+    text-shadow: 2px 0 red, -2px 0 blue;
+    color: #fff;
+  }
+  15% {
+    text-shadow: -2px 0 cyan, 2px 0 magenta;
+    color: #e0e0e0;
+  }
+  30% {
+    text-shadow: 2px 0 lime, -2px 0 yellow;
+    color: #fff;
+  }
+  45% {
+    text-shadow: -2px 0 red, 2px 0 blue;
+    color: #bdbdbd;
+  }
+  60% {
+    text-shadow: 2px 0 magenta, -2px 0 cyan;
+    color: #fff;
+  }
+  75% {
+    text-shadow: 0 0 8px #fff, 0 2px 8px rgba(0, Z0, 0, 0.18);
+    color: #fff;
+  }
+  100% {
+    text-shadow: 0 0 8px #fff, 0 2px 8px rgba(0, 0, 0, 0.18);
+    color: #fff;
+  }
+}
+
+.glitch {
+  animation: glitch 1.2s infinite linear alternate-reverse;
 }
