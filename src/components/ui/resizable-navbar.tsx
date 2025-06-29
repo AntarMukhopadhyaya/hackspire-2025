@@ -227,7 +227,7 @@ export const MobileNavToggle = ({
 export const NavbarLogo = () => {
   return (
     <span className="font-bold text-xl text-white hero-title tracking-wider uppercase">
-      HACKSPIRE 2025
+      HACKSPIRE
     </span>
   );
 };

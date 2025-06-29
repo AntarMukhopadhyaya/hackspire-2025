@@ -1,6 +1,11 @@
 "use client";
 import { motion } from "framer-motion";
-import ChromaGrid from "./blocks/Components/ChromaGrid/ChromaGrid";
+import dynamic from "next/dynamic";
+
+const ChromaGrid = dynamic(
+  () => import("./blocks/Components/ChromaGrid/ChromaGrid"),
+  { ssr: false }
+);
 
 const tracks = [
   {

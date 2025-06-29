@@ -1,6 +1,5 @@
 "use client";
 import { motion } from "framer-motion";
-
 export default function AboutTheme() {
   return (
     <section className="relative py-20 z-10">

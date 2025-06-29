@@ -12,6 +12,15 @@
   font-display: swap;
 }
 
+/* CocoBiker Font */
+@font-face {
+  font-family: "CocoBiker";
+  src: url("/fonts/CocoBiker Regular Trial.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 17, 24, 39; /* ashenBlack: deep bluish-black */

@@ -10,6 +10,9 @@ module.exports = {
       fontFamily: {
         bengali: ["'Noto Sans Bengali'", "sans-serif"],
         poppins: ["'Poppins'", "sans-serif"],
+        "noto-bengali": ['"Noto Sans Bengali"', "serif"],
+        blanka: ["Blanka", "Impact", "Arial Black", "sans-serif"],
+        cocobiker: ["CocoBiker", "sans-serif"],
       },
       colors: {
         shaktiRed: "#B91C1C",
@@ -22,10 +25,6 @@ module.exports = {
       },
       animation: {
         pulseSlow: "pulse 3s ease-in-out infinite",
-      },
-      fontFamily: {
-        "noto-bengali": ['"Noto Sans Bengali"', "serif"],
-        'blanka': ['Blanka', 'Impact', 'Arial Black', 'sans-serif'],
       },
     },
   },
