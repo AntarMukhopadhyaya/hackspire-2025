@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 export default function AboutTheme() {
   return (
-    <section className="relative py-20 z-10">
+    <section className="relative py-20 z-10" id="about">
       <div className="px-4 md:px-8 lg:px-16 max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

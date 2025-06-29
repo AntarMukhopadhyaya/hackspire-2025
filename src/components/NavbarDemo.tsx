@@ -10,6 +10,7 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
+import { link } from "fs";
 import { useState } from "react";
 
 export function NavbarDemo() {
@@ -27,9 +28,14 @@ export function NavbarDemo() {
       link: "#schedule",
     },
     {
+      name: "Team",
+      link: "#team",
+    },
+    {
       name: "Register",
       link: "#register",
     },
+
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

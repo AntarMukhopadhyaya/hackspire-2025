@@ -6,6 +6,7 @@ import TracksSection from "@/components/TracksSection";
 import ScheduleSection from "@/components/ScheduleSection";
 import CountdownTimer from "@/components/CountdownTimer";
 import Footer from "@/components/Footer";
+import TeamSection from "@/components/TeamSection";
 
 export default function Home() {
   const mainRef = useRef<HTMLElement>(null);
@@ -26,6 +27,7 @@ export default function Home() {
         <TracksSection />
         <ScheduleSection />
         <CountdownTimer />
+        <TeamSection />
         <Footer />
       </div>
     </main>
