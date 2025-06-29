@@ -226,7 +226,7 @@ export const MobileNavToggle = ({
 
 export const NavbarLogo = () => {
   return (
-    <span className="font-bold text-xl text-white hero-title tracking-wider uppercase">
+    <span className="font-bold text-xl text-white hero-title tracking-wider uppercase flex items-center h-full -mt-1">
       HACKSPIRE
     </span>
   );

@@ -72,6 +72,53 @@ export default function HeroSection() {
 
   return (
     <section className="relative w-full h-screen overflow-hidden flex flex-col justify-center items-center">
+      {/* Diagonal Strip Image (top-left, absolute, no text) */}
+      <div
+        className="absolute z-20 pointer-events-none"
+        style={{
+          top: "85px",
+          left: "-45px",
+          width: "500px",
+          height: "120px",
+          transform: "rotate(-22deg)",
+          transformOrigin: "top left",
+          opacity: 0.5,
+        }}
+      >
+        <Image
+          src="/images/strip.svg"
+          alt="Decorative Strip"
+          fill
+          className="object-contain"
+          priority
+        />
+        {/* Overlay PUSH LIMITS text */}
+        <span
+          style={{
+            position: "absolute",
+            zIndex: 9,
+            left: "40%",
+            top: "50%",
+            transform: "translate(-50%, -50%) rotate(0deg)",
+            fontFamily: "Distancia, sans-serif",
+            fontSize: "26px",
+            color: "#fff",
+
+            letterSpacing: "0.08em",
+            fontWeight: 900,
+            whiteSpace: "nowrap",
+            pointerEvents: "none",
+            userSelect: "none",
+          }}
+        >
+          <span
+            className="glitch"
+            style={{ display: "inline-block", width: "100%" }}
+          >
+            PUSH LIMITS
+          </span>
+        </span>
+      </div>
       {/* Background and Durga projection (absolute, layered) */}
       <div className="absolute inset-0 z-10 pointer-events-none">
         {/* West Bengal SVG Background */}
