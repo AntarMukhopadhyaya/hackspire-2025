@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "Alex Chen",
+    "position": "Full Stack Developer",
+    "image": "/images/dev.png",
+    "instagram": "@alexchen_dev",
+    "github": "https://github.com/alexchen",
+    "linkedin": "https://linkedin.com/in/alexchen",
+    "crew": "hackbuilders"
+  },
+  {
+    "id": 2,
+    "name": "Sarah Williams",
+    "position": "UI/UX Designer",
+    "image": "/images/dev.png",
+    "instagram": "@sarahdesigns",
+    "github": "https://github.com/sarahwilliams",
+    "linkedin": "https://linkedin.com/in/sarahwilliams",
+    "crew": "spireorgs"
+  },
+  {
+    "id": 3,
+    "name": "Marcus Johnson",
+    "position": "DevOps Engineer",
+    "image": "/images/dev.png",
+    "instagram": "@marcus_ops",
+    "github": "https://github.com/marcusjohnson",
+    "linkedin": "https://linkedin.com/in/marcusjohnson",
+    "crew": "spiregineers"
+  },
+  {
+    "id": 4,
+    "name": "Emma Rodriguez",
+    "position": "Product Manager",
+    "image": "/images/dev.png",
+    "instagram": "@emma_pm",
+    "github": "https://github.com/emmarodriguez",
+    "linkedin": "https://linkedin.com/in/emmarodriguez",
+    "crew": "spireorgs"
+  },
+  {
+    "id": 5,
+    "name": "David Kim",
+    "position": "Mobile Developer",
+    "image": "/images/dev.png",
+    "instagram": "@davidkim_mobile",
+    "github": "https://github.com/davidkim",
+    "linkedin": "https://linkedin.com/in/davidkim",
+    "crew": "hackbuilders"
+  },
+  {
+    "id": 6,
+    "name": "Lisa Thompson",
+    "position": "Data Scientist",
+    "image": "/images/dev.png",
+    "instagram": "@lisa_data",
+    "github": "https://github.com/lisathompson",
+    "linkedin": "https://linkedin.com/in/lisathompson",
+    "crew": "spireteers"
+  },
+  {
+    "id": 7,
+    "name": "Ryan Patel",
+    "position": "Backend Engineer",
+    "image": "/images/dev.png",
+    "instagram": "@ryan_backend",
+    "github": "https://github.com/ryanpatel",
+    "linkedin": "https://linkedin.com/in/ryanpatel",
+    "crew": "spiregineers"
+  },
+  {
+    "id": 8,
+    "name": "Zoe Anderson",
+    "position": "Community Manager",
+    "image": "/images/dev.png",
+    "instagram": "@zoe_community",
+    "github": "https://github.com/zoeanderson",
+    "linkedin": "https://linkedin.com/in/zoeanderson",
+    "crew": "spireteers"
+  }
+]

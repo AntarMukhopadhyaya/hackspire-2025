@@ -34,7 +34,7 @@ const stages = [
 
 export default function ScheduleSection() {
   return (
-    <section className="relative py-20 overflow-hidden">
+    <section className="relative py-20 overflow-hidden" id="schedule">
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 [background:radial-gradient(circle_at_center,rgba(120,119,198,0.2),transparent_70%)]"></div>
         <div className="absolute inset-0 bg-[url('/images/grid.png')] opacity-10 bg-[length:100px_100px]"></div>
