@@ -4,8 +4,40 @@ import Image from "next/image";
 import DecryptedText from "./blocks/TextAnimations/DecryptedText/DecryptedText";
 import { useEffect, useState } from "react";
 import Threads from "./blocks/Backgrounds/Threads/Threads";
+import { FaCalendarAlt, FaClock } from "react-icons/fa";
 
 export default function HeroSection() {
+  // Countdown timer logic
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  // Set target date to September 15, 2025
+  const targetDate = new Date("2025-09-15T09:00:00");
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const difference = targetDate.getTime() - new Date().getTime();
+
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((difference / 1000 / 60) % 60),
+          seconds: Math.floor((difference / 1000) % 60),
+        });
+      }
+    };
+
+    calculateTimeLeft();
+    const timer = setInterval(calculateTimeLeft, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   // Add looping decrypted text logic
   const decryptedTexts = [
     "AI & Machine Learning",
@@ -234,6 +266,53 @@ export default function HeroSection() {
                       : "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+"
                   }
                 />
+              </div>
+            </div>
+
+            {/* Glassmorphism Countdown Timer Box */}
+            <div className="w-full flex justify-center mt-6">
+              <div
+                className="inline-flex items-center gap-4 bg-gradient-to-r from-purple-600/40 to-blue-600/40 rounded-full px-8 py-4 w-auto max-w-[600px] mx-auto overflow-hidden items-center whitespace-nowrap flex-nowrap"
+                style={{ fontFamily: "Poppins, sans-serif" }}
+              >
+                {/* Calendar Icon and Date */}
+                <div
+                  className="flex items-center gap-2 text-white text-2xl font-normal"
+                  style={{ fontFamily: "Poppins, sans-serif" }}
+                >
+                  <FaCalendarAlt className="text-white w-7 h-7" />
+                  <span>Sept 13-15 2025</span>
+                </div>
+                <span className="mx-3 text-white/40 text-3xl font-normal">
+                  |
+                </span>
+                {/* Clock Icon and Countdown */}
+                <div
+                  className="flex items-center gap-1 text-white text-2xl font-normal w-[180px]"
+                  style={{ fontFamily: "Poppins, sans-serif" }}
+                >
+                  <FaClock className="text-white w-7 h-7 mr-1" />
+                  <span
+                    className="font-mono w-full block text-center font-normal"
+                    style={{ fontFamily: "Poppins, sans-serif" }}
+                  >
+                    {typeof timeLeft.days === "number"
+                      ? timeLeft.days.toString().padStart(2, "0")
+                      : "00"}{" "}
+                    :
+                    {typeof timeLeft.hours === "number"
+                      ? timeLeft.hours.toString().padStart(2, "0")
+                      : "00"}{" "}
+                    :
+                    {typeof timeLeft.minutes === "number"
+                      ? timeLeft.minutes.toString().padStart(2, "0")
+                      : "00"}{" "}
+                    :
+                    {typeof timeLeft.seconds === "number"
+                      ? timeLeft.seconds.toString().padStart(2, "0")
+                      : "00"}
+                  </span>
+                </div>
               </div>
             </div>
           </motion.div>
