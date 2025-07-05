@@ -13,6 +13,7 @@ import {
 import { link } from "fs";
 import { useState, useEffect, useRef } from "react";
 import { Volume2, VolumeX } from "lucide-react";
+import Image from "next/image";
 
 export function NavbarDemo() {
   const navItems = [
@@ -31,10 +32,6 @@ export function NavbarDemo() {
     {
       name: "Crews",
       link: "/crews",
-    },
-    {
-      name: "Register",
-      link: "#register",
     },
   ];
 
@@ -244,13 +241,30 @@ export function NavbarDemo() {
                 <VolumeX className="w-5 h-5 text-white hover:text-gray-300" />
               )}
             </button>
-            {/* <div 
-              className="apply-button" 
-              data-hackathon-slug="hackspire-2025" 
-              data-button-theme="light"
-              style={{ height: "44px", width: "312px" }}
-            /> */}
-            <NavbarButton variant="primary">Register</NavbarButton>
+            {/* Discord Icon Button */}
+            <a
+              href="https://discord.gg/8qpHgECDH3"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-10 h-10 transition-all duration-200 hover:scale-110 hover:opacity-80 cursor-pointer z-50 relative"
+              title="Join our Discord"
+              onClick={(e) => {
+                console.log("Discord icon clicked!");
+                // Let the default link behavior happen
+              }}
+              style={{
+                pointerEvents: "auto",
+                zIndex: 9999,
+              }}
+            >
+              <Image
+                src="/icons/discord.svg"
+                alt="Discord"
+                width={24}
+                height={24}
+                className="w-6 h-6 pointer-events-none"
+              />
+            </a>
           </div>
         </NavBody>
 
@@ -271,6 +285,30 @@ export function NavbarDemo() {
                   <VolumeX className="w-4 h-4 text-white hover:text-gray-300" />
                 )}
               </button>
+              {/* Discord Icon Button for Mobile */}
+              <a
+                href="https://discord.gg/8qpHgECDH3"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-8 h-8 transition-all duration-200 hover:scale-110 hover:opacity-80 cursor-pointer z-50 relative"
+                title="Join our Discord"
+                onClick={(e) => {
+                  console.log("Mobile Discord icon clicked!");
+                  // Let the default link behavior happen
+                }}
+                style={{
+                  pointerEvents: "auto",
+                  zIndex: 9999,
+                }}
+              >
+                <Image
+                  src="/icons/discord.svg"
+                  alt="Discord"
+                  width={20}
+                  height={20}
+                  className="w-5 h-5 pointer-events-none"
+                />
+              </a>
               <MobileNavToggle
                 isOpen={isMobileMenuOpen}
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -293,19 +331,23 @@ export function NavbarDemo() {
               </a>
             ))}
             <div className="flex w-full flex-col gap-4">
-              {/* <div 
-                className="apply-button w-full" 
-                data-hackathon-slug="hackspire-2025" 
-                data-button-theme="light"
-                style={{ height: "44px", width: "100%" }}
-              /> */}
-              <NavbarButton
+              {/* Discord Link for Mobile Menu */}
+              <a
+                href="https://discord.gg/8qpHgECDH3"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setIsMobileMenuOpen(false)}
-                variant="primary"
-                className="w-full"
+                className="flex items-center gap-2 text-white hover:text-black transition-colors duration-200 px-4 py-2 rounded-md border border-white/20 hover:bg-white/10"
               >
-                Register
-              </NavbarButton>
+                <Image
+                  src="/icons/discord.svg"
+                  alt="Discord"
+                  width={20}
+                  height={20}
+                  className="w-5 h-5"
+                />
+                <span>Join Discord</span>
+              </a>
             </div>
           </MobileNavMenu>
         </MobileNav>

@@ -94,13 +94,13 @@ body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
     45deg,
-    #063bc4 0%,
+    #0003f4 0%,
     #081664 15%,
-    #063bc4 30%,
+    #0003f4 30%,
     #081664 45%,
-    #063bc4 60%,
+    #0003f4 60%,
     #081664 75%,
-    #063bc4 90%,
+    #0003f4 90%,
     #081664 100%
   );
   background-size: 400% 400%;
@@ -141,13 +141,13 @@ body::before {
 html {
   background: linear-gradient(
     45deg,
-    #063bc4 0%,
+    #0003f4 0%,
     #081664 15%,
-    #063bc4 30%,
+    #0003f4 30%,
     #081664 45%,
-    #063bc4 60%,
+    #0003f4 60%,
     #081664 75%,
-    #063bc4 90%,
+    #0003f4 90%,
     #081664 100%
   );
   background-size: 400% 400%;
@@ -333,4 +333,90 @@ html {
 
 .glitch {
   animation: glitch 1.2s infinite linear alternate-reverse;
+}
+
+/* 3D Tilt Effect for Crew Cards */
+.crew-card-tilt {
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+  will-change: transform;
+  cursor: default; /* Changed from pointer to default */
+  /* Add a subtle shadow effect to enhance the 3D look */
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  --shine-opacity: 0;
+}
+
+.crew-card-tilt:hover {
+  transition: transform 0.1s ease-out;
+  /* Enhance shadow on hover for depth effect */
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7);
+}
+
+.crew-card-tilt-content {
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+.crew-card-tilt:hover .crew-card-tilt-content {
+  transition: transform 0.1s ease-out;
+}
+
+/* Subtle glow effect on hover */
+.crew-card-tilt::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.07) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  z-index: 30;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  border-radius: 0.5rem;
+}
+
+/* Mouse-following diagonal shine effect */
+.crew-card-tilt::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.05) 30%,
+    transparent 70%
+  );
+  z-index: 31;
+  opacity: var(--shine-opacity);
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  border-radius: 0.5rem;
+  mix-blend-mode: overlay;
+}
+
+.crew-card-tilt:hover::before {
+  opacity: 1;
+}
+
+/* Add subtle glow around the card on hover */
+.crew-card-tilt:hover {
+  filter: drop-shadow(0 0 10px rgba(100, 100, 255, 0.15));
+}
+
+/* Slide up animation for SpireCompleters title */
+.animate-slide-up {
+  transform: translateY(0) !important;
+  opacity: 1 !important;
 }

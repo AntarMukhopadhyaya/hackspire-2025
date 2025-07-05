@@ -230,10 +230,27 @@ export const MobileNavToggle = ({
 };
 
 export const NavbarLogo = () => {
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    // Navigate to home page
+    window.location.href = "/";
+  };
+
   return (
-    <span className="font-bold text-xl text-white hero-title tracking-wider uppercase flex items-center h-full -mt-1">
+    <button
+      className="font-bold text-xl text-white hero-title tracking-wider uppercase flex items-center h-full -mt-3 !cursor-pointer hover:opacity-80 transition-opacity duration-200 bg-transparent border-none p-2 m-0 outline-none focus:outline-none z-50 relative"
+      onClick={handleLogoClick}
+      onMouseDown={handleLogoClick}
+      type="button"
+      style={{
+        cursor: "pointer !important",
+        pointerEvents: "auto",
+        zIndex: 9999,
+      }}
+    >
       HACKSPIRE
-    </span>
+    </button>
   );
 };
 

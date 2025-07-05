@@ -7,7 +7,8 @@
     "instagram": "@alexchen_dev",
     "github": "https://github.com/alexchen",
     "linkedin": "https://linkedin.com/in/alexchen",
-    "crew": "hackbuilders"
+    "crew": "hackbuilders",
+    "crewfilter": "HACKBUILDERS"
   },
   {
     "id": 2,
@@ -17,7 +18,8 @@
     "instagram": "@sarahdesigns",
     "github": "https://github.com/sarahwilliams",
     "linkedin": "https://linkedin.com/in/sarahwilliams",
-    "crew": "spireorgs"
+    "crew": "spireorgs",
+    "crewfilter": "SPIREORGS"
   },
   {
     "id": 3,
@@ -27,7 +29,8 @@
     "instagram": "@marcus_ops",
     "github": "https://github.com/marcusjohnson",
     "linkedin": "https://linkedin.com/in/marcusjohnson",
-    "crew": "spiregineers"
+    "crew": "spiregineers",
+    "crewfilter": "SPIREGINEERS"
   },
   {
     "id": 4,
@@ -37,7 +40,8 @@
     "instagram": "@emma_pm",
     "github": "https://github.com/emmarodriguez",
     "linkedin": "https://linkedin.com/in/emmarodriguez",
-    "crew": "spireorgs"
+    "crew": "spireorgs",
+    "crewfilter": "SPIREORGS"
   },
   {
     "id": 5,
@@ -47,7 +51,8 @@
     "instagram": "@davidkim_mobile",
     "github": "https://github.com/davidkim",
     "linkedin": "https://linkedin.com/in/davidkim",
-    "crew": "hackbuilders"
+    "crew": "hackbuilders",
+    "crewfilter": "HACKBUILDERS"
   },
   {
     "id": 6,
@@ -57,7 +62,8 @@
     "instagram": "@lisa_data",
     "github": "https://github.com/lisathompson",
     "linkedin": "https://linkedin.com/in/lisathompson",
-    "crew": "spireteers"
+    "crew": "spireteers",
+    "crewfilter": "SPIRETEERS"
   },
   {
     "id": 7,
@@ -67,7 +73,8 @@
     "instagram": "@ryan_backend",
     "github": "https://github.com/ryanpatel",
     "linkedin": "https://linkedin.com/in/ryanpatel",
-    "crew": "spiregineers"
+    "crew": "spiregineers",
+    "crewfilter": "SPIREGINEERS"
   },
   {
     "id": 8,
@@ -77,6 +84,7 @@
     "instagram": "@zoe_community",
     "github": "https://github.com/zoeanderson",
     "linkedin": "https://linkedin.com/in/zoeanderson",
-    "crew": "spireteers"
+    "crew": "spireteers",
+    "crewfilter": "SPIRETEERS"
   }
 ]

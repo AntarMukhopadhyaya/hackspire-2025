@@ -146,6 +146,18 @@ export default function HeroSection() {
             />
           </div>
         </div>
+        {/* Logo Icon SVG coming from top */}
+        <div className="absolute top-0 left-0 w-full flex justify-start pl-[5%] opacity-20">
+          <div className="relative w-full h-[1000px] max-w-7xl">
+            <Image
+              src="/icons/logoicon.svg"
+              alt="HackSpire Logo"
+              fill
+              className="object-contain object-left"
+              priority
+            />
+          </div>
+        </div>
         {/* Holographic Durga projection */}
         {/* <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center z-20">
           <div className="relative w-full h-full">
