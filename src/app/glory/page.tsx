@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { motion } from "framer-motion";
 import GloryBentoGrid from "../../components/GloryBentoGrid";
 import GloryAnimatedText from "../../components/GloryAnimatedText";
 
@@ -8,12 +9,20 @@ function Glory() {
     <div className="min-h-screen text-white py-20 px-4">
       {/* Centered Glory Title */}
       <div className="text-center mb-16">
-        <h1 className="text-6xl md:text-8xl font-bold text-white font-distancia">
+        <motion.h1
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-6xl md:text-8xl font-bold text-white font-distancia"
+        >
           Glory
-        </h1>
+        </motion.h1>
 
         {/* Subtext with Poppins font */}
-        <p
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
           className="text-xl md:text-2xl text-gray-300 mt-8 max-w-4xl mx-auto leading-relaxed"
           style={{ fontFamily: "Poppins, sans-serif" }}
         >
@@ -22,18 +31,28 @@ function Glory() {
           incredible projects, brilliant minds, and revolutionary solutions that
           emerged from our community of passionate developers, designers, and
           innovators.
-        </p>
+        </motion.p>
       </div>
 
       {/* Bento Grid Section */}
-      <div className="mt-20">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.6 }}
+        className="mt-20"
+      >
         <GloryBentoGrid />
-      </div>
+      </motion.div>
 
       {/* Animated Text Section */}
-      <div className="mt-20">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.9 }}
+        className="mt-20"
+      >
         <GloryAnimatedText />
-      </div>
+      </motion.div>
     </div>
   );
 }

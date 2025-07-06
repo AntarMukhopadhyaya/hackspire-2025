@@ -1,7 +1,6 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
 
 interface BentoCardProps {
   title: string;
@@ -10,15 +9,6 @@ interface BentoCardProps {
   imageUrl: string;
   delay: number;
   size: "small" | "medium" | "large";
-  onHover?: (
-    data: {
-      title: string;
-      subtitle: string;
-      description: string;
-      imageUrl: string;
-    } | null
-  ) => void;
-  onMouseMove?: (event: React.MouseEvent) => void;
 }
 
 const sizeClasses = {
@@ -38,32 +28,14 @@ const BentoCard: React.FC<BentoCardProps> = ({
   imageUrl,
   delay,
   size,
-  onHover,
-  onMouseMove,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
-
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-    onHover?.({ title, subtitle, description, imageUrl });
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    onHover?.(null);
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    onMouseMove?.(e);
-  };
-
   return (
     <div
       className={`relative overflow-hidden bg-gradient-to-br from-purple-900/20 to-blue-900/20 backdrop-blur-sm border border-white/10 rounded-2xl transition-all duration-700 ease-out group cursor-pointer hover:scale-[1.02] hover:bg-gradient-to-br hover:from-purple-800/30 hover:to-blue-800/30 flex flex-col justify-end p-4 ${sizeClasses[size]}`}
       style={{ animationDelay: `${delay}ms` }}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full">
@@ -116,45 +88,6 @@ function shuffleArray<T>(array: T[]): T[] {
 }
 
 const GloryBentoGrid: React.FC = () => {
-  const [randomizedData, setRandomizedData] = useState<BentoCardProps[]>([]);
-  const [hoveredCard, setHoveredCard] = useState<{
-    title: string;
-    subtitle: string;
-    description: string;
-    imageUrl: string;
-  } | null>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  const handleCardHover = (
-    data: {
-      title: string;
-      subtitle: string;
-      description: string;
-      imageUrl: string;
-    } | null
-  ) => {
-    setHoveredCard(data);
-  };
-
-  const handleMouseMove = (event: React.MouseEvent) => {
-    const modalWidth = 320; // max-w-xs is approximately 320px
-    const modalHeight = 200; // approximate height
-    const padding = 20;
-
-    let x = event.clientX + padding;
-    let y = event.clientY - modalHeight - padding;
-
-    // Adjust if modal would go off-screen
-    if (x + modalWidth > window.innerWidth) {
-      x = event.clientX - modalWidth - padding;
-    }
-    if (y < 0) {
-      y = event.clientY + padding;
-    }
-
-    setMousePosition({ x, y });
-  };
-
   // 12 cards to fill a 6x2 grid (no blank spots)
   const baseData: Omit<BentoCardProps, "size">[] = [
     {
@@ -268,124 +201,30 @@ const GloryBentoGrid: React.FC = () => {
     },
   ];
 
-  // Use useEffect to shuffle data only on client side
-  React.useEffect(() => {
-    const shuffledData: BentoCardProps[] = shuffleArray(baseData).map(
-      (card) => ({
-        ...card,
-        size: SIZES[Math.floor(Math.random() * SIZES.length)],
-      })
-    );
-    setRandomizedData(shuffledData);
-  }, []);
+  // Shuffle and assign random sizes
+  const randomizedData: BentoCardProps[] = shuffleArray(baseData).map(
+    (card) => ({
+      ...card,
+      size: SIZES[Math.floor(Math.random() * SIZES.length)],
+    })
+  );
 
   return (
-    <>
-      <div className="w-full max-w-7xl mx-auto px-2 md:px-4 lg:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6 auto-rows-[160px] md:auto-rows-[200px] lg:auto-rows-[220px]">
-          {randomizedData.map((card, index) => (
-            <BentoCard
-              key={index}
-              title={card.title}
-              subtitle={card.subtitle}
-              description={card.description}
-              imageUrl={card.imageUrl}
-              delay={card.delay}
-              size={card.size}
-              onHover={handleCardHover}
-              onMouseMove={handleMouseMove}
-            />
-          ))}
-        </div>
+    <div className="w-full max-w-7xl mx-auto px-2 md:px-4 lg:px-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6 auto-rows-[160px] md:auto-rows-[200px] lg:auto-rows-[220px]">
+        {randomizedData.map((card, index) => (
+          <BentoCard
+            key={index}
+            title={card.title}
+            subtitle={card.subtitle}
+            description={card.description}
+            imageUrl={card.imageUrl}
+            delay={card.delay}
+            size={card.size}
+          />
+        ))}
       </div>
-
-      {/* HackSpire 2024 Success Section */}
-      <div className="w-full max-w-7xl mx-auto px-2 md:px-4 lg:px-6 mt-16">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-center mb-8"
-        >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 font-['Distancia']">
-            HackSpire 2024 Success
-          </h2>
-          <p className="text-lg md:text-xl text-gray-300 font-['Poppins'] max-w-3xl mx-auto">
-            The incredible team of crew members and faculty who made HackSpire
-            2024 a grand success
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-          className="relative rounded-3xl overflow-hidden shadow-2xl shadow-purple-500/20"
-        >
-          <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px]">
-            <Image
-              src="https://res.cloudinary.com/dislegzga/image/upload/v1751778202/WhatsApp_Image_2025-07-06_at_10.32.39_7e1ee8c1_q6iytc.jpg"
-              alt="HackSpire 2024 Success - Crew and Faculty"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-          </div>
-
-          {/* Optional overlay text */}
-          <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 bg-gradient-to-t from-black/80 to-transparent">
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 font-['Distancia']">
-              The Dream Team Behind the Magic
-            </h3>
-            <p className="text-gray-300 font-['Poppins'] text-sm md:text-base">
-              Our dedicated crew members and supportive faculty who worked
-              tirelessly to bring HackSpire 2024 to life and make it an
-              unforgettable experience for all participants.
-            </p>
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Floating Modal */}
-      <AnimatePresence>
-        {hoveredCard && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.8, y: 10 }}
-            transition={{ duration: 0.15, ease: "easeOut" }}
-            className="fixed pointer-events-none z-50"
-            style={{
-              left: mousePosition.x,
-              top: mousePosition.y,
-            }}
-          >
-            <div className="bg-black/90 backdrop-blur-md border border-purple-400/30 rounded-xl overflow-hidden max-w-xs shadow-2xl shadow-purple-500/20">
-              <div className="relative w-full h-32 mb-0">
-                <Image
-                  src={hoveredCard.imageUrl}
-                  alt={hoveredCard.title}
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-              </div>
-              <div className="p-4">
-                <h3 className="text-white font-bold text-lg mb-1 font-['Poppins'] leading-tight">
-                  {hoveredCard.title}
-                </h3>
-                <p className="text-purple-300 font-medium text-sm mb-2 font-['Poppins']">
-                  {hoveredCard.subtitle}
-                </p>
-                <p className="text-gray-300 text-xs font-['Poppins'] leading-relaxed line-clamp-3">
-                  {hoveredCard.description}
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+    </div>
   );
 };
 
