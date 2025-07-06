@@ -272,7 +272,7 @@ export default function HeroSection() {
             {/* Glassmorphism Countdown Timer Box */}
             <div className="w-full flex justify-center mt-4 md:mt-6">
               <div
-                className="inline-flex flex-col sm:flex-row items-center gap-2 sm:gap-4 bg-gradient-to-r from-purple-600/40 to-blue-600/40 rounded-full px-4 sm:px-6 md:px-8 py-3 sm:py-4 w-auto max-w-[600px] mx-auto overflow-hidden items-center whitespace-nowrap flex-nowrap"
+                className="inline-flex flex-col sm:flex-row items-center gap-2 sm:gap-4 bg-gradient-to-r from-purple-600/40 to-blue-600/40 rounded-full px-4 sm:px-6 md:px-8 py-3 sm:py-4 w-auto max-w-[600px] mx-auto overflow-hidden whitespace-nowrap flex-nowrap"
                 style={{ fontFamily: "Poppins, sans-serif" }}
               >
                 {/* Calendar Icon and Date */}
