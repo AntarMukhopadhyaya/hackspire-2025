@@ -29,12 +29,14 @@ function Crews() {
     <div className="min-h-screen text-white py-20 px-4">
       {/* Centered Crews Title */}
       <div className="text-center mb-16">
-        <h1
-          className="text-6xl md:text-8xl font-bold text-white"
-          style={{ fontFamily: "Distancia, sans-serif" }}
-        >
+        <h1 className="text-6xl md:text-8xl font-bold text-white font-distancia">
           Crews
         </h1>
+        <p className="text-lg md:text-xl text-gray-300 mt-6 max-w-xl mx-auto leading-relaxed font-['Poppins']">
+          Meet the organizing members behind Hackspire.
+          <br />
+          Each crew plays a vital role in making the event possible.
+        </p>
       </div>
 
       {/* Filter Section */}

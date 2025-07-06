@@ -119,7 +119,7 @@ export default function HeroSection() {
       */}
       {/* Diagonal Strip Image (top-left, absolute, no text) */}
       <div
-        className="absolute z-20 pointer-events-none"
+        className="absolute z-20 pointer-events-none hidden md:block"
         style={{
           top: "85px",
           left: "-45px",
@@ -209,19 +209,19 @@ export default function HeroSection() {
       <div className="relative z-30 flex flex-col items-center justify-center w-full h-full">
         <div className="text-center px-4 w-full max-w-5xl mx-auto">
           {/* Hero Title Block: Logo, HACKSPIRE 2025, CODE | CREATE | CONQUER all perfectly centered as a group */}
-          <h1 className="flex items-center justify-center gap-2 text-5xl md:text-7xl lg:text-8xl font-bold -mb-10 relative text-white animate-pulse hero-title leading-none">
+          <h1 className="flex items-center justify-center gap-2 text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-bold -mb-6 md:-mb-10 relative text-white animate-pulse hero-title leading-none">
             <img
               src="/icons/logoicon.svg"
               alt="Hackspire Logo Icon"
-              className="inline-block align-middle h-[4.5rem] md:h-[6rem] lg:h-[12rem] w-auto -mr-8"
+              className="inline-block align-middle h-[2.5rem] sm:h-[3rem] md:h-[4.5rem] lg:h-[6rem] xl:h-[12rem] w-auto -mr-4 sm:-mr-6 md:-mr-8"
               draggable="false"
             />
             <span className="align-middle">HACKSPIRE 2025</span>
           </h1>
           {/* CODE | CREATE | CONQUER text with Cocobiker font */}
-          <div className="text-center mb-8">
+          <div className="text-center mb-4 md:mb-8">
             <p
-              className="text-white text-[26px] font-bold animate-pulse "
+              className="text-white text-lg sm:text-xl md:text-[26px] font-bold animate-pulse"
               style={{ fontFamily: "CocoBiker, sans-serif" }}
             >
               CODE | CREATE | CONQUER
@@ -232,13 +232,13 @@ export default function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 1 }}
-            className="text-2xl md:text-3xl lg:text-4xl font-semibold space-y-1"
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold space-y-1"
           >
             <p className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-400 to-red-500">
               Where <span className="text-white font-bold">Tradition</span>
               Meets <span className="text-white font-bold">Innovation</span>
             </p>
-            <div className="h-1 w-24 mx-auto bg-gradient-to-r from-yellow-300 via-orange-400 to-red-500 rounded-full shadow-md" />
+            <div className="h-1 w-16 sm:w-20 md:w-24 mx-auto bg-gradient-to-r from-yellow-300 via-orange-400 to-red-500 rounded-full shadow-md" />
 
             {/* DecryptedText Looping Area (centered under tagline) */}
             <div className="hidden lg:flex w-full justify-center items-center mt-4 pointer-events-none">
@@ -270,30 +270,30 @@ export default function HeroSection() {
             </div>
 
             {/* Glassmorphism Countdown Timer Box */}
-            <div className="w-full flex justify-center mt-6">
+            <div className="w-full flex justify-center mt-4 md:mt-6">
               <div
-                className="inline-flex items-center gap-4 bg-gradient-to-r from-purple-600/40 to-blue-600/40 rounded-full px-8 py-4 w-auto max-w-[600px] mx-auto overflow-hidden items-center whitespace-nowrap flex-nowrap"
+                className="inline-flex flex-col sm:flex-row items-center gap-2 sm:gap-4 bg-gradient-to-r from-purple-600/40 to-blue-600/40 rounded-full px-4 sm:px-6 md:px-8 py-3 sm:py-4 w-auto max-w-[600px] mx-auto overflow-hidden items-center whitespace-nowrap flex-nowrap"
                 style={{ fontFamily: "Poppins, sans-serif" }}
               >
                 {/* Calendar Icon and Date */}
                 <div
-                  className="flex items-center gap-2 text-white text-2xl font-normal"
+                  className="flex items-center gap-2 text-white text-sm sm:text-lg md:text-xl lg:text-2xl font-normal"
                   style={{ fontFamily: "Poppins, sans-serif" }}
                 >
-                  <FaCalendarAlt className="text-white w-7 h-7" />
+                  <FaCalendarAlt className="text-white w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
                   <span>Sept 13-15 2025</span>
                 </div>
-                <span className="mx-3 text-white/40 text-3xl font-normal">
+                <span className="hidden sm:block mx-3 text-white/40 text-xl sm:text-2xl md:text-3xl font-normal">
                   |
                 </span>
                 {/* Clock Icon and Countdown */}
                 <div
-                  className="flex items-center gap-1 text-white text-2xl font-normal w-[180px]"
+                  className="flex items-center gap-1 text-white text-sm sm:text-lg md:text-xl lg:text-2xl font-normal w-[140px] sm:w-[160px] md:w-[180px]"
                   style={{ fontFamily: "Poppins, sans-serif" }}
                 >
-                  <FaClock className="text-white w-7 h-7 mr-1" />
+                  <FaClock className="text-white w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 mr-1" />
                   <span
-                    className="font-mono w-full block text-center font-normal"
+                    className="w-full block text-center font-normal text-sm sm:text-lg md:text-xl lg:text-2xl"
                     style={{ fontFamily: "Poppins, sans-serif" }}
                   >
                     {typeof timeLeft.days === "number"
@@ -325,8 +325,10 @@ export default function HeroSection() {
         transition={{ delay: 1.4 }}
         className="absolute bottom-2 left-1/2 -translate-x-1/2 z-40 flex flex-col items-center"
       >
-        <p className="mb-2 text-sm text-white/80 tracking-wide">Scroll Down</p>
-        <div className="w-px h-14 bg-gradient-to-t from-goldGlow to-white animate-bounce" />
+        <p className="mb-2 text-xs sm:text-sm text-white/80 tracking-wide">
+          Scroll Down
+        </p>
+        <div className="w-px h-10 sm:h-14 bg-gradient-to-t from-goldGlow to-white animate-bounce" />
       </motion.div>
     </section>
   );

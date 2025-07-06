@@ -159,7 +159,7 @@ const FooterContent = () => {
                 href="#"
                 className="text-gray-400 hover:text-yellow-300 transition-colors duration-300"
               >
-                <FontAwesomeIcon icon={faXTwitter} className="w-6 h-6" />
+                <FontAwesomeIcon icon={faXTwitter} className="w-12 h-12" />
               </a>
               <a
                 href="#"

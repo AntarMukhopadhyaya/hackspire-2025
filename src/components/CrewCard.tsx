@@ -105,7 +105,19 @@ export function CrewCard({ member }: CrewCardProps) {
           transform: `translateZ(5px)`,
         }}
       >
-        <Instagram size={24} className="text-white cursor-pointer" />
+        {member.instagram && (
+          <a
+            href={member.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cursor-pointer"
+          >
+            <Instagram
+              size={24}
+              className="text-white hover:text-gray-300 transition-colors"
+            />
+          </a>
+        )}
       </div>
 
       {/* HACKSPIRE 2025 text horizontally next to Instagram icon */}

@@ -5,7 +5,6 @@ import AboutTheme from "@/components/AboutTheme";
 import TracksSection from "@/components/TracksSection";
 import ScheduleSection from "@/components/ScheduleSection";
 import CountdownTimer from "@/components/CountdownTimer";
-import Footer from "@/components/Footer";
 import TeamSection from "@/components/TeamSection";
 import SpireCompleters from "@/components/SpireCompleters";
 
@@ -28,8 +27,7 @@ export default function Home() {
         <TracksSection />
         <ScheduleSection />
         <CountdownTimer />
-        {/* <TeamSection /> */}
-        <Footer />
+        <TeamSection />
       </div>
     </main>
   );
