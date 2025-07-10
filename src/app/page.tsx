@@ -27,7 +27,6 @@ export default function Home() {
         <TracksSection />
         <ScheduleSection />
         <CountdownTimer />
-        <TeamSection />
       </div>
     </main>
   );
