@@ -7,7 +7,6 @@ import ScheduleSection from "@/components/ScheduleSection";
 
 import SpireCompleters from "@/components/SpireCompleters";
 import FAQSection from "@/components/FAQSection";
-
 export default function Home() {
   const mainRef = useRef<HTMLElement>(null);
 

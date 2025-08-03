@@ -73,29 +73,24 @@ const faqData: FAQItem[] = [
   }
 ];
 
-const categories = ["All", "General", "Registration", "Technical", "Prizes", "Participation", "Support", "Legal & Security", "Collaboration", "Post-Event"];
-
 const FAQSection: React.FC = () => {
-  const [expandedItems, setExpandedItems] = useState<Set<number>>(new Set());
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [expandedItems, setExpandedItems] = useState<number[]>([]);
 
   const toggleExpanded = (id: number) => {
-    const newExpanded = new Set(expandedItems);
-    if (newExpanded.has(id)) {
-      newExpanded.delete(id);
-    } else {
-      newExpanded.add(id);
-    }
-    setExpandedItems(newExpanded);
+    console.log('Clicked FAQ item:', id);
+    setExpandedItems(prev => {
+      if (prev.includes(id)) {
+        console.log('Closing item:', id);
+        return prev.filter(item => item !== id);
+      } else {
+        console.log('Opening item:', id);
+        return [...prev, id];
+      }
+    });
   };
 
-  const filteredFAQs = faqData.filter(item => {
-    const matchesSearch = item.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         item.answer.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === "All" || item.category === selectedCategory;
-    return matchesSearch && matchesCategory;
-  });
+  const isExpanded = (id: number) => expandedItems.includes(id);
+
 
   return (
     <div className="min-h-screen text-white py-20 px-4 relative bg-black">
@@ -176,15 +171,8 @@ const FAQSection: React.FC = () => {
 
       {/* FAQ Items */}
       <div className="max-w-6xl mx-auto space-y-6 relative z-10">
-        {filteredFAQs.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-yellow-400 text-xl" style={{ fontFamily: "'Mokoto Demo', monospace" }}>
-              No questions found matching your criteria.
-            </p>
-          </div>
-        ) : (
-          filteredFAQs.map((item, index) => {
-            const isExpanded = expandedItems.has(item.id);
+        {
+          faqData.map((item, index) => {
             return (
               <motion.div
                 key={item.id}
@@ -192,7 +180,7 @@ const FAQSection: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="relative overflow-hidden bg-gradient-to-br from-yellow-400/10 px-8 py-6 to-orange-500/10 backdrop-blur-sm border border-yellow-400/30 group hover:border-yellow-400/60 transition-all duration-300"
+                className="relative overflow-hidden bg-gradient-to-br from-yellow-400/10 px-8 py-6 to-orange-500/10 backdrop-blur-sm border border-yellow-400/30 group hover:border-yellow-400/60 transition-all duration-300 z-20"
                 style={{
                   clipPath: "polygon(15px 0%, 100% 0%, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0% 100%, 0% 15px)",
                 }}
@@ -205,26 +193,29 @@ const FAQSection: React.FC = () => {
                   <div className="absolute bottom-2 right-2 w-px h-8 bg-yellow-400 opacity-60"></div>
                 </div>
 
-                <button
+<div  style={{ position: 'relative', zIndex: 9999 }}>
+  <button
                   onClick={() => toggleExpanded(item.id)}
-                  className="w-full px-8 text-left flex items-center justify-between group focus:outline-none"
+                  className="w-full px-8 text-left flex items-center justify-between group focus:outline-none hover:cursor-pointer"
                 >
                     <h3 className="text-xl lg:text-2xl font-bold text-white group-hover:text-yellow-400 transition-colors duration-300"
                         style={{ fontFamily: "'Mokoto Demo', monospace" }}>
                       {item.question}
                     </h3>
                   <div className="ml-6">
-                    {isExpanded ? (
-                      <ChevronUp className="w-8 h-8 text-yellow-400 transform transition-transform duration-300" />
+                    {isExpanded(item.id) ? (
+                      <ChevronUp className="w-8 h-8 text-yellow-400" />
                     ) : (
-                      <ChevronDown className="w-8 h-8 text-gray-400 group-hover:text-yellow-400 transform transition-transform duration-300" />
+                      <ChevronDown className="w-8 h-8 text-gray-400 group-hover:text-yellow-400" />
                     )}
                   </div>
                 </button>
+</div>
+                
                 
                 <div
                   className={`overflow-hidden transition-all duration-500 ease-out ${
-                    isExpanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                    isExpanded(item.id) ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                   }`}
                 >
                   <div className="px-8 pb-6">
@@ -242,7 +233,7 @@ const FAQSection: React.FC = () => {
                 <div className="absolute bottom-0 right-0 w-4 h-4 border-r-2 border-b-2 border-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </motion.div>
             );
-          })
+          }
         )}
       </div>
 
