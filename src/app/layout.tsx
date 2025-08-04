@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import SplashCursor from "@/components/blocks/Animations/SplashCursor/SplashCursor";
+
 import { CyberpunkNavbar } from "@/components/CyberpunkNavbar";
 import Footer from "@/components/Footer";
 // import { AudioProvider } from "@/components/AudioContext"; // Commented out for now
