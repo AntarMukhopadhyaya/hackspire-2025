@@ -216,39 +216,41 @@ function Tracks() {
         </div>
       </div>
 
-      {/* Yellow Trapezium Background with Clip-Path */}
-      <div className="absolute top-0 left-0 right-0 h-96 z-0">
+      {/* Yellow Trapezium Background with Clip-Path - Responsive */}
+      <div className="absolute top-0 left-0 right-0 h-64 sm:h-80 md:h-96 z-0">
         {/* Main trapezium with clip-path */}
         <div
           className="w-full h-full bg-yellow-400 relative"
           style={{
             clipPath:
-              "polygon(3% 0, 97% 0, 100% 11%, 80% 91%, 72% 100%, 24% 100%, 16% 90%, 0 12%)",
+              "polygon(5% 0, 95% 0, 100% 15%, 85% 90%, 75% 100%, 25% 100%, 15% 90%, 0 15%)",
+            WebkitClipPath:
+              "polygon(5% 0, 95% 0, 100% 15%, 85% 90%, 75% 100%, 25% 100%, 15% 90%, 0 15%)",
           }}
         >
-          {/* PCB-like lines */}
+          {/* PCB-like lines - Responsive */}
           <div className="absolute inset-0">
             {/* Horizontal lines */}
-            <div className="absolute top-8 left-0 right-0 h-px bg-black opacity-60"></div>
-            <div className="absolute top-16 left-0 right-0 h-px bg-black opacity-40"></div>
-            <div className="absolute top-24 left-0 right-0 h-px bg-black opacity-30"></div>
-            <div className="absolute top-32 left-0 right-0 h-px bg-black opacity-20"></div>
+            <div className="absolute top-4 sm:top-6 md:top-8 left-0 right-0 h-px bg-black opacity-60"></div>
+            <div className="absolute top-8 sm:top-12 md:top-16 left-0 right-0 h-px bg-black opacity-40"></div>
+            <div className="absolute top-12 sm:top-18 md:top-24 left-0 right-0 h-px bg-black opacity-30"></div>
+            <div className="absolute top-16 sm:top-24 md:top-32 left-0 right-0 h-px bg-black opacity-20"></div>
 
             {/* Vertical lines */}
-            <div className="absolute top-0 bottom-0 left-8 w-px bg-black opacity-60"></div>
-            <div className="absolute top-0 bottom-0 left-16 w-px bg-black opacity-40"></div>
-            <div className="absolute top-0 bottom-0 left-24 w-px bg-black opacity-30"></div>
-            <div className="absolute top-0 bottom-0 left-32 w-px bg-black opacity-20"></div>
-            <div className="absolute top-0 bottom-0 right-8 w-px bg-black opacity-60"></div>
-            <div className="absolute top-0 bottom-0 right-16 w-px bg-black opacity-40"></div>
-            <div className="absolute top-0 bottom-0 right-24 w-px bg-black opacity-30"></div>
-            <div className="absolute top-0 bottom-0 right-32 w-px bg-black opacity-20"></div>
+            <div className="absolute top-0 bottom-0 left-4 sm:left-6 md:left-8 w-px bg-black opacity-60"></div>
+            <div className="absolute top-0 bottom-0 left-8 sm:left-12 md:left-16 w-px bg-black opacity-40"></div>
+            <div className="absolute top-0 bottom-0 left-12 sm:left-18 md:left-24 w-px bg-black opacity-30"></div>
+            <div className="absolute top-0 bottom-0 left-16 sm:left-24 md:left-32 w-px bg-black opacity-20"></div>
+            <div className="absolute top-0 bottom-0 right-4 sm:right-6 md:right-8 w-px bg-black opacity-60"></div>
+            <div className="absolute top-0 bottom-0 right-8 sm:right-12 md:right-16 w-px bg-black opacity-40"></div>
+            <div className="absolute top-0 bottom-0 right-12 sm:right-18 md:right-24 w-px bg-black opacity-30"></div>
+            <div className="absolute top-0 bottom-0 right-16 sm:right-24 md:right-32 w-px bg-black opacity-20"></div>
 
-            {/* Diagonal lines for futuristic effect */}
-            <div className="absolute top-0 left-0 w-32 h-32 border-l-2 border-t-2 border-black opacity-40"></div>
-            <div className="absolute top-0 right-0 w-32 h-32 border-r-2 border-t-2 border-black opacity-40"></div>
-            <div className="absolute bottom-0 left-0 w-32 h-32 border-l-2 border-b-2 border-black opacity-40"></div>
-            <div className="absolute bottom-0 right-0 w-32 h-32 border-r-2 border-b-2 border-black opacity-40"></div>
+            {/* Diagonal lines for futuristic effect - Responsive */}
+            <div className="absolute top-0 left-0 w-20 sm:w-24 md:w-32 h-20 sm:h-24 md:h-32 border-l-2 border-t-2 border-black opacity-40"></div>
+            <div className="absolute top-0 right-0 w-20 sm:w-24 md:w-32 h-20 sm:h-24 md:h-32 border-r-2 border-t-2 border-black opacity-40"></div>
+            <div className="absolute bottom-0 left-0 w-20 sm:w-24 md:w-32 h-20 sm:h-24 md:h-32 border-l-2 border-b-2 border-black opacity-40"></div>
+            <div className="absolute bottom-0 right-0 w-20 sm:w-24 md:w-32 h-20 sm:h-24 md:h-32 border-r-2 border-b-2 border-black opacity-40"></div>
           </div>
         </div>
       </div>

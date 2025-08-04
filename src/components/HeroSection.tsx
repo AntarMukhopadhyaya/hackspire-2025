@@ -3,12 +3,10 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import MatrixRain from "./MatrixRain";
 import { TechnicalOverlay } from "./TechnicalOverlay";
-
 import CyberButton from "./ui/CyberButton";
 import CountdownTimer from "./CountdownTimer";
 import NeonXElements from "./NeonXElements";
 import CellTerminal from "./CellTerminal";
-// import { LeftSideDesign } from "./LeftSideDesign";
 
 export default function HeroSection() {
   return (
@@ -32,10 +30,7 @@ export default function HeroSection() {
         <TechnicalOverlay />
       </motion.div>
 
-      {/* Left Side Design */}
-      {/* <LeftSideDesign /> */}
-
-      {/* Matrix Rain Background - Full Screen within Hero Section */}
+      {/* Matrix Rain Background */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -52,7 +47,7 @@ export default function HeroSection() {
         <div className="matrix-background"></div>
       </div>
 
-      {/* Neon Blue X Elements - Draggable */}
+      {/* Neon Blue X Elements */}
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -62,7 +57,7 @@ export default function HeroSection() {
         <NeonXElements />
       </motion.div>
 
-      {/* Hero Text (centered vertically and horizontally) */}
+      {/* Hero Content */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -70,7 +65,7 @@ export default function HeroSection() {
         className="relative z-30 flex flex-col items-center justify-center w-full h-full"
       >
         <div className="text-center px-4 w-full max-w-7xl mx-auto flex flex-col items-center justify-center">
-          {/* Hero Title Block: Logo main image centered */}
+          {/* Hero Title Block */}
           <motion.div
             initial={{ opacity: 0, scale: 0.7, y: 50 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -83,7 +78,7 @@ export default function HeroSection() {
             }}
             className="flex items-center justify-center w-full relative"
           >
-            {/* World Map Background */}
+            {/* World Map Background - Adjusted for mobile */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 0.5, scale: 1 }}
@@ -95,10 +90,12 @@ export default function HeroSection() {
                 alt="World Map Background"
                 width={900}
                 height={225}
-                className="scale-90 md:scale-100 translate-y-4 md:translate-y-0"
+                className="scale-[0.7] sm:scale-[0.8] md:scale-100 translate-y-4 sm:translate-y-2 md:translate-y-0"
                 priority
               />
             </motion.div>
+
+            {/* Main Logo - Adjusted sizes for mobile */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -113,22 +110,31 @@ export default function HeroSection() {
                 alt="Hackspire Logo Main"
                 width={1200}
                 height={300}
-                className="block mx-auto h-[20rem] sm:h-[18rem] md:h-[20rem] lg:h-[22rem] xl:h-[26rem] 2xl:h-[30rem] w-auto object-contain relative z-10"
+                className="block mx-auto h-[12rem] sm:h-[16rem] md:h-[20rem] lg:h-[22rem] xl:h-[26rem] 2xl:h-[30rem] w-auto object-contain relative z-10 sm:-translate-x-10 "
                 draggable={false}
                 priority
                 unoptimized
               />
             </motion.div>
           </motion.div>
-
-          {/* Countdown Timer - Positioned center-right */}
+          {/* Countdown Timer - Adjusted for mobile */}
+          {/* Countdown Timer - Adjusted positioning for sm and md to avoid clipping */}
           <motion.div
             initial={{ opacity: 0, x: 50, scale: 0.8 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             transition={{ delay: 1.8, duration: 0.8, ease: "easeOut" }}
-            className="flex justify-center w-full -mt-24 sm:-mt-28 md:-mt-32 lg:-mt-36 xl:-mt-40"
+            className="
+                    flex justify-center w-full
+                    mt-0  md:mt-5      /* push it down on sm/md to avoid overlap */
+                    lg:-mt-36 xl:-mt-40         /* keep original overlap on large+ */
+
+                  "
           >
-            <div className="transform translate-x-36 sm:translate-x-32 md:translate-x-36 lg:translate-x-44 xl:translate-x-56">
+            <div
+              className="transform
+      translate-x-10 sm:translate-x-16 md:translate-x-20 lg:translate-x-44 xl:translate-x-56
+  "
+            >
               <CountdownTimer />
             </div>
           </motion.div>
@@ -140,71 +146,59 @@ export default function HeroSection() {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.8, duration: 0.8, ease: "easeOut" }}
-        className="absolute bottom-32 sm:bottom-16 md:bottom-48 left-0 right-0 z-50 flex items-center justify-center px-4"
+        className="absolute bottom-24 sm:bottom-20 md:bottom-48 left-0 right-0 z-50 flex items-center justify-center px-4"
       >
         <CyberButton
           onClick={() => {
-            // Add your registration logic here
             console.log("Register Now clicked!");
-            // You can redirect to registration page:
-            // window.location.href = "/register";
           }}
+          className="text-sm sm:text-base md:text-lg"
         >
           Register Now
         </CyberButton>
       </motion.div>
 
-      {/* Cyberpunk Frame at Bottom - Commented Out */}
-      {/* <div className="absolute bottom-8 left-0 right-0 z-40 px-8">
-        <CyberpunkFrame />
-      </div> */}
-
-      {/* New Cyberpunk Social Section */}
+      {/* Cyberpunk Social Section - Adjusted for mobile */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2.0, duration: 0.8 }}
-        className="absolute bottom-0 left-0 right-0 z-40 flex justify-center px-8 md:px-16 lg:px-24"
+        className="absolute bottom-0 left-0 right-0 z-40 flex justify-center px-4 sm:px-8 md:px-16 lg:px-24"
       >
-        <div className="relative w-full max-w-4xl h-32">
+        <div className="relative w-full max-w-3xl sm:max-w-4xl h-24 sm:h-32">
           {/* Angled Cyberpunk Shape */}
           <div
-            className="absolute bottom-0 left-0 right-0 h-24 bg-yellow-400"
+            className="absolute bottom-0 left-0 right-0 h-16 sm:h-24 bg-yellow-400"
             style={{
               clipPath: "polygon(8% 0%, 92% 0%, 100% 100%, 0% 100%)",
             }}
           >
-            {/* Black Lines and Cuts for Cyberpunk Feel */}
+            {/* Black Lines and Cuts - Adjusted for mobile */}
             <div className="absolute inset-0">
-              {/* Horizontal lines */}
-              <div className="absolute top-2 left-8 right-8 h-0.5 bg-black opacity-80"></div>
-              <div className="absolute bottom-2 left-8 right-8 h-0.5 bg-black opacity-80"></div>
-
-              {/* Vertical cuts */}
-              <div className="absolute top-0 bottom-0 left-16 w-0.5 bg-black opacity-80"></div>
-              <div className="absolute top-0 bottom-0 right-16 w-0.5 bg-black opacity-80"></div>
-
-              {/* Angled cuts */}
+              <div className="absolute top-1 sm:top-2 left-4 sm:left-8 right-4 sm:right-8 h-0.5 bg-black opacity-80"></div>
+              <div className="absolute bottom-1 sm:bottom-2 left-4 sm:left-8 right-4 sm:right-8 h-0.5 bg-black opacity-80"></div>
+              <div className="absolute top-0 bottom-0 left-8 sm:left-16 w-0.5 bg-black opacity-80"></div>
+              <div className="absolute top-0 bottom-0 right-8 sm:right-16 w-0.5 bg-black opacity-80"></div>
               <div
-                className="absolute top-1 left-24 w-8 h-0.5 bg-black opacity-80"
+                className="absolute top-1 left-12 sm:left-24 w-6 sm:w-8 h-0.5 bg-black opacity-80"
                 style={{ transform: "rotate(45deg)" }}
               ></div>
               <div
-                className="absolute top-1 right-24 w-8 h-0.5 bg-black opacity-80"
+                className="absolute top-1 right-12 sm:right-24 w-6 sm:w-8 h-0.5 bg-black opacity-80"
                 style={{ transform: "rotate(-45deg)" }}
               ></div>
             </div>
 
-            {/* Social Icons */}
+            {/* Social Icons - Adjusted spacing for mobile */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="flex space-x-6">
+              <div className="flex space-x-3 sm:space-x-6">
                 {/* Facebook */}
                 <a
                   href="#"
                   className="text-black hover:text-gray-700 transition-colors"
                 >
                   <svg
-                    className="w-6 h-6"
+                    className="w-5 h-5 sm:w-6 sm:h-6"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
@@ -218,7 +212,7 @@ export default function HeroSection() {
                   className="text-black hover:text-gray-700 transition-colors"
                 >
                   <svg
-                    className="w-6 h-6"
+                    className="w-5 h-5 sm:w-6 sm:h-6"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
@@ -232,7 +226,7 @@ export default function HeroSection() {
                   className="text-black hover:text-gray-700 transition-colors"
                 >
                   <svg
-                    className="w-6 h-6"
+                    className="w-5 h-5 sm:w-6 sm:h-6"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
@@ -246,7 +240,7 @@ export default function HeroSection() {
                   className="text-black hover:text-gray-700 transition-colors"
                 >
                   <svg
-                    className="w-6 h-6"
+                    className="w-5 h-5 sm:w-6 sm:h-6"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
@@ -260,7 +254,7 @@ export default function HeroSection() {
                   className="text-black hover:text-gray-700 transition-colors"
                 >
                   <svg
-                    className="w-6 h-6"
+                    className="w-5 h-5 sm:w-6 sm:h-6"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
@@ -271,10 +265,10 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Follow Us Text */}
+          {/* Follow Us Text - Adjusted for mobile */}
           <div className="absolute bottom-0 left-0 right-0 flex justify-center">
             <div
-              className="text-black text-lg font-bold uppercase tracking-wider pb-1"
+              className="text-black text-sm sm:text-base md:text-lg font-bold uppercase tracking-wider pb-1"
               style={{ fontFamily: "Mokoto Demo" }}
             >
               FOLLOW US
@@ -283,7 +277,7 @@ export default function HeroSection() {
         </div>
       </motion.div>
 
-      {/* Cell Terminal - Bottom Right Corner - Desktop Only */}
+      {/* Cell Terminal - Desktop Only */}
       <motion.div
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}

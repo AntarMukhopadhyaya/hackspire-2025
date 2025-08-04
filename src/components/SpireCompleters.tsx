@@ -5,10 +5,10 @@ function SpireCompleters() {
   return (
     <section
       id="spire-completers"
-      className="relative py-16 md:py-24 text-white overflow-hidden"
+      className="relative py-12 md:py-16 text-white overflow-hidden"
     >
       {/* Yellow Trapezium Background with Clip-Path */}
-      <div className="absolute top-0 left-0 right-0 h-96 z-0">
+      <div className="absolute top-0 left-0 right-0 h-64 md:h-80 z-0">
         {/* Main trapezium with clip-path */}
         <div
           className="w-full h-full bg-yellow-400 relative"
@@ -20,32 +20,32 @@ function SpireCompleters() {
           {/* PCB-like lines */}
           <div className="absolute inset-0">
             {/* Horizontal lines */}
-            <div className="absolute top-8 left-0 right-0 h-px bg-black opacity-60"></div>
-            <div className="absolute top-16 left-0 right-0 h-px bg-black opacity-40"></div>
-            <div className="absolute top-24 left-0 right-0 h-px bg-black opacity-30"></div>
-            <div className="absolute top-32 left-0 right-0 h-px bg-black opacity-20"></div>
+            <div className="absolute top-4 md:top-8 left-0 right-0 h-px bg-black opacity-60"></div>
+            <div className="absolute top-8 md:top-16 left-0 right-0 h-px bg-black opacity-40"></div>
+            <div className="absolute top-12 md:top-24 left-0 right-0 h-px bg-black opacity-30"></div>
+            <div className="absolute top-16 md:top-32 left-0 right-0 h-px bg-black opacity-20"></div>
 
             {/* Vertical lines */}
-            <div className="absolute top-0 bottom-0 left-8 w-px bg-black opacity-60"></div>
-            <div className="absolute top-0 bottom-0 left-16 w-px bg-black opacity-40"></div>
-            <div className="absolute top-0 bottom-0 left-24 w-px bg-black opacity-30"></div>
-            <div className="absolute top-0 bottom-0 left-32 w-px bg-black opacity-20"></div>
-            <div className="absolute top-0 bottom-0 right-8 w-px bg-black opacity-60"></div>
-            <div className="absolute top-0 bottom-0 right-16 w-px bg-black opacity-40"></div>
-            <div className="absolute top-0 bottom-0 right-24 w-px bg-black opacity-30"></div>
-            <div className="absolute top-0 bottom-0 right-32 w-px bg-black opacity-20"></div>
+            <div className="absolute top-0 bottom-0 left-4 md:left-8 w-px bg-black opacity-60"></div>
+            <div className="absolute top-0 bottom-0 left-8 md:left-16 w-px bg-black opacity-40"></div>
+            <div className="absolute top-0 bottom-0 left-12 md:left-24 w-px bg-black opacity-30"></div>
+            <div className="absolute top-0 bottom-0 left-16 md:left-32 w-px bg-black opacity-20"></div>
+            <div className="absolute top-0 bottom-0 right-4 md:right-8 w-px bg-black opacity-60"></div>
+            <div className="absolute top-0 bottom-0 right-8 md:right-16 w-px bg-black opacity-40"></div>
+            <div className="absolute top-0 bottom-0 right-12 md:right-24 w-px bg-black opacity-30"></div>
+            <div className="absolute top-0 bottom-0 right-16 md:right-32 w-px bg-black opacity-20"></div>
 
             {/* Diagonal lines for futuristic effect */}
-            <div className="absolute top-0 left-0 w-32 h-32 border-l-2 border-t-2 border-black opacity-40"></div>
-            <div className="absolute top-0 right-0 w-32 h-32 border-r-2 border-t-2 border-black opacity-40"></div>
-            <div className="absolute bottom-0 left-0 w-32 h-32 border-l-2 border-b-2 border-black opacity-40"></div>
-            <div className="absolute bottom-0 right-0 w-32 h-32 border-r-2 border-b-2 border-black opacity-40"></div>
+            <div className="absolute top-0 left-0 w-16 md:w-32 h-16 md:h-32 border-l-2 border-t-2 border-black opacity-40"></div>
+            <div className="absolute top-0 right-0 w-16 md:w-32 h-16 md:h-32 border-r-2 border-t-2 border-black opacity-40"></div>
+            <div className="absolute bottom-0 left-0 w-16 md:w-32 h-16 md:h-32 border-l-2 border-b-2 border-black opacity-40"></div>
+            <div className="absolute bottom-0 right-0 w-16 md:w-32 h-16 md:h-32 border-r-2 border-b-2 border-black opacity-40"></div>
           </div>
         </div>
       </div>
 
-      {/* Multiple Left Side Vertical Trapezium Shapes - Attached to Screen Edge */}
-      <div className="absolute left-0 top-1/4 w-20 h-64 z-0">
+      {/* Multiple Left Side Vertical Trapezium Shapes - Adjusted for mobile */}
+      <div className="absolute left-0 top-1/4 w-12 md:w-20 h-48 md:h-64 z-0">
         <div
           className="w-full h-full bg-yellow-400 relative"
           style={{
@@ -54,7 +54,7 @@ function SpireCompleters() {
         >
           {/* Cut in the middle */}
           <div
-            className="absolute top-1/2 left-0 w-full h-8 bg-black transform -translate-y-1/2"
+            className="absolute top-1/2 left-0 w-full h-6 md:h-8 bg-black transform -translate-y-1/2"
             style={{
               clipPath: "polygon(0% 20%, 100% 0%, 100% 100%, 0% 80%)",
             }}
@@ -62,7 +62,7 @@ function SpireCompleters() {
         </div>
       </div>
 
-      <div className="absolute left-0 top-3/4 w-16 h-48 z-0">
+      <div className="absolute left-0 top-3/4 w-10 md:w-16 h-32 md:h-48 z-0">
         <div
           className="w-full h-full bg-yellow-400 relative"
           style={{
@@ -71,7 +71,7 @@ function SpireCompleters() {
         >
           {/* Cut in the middle */}
           <div
-            className="absolute top-1/2 left-0 w-full h-6 bg-black transform -translate-y-1/2"
+            className="absolute top-1/2 left-0 w-full h-4 md:h-6 bg-black transform -translate-y-1/2"
             style={{
               clipPath: "polygon(0% 30%, 100% 0%, 100% 100%, 0% 70%)",
             }}
@@ -79,8 +79,8 @@ function SpireCompleters() {
         </div>
       </div>
 
-      {/* Multiple Right Side Vertical Trapezium Shapes - Attached to Screen Edge */}
-      <div className="absolute right-0 top-1/4 w-20 h-64 z-0">
+      {/* Multiple Right Side Vertical Trapezium Shapes - Adjusted for mobile */}
+      <div className="absolute right-0 top-1/4 w-12 md:w-20 h-48 md:h-64 z-0">
         <div
           className="w-full h-full bg-yellow-400 relative"
           style={{
@@ -89,7 +89,7 @@ function SpireCompleters() {
         >
           {/* Cut in the middle */}
           <div
-            className="absolute top-1/2 right-0 w-full h-8 bg-black transform -translate-y-1/2"
+            className="absolute top-1/2 right-0 w-full h-6 md:h-8 bg-black transform -translate-y-1/2"
             style={{
               clipPath: "polygon(0% 0%, 100% 20%, 100% 80%, 0% 100%)",
             }}
@@ -97,7 +97,7 @@ function SpireCompleters() {
         </div>
       </div>
 
-      <div className="absolute right-0 top-3/4 w-16 h-48 z-0">
+      <div className="absolute right-0 top-3/4 w-10 md:w-16 h-32 md:h-48 z-0">
         <div
           className="w-full h-full bg-yellow-400 relative"
           style={{
@@ -106,7 +106,7 @@ function SpireCompleters() {
         >
           {/* Cut in the middle */}
           <div
-            className="absolute top-1/2 right-0 w-full h-6 bg-black transform -translate-y-1/2"
+            className="absolute top-1/2 right-0 w-full h-4 md:h-6 bg-black transform -translate-y-1/2"
             style={{
               clipPath: "polygon(0% 0%, 100% 30%, 100% 70%, 0% 100%)",
             }}
@@ -114,14 +114,14 @@ function SpireCompleters() {
         </div>
       </div>
 
-      {/* Background Typing Effect - Continuous Loop & Responsive */}
+      {/* Background Typing Effect - Adjusted for mobile */}
       <div className="absolute inset-0 z-5 pointer-events-none overflow-hidden">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 0.4 }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 1 }}
-          className="absolute left-2 sm:left-4 md:left-8 top-1/2 transform -translate-y-1/2 text-green-400/90 font-mono text-xs sm:text-sm md:text-base lg:text-lg select-none max-w-[90vw] sm:max-w-[80vw] md:max-w-[70vw] lg:max-w-[60vw]"
+          className="absolute left-2 sm:left-4 md:left-6 top-1/2 transform -translate-y-1/2 text-green-400/90 font-mono text-xs sm:text-sm md:text-sm lg:text-base select-none max-w-[90vw] sm:max-w-[85vw] md:max-w-[80vw]"
         >
           <motion.div
             animate={{
@@ -132,7 +132,7 @@ function SpireCompleters() {
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className="space-y-2 sm:space-y-3"
+            className="space-y-1 sm:space-y-2"
           >
             {/* Continuous typing animation loop */}
             <motion.div
@@ -150,7 +150,6 @@ function SpireCompleters() {
             >
               <span className="text-green-300/90">
                 $ sudo ./spire_protocol_v2.sh --initialize --mode=elite
-                --access-level=legendary
               </span>
             </motion.div>
 
@@ -169,8 +168,7 @@ function SpireCompleters() {
               className="overflow-hidden whitespace-nowrap"
             >
               <span className="text-cyan-300/90">
-                $ python3 elite_scanner.py --scan-candidates --filter=genius
-                --output=hall_of_fame.json
+                $ python3 elite_scanner.py --scan-candidates
               </span>
             </motion.div>
 
@@ -190,7 +188,6 @@ function SpireCompleters() {
             >
               <span className="text-blue-300/90">
                 $ ./verify_legend_status.exe --check-achievements
-                --validate-skills --confirm-mastery
               </span>
             </motion.div>
 
@@ -210,7 +207,6 @@ function SpireCompleters() {
             >
               <span className="text-purple-300/90">
                 $ access_granted: spire_completers_database
-                --privileges=read,write,execute --status=confirmed
               </span>
             </motion.div>
 
@@ -229,8 +225,7 @@ function SpireCompleters() {
               className="overflow-hidden whitespace-nowrap"
             >
               <span className="text-yellow-300/90">
-                $ node hall_of_fame_executor.js --update-records
-                --broadcast-achievements --notify-community
+                $ node hall_of_fame_executor.js
               </span>
             </motion.div>
 
@@ -257,10 +252,9 @@ function SpireCompleters() {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="inline-block text-green-300/70 bg-green-400/10 px-1"
+                className="inline-block text-green-300/70 bg-green-400/10 px-1 text-xs sm:text-sm"
               >
-                [████████████████████████████████████████████████████████████]
-                100% COMPLETE
+                [████████████████████████████] 100% COMPLETE
               </motion.span>
             </motion.div>
           </motion.div>
@@ -276,7 +270,7 @@ function SpireCompleters() {
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className="text-green-400/90 text-lg font-bold ml-1"
+            className="text-green-400/90 text-sm md:text-lg font-bold ml-1"
           >
             _
           </motion.span>
@@ -289,14 +283,14 @@ function SpireCompleters() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
         >
           <motion.h2
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-            className="mb-4 font-['Sddystopiandemo-GO7xa'] font-bold text-[clamp(3rem,8vw,7rem)] text-black"
+            className="mb-2 md:mb-4 font-['Sddystopiandemo-GO7xa'] font-bold text-[clamp(2rem,7vw,7rem)] text-black"
           >
             SPIRE COMPLETERS
           </motion.h2>
@@ -306,7 +300,7 @@ function SpireCompleters() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-            className="text-black max-w-2xl mx-auto mb-8 font-medium text-lg md:text-xl lg:text-2xl"
+            className="text-black max-w-2xl mx-auto mb-4 md:mb-8 font-medium text-base md:text-lg lg:text-xl"
             style={{ fontFamily: "Mokoto Demo" }}
           >
             Recognizing those who conquered the ultimate challenge.
@@ -317,14 +311,14 @@ function SpireCompleters() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-            className="flex justify-center items-center gap-8 md:gap-12 flex-wrap md:flex-nowrap"
+            className="flex justify-center items-center gap-4 md:gap-8 lg:gap-12 flex-wrap md:flex-nowrap"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
-              className="w-32 md:w-40 lg:w-48"
+              className="w-24 md:w-32 lg:w-40"
             >
               <img
                 src="/icons/future.png"
@@ -337,7 +331,7 @@ function SpireCompleters() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.5, ease: "easeOut" }}
-              className="w-24 md:w-32"
+              className="w-20 md:w-24 lg:w-32"
             >
               <img
                 src="/icons/logoicon.svg"
@@ -350,20 +344,20 @@ function SpireCompleters() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.6, ease: "easeOut" }}
-              className="w-32 md:w-40 lg:w-48"
+              className="w-24 md:w-32 lg:w-40"
             >
               <img src="/icons/acm.png" alt="ACM" className="w-full h-auto" />
             </motion.div>
           </motion.div>
         </motion.div>
 
-        {/* Additional Content */}
+        {/* Additional Content - Adjusted grid for mobile */}
         <motion.div
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-30px" }}
           transition={{ duration: 0.6, delay: 0.7, ease: "easeOut" }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-8 md:mt-12"
         >
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -373,22 +367,22 @@ function SpireCompleters() {
             className="text-center md:text-left"
           >
             {/* Cyberpunk Yellow Container with Clip-Path Cut Edges */}
-            <div className="relative p-6 group cursor-pointer transition-all duration-300 hover:scale-105">
+            <div className="relative p-4 md:p-6 group cursor-pointer transition-all duration-300 hover:scale-105">
               {/* Background with clip-path cuts */}
               <div
                 className="absolute inset-0 bg-yellow-400 transition-all duration-300 group-hover:animate-pulse"
                 style={{
                   clipPath:
-                    "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
+                    "polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
                 }}
               ></div>
 
               {/* Border with clip-path cuts */}
               <div
-                className="absolute -inset-1 bg-yellow-500 transition-all duration-300 group-hover:bg-orange-500"
+                className="absolute -inset-0.5 md:-inset-1 bg-yellow-500 transition-all duration-300 group-hover:bg-orange-500"
                 style={{
                   clipPath:
-                    "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
+                    "polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
                   zIndex: -1,
                 }}
               ></div>
@@ -398,7 +392,7 @@ function SpireCompleters() {
                 className="absolute inset-0 bg-red-500 opacity-0 group-hover:opacity-30 transition-opacity duration-150 glitch-overlay-1"
                 style={{
                   clipPath:
-                    "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
+                    "polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
                   mixBlendMode: "screen",
                   transform: "translateX(-2px)",
                   zIndex: 1,
@@ -409,7 +403,7 @@ function SpireCompleters() {
                 className="absolute inset-0 bg-cyan-500 opacity-0 group-hover:opacity-30 transition-opacity duration-150 glitch-overlay-2"
                 style={{
                   clipPath:
-                    "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
+                    "polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
                   mixBlendMode: "screen",
                   transform: "translateX(2px)",
                   zIndex: 2,
@@ -419,19 +413,18 @@ function SpireCompleters() {
               {/* Content */}
               <div className="relative z-10">
                 <h3
-                  className="text-2xl md:text-3xl font-bold text-black mb-4 transition-all duration-300 group-hover:glitch-text"
+                  className="text-xl md:text-2xl lg:text-3xl font-bold text-black mb-2 md:mb-4 transition-all duration-300 group-hover:glitch-text"
                   style={{ fontFamily: "'Mokoto Demo', monospace" }}
                 >
                   The Ultimate Challenge
                 </h3>
                 <p
-                  className="text-black text-lg leading-relaxed transition-all duration-300 group-hover:text-shadow-glow"
+                  className="text-black text-sm md:text-base lg:text-lg leading-relaxed transition-all duration-300 group-hover:text-shadow-glow"
                   style={{ fontFamily: "'Mokoto Demo', monospace" }}
                 >
                   Only the most dedicated hackers who complete every challenge,
                   solve every puzzle, and push their limits beyond imagination
-                  earn the prestigious title of Spire Completer. These legends
-                  have proven their mastery in the digital realm.
+                  earn the prestigious title of Spire Completer.
                 </p>
               </div>
             </div>
@@ -445,22 +438,22 @@ function SpireCompleters() {
             className="text-center md:text-right"
           >
             {/* Cyberpunk Yellow Container with Clip-Path Cut Edges */}
-            <div className="relative p-6 group cursor-pointer transition-all duration-300 hover:scale-105">
+            <div className="relative p-4 md:p-6 group cursor-pointer transition-all duration-300 hover:scale-105">
               {/* Background with clip-path cuts */}
               <div
                 className="absolute inset-0 bg-yellow-400 transition-all duration-300 group-hover:animate-pulse"
                 style={{
                   clipPath:
-                    "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
+                    "polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
                 }}
               ></div>
 
               {/* Border with clip-path cuts */}
               <div
-                className="absolute -inset-1 bg-yellow-500 transition-all duration-300 group-hover:bg-orange-500"
+                className="absolute -inset-0.5 md:-inset-1 bg-yellow-500 transition-all duration-300 group-hover:bg-orange-500"
                 style={{
                   clipPath:
-                    "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
+                    "polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
                   zIndex: -1,
                 }}
               ></div>
@@ -470,7 +463,7 @@ function SpireCompleters() {
                 className="absolute inset-0 bg-red-500 opacity-0 group-hover:opacity-30 transition-opacity duration-150 glitch-overlay-1"
                 style={{
                   clipPath:
-                    "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
+                    "polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
                   mixBlendMode: "screen",
                   transform: "translateX(-2px)",
                   zIndex: 1,
@@ -481,7 +474,7 @@ function SpireCompleters() {
                 className="absolute inset-0 bg-cyan-500 opacity-0 group-hover:opacity-30 transition-opacity duration-150 glitch-overlay-2"
                 style={{
                   clipPath:
-                    "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
+                    "polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
                   mixBlendMode: "screen",
                   transform: "translateX(2px)",
                   zIndex: 2,
@@ -491,19 +484,17 @@ function SpireCompleters() {
               {/* Content */}
               <div className="relative z-10">
                 <h3
-                  className="text-2xl md:text-3xl font-bold text-black mb-4 transition-all duration-300 group-hover:glitch-text"
+                  className="text-xl md:text-2xl lg:text-3xl font-bold text-black mb-2 md:mb-4 transition-all duration-300 group-hover:glitch-text"
                   style={{ fontFamily: "'Mokoto Demo', monospace" }}
                 >
                   Legacy of Excellence
                 </h3>
                 <p
-                  className="text-black text-lg leading-relaxed transition-all duration-300 group-hover:text-shadow-glow"
+                  className="text-black text-sm md:text-base lg:text-lg leading-relaxed transition-all duration-300 group-hover:text-shadow-glow"
                   style={{ fontFamily: "'Mokoto Demo', monospace" }}
                 >
                   Each Spire Completer joins an elite community of innovators,
-                  problem-solvers, and boundary-pushers. Their achievements
-                  inspire the next generation of hackers to dream bigger, code
-                  smarter, and hack the impossible.
+                  problem-solvers, and boundary-pushers.
                 </p>
               </div>
             </div>
@@ -515,35 +506,35 @@ function SpireCompleters() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 1.0, ease: "easeOut" }}
-          className="text-center mt-12"
+          className="text-center mt-8 md:mt-12"
         >
           {/* Cyberpunk Container with Cut Edges */}
-          <div className="inline-flex items-center gap-4 relative">
+          <div className="inline-flex items-center gap-2 md:gap-4 relative">
             {/* Main container with cut edges */}
-            <div className="relative bg-gradient-to-r from-purple-600/20 to-blue-600/20 border border-purple-500/30 px-8 py-4">
+            <div className="relative bg-gradient-to-r from-purple-600/20 to-blue-600/20 border border-purple-500/30 px-4 py-2 md:px-8 md:py-4">
               {/* Cut edge effect - top left */}
-              <div className="absolute top-0 left-0 w-4 h-4 bg-black transform -translate-x-1 -translate-y-1">
+              <div className="absolute top-0 left-0 w-3 h-3 md:w-4 md:h-4 bg-black transform -translate-x-0.5 -translate-y-0.5 md:-translate-x-1 md:-translate-y-1">
                 <div className="w-full h-full bg-gradient-to-br from-purple-600/20 to-blue-600/20 border-l border-t border-purple-500/30"></div>
               </div>
 
               {/* Cut edge effect - top right */}
-              <div className="absolute top-0 right-0 w-4 h-4 bg-black transform translate-x-1 -translate-y-1">
+              <div className="absolute top-0 right-0 w-3 h-3 md:w-4 md:h-4 bg-black transform translate-x-0.5 -translate-y-0.5 md:translate-x-1 md:-translate-y-1">
                 <div className="w-full h-full bg-gradient-to-br from-purple-600/20 to-blue-600/20 border-r border-t border-purple-500/30"></div>
               </div>
 
               {/* Cut edge effect - bottom left */}
-              <div className="absolute bottom-0 left-0 w-4 h-4 bg-black transform -translate-x-1 translate-y-1">
+              <div className="absolute bottom-0 left-0 w-3 h-3 md:w-4 md:h-4 bg-black transform -translate-x-0.5 translate-y-0.5 md:-translate-x-1 md:translate-y-1">
                 <div className="w-full h-full bg-gradient-to-br from-purple-600/20 to-blue-600/20 border-l border-b border-purple-500/30"></div>
               </div>
 
               {/* Cut edge effect - bottom right */}
-              <div className="absolute bottom-0 right-0 w-4 h-4 bg-black transform translate-x-1 translate-y-1">
+              <div className="absolute bottom-0 right-0 w-3 h-3 md:w-4 md:h-4 bg-black transform translate-x-0.5 translate-y-0.5 md:translate-x-1 md:translate-y-1">
                 <div className="w-full h-full bg-gradient-to-br from-purple-600/20 to-blue-600/20 border-r border-b border-purple-500/30"></div>
               </div>
 
               {/* Content */}
               <span
-                className="text-purple-300 text-lg font-medium relative z-10"
+                className="text-purple-300 text-sm md:text-lg font-medium relative z-10"
                 style={{ fontFamily: "'Mokoto Demo', monospace" }}
               >
                 🏆 Only 0.1% of participants achieve this status
@@ -553,65 +544,65 @@ function SpireCompleters() {
         </motion.div>
       </div>
 
-      {/* Large Decorative Trapezium with Circuit Board Patterns and Mission Text - Moved to Bottom */}
+      {/* Large Decorative Trapezium - Adjusted for mobile */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 1.2, ease: "easeOut" }}
-        className="flex justify-center mt-16"
+        className="flex justify-center mt-8 md:mt-16"
       >
-        <div className="relative w-full max-w-4xl h-24">
+        <div className="relative w-full max-w-3xl md:max-w-4xl h-16 md:h-24">
           {/* Main large trapezium background */}
           <div className="w-full h-full bg-yellow-400 relative large-trapezium-decorative">
             {/* Circuit board patterns */}
             <div className="absolute inset-0 opacity-70">
               {/* Horizontal circuit traces */}
-              <div className="absolute top-3 left-8 right-8 h-px bg-black opacity-60"></div>
-              <div className="absolute top-6 left-12 right-12 h-px bg-black opacity-50"></div>
-              <div className="absolute top-9 left-8 right-8 h-px bg-black opacity-45"></div>
-              <div className="absolute top-12 left-16 right-16 h-px bg-black opacity-55"></div>
-              <div className="absolute top-15 left-10 right-10 h-px bg-black opacity-40"></div>
-              <div className="absolute top-18 left-14 right-14 h-px bg-black opacity-50"></div>
-              <div className="absolute top-21 left-8 right-8 h-px bg-black opacity-45"></div>
+              <div className="absolute top-2 md:top-3 left-4 md:left-8 right-4 md:right-8 h-px bg-black opacity-60"></div>
+              <div className="absolute top-4 md:top-6 left-6 md:left-12 right-6 md:right-12 h-px bg-black opacity-50"></div>
+              <div className="absolute top-6 md:top-9 left-4 md:left-8 right-4 md:right-8 h-px bg-black opacity-45"></div>
+              <div className="absolute top-8 md:top-12 left-8 md:left-16 right-8 md:right-16 h-px bg-black opacity-55"></div>
+              <div className="absolute top-10 md:top-15 left-5 md:left-10 right-5 md:right-10 h-px bg-black opacity-40"></div>
+              <div className="absolute top-12 md:top-18 left-7 md:left-14 right-7 md:right-14 h-px bg-black opacity-50"></div>
+              <div className="absolute top-14 md:top-21 left-4 md:left-8 right-4 md:right-8 h-px bg-black opacity-45"></div>
 
               {/* Vertical circuit traces */}
-              <div className="absolute left-8 top-2 bottom-2 w-px bg-black opacity-50"></div>
-              <div className="absolute left-16 top-1 bottom-1 w-px bg-black opacity-55"></div>
-              <div className="absolute left-24 top-3 bottom-3 w-px bg-black opacity-45"></div>
-              <div className="absolute left-32 top-2 bottom-2 w-px bg-black opacity-60"></div>
-              <div className="absolute left-40 top-1 bottom-1 w-px bg-black opacity-50"></div>
-              <div className="absolute right-8 top-2 bottom-2 w-px bg-black opacity-50"></div>
-              <div className="absolute right-16 top-1 bottom-1 w-px bg-black opacity-55"></div>
-              <div className="absolute right-24 top-3 bottom-3 w-px bg-black opacity-45"></div>
-              <div className="absolute right-32 top-2 bottom-2 w-px bg-black opacity-60"></div>
-              <div className="absolute right-40 top-1 bottom-1 w-px bg-black opacity-50"></div>
+              <div className="absolute left-4 md:left-8 top-1 md:top-2 bottom-1 md:bottom-2 w-px bg-black opacity-50"></div>
+              <div className="absolute left-8 md:left-16 top-0.5 md:top-1 bottom-0.5 md:bottom-1 w-px bg-black opacity-55"></div>
+              <div className="absolute left-12 md:left-24 top-2 md:top-3 bottom-2 md:bottom-3 w-px bg-black opacity-45"></div>
+              <div className="absolute left-16 md:left-32 top-1 md:top-2 bottom-1 md:bottom-2 w-px bg-black opacity-60"></div>
+              <div className="absolute left-20 md:left-40 top-0.5 md:top-1 bottom-0.5 md:bottom-1 w-px bg-black opacity-50"></div>
+              <div className="absolute right-4 md:right-8 top-1 md:top-2 bottom-1 md:bottom-2 w-px bg-black opacity-50"></div>
+              <div className="absolute right-8 md:right-16 top-0.5 md:top-1 bottom-0.5 md:bottom-1 w-px bg-black opacity-55"></div>
+              <div className="absolute right-12 md:right-24 top-2 md:top-3 bottom-2 md:bottom-3 w-px bg-black opacity-45"></div>
+              <div className="absolute right-16 md:right-32 top-1 md:top-2 bottom-1 md:bottom-2 w-px bg-black opacity-60"></div>
+              <div className="absolute right-20 md:right-40 top-0.5 md:top-1 bottom-0.5 md:bottom-1 w-px bg-black opacity-50"></div>
 
               {/* Circuit nodes */}
-              <div className="absolute top-6 left-16 w-1.5 h-1.5 bg-black opacity-70 rounded-full"></div>
-              <div className="absolute top-9 left-24 w-1 h-1 bg-black opacity-65 rounded-full"></div>
-              <div className="absolute top-12 left-32 w-1.5 h-1.5 bg-black opacity-75 rounded-full"></div>
-              <div className="absolute top-15 left-40 w-1 h-1 bg-black opacity-60 rounded-full"></div>
-              <div className="absolute top-6 right-16 w-1.5 h-1.5 bg-black opacity-70 rounded-full"></div>
-              <div className="absolute top-9 right-24 w-1 h-1 bg-black opacity-65 rounded-full"></div>
-              <div className="absolute top-12 right-32 w-1.5 h-1.5 bg-black opacity-75 rounded-full"></div>
-              <div className="absolute top-15 right-40 w-1 h-1 bg-black opacity-60 rounded-full"></div>
+              <div className="absolute top-4 md:top-6 left-8 md:left-16 w-1 h-1 md:w-1.5 md:h-1.5 bg-black opacity-70 rounded-full"></div>
+              <div className="absolute top-6 md:top-9 left-12 md:left-24 w-0.5 h-0.5 md:w-1 md:h-1 bg-black opacity-65 rounded-full"></div>
+              <div className="absolute top-8 md:top-12 left-16 md:left-32 w-1 h-1 md:w-1.5 md:h-1.5 bg-black opacity-75 rounded-full"></div>
+              <div className="absolute top-10 md:top-15 left-20 md:left-40 w-0.5 h-0.5 md:w-1 md:h-1 bg-black opacity-60 rounded-full"></div>
+              <div className="absolute top-4 md:top-6 right-8 md:right-16 w-1 h-1 md:w-1.5 md:h-1.5 bg-black opacity-70 rounded-full"></div>
+              <div className="absolute top-6 md:top-9 right-12 md:right-24 w-0.5 h-0.5 md:w-1 md:h-1 bg-black opacity-65 rounded-full"></div>
+              <div className="absolute top-8 md:top-12 right-16 md:right-32 w-1 h-1 md:w-1.5 md:h-1.5 bg-black opacity-75 rounded-full"></div>
+              <div className="absolute top-10 md:top-15 right-20 md:right-40 w-0.5 h-0.5 md:w-1 md:h-1 bg-black opacity-60 rounded-full"></div>
 
               {/* Additional decorative elements */}
-              <div className="absolute top-4 left-20 w-3 h-0.5 bg-black opacity-55 rounded-sm"></div>
-              <div className="absolute top-4 right-20 w-3 h-0.5 bg-black opacity-55 rounded-sm"></div>
-              <div className="absolute top-8 left-28 w-2 h-0.5 bg-black opacity-50 rounded-sm"></div>
-              <div className="absolute top-8 right-28 w-2 h-0.5 bg-black opacity-50 rounded-sm"></div>
-              <div className="absolute top-16 left-36 w-3 h-0.5 bg-black opacity-60 rounded-sm"></div>
-              <div className="absolute top-16 right-36 w-3 h-0.5 bg-black opacity-60 rounded-sm"></div>
-              <div className="absolute bottom-4 left-40 w-4 h-0.5 bg-black opacity-55 rounded-sm"></div>
-              <div className="absolute bottom-4 right-40 w-4 h-0.5 bg-black opacity-55 rounded-sm"></div>
+              <div className="absolute top-2 md:top-4 left-10 md:left-20 w-2 md:w-3 h-0.5 bg-black opacity-55 rounded-sm"></div>
+              <div className="absolute top-2 md:top-4 right-10 md:right-20 w-2 md:w-3 h-0.5 bg-black opacity-55 rounded-sm"></div>
+              <div className="absolute top-5 md:top-8 left-14 md:left-28 w-1.5 md:w-2 h-0.5 bg-black opacity-50 rounded-sm"></div>
+              <div className="absolute top-5 md:top-8 right-14 md:right-28 w-1.5 md:w-2 h-0.5 bg-black opacity-50 rounded-sm"></div>
+              <div className="absolute top-12 md:top-16 left-18 md:left-36 w-2 md:w-3 h-0.5 bg-black opacity-60 rounded-sm"></div>
+              <div className="absolute top-12 md:top-16 right-18 md:right-36 w-2 md:w-3 h-0.5 bg-black opacity-60 rounded-sm"></div>
+              <div className="absolute bottom-2 md:bottom-4 left-20 md:left-40 w-3 md:w-4 h-0.5 bg-black opacity-55 rounded-sm"></div>
+              <div className="absolute bottom-2 md:bottom-4 right-20 md:right-40 w-3 md:w-4 h-0.5 bg-black opacity-55 rounded-sm"></div>
             </div>
 
-            {/* Mission Text - One Linear Line with Glitch Effect */}
-            <div className="absolute inset-0 flex items-center justify-center z-20">
+            {/* Mission Text - Adjusted for mobile */}
+            <div className="absolute inset-0 flex items-center justify-center z-20 px-2 ">
               <span
-                className="text-black text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold tracking-wider glitch-text-large text-center whitespace-nowrap"
+                className="text-black text-xs sm:text-sm md:text-lg lg:text-xl xl:text-2xl font-bold tracking-wider glitch-text-large text-center whitespace-normal sm:whitespace-nowrap px-1  "
                 style={{ fontFamily: "'Mokoto Demo', monospace" }}
               >
                 MISSION KOLKATA ACCOMPLISHED
