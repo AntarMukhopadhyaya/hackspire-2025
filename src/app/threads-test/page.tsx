@@ -1,5 +1,3 @@
-import Threads from "@/components/blocks/Backgrounds/Threads/Threads";
-
 export default function ThreadsTestPage() {
   return (
     <div
