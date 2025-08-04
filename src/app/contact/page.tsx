@@ -1,45 +1,58 @@
-"use client"
+"use client";
 
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Users, MessageCircle, Clock } from 'lucide-react';
-import FAQSection from '@/components/FAQSection';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  Users,
+  MessageCircle,
+  Clock,
+} from "lucide-react";
+import FAQSection from "@/components/FAQSection";
+import CyberButton from "@/components/ui/CyberButton";
 
 function ContactUs() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
     setIsSubmitting(false);
-    setSubmitStatus('success');
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    
-    setTimeout(() => setSubmitStatus('idle'), 3000);
+    setSubmitStatus("success");
+    setFormData({ name: "", email: "", subject: "", message: "" });
+
+    setTimeout(() => setSubmitStatus("idle"), 3000);
   };
 
   return (
-    <div className="min-h-screen text-white py-20 px-4 relative bg-black">
+    <div className="min-h-screen text-white py-20 px-4 relative bg-transparent">
       {/* Matrix Rain Background */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute inset-0 opacity-20">
@@ -240,22 +253,23 @@ function ContactUs() {
       {/* Centered Contact Title */}
       <div className="text-center mb-16 relative z-10">
         <motion.h1
-                  initial={{ opacity: 0, y: -30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                  className="text-8xl md:text-[10rem] lg:text-[12rem] font-bold text-black font-sddystopiandemo"
-                >
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-8xl md:text-[10rem] lg:text-[12rem] font-bold text-black font-sddystopiandemo"
+        >
           Contact Us
         </motion.h1>
         <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
-                  className="text-center max-w-4xl mx-auto -mt-4 pb-8 text-lg md:text-xl text-black leading-relaxed font-mokoto"
-                >
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="text-center max-w-4xl mx-auto -mt-4 pb-8 text-lg md:text-xl text-black leading-relaxed font-mokoto"
+        >
           Have questions about HackSpire 2025? Want to partner with us?
           <br />
-          We'd love to hear from you. Reach out and let's build something extraordinary together.
+          We'd love to hear from you. Reach out and let's build something
+          extraordinary together.
         </motion.p>
       </div>
 
@@ -473,185 +487,338 @@ function ContactUs() {
 
       {/* Contact Form Section */}
 
-                     <div
-                           className={`relative overflow-hidden from-yellow-400/20 max-w-4xl mx-auto mb-20 z-10 to-orange-500/20 backdrop-blur-sm border border-yellow-400/40 group cursor-pointer bg-gradient-to-br flex flex-col justify-end p-4 ${5}`}
-                           style={{
-                             animationDelay: `2ms`,
-                             clipPath:
-                               "polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px)",
-                           }}
-                         >
-                           {/* Background Image */}
-                           <div className="absolute inset-0 w-full h-full">
-                           </div>
-                     
-                           {/* Gradient Overlay */}
-                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                     
-                           {/* Cyberpunk Circuit Overlay */}
-                           <div className="absolute inset-0 opacity-30 group-hover:opacity-50 transition-opacity duration-500">
-                             <div className="absolute top-2 left-2 w-8 h-px bg-yellow-400 opacity-60"></div>
-                             <div className="absolute top-2 left-2 w-px h-8 bg-yellow-400 opacity-60"></div>
-                             <div className="absolute bottom-2 right-2 w-8 h-px bg-yellow-400 opacity-60"></div>
-                             <div className="absolute bottom-2 right-2 w-px h-8 bg-yellow-400 opacity-60"></div>
-                             <div className="absolute top-1/2 left-1 w-4 h-px bg-yellow-400/40"></div>
-                             <div className="absolute top-1/3 right-1 w-4 h-px bg-yellow-400/40"></div>
-                           </div>
-                     
-                           {/* Content */}
-                           <div className=" w-full flex flex-col justify-end h-full">
-                             <h3
-                               className={`text-4xl md:text-5xl font-bold text-white mb-2 leading-tight break-words`}
-                               style={{ fontFamily: "'Mokoto Demo', monospace" }}
-                             >
-                               Get in Touch
-                             </h3>
-                             <p
-                               className={`text-yellow-300 text-lg font-medium mb-2 leading-tight`}
-                               style={{ fontFamily: "'Mokoto Demo', monospace" }}
-                             >
-                               Ready to be part of the revolution? Send us a message!
-                             </p>
-                             <form
-                               className={`text-gray-300 leading-snug
+      <div
+        className={`relative overflow-hidden from-yellow-400/20 max-w-4xl mx-auto mb-20 z-10 to-orange-500/20 backdrop-blur-sm border border-yellow-400/40 group cursor-pointer bg-gradient-to-br flex flex-col justify-end p-4 ${5}`}
+        style={{
+          animationDelay: `2ms`,
+          clipPath:
+            "polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px)",
+        }}
+      >
+        {/* Background Image */}
+        <div className="absolute inset-0 w-full h-full"></div>
+
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+
+        {/* Cyberpunk Circuit Overlay */}
+        <div className="absolute inset-0 opacity-30 group-hover:opacity-50 transition-opacity duration-500">
+          <div className="absolute top-2 left-2 w-8 h-px bg-yellow-400 opacity-60"></div>
+          <div className="absolute top-2 left-2 w-px h-8 bg-yellow-400 opacity-60"></div>
+          <div className="absolute bottom-2 right-2 w-8 h-px bg-yellow-400 opacity-60"></div>
+          <div className="absolute bottom-2 right-2 w-px h-8 bg-yellow-400 opacity-60"></div>
+          <div className="absolute top-1/2 left-1 w-4 h-px bg-yellow-400/40"></div>
+          <div className="absolute top-1/3 right-1 w-4 h-px bg-yellow-400/40"></div>
+        </div>
+
+        {/* Content */}
+        <div className=" w-full flex flex-col justify-end h-full">
+          <h3
+            className={`text-4xl md:text-5xl font-bold text-white mb-2 leading-tight break-words`}
+            style={{ fontFamily: "'Mokoto Demo', monospace" }}
+          >
+            Get in Touch
+          </h3>
+          <p
+            className={`text-yellow-300 text-lg font-medium mb-2 leading-tight`}
+            style={{ fontFamily: "'Mokoto Demo', monospace" }}
+          >
+            Ready to be part of the revolution? Send us a message!
+          </p>
+          <form
+            className={`text-gray-300 leading-snug
                                transition-opacity duration-500 space-y-6`}
-                               style={{ fontFamily: "'Mokoto Demo', monospace" }} onSubmit={handleSubmit}
-                             >
-                               
-                <motion.div
-                  whileFocus={{ scale: 1.02 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <label htmlFor="name" className="block text-sm font-medium text-white mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    required
-                    className="cyber-input w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300"
-                    placeholder="Your name"
-                    style={{ fontFamily: 'Poppins, sans-serif' }}
-                  />
-                </motion.div>
-                <motion.div
-                  whileFocus={{ scale: 1.02 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <label htmlFor="email" className="block text-sm font-medium text-white mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    className="cyber-input w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300"
-                    placeholder="your@email.com"
-                    style={{ fontFamily: 'Poppins, sans-serif' }}
-                  />
-                </motion.div>
-                <motion.div
-                whileFocus={{ scale: 1.01 }}
-                transition={{ duration: 0.2 }}
+            style={{ fontFamily: "'Mokoto Demo', monospace" }}
+            onSubmit={handleSubmit}
+          >
+            <motion.div
+              whileFocus={{ scale: 1.02 }}
+              transition={{ duration: 0.2 }}
+            >
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-white mb-2"
+                style={{ fontFamily: "Poppins, sans-serif" }}
               >
-                <label htmlFor="subject" className="block text-sm font-medium text-white mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleInputChange}
-                  required
-                  className="cyber-input w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300"
-                  placeholder="What's this about?"
-                  style={{ fontFamily: 'Poppins, sans-serif' }}
-                />
-              </motion.div>
-              <motion.div
-                whileFocus={{ scale: 1.01 }}
-                transition={{ duration: 0.2 }}
+                Full Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                required
+                className="w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300"
+                placeholder="Your name"
+                style={{
+                  fontFamily: "Poppins, sans-serif",
+                  clipPath:
+                    "polygon(0 1%, 100% 1%, 100% 30%, 96% 79%, 68% 80%, 14% 81%, 11% 100%, 0 100%)",
+                }}
+              />
+            </motion.div>
+            <motion.div
+              whileFocus={{ scale: 1.02 }}
+              transition={{ duration: 0.2 }}
+            >
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-white mb-2"
+                style={{ fontFamily: "Poppins, sans-serif" }}
               >
-                <label htmlFor="message" className="block text-sm font-medium text-white mb-2" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  required
-                  rows={6}
-                  className="cyber-input w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300 resize-none"
-                  placeholder="Tell us more about your inquiry..."
-                  style={{ fontFamily: 'Poppins, sans-serif' }}
-                />
-              </motion.div>
-              
-              <motion.div
-                className="text-center"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                Email Address
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                required
+                className="w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300"
+                placeholder="your@email.com"
+                style={{
+                  fontFamily: "Poppins, sans-serif",
+                  clipPath:
+                    "polygon(0 1%, 100% 1%, 100% 30%, 96% 79%, 68% 80%, 14% 81%, 11% 100%, 0 100%)",
+                }}
+              />
+            </motion.div>
+            <motion.div
+              whileFocus={{ scale: 1.01 }}
+              transition={{ duration: 0.2 }}
+            >
+              <label
+                htmlFor="subject"
+                className="block text-sm font-medium text-white mb-2"
+                style={{ fontFamily: "Poppins, sans-serif" }}
               >
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="cyber-button relative overflow-hidden px-12 py-4 font-bold transition-all duration-300 transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3 mx-auto"
-                  style={{ fontFamily: 'Poppins, sans-serif' }}
-                >
-                  <div className="cyber-button-background absolute inset-0 bg-yellow-400"></div>
-                  <div className="cyber-button-border absolute -inset-1 bg-orange-500"></div>
-                  <div className="relative z-10 text-black flex items-center gap-3">
-                    {isSubmitting ? (
-                        <>
-                        <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <Send className="w-5 h-5" />
-                        Send Message
-                      </>
-                    )}
-                  </div>
-                </button>
-              </motion.div>
+                Subject
+              </label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                value={formData.subject}
+                onChange={handleInputChange}
+                required
+                className="w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300"
+                placeholder="What's this about?"
+                style={{
+                  fontFamily: "Poppins, sans-serif",
+                  clipPath:
+                    "polygon(0 1%, 100% 1%, 100% 30%, 96% 79%, 68% 80%, 14% 81%, 11% 100%, 0 100%)",
+                }}
+              />
+            </motion.div>
+            <motion.div
+              whileFocus={{ scale: 1.01 }}
+              transition={{ duration: 0.2 }}
+            >
+              <label
+                htmlFor="message"
+                className="block text-sm font-medium text-white mb-2"
+                style={{ fontFamily: "Poppins, sans-serif" }}
+              >
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleInputChange}
+                required
+                rows={6}
+                className="w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300 resize-none"
+                placeholder="Tell us more about your inquiry..."
+                style={{
+                  fontFamily: "Poppins, sans-serif",
+                  clipPath:
+                    "polygon(0 1%, 100% 1%, 100% 30%, 96% 79%, 68% 80%, 14% 81%, 11% 100%, 0 100%)",
+                }}
+              />
+            </motion.div>
 
-              {submitStatus === 'success' && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
+            <motion.div
+              className="text-center"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <CyberButton
+                onClick={() => {
+                  if (!isSubmitting) {
+                    handleSubmit({
+                      preventDefault: () => {},
+                    } as React.FormEvent);
+                  }
+                }}
+              >
+                <span className="flex items-center gap-3">
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5" />
+                      Send Message
+                    </>
+                  )}
+                </span>
+              </CyberButton>
+            </motion.div>
+
+            {submitStatus === "success" && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-center p-4 bg-green-500/20 border border-green-500/30 cyber-success-message"
+              >
+                <p
+                  className="text-green-300 font-medium"
+                  style={{ fontFamily: "Poppins, sans-serif" }}
+                >
+                  Message sent successfully! We'll get back to you soon.
+                </p>
+              </motion.div>
+            )}
+          </form>
+        </div>
+
+        {/* Animated Border */}
+        <div
+          className="absolute inset-0 border border-yellow-400/30 group-hover:border-yellow-400/60 transition-colors duration-500 pointer-events-none"
+          style={{
+            clipPath:
+              "polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px)",
+          }}
+        />
+
+        {/* Corner accents */}
+        <div className="absolute top-0 left-0 w-3 h-3 border-l-2 border-t-2 border-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="absolute bottom-0 right-0 w-3 h-3 border-r-2 border-b-2 border-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      </div>
+
+      {/* Custom Large Photoframe with Google Maps - 16:9 Aspect Ratio */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1, delay: 0.9 }}
+        className="flex justify-center mt-20 relative z-10 px-4"
+      >
+        <div className="relative w-full max-w-6xl h-[33.75rem]">
+          {/* Upward Light Effect */}
+          <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 w-full h-20 bg-gradient-to-t from-yellow-400/30 via-yellow-300/20 to-transparent blur-xl opacity-70"></div>
+          <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-3/4 h-12 bg-gradient-to-t from-yellow-500/50 via-yellow-400/30 to-transparent blur-lg opacity-60"></div>
+
+          {/* Outer Glow Border */}
+          <div
+            className="absolute -inset-2 bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-500 opacity-75"
+            style={{
+              clipPath:
+                "polygon(2% 42%, 0 42%, 3% 0, 97% 0, 100% 42%, 98% 42%, 98% 55%, 100% 55%, 97% 100%, 3% 100%, 0 56%, 2% 56%)",
+              filter: "blur(2px)",
+            }}
+          ></div>
+
+          {/* Main Border Frame */}
+          <div
+            className="absolute -inset-1 bg-yellow-500"
+            style={{
+              clipPath:
+                "polygon(2% 42%, 0 42%, 3% 0, 97% 0, 100% 42%, 98% 42%, 98% 55%, 100% 55%, 97% 100%, 3% 100%, 0 56%, 2% 56%)",
+            }}
+          ></div>
+
+          {/* Background Frame with Google Maps */}
+          <div
+            className="w-full h-full relative overflow-hidden"
+            style={{
+              clipPath:
+                "polygon(2% 42%, 0 42%, 3% 0, 97% 0, 100% 42%, 98% 42%, 98% 55%, 100% 55%, 97% 100%, 3% 100%, 0 56%, 2% 56%)",
+            }}
+          >
+            {/* Google Maps iframe container with same clip-path */}
+            <div
+              className="absolute inset-0 w-full h-full"
+              style={{
+                clipPath:
+                  "polygon(2% 42%, 0 42%, 3% 0, 97% 0, 100% 42%, 98% 42%, 98% 55%, 100% 55%, 97% 100%, 3% 100%, 0 56%, 2% 56%)",
+              }}
+            >
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3685.2097842471743!2d88.43373731495658!3d22.53945688519166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a02778c0c5e0c0b%3A0x7a9b4d2b7a9b4d2b!2sFuture%20Institute%20of%20Management!5e0!3m2!1sen!2sin!4v1635678901234"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full"
+              />
+            </div>
+
+            {/* Dark overlay for text readability */}
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px]"></div>
+
+            {/* Content overlay */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-center space-y-4">
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="text-center p-4 bg-green-500/20 border border-green-500/30 cyber-success-message"
+                  transition={{ duration: 0.8, delay: 1.2 }}
+                  className="text-4xl md:text-6xl lg:text-7xl font-bold text-yellow-400 font-sddystopiandemo drop-shadow-2xl"
                 >
-                  <p className="text-green-300 font-medium" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                    Message sent successfully! We'll get back to you soon.
-                  </p>
-                </motion.div>
-              )}
+                  FIND US
+                </motion.h2>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 1.4 }}
+                  className="text-lg md:text-xl text-white font-mokoto max-w-2xl mx-auto px-4"
+                >
+                  Future Institute and Management - Your Gateway to Innovation
+                </motion.p>
+              </div>
+            </div>
 
-                             </form>
-                           </div>
-                     
-                           {/* Animated Border */}
-                           <div
-                             className="absolute inset-0 border border-yellow-400/30 group-hover:border-yellow-400/60 transition-colors duration-500 pointer-events-none"
-                             style={{
-                               clipPath:
-                                 "polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px)",
-                             }}
-                           />
-                     
-                           {/* Corner accents */}
-                           <div className="absolute top-0 left-0 w-3 h-3 border-l-2 border-t-2 border-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                           <div className="absolute bottom-0 right-0 w-3 h-3 border-r-2 border-b-2 border-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                         </div>
+            {/* Enhanced Circuit patterns inside frame */}
+            <div className="absolute inset-0 opacity-30 pointer-events-none">
+              {/* Horizontal circuit lines */}
+              <div className="absolute top-4 left-8 right-8 h-px bg-yellow-300 opacity-80"></div>
+              <div className="absolute top-8 left-12 right-12 h-px bg-yellow-300 opacity-60"></div>
+              <div className="absolute top-12 left-8 right-8 h-px bg-yellow-300 opacity-70"></div>
+              <div className="absolute bottom-4 left-8 right-8 h-px bg-yellow-300 opacity-80"></div>
+              <div className="absolute bottom-8 left-12 right-12 h-px bg-yellow-300 opacity-60"></div>
+              <div className="absolute bottom-12 left-8 right-8 h-px bg-yellow-300 opacity-70"></div>
+
+              {/* Vertical circuit lines */}
+              <div className="absolute left-4 top-8 bottom-8 w-px bg-yellow-300 opacity-80"></div>
+              <div className="absolute left-8 top-12 bottom-12 w-px bg-yellow-300 opacity-60"></div>
+              <div className="absolute left-12 top-8 bottom-8 w-px bg-yellow-300 opacity-70"></div>
+              <div className="absolute right-4 top-8 bottom-8 w-px bg-yellow-300 opacity-80"></div>
+              <div className="absolute right-8 top-12 bottom-12 w-px bg-yellow-300 opacity-60"></div>
+              <div className="absolute right-12 top-8 bottom-8 w-px bg-yellow-300 opacity-70"></div>
+
+              {/* Corner circuit nodes */}
+              <div className="absolute top-8 left-8 w-2 h-2 bg-yellow-300 opacity-70 rounded-full"></div>
+              <div className="absolute top-8 right-8 w-2 h-2 bg-yellow-300 opacity-70 rounded-full"></div>
+              <div className="absolute bottom-8 left-8 w-2 h-2 bg-yellow-300 opacity-70 rounded-full"></div>
+              <div className="absolute bottom-8 right-8 w-2 h-2 bg-yellow-300 opacity-70 rounded-full"></div>
+            </div>
+          </div>
+
+          {/* Additional Light Rays from bottom */}
+          <div className="absolute bottom-0 left-1/4 w-px h-20 bg-gradient-to-t from-yellow-400/80 to-transparent transform rotate-12 opacity-60"></div>
+          <div className="absolute bottom-0 left-1/3 w-px h-16 bg-gradient-to-t from-yellow-300/70 to-transparent transform -rotate-6 opacity-50"></div>
+          <div className="absolute bottom-0 left-1/2 w-px h-24 bg-gradient-to-t from-yellow-500/90 to-transparent opacity-70"></div>
+          <div className="absolute bottom-0 right-1/3 w-px h-16 bg-gradient-to-t from-yellow-300/70 to-transparent transform rotate-6 opacity-50"></div>
+          <div className="absolute bottom-0 right-1/4 w-px h-20 bg-gradient-to-t from-yellow-400/80 to-transparent transform -rotate-12 opacity-60"></div>
+        </div>
+      </motion.div>
 
       {/* CSS for matrix animation and cyberpunk styling */}
       <style jsx>{`
