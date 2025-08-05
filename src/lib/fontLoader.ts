@@ -41,16 +41,9 @@ export class FontLoader {
             weight: "normal",
             display: "swap",
           }).load(),
-          new FontFace("Distancia", "url('/fonts/Distancia-900-Heavy.otf')", {
-            weight: "900",
-            display: "swap",
-          }).load(),
-          new FontFace("Blanka", "url('/fonts/Blanka-Regular.otf')", {
-            weight: "normal",
-            display: "swap",
-          }).load(),
         ];
 
+        // Use Promise.allSettled with shorter timeout
         const loadedFonts = await Promise.allSettled(fontPromises);
 
         loadedFonts.forEach((result, index) => {
@@ -59,11 +52,17 @@ export class FontLoader {
           }
         });
 
-        await document.fonts.ready;
+        // Shorter timeout for fonts.ready
+        const fontsReadyPromise = document.fonts.ready;
+        const timeoutPromise = new Promise((_, reject) => {
+          setTimeout(() => reject(new Error("Fonts ready timeout")), 2000);
+        });
+
+        await Promise.race([fontsReadyPromise, timeoutPromise]);
       } else {
         // Fallback for browsers without Font Loading API
         await new Promise((resolve) => {
-          const timeout = setTimeout(resolve, 3000); // 3s timeout
+          const timeout = setTimeout(resolve, 2000); // Reduced timeout
 
           const checkFonts = setInterval(() => {
             const testElement = document.createElement("div");
@@ -83,7 +82,7 @@ export class FontLoader {
               clearTimeout(timeout);
               resolve(void 0);
             }
-          }, 100);
+          }, 50); // Faster check interval
         });
       }
 

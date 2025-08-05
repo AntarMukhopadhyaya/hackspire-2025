@@ -32,12 +32,26 @@ export default function HackingOpener({ onComplete }: HackingOpenerProps) {
     checkMobile();
     window.addEventListener("resize", checkMobile);
 
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
+    // Add keyboard shortcut to skip opener (Space or Escape)
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.code === "Space" || e.code === "Escape") {
+        e.preventDefault();
+        sessionStorage.setItem("hackspire-skip-opener", "true");
+        onComplete();
+      }
+    };
 
-  // Animation timing constants - Much faster!
-  const LOGGING_DURATION = 800;
-  const ACCESS_GRANTED_DELAY = 600;
+    window.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [onComplete]);
+
+  // Faster animation timing
+  const LOGGING_DURATION = 600; // Reduced from 800
+  const ACCESS_GRANTED_DELAY = 400; // Reduced from 600
 
   // Shortened terminal commands for speed
   const terminalCommands = [
@@ -81,7 +95,7 @@ export default function HackingOpener({ onComplete }: HackingOpenerProps) {
     }
   };
 
-  // Simple typing function that works
+  // Optimized typing function with better performance
   const startTerminalTyping = (terminalNum: number, commands: string[]) => {
     const terminal = getTerminalRef(terminalNum)?.current;
     if (!terminal) {
@@ -99,7 +113,7 @@ export default function HackingOpener({ onComplete }: HackingOpenerProps) {
 
         // If this is terminal 2, trigger access granted after completion
         if (terminalNum === 2) {
-          setTimeout(() => setPhase("accessGranted"), 800);
+          setTimeout(() => setPhase("accessGranted"), 600);
         }
         return;
       }
@@ -120,12 +134,12 @@ export default function HackingOpener({ onComplete }: HackingOpenerProps) {
         terminal.scrollTop = terminal.scrollHeight;
 
         charIndex++;
-        setTimeout(typeNextChar, 5); // Even faster typing
+        setTimeout(typeNextChar, 8); // Slightly faster typing
       } else {
         // Move to next command
         commandIndex++;
         charIndex = 0;
-        setTimeout(typeNextChar, 50); // Faster pause between commands
+        setTimeout(typeNextChar, 30); // Faster pause between commands
       }
     };
 
@@ -138,7 +152,7 @@ export default function HackingOpener({ onComplete }: HackingOpenerProps) {
     console.log(`Phase changed to: ${phase}`);
 
     if (phase === "initial") {
-      setTimeout(() => setPhase("logging"), 500);
+      setTimeout(() => setPhase("logging"), 300); // Reduced from 500
     }
 
     if (phase === "logging") {
@@ -148,7 +162,7 @@ export default function HackingOpener({ onComplete }: HackingOpenerProps) {
     if (phase === "terminals") {
       setTimeout(() => {
         setVisibleTerminals([1]);
-        setTimeout(() => setPhase("codeExecution"), 200);
+        setTimeout(() => setPhase("codeExecution"), 150); // Reduced from 200
       }, 100);
     }
 
@@ -166,26 +180,27 @@ export default function HackingOpener({ onComplete }: HackingOpenerProps) {
           setTimeout(() => {
             startTerminalTyping(2, terminalCommands[1]);
           }, 300);
-        }, 800);
-      }, 500);
+        }, 600); // Reduced from 800
+      }, 300); // Reduced from 500
     }
 
     if (phase === "accessGranted") {
       setTimeout(() => {
         setPhase("complete");
-        setTimeout(() => onComplete(), 600);
+        setTimeout(() => onComplete(), 400); // Reduced from 600
       }, ACCESS_GRANTED_DELAY);
     }
   }, [phase, onComplete]);
 
-  // Generate matrix rain
+  // Optimized matrix rain with fewer elements
   const generateMatrixRain = () => {
     if (!isClient) return null;
 
-    return Array.from({ length: 30 }, (_, i) => {
+    // Reduced from 30 to 15 columns for better performance
+    return Array.from({ length: 15 }, (_, i) => {
       const leftPos = seededRandom(i * 13) * 100;
-      const animDelay = seededRandom(i * 17) * 5;
-      const animDuration = seededRandom(i * 19) * 3 + 2;
+      const animDelay = seededRandom(i * 17) * 3; // Reduced delay
+      const animDuration = seededRandom(i * 19) * 2 + 3; // Faster animation
 
       return (
         <div
@@ -197,8 +212,9 @@ export default function HackingOpener({ onComplete }: HackingOpenerProps) {
             animationDuration: `${animDuration}s`,
           }}
         >
-          {Array.from({ length: 15 }, (_, j) => {
-            const charAnimDelay = seededRandom((i + j) * 23) * 2;
+          {/* Reduced from 15 to 8 characters per column */}
+          {Array.from({ length: 8 }, (_, j) => {
+            const charAnimDelay = seededRandom((i + j) * 23) * 1.5; // Reduced delay
             const charCode = Math.floor(seededRandom((i + j) * 31) * 96);
 
             return (
@@ -224,21 +240,25 @@ export default function HackingOpener({ onComplete }: HackingOpenerProps) {
 
   return (
     <div className="fixed inset-0 z-[9999] bg-black overflow-hidden">
-      {/* Matrix Rain Background */}
-      {isClient && (
+      {/* Optimized Matrix Rain Background - only show on desktop */}
+      {isClient && !isMobile && (
         <div className="absolute inset-0 matrix-rain">
           {generateMatrixRain()}
         </div>
       )}
 
-      {/* Scanning Lines Effect */}
+      {/* Simplified scanning lines - only one line */}
       <div className="absolute inset-0">
         <div className="scan-line"></div>
-        <div className="scan-line scan-line-2"></div>
       </div>
 
-      {/* Grid Overlay */}
-      <div className="absolute inset-0 opacity-20 grid-overlay"></div>
+      {/* Simplified grid overlay */}
+      <div className="absolute inset-0 opacity-10 grid-overlay"></div>
+
+      {/* Skip indicator */}
+      <div className="absolute top-4 right-4 text-cyber-yellow text-sm font-mono opacity-60">
+        Press SPACE or ESC to skip
+      </div>
 
       <AnimatePresence mode="wait">
         {phase === "logging" && (
@@ -247,12 +267,12 @@ export default function HackingOpener({ onComplete }: HackingOpenerProps) {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.2 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.4, ease: "easeOut" }} // Reduced duration
             className="absolute inset-0 flex items-center justify-center p-4"
           >
             <div className="text-center">
               <h1
-                className="text-4xl sm:text-6xl md:text-8xl font-bold text-cyber-yellow mb-6 glitch-text"
+                className="text-4xl sm:text-6xl md:text-8xl font-bold text-cyber-yellow mb-6"
                 style={{ fontFamily: "'Mokoto Demo', monospace" }}
               >
                 LOGGING USER
@@ -261,7 +281,7 @@ export default function HackingOpener({ onComplete }: HackingOpenerProps) {
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: "100%" }}
-                  transition={{ duration: 1, ease: "easeInOut" }}
+                  transition={{ duration: 0.8, ease: "easeInOut" }} // Reduced duration
                   className="h-full bg-gradient-to-r from-cyber-yellow to-cyber-blue rounded-full"
                 />
               </div>
@@ -288,7 +308,7 @@ export default function HackingOpener({ onComplete }: HackingOpenerProps) {
                   <motion.div
                     initial={{ opacity: 0, y: 100, scale: 0.9, rotateX: -30 }}
                     animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    transition={{ duration: 0.4, ease: "easeOut" }} // Reduced duration
                     className="terminal-window absolute"
                     style={{
                       top: isMobile ? "30px" : "20px",
@@ -325,7 +345,7 @@ export default function HackingOpener({ onComplete }: HackingOpenerProps) {
                       scale: phase === "accessGranted" ? 1.05 : 1,
                       rotateX: 0,
                     }}
-                    transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+                    transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }} // Reduced duration
                     className="terminal-window absolute"
                     style={{
                       top: isMobile ? "20px" : "10px",
@@ -352,18 +372,18 @@ export default function HackingOpener({ onComplete }: HackingOpenerProps) {
                       <motion.div
                         initial={{ opacity: 0, scale: 0.5 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        transition={{ duration: 0.6, ease: "easeOut" }} // Reduced duration
                         className="absolute inset-0 flex items-center justify-center bg-black/95 z-10"
                       >
                         <div className="text-center">
                           <h1
-                            className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-cyber-yellow glitch-text-large"
+                            className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-cyber-yellow"
                             style={{ fontFamily: "'Mokoto Demo', monospace" }}
                           >
                             ACCESS
                           </h1>
                           <h1
-                            className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-cyber-yellow glitch-text-large mt-2"
+                            className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-cyber-yellow mt-2"
                             style={{ fontFamily: "'Mokoto Demo', monospace" }}
                           >
                             GRANTED

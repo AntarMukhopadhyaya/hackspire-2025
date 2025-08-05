@@ -12,6 +12,16 @@
   visibility: visible;
 }
 
+/* Hide scrollbar for terminal */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
 /* Smooth font transitions */
 * {
   font-synthesis: none;
@@ -736,7 +746,7 @@ html {
   color: #00ffff;
 }
 
-/* Matrix Rain Effect */
+/* Matrix Rain Effect - Optimized for Performance */
 .matrix-rain {
   position: absolute;
   top: 0;
@@ -754,7 +764,7 @@ html {
   width: 20px;
   height: 100vh;
   animation: matrixFall linear infinite;
-  opacity: 0.6;
+  opacity: 0.4; /* Reduced opacity for better performance */
   will-change: transform;
 }
 
@@ -762,10 +772,10 @@ html {
   display: block;
   color: #00ff00;
   font-family: "Courier New", monospace;
-  font-size: 12px;
-  line-height: 16px;
-  text-shadow: 0 0 3px #00ff00;
-  animation: matrixGlow 2s linear infinite;
+  font-size: 10px; /* Reduced font size */
+  line-height: 14px; /* Reduced line height */
+  text-shadow: 0 0 2px #00ff00; /* Reduced shadow */
+  animation: matrixGlow 3s linear infinite; /* Slower animation */
   will-change: opacity, color;
 }
 
@@ -781,26 +791,26 @@ html {
 @keyframes matrixGlow {
   0%,
   100% {
-    opacity: 0.3;
+    opacity: 0.2;
     color: #00ff00;
   }
   50% {
-    opacity: 1;
+    opacity: 0.8;
     color: #00ff88;
-    text-shadow: 0 0 10px #00ff00;
+    text-shadow: 0 0 5px #00ff00; /* Reduced shadow */
   }
 }
 
-/* Scanning Lines Effect */
+/* Scanning Lines Effect - Optimized */
 .scan-line {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 2px;
+  height: 1px; /* Reduced height */
   background: linear-gradient(90deg, transparent, #ffd700, transparent);
-  animation: scanDown 3s linear infinite;
-  opacity: 0.8;
+  animation: scanDown 4s linear infinite; /* Slower animation */
+  opacity: 0.6; /* Reduced opacity */
 }
 
 .scan-line-2 {
@@ -811,10 +821,10 @@ html {
 @keyframes scanDown {
   0% {
     top: 0;
-    opacity: 1;
+    opacity: 0.8;
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.3;
   }
   100% {
     top: 100%;
@@ -822,12 +832,15 @@ html {
   }
 }
 
-/* Grid Overlay */
+/* Grid Overlay - Optimized */
 .grid-overlay {
-  background-image: linear-gradient(rgba(255, 215, 0, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 215, 0, 0.1) 1px, transparent 1px);
-  background-size: 50px 50px;
-  animation: gridMove 10s linear infinite;
+  background-image: linear-gradient(
+      rgba(255, 215, 0, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 215, 0, 0.05) 1px, transparent 1px);
+  background-size: 60px 60px; /* Larger grid for less density */
+  animation: gridMove 15s linear infinite; /* Slower animation */
 }
 
 @keyframes gridMove {
@@ -835,7 +848,7 @@ html {
     background-position: 0 0;
   }
   100% {
-    background-position: 50px 50px;
+    background-position: 60px 60px;
   }
 }
 

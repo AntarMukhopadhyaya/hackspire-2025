@@ -35,24 +35,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Preload critical fonts */}
+        {/* Preload only the most critical font */}
         <link
           rel="preload"
           href="/fonts/Distancia-500-Regular.otf"
-          as="font"
-          type="font/otf"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/Distancia-900-Heavy.otf"
-          as="font"
-          type="font/otf"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/Blanka-Regular.otf"
           as="font"
           type="font/otf"
           crossOrigin="anonymous"
@@ -73,9 +59,7 @@ export default function RootLayout({
               (function() {
                 if (typeof window !== 'undefined' && 'fonts' in document) {
                   Promise.all([
-                    new FontFace('Distancia', "url('/fonts/Distancia-500-Regular.otf')", { weight: 'normal', display: 'swap' }).load(),
-                    new FontFace('Distancia', "url('/fonts/Distancia-900-Heavy.otf')", { weight: '900', display: 'swap' }).load(),
-                    new FontFace('Blanka', "url('/fonts/Blanka-Regular.otf')", { weight: 'normal', display: 'swap' }).load()
+                    new FontFace('Distancia', "url('/fonts/Distancia-500-Regular.otf')", { weight: 'normal', display: 'swap' }).load()
                   ]).then(function(fonts) {
                     fonts.forEach(function(font) { document.fonts.add(font); });
                     document.documentElement.classList.add('fonts-loaded');

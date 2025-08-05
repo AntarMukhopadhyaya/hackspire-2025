@@ -15,14 +15,16 @@ export default function AppLoader({ children }: AppLoaderProps) {
 
   useEffect(() => {
     setIsClient(true);
-    // For testing, always show the opener (comment out session storage check)
-    // const hasSeenOpener = sessionStorage.getItem("hackspire-opener-seen");
 
-    // if (!hasSeenOpener) {
-    setShowOpener(true);
-    // } else {
-    //   setOpenerComplete(true);
-    // }
+    // Check if user wants to skip the opener for performance
+    const skipOpener = sessionStorage.getItem("hackspire-skip-opener");
+    const hasSeenOpener = sessionStorage.getItem("hackspire-opener-seen");
+
+    if (skipOpener === "true" || hasSeenOpener) {
+      setOpenerComplete(true);
+    } else {
+      setShowOpener(true);
+    }
   }, []);
 
   const handleOpenerComplete = () => {

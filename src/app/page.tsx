@@ -1,7 +1,6 @@
 "use client";
 import { useRef } from "react";
 import HeroSection from "@/components/HeroSection";
-import AboutTheme from "@/components/AboutTheme";
 
 import ScheduleSection from "@/components/ScheduleSection";
 
@@ -21,10 +20,9 @@ export default function Home() {
       {/* Content Wrapper */}
       <div className="relative z-10">
         <HeroSection />
-        {/* <AboutTheme /> */}
         <SpireCompleters />
-        <FAQSection/>
         <ScheduleSection />
+        <FAQSection />
       </div>
     </main>
   );

@@ -12,19 +12,26 @@ export function useAppLoading() {
 
     const loadResources = async () => {
       try {
-        // Load fonts
+        // Load fonts with timeout
         const fontLoader = FontLoader.getInstance();
-        await fontLoader.loadFonts();
+        const fontPromise = fontLoader.loadFonts();
+
+        // Add timeout to prevent infinite loading
+        const timeoutPromise = new Promise((_, reject) => {
+          setTimeout(() => reject(new Error("Font loading timeout")), 3000);
+        });
+
+        await Promise.race([fontPromise, timeoutPromise]);
 
         if (mounted) {
           setFontsLoaded(true);
 
-          // Small delay to ensure smooth transition
+          // Reduced delay for faster transition
           setTimeout(() => {
             if (mounted) {
               setIsLoading(false);
             }
-          }, 100);
+          }, 50);
         }
       } catch (error) {
         console.warn("Resource loading failed:", error);
