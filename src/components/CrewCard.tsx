@@ -90,7 +90,7 @@ export function CrewCard({ member }: CrewCardProps) {
 
         {/* SVG card overlay */}
         <img
-          src="/images/crewcard.svg"
+          src="/images/crewcard2.png"
           alt="Crew Card"
           className="absolute inset-0 w-80 h-auto z-15"
           style={{ width: "320px", height: "387px" }}
@@ -114,7 +114,7 @@ export function CrewCard({ member }: CrewCardProps) {
           >
             <Instagram
               size={24}
-              className="text-white hover:text-gray-300 transition-colors"
+              className="text-black hover:text-gray-700 transition-colors"
             />
           </a>
         )}
@@ -122,7 +122,7 @@ export function CrewCard({ member }: CrewCardProps) {
 
       {/* HACKSPIRE 2025 text horizontally next to Instagram icon */}
       <div
-        className="absolute top-2 left-10 z-[25]"
+        className="absolute top-1 left-10 z-[25]"
         style={{
           transform: `translateZ(5px)`,
         }}
@@ -130,7 +130,7 @@ export function CrewCard({ member }: CrewCardProps) {
         <span
           className="text-neutral-500 text-base font-medium tracking-wide"
           style={{
-            fontFamily: "Poppins, sans-serif",
+            fontFamily: "Blanka, Impact, Arial Black, sans-serif",
           }}
         >
           HACKSPIRE 2025
@@ -160,9 +160,9 @@ export function CrewCard({ member }: CrewCardProps) {
         }}
       >
         <span
-          className="text-neutral-500 text-base font-medium tracking-wide"
+          className="text-neutral-500 text-lg font-medium tracking-wide"
           style={{
-            fontFamily: "Poppins, sans-serif",
+            fontFamily: "Sddystopiandemo-GO7xa, monospace",
             writingMode: "vertical-rl",
             textOrientation: "mixed",
             transform: "rotate(180deg)",
@@ -189,7 +189,7 @@ export function CrewCard({ member }: CrewCardProps) {
       </div>
       {/* SVG card overlay - now guaranteed to stay above the image */}
       <img
-        src="/images/crewcard.svg"
+        src="/images/crewcard2.png"
         alt="Crew Card"
         className="absolute inset-0 w-80 h-auto z-[15] pointer-events-none"
         style={{ width: "320px", height: "387px" }}
@@ -203,8 +203,8 @@ export function CrewCard({ member }: CrewCardProps) {
         }}
       >
         <h2
-          className="text-gray-300 text-2xl font-medium text-left"
-          style={{ fontFamily: "Poppins, sans-serif" }}
+          className="text-black text-2xl font-medium text-left"
+          style={{ fontFamily: "Mokoto Demo, monospace" }}
         >
           {member.name}
         </h2>
@@ -218,8 +218,8 @@ export function CrewCard({ member }: CrewCardProps) {
         }}
       >
         <p
-          className="text-gray-400 text-base text-left"
-          style={{ fontFamily: "Poppins, sans-serif" }}
+          className="text-black text-base text-left"
+          style={{ fontFamily: "Mokoto Demo, monospace" }}
         >
           {member.position}
         </p>
@@ -240,7 +240,7 @@ export function CrewCard({ member }: CrewCardProps) {
         >
           <Github
             size={20}
-            className="text-white hover:text-gray-300 transition-colors"
+            className="text-black hover:text-gray-700 transition-colors"
           />
         </a>
         <a
@@ -251,7 +251,7 @@ export function CrewCard({ member }: CrewCardProps) {
         >
           <Linkedin
             size={20}
-            className="text-white hover:text-gray-300 transition-colors"
+            className="text-black hover:text-gray-700 transition-colors"
           />
         </a>
         <a
@@ -262,7 +262,7 @@ export function CrewCard({ member }: CrewCardProps) {
         >
           <FontAwesomeIcon
             icon={faXTwitter}
-            className="text-white hover:text-gray-300 transition-colors"
+            className="text-black hover:text-gray-700 transition-colors"
             style={{ width: "20px", height: "20px" }}
           />
         </a>
