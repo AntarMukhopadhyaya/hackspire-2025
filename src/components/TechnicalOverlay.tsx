@@ -120,7 +120,7 @@ export function TechnicalOverlay() {
       </div>
 
       <div
-        className="absolute bottom-1/4 right-12 z-30 pointer-events-none font-mono text-sm bg-black/30 backdrop-blur-sm p-4 border border-yellow-400/20 rounded"
+        className="absolute bottom-1/4 md:mb-32 lg:mb-0 right-12 z-30 pointer-events-none font-mono text-sm bg-black/30 backdrop-blur-sm p-4 border border-yellow-400/20 rounded"
         style={{ color: "#FCFF3F" }}
       >
         <div className="space-y-2 text-right">

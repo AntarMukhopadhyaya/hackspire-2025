@@ -47,7 +47,7 @@ export default function CountdownTimer() {
       <div className="flex space-x-2 sm:space-x-3 md:space-x-4 text-white">
         <div className="flex flex-col items-center">
           <div
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-cyber-yellow"
+            className="text-2xl sm:text-xl md:text-2xl lg:text-5xl font-bold text-cyber-yellow"
             style={{
               fontFamily: "Mokoto Demo",
               textShadow: "0 0 10px rgba(255, 193, 7, 0.5)",
@@ -56,7 +56,7 @@ export default function CountdownTimer() {
             {timeLeft.days.toString().padStart(2, "0")}
           </div>
           <div
-            className="text-xs sm:text-sm md:text-base text-white/80 uppercase tracking-wider"
+            className="text-xs sm:text-sm md:text-sm text-white/80 uppercase tracking-wider"
             style={{
               fontFamily: "Mokoto Demo",
             }}
@@ -67,7 +67,7 @@ export default function CountdownTimer() {
 
         <div className="flex flex-col items-center">
           <div
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-cyber-yellow"
+            className="text-2xl sm:text-xl md:text-2xl lg:text-5xl font-bold text-cyber-yellow"
             style={{
               fontFamily: "Mokoto Demo",
               textShadow: "0 0 10px rgba(255, 193, 7, 0.5)",
@@ -76,7 +76,7 @@ export default function CountdownTimer() {
             {timeLeft.hours.toString().padStart(2, "0")}
           </div>
           <div
-            className="text-xs sm:text-sm md:text-base text-white/80 uppercase tracking-wider"
+            className="text-xs sm:text-sm md:text-sm text-white/80 uppercase tracking-wider"
             style={{
               fontFamily: "Mokoto Demo",
             }}
@@ -87,7 +87,7 @@ export default function CountdownTimer() {
 
         <div className="flex flex-col items-center">
           <div
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-cyber-yellow"
+            className="text-2xl sm:text-xl md:text-2xl lg:text-5xl font-bold text-cyber-yellow"
             style={{
               fontFamily: "Mokoto Demo",
               textShadow: "0 0 10px rgba(255, 193, 7, 0.5)",
@@ -96,7 +96,7 @@ export default function CountdownTimer() {
             {timeLeft.minutes.toString().padStart(2, "0")}
           </div>
           <div
-            className="text-xs sm:text-sm md:text-base text-white/80 uppercase tracking-wider"
+            className="text-xs sm:text-sm md:text-sm text-white/80 uppercase tracking-wider"
             style={{
               fontFamily: "Mokoto Demo",
             }}
@@ -107,7 +107,7 @@ export default function CountdownTimer() {
 
         <div className="flex flex-col items-center">
           <div
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-cyber-yellow"
+            className="text-2xl sm:text-xl md:text-2xl lg:text-5xl font-bold text-cyber-yellow"
             style={{
               fontFamily: "Mokoto Demo",
               textShadow: "0 0 10px rgba(255, 193, 7, 0.5)",
@@ -116,7 +116,7 @@ export default function CountdownTimer() {
             {timeLeft.seconds.toString().padStart(2, "0")}
           </div>
           <div
-            className="text-xs sm:text-sm md:text-base text-white/80 uppercase tracking-wider"
+            className="text-xs sm:text-sm md:text-sm text-white/80 uppercase tracking-wider"
             style={{
               fontFamily: "Mokoto Demo",
             }}

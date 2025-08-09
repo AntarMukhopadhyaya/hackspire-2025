@@ -290,7 +290,7 @@ function SpireCompleters() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-            className="mb-2 md:mb-4 font-['Sddystopiandemo-GO7xa'] font-bold text-[clamp(2rem,7vw,7rem)] text-black"
+            className="text-5xl sm:text-7xl md:text-[5rem] lg:text-[6rem] xl:text-8xl 2xl:text-[8rem] font-bold text-black font-sddystopiandemo"
           >
             SPIRE COMPLETERS
           </motion.h2>
@@ -300,7 +300,7 @@ function SpireCompleters() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-            className="text-black max-w-2xl mx-auto mb-4 md:mb-8 font-medium text-base md:text-lg lg:text-xl"
+            className="text-black max-w-2xl mx-auto mb-4 px-12 sm:px-0 md:mb-8 font-medium text-sm md:text-lg lg:text-xl"
             style={{ fontFamily: "Mokoto Demo" }}
           >
             Recognizing those who conquered the ultimate challenge.
@@ -311,7 +311,7 @@ function SpireCompleters() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-            className="flex justify-center items-center gap-4 md:gap-8 lg:gap-12 flex-wrap md:flex-nowrap"
+            className="flex justify-center items-center gap-4 md:gap-8 lg:gap-12 flex-wrap md:flex-nowrap mt-44 sm:mt-20 md:mt-48 lg:mt-40"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -554,7 +554,7 @@ function SpireCompleters() {
       >
         <div className="relative w-full max-w-3xl md:max-w-4xl h-16 md:h-24">
           {/* Main large trapezium background */}
-          <div className="w-full h-full bg-yellow-400 relative large-trapezium-decorative">
+          <div className="w-full h-full bg-yellow-400 relative large-trapezium-decorative py-12">
             {/* Circuit board patterns */}
             <div className="absolute inset-0 opacity-70">
               {/* Horizontal circuit traces */}
@@ -600,9 +600,9 @@ function SpireCompleters() {
             </div>
 
             {/* Mission Text - Adjusted for mobile */}
-            <div className="absolute inset-0 flex items-center justify-center z-20 px-2 ">
+            <div className="absolute inset-0 flex items-center justify-center z-20 px-2">
               <span
-                className="text-black text-xs sm:text-sm md:text-lg lg:text-xl xl:text-2xl font-bold tracking-wider glitch-text-large text-center whitespace-normal sm:whitespace-nowrap px-1  "
+                className="text-black text-xs sm:text-sm md:text-4xl lg:text-xl xl:text-2xl font-bold tracking-wider glitch-text md:glitch-text-large text-center whitespace-normal sm:whitespace-nowrap px-1  "
                 style={{ fontFamily: "'Mokoto Demo', monospace" }}
               >
                 MISSION KOLKATA ACCOMPLISHED

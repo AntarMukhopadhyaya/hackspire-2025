@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronDown, ChevronUp, Search, HelpCircle } from "lucide-react";
+import { ChevronDown, ChevronUp, HelpCircle } from "lucide-react";
 import Link from "next/link";
 import CyberButton from "./ui/CyberButton";
 

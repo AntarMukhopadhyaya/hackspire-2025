@@ -138,7 +138,7 @@ function Glory() {
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-8xl md:text-[10rem] lg:text-[12rem] font-bold text-black font-sddystopiandemo"
+          className="text-7xl sm:text-8xl md:text-[8rem] lg:text-[10rem] xl:text-8xl 2xl:text-[8rem] font-bold text-black font-sddystopiandemo"
         >
           Glory
         </motion.h1>
@@ -146,7 +146,7 @@ function Glory() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-center max-w-4xl mx-auto -mt-4 pb-8 text-lg md:text-xl text-black leading-relaxed font-mokoto"
+          className="text-center max-w-4xl mx-auto -mt-4 pb-8 text-sm sm:text-sm md:text-xl text-black leading-relaxed font-mokoto px-12 md:px-30"
         >
           Celebrating the extraordinary achievements and groundbreaking
           innovations from last year's HACKSPIRE hackathon.

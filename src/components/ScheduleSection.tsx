@@ -129,7 +129,7 @@ export default function ScheduleSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-            className="mb-4 font-['Sddystopiandemo-GO7xa'] font-bold text-[clamp(3rem,8vw,7rem)] text-black"
+            className="mb-6 text-5xl sm:text-7xl md:text-[5rem] lg:text-[6rem] xl:text-8xl 2xl:text-[8rem] font-bold text-black font-sddystopiandemo"
           >
             CYBER PROTOCOL TIMELINE
           </motion.h2>
@@ -139,7 +139,7 @@ export default function ScheduleSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-            className="text-black max-w-2xl mx-auto mb-8 font-medium text-lg md:text-xl lg:text-2xl"
+            className="text-center max-w-4xl mx-auto -mt-4 pb-8 text-sm sm:text-sm md:text-xl text-black leading-relaxed font-mokoto px-12 md:px-30"
             style={{ fontFamily: "Mokoto Demo" }}
           >
             From registration to glory - your journey to digital supremacy.

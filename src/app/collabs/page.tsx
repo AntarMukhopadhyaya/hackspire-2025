@@ -277,7 +277,7 @@ function Collaboration() {
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-8xl md:text-[10rem] lg:text-[12rem] font-bold text-black font-sddystopiandemo"
+            className="text-5xl sm:text-7xl md:text-[6rem] lg:text-[8rem] xl:text-8xl 2xl:text-[8rem] font-bold text-black font-sddystopiandemo -ml-4"
           >
             Collaborations
           </motion.h1>
@@ -285,7 +285,7 @@ function Collaboration() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-center max-w-4xl mx-auto -mt-4 pb-8 text-lg md:text-xl text-black leading-relaxed font-mokoto"
+            className="text-center max-w-4xl mx-auto -mt-4 pb-8 text-sm sm:text-sm md:text-xl text-black leading-relaxed font-mokoto px-12 md:px-30"
           >
             Elite institutions unite in the digital warfare coalition across
             cyber-domains.
@@ -296,7 +296,7 @@ function Collaboration() {
         </div>
 
         {/* Host College Section */}
-        <div className="max-w-6xl mx-auto mb-20 px-4">
+        <div className="max-w-6xl mx-auto mb-20 px-4 mt-40">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-sddystopiandemo">
               Host Institution
