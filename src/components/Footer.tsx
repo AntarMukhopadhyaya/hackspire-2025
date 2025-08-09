@@ -7,7 +7,7 @@ const FooterContent = () => {
   return (
     <footer className="relative mt-20 text-white overflow-hidden">
       {/* Mobile View - Simple Background */}
-      <div className="block sm:hidden">
+      <div className="hidden">
         <div className="bg-yellow-400 relative min-h-[300px]">
           {/* Simple mobile pattern */}
           <div className="absolute inset-0 opacity-30">
@@ -113,7 +113,7 @@ const FooterContent = () => {
       </div>
 
       {/* Desktop/Tablet View - Complex Background */}
-      <div className="hidden sm:block">
+      <div className="block">
         <div className="absolute bottom-0 left-0 right-0 h-72 md:h-80 lg:h-80 z-0">
           {/* Black border background */}
           <div
@@ -269,13 +269,13 @@ const FooterContent = () => {
         </div>
 
         {/* Desktop Content */}
-        <div className="container mx-auto px-4 sm:px-6 lg:px-28 relative z-10 py-12 sm:py-14 lg:py-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-28 relative z-10 pt-12 pb-4 sm:py-12 lg:py-16">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="flex flex-col lg:flex-row justify-between items-center gap-6 sm:gap-4 lg:gap-12"
+            className="flex flex-col lg:flex-row justify-between items-center gap-4 lg:gap-12"
           >
             {/* Left Section - Main Branding */}
             <motion.div
@@ -286,13 +286,13 @@ const FooterContent = () => {
               className="text-center lg:text-left"
             >
               <h3
-                className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-black mb-2 sm:mb-3 md:mb-4 tracking-wide sm:tracking-wider"
+                className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-black mb-2 sm:mb-3 md:mb-4 tracking-wide sm:tracking-wider"
                 style={{ fontFamily: "'Sddystopiandemo-GO7xa', monospace" }}
               >
                 HACKSPIRE 2025
               </h3>
               <p
-                className="text-base md:text-lg lg:text-xl text-black font-medium max-w-sm sm:max-w-md lg:max-w-lg"
+                className="px-20 md:px-0 text-xs sm:text-base md:text-lg lg:text-xl text-black font-medium max-w-sm sm:max-w-md lg:max-w-lg"
                 style={{ fontFamily: "'Mokoto Demo', monospace" }}
               >
                 Neural Network Protocols • Quantum Code Architecture • Digital
