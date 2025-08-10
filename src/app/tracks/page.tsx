@@ -10,6 +10,44 @@ import {
 } from "react-icons/fa";
 import CyberButton from "@/components/ui/CyberButton";
 import GloryBentoGrid from "../../components/GloryBentoGrid";
+import { TrapeziumShape } from "@/components/ui/TrapeziumShape";
+import { CircuitOverlay } from "@/components/ui/CircuitOverlay";
+import {
+  modalBackdrop,
+  modalContent,
+  titleFadeIn,
+  subtitleFadeIn,
+  cardFadeInUp,
+  glorySectionAnimation,
+  ctaSectionAnimation,
+} from "@/lib/motionVariants";
+import {
+  TRACKS_TITLE_CLASSES,
+  TRACKS_SUBTITLE_CLASSES,
+  TRACKS_CONTAINER_CLASSES,
+  MATRIX_WRAPPER_CLASSES,
+  MATRIX_OPACITY_CONTAINER,
+  MODAL_PANEL_CLASSES,
+  TRACKS_CLIP_PATHS,
+  TRACK_CARD_CONTAINER_CLASSES,
+  TRACK_CARD_BG_CLASSES,
+  TRACK_CARD_BORDER_CLASSES,
+  TRACK_CARD_GLITCH_RED_CLASSES,
+  TRACK_CARD_GLITCH_CYAN_CLASSES,
+  TRACK_CARD_CONTENT_CLASSES,
+  TRACK_HEADER_CLASSES,
+  TRACK_ICON_CONTAINER_CLASSES,
+  TRACK_ARTICLE_BUTTON_CLASSES,
+  TRACK_TITLE_CLASSES,
+  TRACK_SUBTITLE_CLASSES,
+  TRACK_DESCRIPTION_CLASSES,
+  TRACK_CHALLENGES_TITLE_CLASSES,
+  TRACK_CHALLENGE_TAG_CLASSES,
+  GLORY_SECTION_TITLE_CLASSES,
+  GLORY_SECTION_SUBTITLE_CLASSES,
+  CTA_SECTION_TITLE_CLASSES,
+  CTA_SECTION_TEXT_CLASSES,
+} from "@/lib/styles";
 
 const tracks = [
   {
@@ -169,7 +207,24 @@ function Tracks() {
   };
 
   return (
-    <div className="min-h-screen text-white py-20 px-4 relative overflow-hidden">
+    <div
+      className={TRACKS_CONTAINER_CLASSES}
+      style={
+        {
+          // expose CSS vars for clip-path usage throughout the page
+          "--clip-path-main-trap": TRACKS_CLIP_PATHS.mainTrapezium,
+          "--clip-path-left-trap-main": TRACKS_CLIP_PATHS.leftTrapMain,
+          "--clip-path-left-trap-secondary":
+            TRACKS_CLIP_PATHS.leftTrapSecondary,
+          "--clip-path-right-trap-main": TRACKS_CLIP_PATHS.rightTrapMain,
+          "--clip-path-right-trap-secondary":
+            TRACKS_CLIP_PATHS.rightTrapSecondary,
+          "--clip-path-triangle-up": TRACKS_CLIP_PATHS.triangleCutUp,
+          "--clip-path-triangle-down": TRACKS_CLIP_PATHS.triangleCutDown,
+          "--clip-path-track-card": TRACKS_CLIP_PATHS.trackCard,
+        } as React.CSSProperties
+      }
+    >
       <style jsx>{`
         @keyframes fadeInUp {
           from {
@@ -183,24 +238,19 @@ function Tracks() {
         }
       `}</style>
       {/* Matrix Rain Background */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          {/* Dynamic CSS for matrix columns */}
+      <div className={MATRIX_WRAPPER_CLASSES}>
+        <div className={MATRIX_OPACITY_CONTAINER}>
           <style>
             {Array.from({ length: 50 })
               .map((_, i) => {
                 const delay = Math.random() * 5;
                 const duration = 3 + Math.random() * 4;
-                return `.matrix-column-${i} {
-                left: ${i * 2}%;
-                animation-delay: ${delay}s;
-                animation-duration: ${duration}s;
-              }`;
+                return `.matrix-column-${i} { left: ${
+                  i * 2
+                }%; animation-delay: ${delay}s; animation-duration: ${duration}s; }`;
               })
               .join("\n")}
           </style>
-
-          {/* Matrix columns */}
           {Array.from({ length: 50 }).map((_, i) => (
             <div
               key={i}
@@ -217,242 +267,52 @@ function Tracks() {
       </div>
 
       {/* Yellow Trapezium Background with Clip-Path - Responsive */}
-      <div className="absolute top-0 left-0 right-0 h-64 sm:h-80 md:h-96 z-0">
-        {/* Main trapezium with clip-path */}
+      <div className="absolute top-0 left-0 right-0 h-80 sm:h-96 md:h-[28rem] z-0">
         <div
           className="w-full h-full bg-yellow-400 relative"
-          style={{
-            clipPath:
-              "polygon(5% 0, 95% 0, 100% 15%, 85% 90%, 75% 100%, 25% 100%, 15% 90%, 0 15%)",
-            WebkitClipPath:
-              "polygon(5% 0, 95% 0, 100% 15%, 85% 90%, 75% 100%, 25% 100%, 15% 90%, 0 15%)",
-          }}
+          style={{ clipPath: "var(--clip-path-main-trap)" }}
         >
-          {/* PCB-like lines - Responsive */}
-          <div className="absolute inset-0">
-            {/* Horizontal lines */}
-            <div className="absolute top-4 sm:top-6 md:top-8 left-0 right-0 h-px bg-black opacity-60"></div>
-            <div className="absolute top-8 sm:top-12 md:top-16 left-0 right-0 h-px bg-black opacity-40"></div>
-            <div className="absolute top-12 sm:top-18 md:top-24 left-0 right-0 h-px bg-black opacity-30"></div>
-            <div className="absolute top-16 sm:top-24 md:top-32 left-0 right-0 h-px bg-black opacity-20"></div>
-
-            {/* Vertical lines */}
-            <div className="absolute top-0 bottom-0 left-4 sm:left-6 md:left-8 w-px bg-black opacity-60"></div>
-            <div className="absolute top-0 bottom-0 left-8 sm:left-12 md:left-16 w-px bg-black opacity-40"></div>
-            <div className="absolute top-0 bottom-0 left-12 sm:left-18 md:left-24 w-px bg-black opacity-30"></div>
-            <div className="absolute top-0 bottom-0 left-16 sm:left-24 md:left-32 w-px bg-black opacity-20"></div>
-            <div className="absolute top-0 bottom-0 right-4 sm:right-6 md:right-8 w-px bg-black opacity-60"></div>
-            <div className="absolute top-0 bottom-0 right-8 sm:right-12 md:right-16 w-px bg-black opacity-40"></div>
-            <div className="absolute top-0 bottom-0 right-12 sm:right-18 md:right-24 w-px bg-black opacity-30"></div>
-            <div className="absolute top-0 bottom-0 right-16 sm:right-24 md:right-32 w-px bg-black opacity-20"></div>
-
-            {/* Diagonal lines for futuristic effect - Responsive */}
-            <div className="absolute top-0 left-0 w-20 sm:w-24 md:w-32 h-20 sm:h-24 md:h-32 border-l-2 border-t-2 border-black opacity-40"></div>
-            <div className="absolute top-0 right-0 w-20 sm:w-24 md:w-32 h-20 sm:h-24 md:h-32 border-r-2 border-t-2 border-black opacity-40"></div>
-            <div className="absolute bottom-0 left-0 w-20 sm:w-24 md:w-32 h-20 sm:h-24 md:h-32 border-l-2 border-b-2 border-black opacity-40"></div>
-            <div className="absolute bottom-0 right-0 w-20 sm:w-24 md:w-32 h-20 sm:h-24 md:h-32 border-r-2 border-b-2 border-black opacity-40"></div>
-          </div>
+          {/* PCB-like circuit overlay */}
+          <CircuitOverlay variant="main" opacity="medium" />
         </div>
       </div>
 
-      {/* Multiple Left Side Vertical Trapezium Shapes - Attached to Screen Edge */}
+      {/* Left Side Trapezium Shapes */}
       <div className="absolute left-0 top-1/4 w-20 h-64 z-0">
-        <div className="w-full h-full bg-yellow-400 relative left-trapezium-main">
-          {/* Cut in the middle */}
-          <div className="absolute top-1/2 left-0 w-full h-8 bg-transparent transform -translate-y-1/2 left-trapezium-cut"></div>
-
-          {/* Circuit board patterns for left trapezium */}
-          <div className="absolute inset-0 opacity-60">
-            {/* Vertical circuit traces */}
-            <div className="absolute top-4 bottom-4 left-2 w-px bg-black opacity-70"></div>
-            <div className="absolute top-6 bottom-6 left-4 w-px bg-black opacity-60"></div>
-            <div className="absolute top-8 bottom-8 left-6 w-px bg-black opacity-50"></div>
-
-            {/* Horizontal connecting traces */}
-            <div className="absolute top-8 left-1 right-1 h-px bg-black opacity-65"></div>
-            <div className="absolute top-16 left-2 right-2 h-px bg-black opacity-55"></div>
-            <div className="absolute top-24 left-1 right-1 h-px bg-black opacity-50"></div>
-            <div className="absolute top-32 left-2 right-2 h-px bg-black opacity-45"></div>
-
-            {/* Connection nodes */}
-            <div className="absolute top-7 left-1 w-1 h-1 bg-black rounded-full opacity-70"></div>
-            <div className="absolute top-15 left-3 w-1 h-1 bg-black rounded-full opacity-60"></div>
-            <div className="absolute top-23 left-5 w-1 h-1 bg-black rounded-full opacity-55"></div>
-            <div className="absolute top-31 left-3 w-1 h-1 bg-black rounded-full opacity-50"></div>
-
-            {/* Small components */}
-            <div className="absolute top-12 left-2 w-2 h-0.5 bg-black opacity-55 rounded-sm"></div>
-            <div className="absolute top-20 left-4 w-1.5 h-0.5 bg-black opacity-50 rounded-sm"></div>
-            <div className="absolute top-28 left-2 w-2.5 h-0.5 bg-black opacity-45 rounded-sm"></div>
-          </div>
-
-          {/* Additional transparent cuts */}
-          <div className="absolute top-1/4 left-1/4 w-8 h-8 bg-transparent triangle-cut-up"></div>
-          <div className="absolute top-3/4 right-1/4 w-6 h-6 bg-transparent triangle-cut-down"></div>
-          <div className="absolute top-1/3 right-0 w-4 h-12 bg-transparent trapezium-cut-left"></div>
-        </div>
+        <TrapeziumShape variant="left-main" />
       </div>
-
       <div className="absolute left-0 top-3/4 w-16 h-48 z-0">
-        <div className="w-full h-full bg-yellow-400 relative left-trapezium-secondary">
-          {/* Cut in the middle */}
-          <div className="absolute top-1/2 left-0 w-full h-6 bg-transparent transform -translate-y-1/2 left-trapezium-cut-secondary"></div>
-
-          {/* Circuit patterns for second left trapezium */}
-          <div className="absolute inset-0 opacity-55">
-            {/* Vertical traces */}
-            <div className="absolute top-3 bottom-3 left-2 w-px bg-black opacity-65"></div>
-            <div className="absolute top-5 bottom-5 left-4 w-px bg-black opacity-55"></div>
-
-            {/* Horizontal traces */}
-            <div className="absolute top-6 left-1 right-1 h-px bg-black opacity-60"></div>
-            <div className="absolute top-12 left-2 right-2 h-px bg-black opacity-50"></div>
-            <div className="absolute top-18 left-1 right-1 h-px bg-black opacity-45"></div>
-
-            {/* Connection nodes */}
-            <div className="absolute top-5 left-1 w-1 h-1 bg-black rounded-full opacity-65"></div>
-            <div className="absolute top-11 left-3 w-1 h-1 bg-black rounded-full opacity-55"></div>
-            <div className="absolute top-17 left-3 w-1 h-1 bg-black rounded-full opacity-50"></div>
-
-            {/* Components */}
-            <div className="absolute top-9 left-2 w-1.5 h-0.5 bg-black opacity-50 rounded-sm"></div>
-            <div className="absolute top-15 left-3 w-2 h-0.5 bg-black opacity-45 rounded-sm"></div>
-          </div>
-
-          {/* Additional transparent cuts */}
-          <div className="absolute top-1/5 left-1/3 w-6 h-6 bg-transparent triangle-cut-up"></div>
-          <div className="absolute top-4/5 right-1/3 w-5 h-5 bg-transparent triangle-cut-down"></div>
-        </div>
+        <TrapeziumShape variant="left-secondary" />
       </div>
 
-      {/* Multiple Right Side Vertical Trapezium Shapes - Attached to Screen Edge */}
+      {/* Right Side Trapezium Shapes */}
       <div className="absolute right-0 top-1/4 w-20 h-64 z-0">
-        <div className="w-full h-full bg-yellow-400 relative right-trapezium-main">
-          {/* Cut in the middle */}
-          <div className="absolute top-1/2 right-0 w-full h-8 bg-transparent transform -translate-y-1/2 right-trapezium-cut"></div>
-
-          {/* Circuit board patterns for right trapezium */}
-          <div className="absolute inset-0 opacity-60">
-            {/* Vertical circuit traces (mirrored for right side) */}
-            <div className="absolute top-4 bottom-4 right-2 w-px bg-black opacity-70"></div>
-            <div className="absolute top-6 bottom-6 right-4 w-px bg-black opacity-60"></div>
-            <div className="absolute top-8 bottom-8 right-6 w-px bg-black opacity-50"></div>
-
-            {/* Horizontal connecting traces */}
-            <div className="absolute top-8 left-1 right-1 h-px bg-black opacity-65"></div>
-            <div className="absolute top-16 left-2 right-2 h-px bg-black opacity-55"></div>
-            <div className="absolute top-24 left-1 right-1 h-px bg-black opacity-50"></div>
-            <div className="absolute top-32 left-2 right-2 h-px bg-black opacity-45"></div>
-
-            {/* Connection nodes */}
-            <div className="absolute top-7 right-1 w-1 h-1 bg-black rounded-full opacity-70"></div>
-            <div className="absolute top-15 right-3 w-1 h-1 bg-black rounded-full opacity-60"></div>
-            <div className="absolute top-23 right-5 w-1 h-1 bg-black rounded-full opacity-55"></div>
-            <div className="absolute top-31 right-3 w-1 h-1 bg-black rounded-full opacity-50"></div>
-
-            {/* Small components */}
-            <div className="absolute top-12 right-2 w-2 h-0.5 bg-black opacity-55 rounded-sm"></div>
-            <div className="absolute top-20 right-4 w-1.5 h-0.5 bg-black opacity-50 rounded-sm"></div>
-            <div className="absolute top-28 right-2 w-2.5 h-0.5 bg-black opacity-45 rounded-sm"></div>
-          </div>
-
-          {/* Additional transparent cuts */}
-          <div className="absolute top-1/4 right-1/4 w-8 h-8 bg-transparent triangle-cut-down"></div>
-          <div className="absolute top-3/4 left-1/4 w-6 h-6 bg-transparent triangle-cut-up"></div>
-          <div className="absolute top-1/3 left-0 w-4 h-12 bg-transparent trapezium-cut-right"></div>
-        </div>
+        <TrapeziumShape variant="right-main" />
       </div>
-
       <div className="absolute right-0 top-3/4 w-16 h-48 z-0">
-        <div className="w-full h-full bg-yellow-400 relative right-trapezium-secondary">
-          {/* Cut in the middle */}
-          <div className="absolute top-1/2 right-0 w-full h-6 bg-transparent transform -translate-y-1/2 right-trapezium-cut-secondary"></div>
-
-          {/* Circuit patterns for second right trapezium */}
-          <div className="absolute inset-0 opacity-55">
-            {/* Vertical traces (right side) */}
-            <div className="absolute top-3 bottom-3 right-2 w-px bg-black opacity-65"></div>
-            <div className="absolute top-5 bottom-5 right-4 w-px bg-black opacity-55"></div>
-
-            {/* Horizontal traces */}
-            <div className="absolute top-6 left-1 right-1 h-px bg-black opacity-60"></div>
-            <div className="absolute top-12 left-2 right-2 h-px bg-black opacity-50"></div>
-            <div className="absolute top-18 left-1 right-1 h-px bg-black opacity-45"></div>
-
-            {/* Connection nodes */}
-            <div className="absolute top-5 right-1 w-1 h-1 bg-black rounded-full opacity-65"></div>
-            <div className="absolute top-11 right-3 w-1 h-1 bg-black rounded-full opacity-55"></div>
-            <div className="absolute top-17 right-3 w-1 h-1 bg-black rounded-full opacity-50"></div>
-
-            {/* Components */}
-            <div className="absolute top-9 right-2 w-1.5 h-0.5 bg-black opacity-50 rounded-sm"></div>
-            <div className="absolute top-15 right-3 w-2 h-0.5 bg-black opacity-45 rounded-sm"></div>
-          </div>
-
-          {/* Additional transparent cuts */}
-          <div className="absolute top-1/5 right-1/3 w-6 h-6 bg-transparent triangle-cut-down"></div>
-          <div className="absolute top-4/5 left-1/3 w-5 h-5 bg-transparent triangle-cut-up"></div>
-        </div>
+        <TrapeziumShape variant="right-secondary" />
       </div>
 
-      {/* Additional Left Side Shapes */}
+      {/* Additional Smaller Side Shapes */}
       <div className="absolute left-0 top-1/2 w-12 h-32 z-0">
-        <div className="w-full h-full bg-yellow-600/60 relative left-trapezium-small">
-          {/* Small cut in the middle */}
-          <div className="absolute top-1/2 left-0 w-full h-4 bg-transparent transform -translate-y-1/2 left-trapezium-cut-small"></div>
-          {/* Additional small cuts */}
-          <div className="absolute top-1/4 left-1/2 w-4 h-4 bg-transparent triangle-cut-up"></div>
-          <div className="absolute top-3/4 right-1/2 w-3 h-3 bg-transparent triangle-cut-down"></div>
-        </div>
+        <TrapeziumShape variant="left-small" />
       </div>
-
       <div className="absolute left-0 top-1/6 w-14 h-40 z-0">
-        <div className="w-full h-full bg-yellow-500/70 relative left-trapezium-tiny">
-          {/* Cut in the middle */}
-          <div className="absolute top-1/2 left-0 w-full h-5 bg-transparent transform -translate-y-1/2 left-trapezium-cut-tiny"></div>
-          {/* Additional cuts */}
-          <div className="absolute top-1/4 left-1/3 w-5 h-5 bg-transparent triangle-cut-up"></div>
-          <div className="absolute top-3/4 right-1/3 w-4 h-4 bg-transparent triangle-cut-down"></div>
-        </div>
+        <TrapeziumShape variant="left-small" />
       </div>
-
-      {/* Additional Right Side Shapes */}
       <div className="absolute right-0 top-1/2 w-12 h-32 z-0">
-        <div className="w-full h-full bg-yellow-600/60 relative right-trapezium-small">
-          {/* Small cut in the middle */}
-          <div className="absolute top-1/2 right-0 w-full h-4 bg-transparent transform -translate-y-1/2 right-trapezium-cut-small"></div>
-          {/* Additional small cuts */}
-          <div className="absolute top-1/4 right-1/2 w-4 h-4 bg-transparent triangle-cut-down"></div>
-          <div className="absolute top-3/4 left-1/2 w-3 h-3 bg-transparent triangle-cut-up"></div>
-        </div>
+        <TrapeziumShape variant="right-small" />
       </div>
-
       <div className="absolute right-0 top-1/6 w-14 h-40 z-0">
-        <div className="w-full h-full bg-yellow-500/70 relative right-trapezium-tiny">
-          {/* Cut in the middle */}
-          <div className="absolute top-1/2 right-0 w-full h-5 bg-transparent transform -translate-y-1/2 right-trapezium-cut-tiny"></div>
-          {/* Additional cuts */}
-          <div className="absolute top-1/4 right-1/3 w-5 h-5 bg-transparent triangle-cut-down"></div>
-          <div className="absolute top-3/4 left-1/3 w-4 h-4 bg-transparent triangle-cut-up"></div>
-        </div>
+        <TrapeziumShape variant="right-small" />
       </div>
 
       {/* Centered Tracks Title */}
       <div className="text-center mb-16 relative z-10">
-        <motion.h1
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-7xl sm:text-8xl md:text-[8rem] lg:text-[10rem] xl:text-8xl 2xl:text-[8rem] font-bold text-black font-sddystopiandemo"
-        >
+        <motion.h1 {...titleFadeIn} className={TRACKS_TITLE_CLASSES}>
           Tracks
         </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-center max-w-4xl mx-auto -mt-4 pb-8 text-sm sm:text-sm md:text-xl text-black leading-relaxed font-mokoto px-12 md:px-30"
-        >
+        <motion.p {...subtitleFadeIn} className={TRACKS_SUBTITLE_CLASSES}>
           Choose your digital warfare arena across four cyber-domains where
           innovation shapes reality.
           <br />
@@ -465,43 +325,37 @@ function Tracks() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {tracks.map((track, index) => {
             const IconComponent = track.icon;
-
             return (
               <motion.div
                 key={track.id}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.15 }}
+                {...cardFadeInUp(index * 0.15)}
                 viewport={{ once: true }}
                 className="relative"
               >
                 {/* Cyberpunk Yellow Container with Clip-Path Cut Edges */}
-                <div className="relative p-4 group cursor-pointer transition-all duration-300 hover:scale-105 h-full min-h-[460px]">
+                <div className={TRACK_CARD_CONTAINER_CLASSES}>
                   {/* Background with clip-path cuts */}
                   <div
-                    className="absolute inset-0 bg-yellow-400 transition-all duration-300 group-hover:animate-pulse"
+                    className={TRACK_CARD_BG_CLASSES}
                     style={{
-                      clipPath:
-                        "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
+                      clipPath: "var(--clip-path-track-card)",
                     }}
                   ></div>
 
                   {/* Border with clip-path cuts */}
                   <div
-                    className="absolute -inset-1 bg-yellow-500 transition-all duration-300 group-hover:bg-orange-500"
+                    className={TRACK_CARD_BORDER_CLASSES}
                     style={{
-                      clipPath:
-                        "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
+                      clipPath: "var(--clip-path-track-card)",
                       zIndex: -1,
                     }}
                   ></div>
 
                   {/* Glitch overlays for hover effect */}
                   <div
-                    className="absolute inset-0 bg-red-500 opacity-0 group-hover:opacity-30 transition-opacity duration-150 glitch-overlay-1"
+                    className={TRACK_CARD_GLITCH_RED_CLASSES}
                     style={{
-                      clipPath:
-                        "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
+                      clipPath: "var(--clip-path-track-card)",
                       mixBlendMode: "screen",
                       transform: "translateX(-2px)",
                       zIndex: 1,
@@ -509,10 +363,9 @@ function Tracks() {
                   ></div>
 
                   <div
-                    className="absolute inset-0 bg-cyan-500 opacity-0 group-hover:opacity-30 transition-opacity duration-150 glitch-overlay-2"
+                    className={TRACK_CARD_GLITCH_CYAN_CLASSES}
                     style={{
-                      clipPath:
-                        "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
+                      clipPath: "var(--clip-path-track-card)",
                       mixBlendMode: "screen",
                       transform: "translateX(2px)",
                       zIndex: 2,
@@ -520,16 +373,16 @@ function Tracks() {
                   ></div>
 
                   {/* Content */}
-                  <div className="relative z-10 h-full flex flex-col">
+                  <div className={TRACK_CARD_CONTENT_CLASSES}>
                     {/* Track Header with Icon */}
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="p-3 bg-black/20 rounded-lg">
+                    <div className={TRACK_HEADER_CLASSES}>
+                      <div className={TRACK_ICON_CONTAINER_CLASSES}>
                         <IconComponent className="w-8 h-8 text-black" />
                       </div>
 
                       <button
                         onClick={() => openArticle(track)}
-                        className="flex items-center justify-center w-10 h-10 rounded-full bg-black/20 text-black hover:bg-black/30 transition-all duration-200 hover:scale-110"
+                        className={TRACK_ARTICLE_BUTTON_CLASSES}
                         title="Read detailed article"
                       >
                         <FaExternalLinkAlt className="w-4 h-4" />
@@ -539,7 +392,7 @@ function Tracks() {
                     {/* Track Title with Orange Underline */}
                     <div className="mb-4">
                       <h3
-                        className="text-2xl md:text-3xl font-bold text-black mb-2 transition-all duration-300 group-hover:glitch-text"
+                        className={TRACK_TITLE_CLASSES}
                         style={{ fontFamily: "'Mokoto Demo', monospace" }}
                       >
                         {track.title}
@@ -547,7 +400,7 @@ function Tracks() {
                       {/* Orange Underline */}
                       <div className="w-16 h-1 bg-orange-500 mb-3"></div>
                       <p
-                        className="text-black text-lg leading-relaxed transition-all duration-300 group-hover:text-shadow-glow"
+                        className={TRACK_SUBTITLE_CLASSES}
                         style={{ fontFamily: "'Mokoto Demo', monospace" }}
                       >
                         {track.subtitle}
@@ -558,7 +411,7 @@ function Tracks() {
                     <div className="border-t border-black/20 pt-3 mt-3 flex-1">
                       {/* Description */}
                       <p
-                        className="text-black text-base leading-relaxed mb-2"
+                        className={TRACK_DESCRIPTION_CLASSES}
                         style={{ fontFamily: "'Mokoto Demo', monospace" }}
                       >
                         {track.description}
@@ -567,7 +420,7 @@ function Tracks() {
                       {/* Challenge Areas */}
                       <div>
                         <h4
-                          className="text-black font-semibold mb-1"
+                          className={TRACK_CHALLENGES_TITLE_CLASSES}
                           style={{ fontFamily: "'Mokoto Demo', monospace" }}
                         >
                           Core Challenge Vectors:
@@ -576,7 +429,7 @@ function Tracks() {
                           {track.challenges.map((challenge, idx) => (
                             <span
                               key={idx}
-                              className="px-3 py-1 text-xs bg-black/10 rounded-full text-black backdrop-blur-sm border border-black/20 hover:scale-105 transition-transform duration-200"
+                              className={TRACK_CHALLENGE_TAG_CLASSES}
                               style={{
                                 fontFamily: "'Mokoto Demo', monospace",
                               }}
@@ -597,18 +450,13 @@ function Tracks() {
 
       {/* Glory Bento Grid Section - Moved from Glory page */}
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.3 }}
-        viewport={{ once: true }}
+        {...glorySectionAnimation}
         className="mt-20 mb-16 relative z-10"
       >
         {/* Section Title */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-sddystopiandemo">
-            Glory Hall
-          </h2>
-          <p className="text-white/80 text-lg max-w-3xl mx-auto font-mokoto">
+          <h2 className={GLORY_SECTION_TITLE_CLASSES}>Glory Hall</h2>
+          <p className={GLORY_SECTION_SUBTITLE_CLASSES}>
             Witness the extraordinary achievements and groundbreaking
             innovations from last year's HACKSPIRE hackathon
           </p>
@@ -619,16 +467,13 @@ function Tracks() {
 
       {/* Bottom CTA Section */}
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
+        {...ctaSectionAnimation}
         className="text-center mt-2 relative z-10"
       >
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-sddystopiandemo">
+        <h2 className={CTA_SECTION_TITLE_CLASSES}>
           Initialize Digital Uprising?
         </h2>
-        <p className="text-white text-lg mb-8 max-w-2xl mx-auto font-mokoto">
+        <p className={CTA_SECTION_TEXT_CLASSES}>
           Join the neural network of elite code architects in the ultimate
           digital battleground
         </p>
@@ -643,33 +488,22 @@ function Tracks() {
       <AnimatePresence>
         {selectedArticle && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            {...modalBackdrop}
             className="fixed inset-0 z-50 flex items-center justify-center p-4"
             onClick={closeArticle}
           >
-            {/* Backdrop */}
             <div className="absolute inset-0 bg-black/80 backdrop-blur-md" />
-
-            {/* Modal Content */}
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              {...modalContent}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-black/40 backdrop-blur-md border border-white/20 rounded-2xl p-8"
+              className={MODAL_PANEL_CLASSES}
             >
-              {/* Close Button */}
               <button
                 onClick={closeArticle}
                 className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300"
               >
                 ✕
               </button>
-
-              {/* Article Content */}
               <div className="pr-12">
                 <h1 className="text-3xl md:text-4xl font-bold text-white mb-6 font-sddystopiandemo">
                   {selectedArticle.title}

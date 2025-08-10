@@ -13,6 +13,32 @@ import {
 } from "lucide-react";
 import FAQSection from "@/components/FAQSection";
 import CyberButton from "@/components/ui/CyberButton";
+import { CyberpunkContainer } from "@/components/ui/CyberpunkContainer";
+import { MatrixBackground } from "@/components/ui/MatrixBackground";
+import { CircuitOverlay } from "@/components/ui/CircuitOverlay";
+import { TrapeziumShape } from "@/components/ui/TrapeziumShape";
+import {
+  contactTitleFadeIn,
+  contactSubtitleFadeIn,
+  contactCardStaggered,
+  formFocusScale,
+  buttonHoverScale,
+  mapContainerAnimation,
+  mapTitleAnimation,
+  mapSubtitleAnimation,
+  successMessageAnimation,
+} from "@/lib/motionVariants";
+import {
+  CONTACT_TITLE_CLASSES,
+  CONTACT_SUBTITLE_CLASSES,
+  CONTACT_CARD_GRID_CLASSES,
+  CONTACT_FORM_LABEL_CLASSES,
+  CONTACT_INPUT_CLASSES,
+  CONTACT_MAP_TITLE_CLASSES,
+  CONTACT_MAP_SUBTITLE_CLASSES,
+  CONTACT_CLIP_PATHS,
+  CONTAINER_CLASSES,
+} from "@/lib/styles";
 
 function ContactUs() {
   const [formData, setFormData] = useState({
@@ -52,219 +78,83 @@ function ContactUs() {
   };
 
   return (
-    <div className="min-h-screen text-white py-20 px-4 relative bg-transparent">
+    <div
+      className="min-h-screen text-white py-20 px-4 relative bg-transparent"
+      style={
+        {
+          // CSS variables for responsive clip-paths
+          "--clip-path-main-trap": CONTACT_CLIP_PATHS.mainTrapezium,
+          "--clip-path-contact-card": CONTACT_CLIP_PATHS.contactCard,
+          "--clip-path-corners": CONTACT_CLIP_PATHS.contactCard,
+          "--clip-path-form-container": CONTACT_CLIP_PATHS.formContainer,
+          "--clip-path-input-field": CONTACT_CLIP_PATHS.inputField,
+          "--clip-path-success-message": CONTACT_CLIP_PATHS.successMessage,
+          "--clip-path-map-frame": CONTACT_CLIP_PATHS.mapFrame,
+          "--clip-path-left-trap-main": CONTACT_CLIP_PATHS.leftTrapMain,
+          "--clip-path-left-trap-secondary":
+            CONTACT_CLIP_PATHS.leftTrapSecondary,
+          "--clip-path-right-trap-main": CONTACT_CLIP_PATHS.rightTrapMain,
+          "--clip-path-right-trap-secondary":
+            CONTACT_CLIP_PATHS.rightTrapSecondary,
+        } as React.CSSProperties
+      }
+    >
       {/* Matrix Rain Background */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          {/* Dynamic CSS for matrix columns */}
-          <style>
-            {Array.from({ length: 50 })
-              .map((_, i) => {
-                const delay = Math.random() * 5;
-                const duration = 3 + Math.random() * 4;
-                return `.matrix-column-${i} {
-                left: ${i * 2}%;
-                animation-delay: ${delay}s;
-                animation-duration: ${duration}s;
-              }`;
-              })
-              .join("\n")}
-          </style>
-
-          {/* Matrix columns */}
-          {Array.from({ length: 50 }).map((_, i) => (
-            <div
-              key={i}
-              className={`absolute top-0 text-green-400 font-mono text-xs leading-none matrix-column-animated matrix-column-${i}`}
-            >
-              {Array.from({ length: 20 }).map((_, j) => (
-                <div key={j} className="opacity-70">
-                  {String.fromCharCode(33 + Math.floor(Math.random() * 94))}
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
+      <MatrixBackground />
 
       {/* Yellow Trapezium Background with Clip-Path */}
       <div className="absolute top-0 left-0 right-0 h-96 z-0">
-        {/* Main trapezium with clip-path */}
         <div
           className="w-full h-full bg-yellow-400 relative"
-          style={{
-            clipPath:
-              "polygon(3% 0, 97% 0, 100% 11%, 80% 91%, 72% 100%, 24% 100%, 16% 90%, 0 12%)",
-          }}
+          style={{ clipPath: "var(--clip-path-main-trap)" }}
         >
-          {/* PCB-like lines */}
-          <div className="absolute inset-0">
-            {/* Horizontal lines */}
-            <div className="absolute top-8 left-0 right-0 h-px bg-black opacity-60"></div>
-            <div className="absolute top-16 left-0 right-0 h-px bg-black opacity-40"></div>
-            <div className="absolute top-24 left-0 right-0 h-px bg-black opacity-30"></div>
-            <div className="absolute top-32 left-0 right-0 h-px bg-black opacity-20"></div>
-
-            {/* Vertical lines */}
-            <div className="absolute top-0 bottom-0 left-8 w-px bg-black opacity-60"></div>
-            <div className="absolute top-0 bottom-0 left-16 w-px bg-black opacity-40"></div>
-            <div className="absolute top-0 bottom-0 left-24 w-px bg-black opacity-30"></div>
-            <div className="absolute top-0 bottom-0 left-32 w-px bg-black opacity-20"></div>
-            <div className="absolute top-0 bottom-0 right-8 w-px bg-black opacity-60"></div>
-            <div className="absolute top-0 bottom-0 right-16 w-px bg-black opacity-40"></div>
-            <div className="absolute top-0 bottom-0 right-24 w-px bg-black opacity-30"></div>
-            <div className="absolute top-0 bottom-0 right-32 w-px bg-black opacity-20"></div>
-
-            {/* Diagonal lines for futuristic effect */}
-            <div className="absolute top-0 left-0 w-32 h-32 border-l-2 border-t-2 border-black opacity-40"></div>
-            <div className="absolute top-0 right-0 w-32 h-32 border-r-2 border-t-2 border-black opacity-40"></div>
-            <div className="absolute bottom-0 left-0 w-32 h-32 border-l-2 border-b-2 border-black opacity-40"></div>
-            <div className="absolute bottom-0 right-0 w-32 h-32 border-r-2 border-b-2 border-black opacity-40"></div>
-          </div>
+          <CircuitOverlay variant="main" />
         </div>
       </div>
 
       {/* Multiple Left Side Vertical Trapezium Shapes */}
       <div className="absolute left-0 top-1/4 w-20 h-64 z-0">
-        <div className="w-full h-full bg-yellow-400 relative left-trapezium-main">
-          <div className="absolute top-1/2 left-0 w-full h-8 bg-transparent transform -translate-y-1/2 left-trapezium-cut"></div>
-          <div className="absolute inset-0 opacity-60">
-            <div className="absolute top-4 bottom-4 left-2 w-px bg-black opacity-70"></div>
-            <div className="absolute top-6 bottom-6 left-4 w-px bg-black opacity-60"></div>
-            <div className="absolute top-8 bottom-8 left-6 w-px bg-black opacity-50"></div>
-            <div className="absolute top-8 left-1 right-1 h-px bg-black opacity-65"></div>
-            <div className="absolute top-16 left-2 right-2 h-px bg-black opacity-55"></div>
-            <div className="absolute top-24 left-1 right-1 h-px bg-black opacity-50"></div>
-            <div className="absolute top-32 left-2 right-2 h-px bg-black opacity-45"></div>
-            <div className="absolute top-7 left-1 w-1 h-1 bg-black rounded-full opacity-70"></div>
-            <div className="absolute top-15 left-3 w-1 h-1 bg-black rounded-full opacity-60"></div>
-            <div className="absolute top-23 left-5 w-1 h-1 bg-black rounded-full opacity-55"></div>
-            <div className="absolute top-31 left-3 w-1 h-1 bg-black rounded-full opacity-50"></div>
-            <div className="absolute top-12 left-2 w-2 h-0.5 bg-black opacity-55 rounded-sm"></div>
-            <div className="absolute top-20 left-4 w-1.5 h-0.5 bg-black opacity-50 rounded-sm"></div>
-            <div className="absolute top-28 left-2 w-2.5 h-0.5 bg-black opacity-45 rounded-sm"></div>
-          </div>
-          <div className="absolute top-1/4 left-1/4 w-8 h-8 bg-transparent triangle-cut-up"></div>
-          <div className="absolute top-3/4 right-1/4 w-6 h-6 bg-transparent triangle-cut-down"></div>
-          <div className="absolute top-1/3 right-0 w-4 h-12 bg-transparent trapezium-cut-left"></div>
-        </div>
+        <TrapeziumShape variant="left-main" />
       </div>
 
       <div className="absolute left-0 top-3/4 w-16 h-48 z-0">
-        <div className="w-full h-full bg-yellow-400 relative left-trapezium-secondary">
-          <div className="absolute top-1/2 left-0 w-full h-6 bg-transparent transform -translate-y-1/2 left-trapezium-cut-secondary"></div>
-          <div className="absolute inset-0 opacity-55">
-            <div className="absolute top-3 bottom-3 left-2 w-px bg-black opacity-65"></div>
-            <div className="absolute top-5 bottom-5 left-4 w-px bg-black opacity-55"></div>
-            <div className="absolute top-6 left-1 right-1 h-px bg-black opacity-60"></div>
-            <div className="absolute top-12 left-2 right-2 h-px bg-black opacity-50"></div>
-            <div className="absolute top-18 left-1 right-1 h-px bg-black opacity-45"></div>
-            <div className="absolute top-5 left-1 w-1 h-1 bg-black rounded-full opacity-65"></div>
-            <div className="absolute top-11 left-3 w-1 h-1 bg-black rounded-full opacity-55"></div>
-            <div className="absolute top-17 left-3 w-1 h-1 bg-black rounded-full opacity-50"></div>
-            <div className="absolute top-9 left-2 w-1.5 h-0.5 bg-black opacity-50 rounded-sm"></div>
-            <div className="absolute top-15 left-3 w-2 h-0.5 bg-black opacity-45 rounded-sm"></div>
-          </div>
-          <div className="absolute top-1/5 left-1/3 w-6 h-6 bg-transparent triangle-cut-up"></div>
-          <div className="absolute top-4/5 right-1/3 w-5 h-5 bg-transparent triangle-cut-down"></div>
-        </div>
+        <TrapeziumShape variant="left-secondary" />
       </div>
 
       {/* Multiple Right Side Vertical Trapezium Shapes */}
       <div className="absolute right-0 top-1/4 w-20 h-64 z-0">
-        <div className="w-full h-full bg-yellow-400 relative right-trapezium-main">
-          <div className="absolute top-1/2 right-0 w-full h-8 bg-transparent transform -translate-y-1/2 right-trapezium-cut"></div>
-          <div className="absolute inset-0 opacity-60">
-            <div className="absolute top-4 bottom-4 right-2 w-px bg-black opacity-70"></div>
-            <div className="absolute top-6 bottom-6 right-4 w-px bg-black opacity-60"></div>
-            <div className="absolute top-8 bottom-8 right-6 w-px bg-black opacity-50"></div>
-            <div className="absolute top-8 left-1 right-1 h-px bg-black opacity-65"></div>
-            <div className="absolute top-16 left-2 right-2 h-px bg-black opacity-55"></div>
-            <div className="absolute top-24 left-1 right-1 h-px bg-black opacity-50"></div>
-            <div className="absolute top-32 left-2 right-2 h-px bg-black opacity-45"></div>
-            <div className="absolute top-7 right-1 w-1 h-1 bg-black rounded-full opacity-70"></div>
-            <div className="absolute top-15 right-3 w-1 h-1 bg-black rounded-full opacity-60"></div>
-            <div className="absolute top-23 right-5 w-1 h-1 bg-black rounded-full opacity-55"></div>
-            <div className="absolute top-31 right-3 w-1 h-1 bg-black rounded-full opacity-50"></div>
-            <div className="absolute top-12 right-2 w-2 h-0.5 bg-black opacity-55 rounded-sm"></div>
-            <div className="absolute top-20 right-4 w-1.5 h-0.5 bg-black opacity-50 rounded-sm"></div>
-            <div className="absolute top-28 right-2 w-2.5 h-0.5 bg-black opacity-45 rounded-sm"></div>
-          </div>
-          <div className="absolute top-1/4 right-1/4 w-8 h-8 bg-transparent triangle-cut-down"></div>
-          <div className="absolute top-3/4 left-1/4 w-6 h-6 bg-transparent triangle-cut-up"></div>
-          <div className="absolute top-1/3 left-0 w-4 h-12 bg-transparent trapezium-cut-right"></div>
-        </div>
+        <TrapeziumShape variant="right-main" />
       </div>
 
       <div className="absolute right-0 top-3/4 w-16 h-48 z-0">
-        <div className="w-full h-full bg-yellow-400 relative right-trapezium-secondary">
-          <div className="absolute top-1/2 right-0 w-full h-6 bg-transparent transform -translate-y-1/2 right-trapezium-cut-secondary"></div>
-          <div className="absolute inset-0 opacity-55">
-            <div className="absolute top-3 bottom-3 right-2 w-px bg-black opacity-65"></div>
-            <div className="absolute top-5 bottom-5 right-4 w-px bg-black opacity-55"></div>
-            <div className="absolute top-6 left-1 right-1 h-px bg-black opacity-60"></div>
-            <div className="absolute top-12 left-2 right-2 h-px bg-black opacity-50"></div>
-            <div className="absolute top-18 left-1 right-1 h-px bg-black opacity-45"></div>
-            <div className="absolute top-5 right-1 w-1 h-1 bg-black rounded-full opacity-65"></div>
-            <div className="absolute top-11 right-3 w-1 h-1 bg-black rounded-full opacity-55"></div>
-            <div className="absolute top-17 right-3 w-1 h-1 bg-black rounded-full opacity-50"></div>
-            <div className="absolute top-9 right-2 w-1.5 h-0.5 bg-black opacity-50 rounded-sm"></div>
-            <div className="absolute top-15 right-3 w-2 h-0.5 bg-black opacity-45 rounded-sm"></div>
-          </div>
-          <div className="absolute top-1/5 right-1/3 w-6 h-6 bg-transparent triangle-cut-down"></div>
-          <div className="absolute top-4/5 left-1/3 w-5 h-5 bg-transparent triangle-cut-up"></div>
-        </div>
+        <TrapeziumShape variant="right-secondary" />
       </div>
 
-      {/* Additional Left Side Shapes */}
+      {/* Additional Smaller Side Shapes */}
       <div className="absolute left-0 top-1/2 w-12 h-32 z-0">
-        <div className="w-full h-full bg-yellow-600/60 relative left-trapezium-small">
-          <div className="absolute top-1/2 left-0 w-full h-4 bg-transparent transform -translate-y-1/2 left-trapezium-cut-small"></div>
-          <div className="absolute top-1/4 left-1/2 w-4 h-4 bg-transparent triangle-cut-up"></div>
-          <div className="absolute top-3/4 right-1/2 w-3 h-3 bg-transparent triangle-cut-down"></div>
-        </div>
+        <TrapeziumShape variant="left-small" opacity={0.6} />
       </div>
 
       <div className="absolute left-0 top-1/6 w-14 h-40 z-0">
-        <div className="w-full h-full bg-yellow-500/70 relative left-trapezium-tiny">
-          <div className="absolute top-1/2 left-0 w-full h-5 bg-transparent transform -translate-y-1/2 left-trapezium-cut-tiny"></div>
-          <div className="absolute top-1/4 left-1/3 w-5 h-5 bg-transparent triangle-cut-up"></div>
-          <div className="absolute top-3/4 right-1/3 w-4 h-4 bg-transparent triangle-cut-down"></div>
-        </div>
+        <TrapeziumShape variant="left-small" opacity={0.7} />
       </div>
 
-      {/* Additional Right Side Shapes */}
       <div className="absolute right-0 top-1/2 w-12 h-32 z-0">
-        <div className="w-full h-full bg-yellow-600/60 relative right-trapezium-small">
-          <div className="absolute top-1/2 right-0 w-full h-4 bg-transparent transform -translate-y-1/2 right-trapezium-cut-small"></div>
-          <div className="absolute top-1/4 right-1/2 w-4 h-4 bg-transparent triangle-cut-down"></div>
-          <div className="absolute top-3/4 left-1/2 w-3 h-3 bg-transparent triangle-cut-up"></div>
-        </div>
+        <TrapeziumShape variant="right-small" opacity={0.6} />
       </div>
 
       <div className="absolute right-0 top-1/6 w-14 h-40 z-0">
-        <div className="w-full h-full bg-yellow-500/70 relative right-trapezium-tiny">
-          <div className="absolute top-1/2 right-0 w-full h-5 bg-transparent transform -translate-y-1/2 right-trapezium-cut-tiny"></div>
-          <div className="absolute top-1/4 right-1/3 w-5 h-5 bg-transparent triangle-cut-down"></div>
-          <div className="absolute top-3/4 left-1/3 w-4 h-4 bg-transparent triangle-cut-up"></div>
-        </div>
+        <TrapeziumShape variant="right-small" opacity={0.7} />
       </div>
 
       {/* Centered Contact Title */}
       <div className="text-center mb-16 relative z-10">
-        <motion.h1
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-7xl sm:text-8xl md:text-[8rem] lg:text-[10rem] xl:text-8xl 2xl:text-[8rem] font-bold text-black font-sddystopiandemo"
-        >
+        <motion.h1 {...contactTitleFadeIn} className={CONTACT_TITLE_CLASSES}>
           Contact Us
         </motion.h1>
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-center max-w-4xl mx-auto -mt-4 pb-8 text-sm sm:text-sm md:text-xl text-black leading-relaxed font-mokoto px-12 md:px-30"
+          {...contactSubtitleFadeIn}
+          className={CONTACT_SUBTITLE_CLASSES}
         >
           Have questions about HackSpire 2025? Want to partner with us?
           <br />
@@ -486,60 +376,44 @@ function ContactUs() {
       </div>
 
       {/* Contact Form Section */}
-
       <div
-        className={`relative overflow-hidden from-yellow-400/20 max-w-4xl mx-auto mb-20 z-10 to-orange-500/20 backdrop-blur-sm border border-yellow-400/40 group cursor-pointer bg-gradient-to-br flex flex-col justify-end p-4 ${5}`}
+        className="relative overflow-hidden from-yellow-400/20 max-w-4xl mx-auto mb-20 z-10 to-orange-500/20 backdrop-blur-sm border border-yellow-400/40 group cursor-pointer bg-gradient-to-br flex flex-col justify-end p-4"
         style={{
           animationDelay: `2ms`,
-          clipPath:
-            "polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px)",
+          clipPath: "var(--clip-path-form-container)",
         }}
       >
-        {/* Background Image */}
-        <div className="absolute inset-0 w-full h-full"></div>
-
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
         {/* Cyberpunk Circuit Overlay */}
-        <div className="absolute inset-0 opacity-30 group-hover:opacity-50 transition-opacity duration-500">
-          <div className="absolute top-2 left-2 w-8 h-px bg-yellow-400 opacity-60"></div>
-          <div className="absolute top-2 left-2 w-px h-8 bg-yellow-400 opacity-60"></div>
-          <div className="absolute bottom-2 right-2 w-8 h-px bg-yellow-400 opacity-60"></div>
-          <div className="absolute bottom-2 right-2 w-px h-8 bg-yellow-400 opacity-60"></div>
-          <div className="absolute top-1/2 left-1 w-4 h-px bg-yellow-400/40"></div>
-          <div className="absolute top-1/3 right-1 w-4 h-px bg-yellow-400/40"></div>
-        </div>
+        <CircuitOverlay
+          variant="sparse"
+          opacity="medium"
+          className="opacity-30 group-hover:opacity-50 transition-opacity duration-500"
+        />
 
         {/* Content */}
-        <div className=" w-full flex flex-col justify-end h-full">
+        <div className="w-full flex flex-col justify-end h-full">
           <h3
-            className={`text-4xl md:text-5xl font-bold text-white mb-2 leading-tight break-words`}
+            className="text-4xl md:text-5xl font-bold text-white mb-2 leading-tight break-words"
             style={{ fontFamily: "'Mokoto Demo', monospace" }}
           >
             Get in Touch
           </h3>
           <p
-            className={`text-yellow-300 text-lg font-medium mb-2 leading-tight`}
+            className="text-yellow-300 text-lg font-medium mb-2 leading-tight"
             style={{ fontFamily: "'Mokoto Demo', monospace" }}
           >
             Ready to be part of the revolution? Send us a message!
           </p>
           <form
-            className={`text-gray-300 leading-snug
-                               transition-opacity duration-500 space-y-6`}
+            className="text-gray-300 leading-snug transition-opacity duration-500 space-y-6"
             style={{ fontFamily: "'Mokoto Demo', monospace" }}
             onSubmit={handleSubmit}
           >
-            <motion.div
-              whileFocus={{ scale: 1.02 }}
-              transition={{ duration: 0.2 }}
-            >
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-white mb-2"
-                style={{ fontFamily: "Poppins, sans-serif" }}
-              >
+            <motion.div {...formFocusScale}>
+              <label htmlFor="name" className={CONTACT_FORM_LABEL_CLASSES}>
                 Full Name
               </label>
               <input
@@ -549,24 +423,16 @@ function ContactUs() {
                 value={formData.name}
                 onChange={handleInputChange}
                 required
-                className="w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300"
+                className={CONTACT_INPUT_CLASSES}
                 placeholder="Your name"
                 style={{
                   fontFamily: "Poppins, sans-serif",
-                  clipPath:
-                    "polygon(0 1%, 100% 1%, 100% 30%, 96% 79%, 68% 80%, 14% 81%, 11% 100%, 0 100%)",
+                  clipPath: "var(--clip-path-input-field)",
                 }}
               />
             </motion.div>
-            <motion.div
-              whileFocus={{ scale: 1.02 }}
-              transition={{ duration: 0.2 }}
-            >
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-white mb-2"
-                style={{ fontFamily: "Poppins, sans-serif" }}
-              >
+            <motion.div {...formFocusScale}>
+              <label htmlFor="email" className={CONTACT_FORM_LABEL_CLASSES}>
                 Email Address
               </label>
               <input
@@ -576,24 +442,16 @@ function ContactUs() {
                 value={formData.email}
                 onChange={handleInputChange}
                 required
-                className="w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300"
+                className={CONTACT_INPUT_CLASSES}
                 placeholder="your@email.com"
                 style={{
                   fontFamily: "Poppins, sans-serif",
-                  clipPath:
-                    "polygon(0 1%, 100% 1%, 100% 30%, 96% 79%, 68% 80%, 14% 81%, 11% 100%, 0 100%)",
+                  clipPath: "var(--clip-path-input-field)",
                 }}
               />
             </motion.div>
-            <motion.div
-              whileFocus={{ scale: 1.01 }}
-              transition={{ duration: 0.2 }}
-            >
-              <label
-                htmlFor="subject"
-                className="block text-sm font-medium text-white mb-2"
-                style={{ fontFamily: "Poppins, sans-serif" }}
-              >
+            <motion.div {...formFocusScale}>
+              <label htmlFor="subject" className={CONTACT_FORM_LABEL_CLASSES}>
                 Subject
               </label>
               <input
@@ -603,24 +461,16 @@ function ContactUs() {
                 value={formData.subject}
                 onChange={handleInputChange}
                 required
-                className="w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300"
+                className={CONTACT_INPUT_CLASSES}
                 placeholder="What's this about?"
                 style={{
                   fontFamily: "Poppins, sans-serif",
-                  clipPath:
-                    "polygon(0 1%, 100% 1%, 100% 30%, 96% 79%, 68% 80%, 14% 81%, 11% 100%, 0 100%)",
+                  clipPath: "var(--clip-path-input-field)",
                 }}
               />
             </motion.div>
-            <motion.div
-              whileFocus={{ scale: 1.01 }}
-              transition={{ duration: 0.2 }}
-            >
-              <label
-                htmlFor="message"
-                className="block text-sm font-medium text-white mb-2"
-                style={{ fontFamily: "Poppins, sans-serif" }}
-              >
+            <motion.div {...formFocusScale}>
+              <label htmlFor="message" className={CONTACT_FORM_LABEL_CLASSES}>
                 Message
               </label>
               <textarea
@@ -630,21 +480,16 @@ function ContactUs() {
                 onChange={handleInputChange}
                 required
                 rows={6}
-                className="w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300 resize-none"
+                className={`${CONTACT_INPUT_CLASSES} resize-none`}
                 placeholder="Tell us more about your inquiry..."
                 style={{
                   fontFamily: "Poppins, sans-serif",
-                  clipPath:
-                    "polygon(0 1%, 100% 1%, 100% 30%, 96% 79%, 68% 80%, 14% 81%, 11% 100%, 0 100%)",
+                  clipPath: "var(--clip-path-input-field)",
                 }}
               />
             </motion.div>
 
-            <motion.div
-              className="text-center"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+            <motion.div className="text-center" {...buttonHoverScale}>
               <CyberButton
                 onClick={() => {
                   if (!isSubmitting) {
@@ -672,9 +517,9 @@ function ContactUs() {
 
             {submitStatus === "success" && (
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-center p-4 bg-green-500/20 border border-green-500/30 cyber-success-message"
+                {...successMessageAnimation}
+                className="text-center p-4 bg-green-500/20 border border-green-500/30"
+                style={{ clipPath: "var(--clip-path-success-message)" }}
               >
                 <p
                   className="text-green-300 font-medium"
@@ -690,10 +535,7 @@ function ContactUs() {
         {/* Animated Border */}
         <div
           className="absolute inset-0 border border-yellow-400/30 group-hover:border-yellow-400/60 transition-colors duration-500 pointer-events-none"
-          style={{
-            clipPath:
-              "polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px)",
-          }}
+          style={{ clipPath: "var(--clip-path-form-container)" }}
         />
 
         {/* Corner accents */}
@@ -703,9 +545,7 @@ function ContactUs() {
 
       {/* Custom Large Photoframe with Google Maps - 16:9 Aspect Ratio */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1, delay: 0.9 }}
+        {...mapContainerAnimation}
         className="flex justify-center mt-20 relative z-10 px-4"
       >
         <div className="relative w-full max-w-6xl h-[33.75rem]">
@@ -717,8 +557,7 @@ function ContactUs() {
           <div
             className="absolute -inset-2 bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-500 opacity-75"
             style={{
-              clipPath:
-                "polygon(2% 42%, 0 42%, 3% 0, 97% 0, 100% 42%, 98% 42%, 98% 55%, 100% 55%, 97% 100%, 3% 100%, 0 56%, 2% 56%)",
+              clipPath: "var(--clip-path-map-frame)",
               filter: "blur(2px)",
             }}
           ></div>
@@ -726,27 +565,18 @@ function ContactUs() {
           {/* Main Border Frame */}
           <div
             className="absolute -inset-1 bg-yellow-500"
-            style={{
-              clipPath:
-                "polygon(2% 42%, 0 42%, 3% 0, 97% 0, 100% 42%, 98% 42%, 98% 55%, 100% 55%, 97% 100%, 3% 100%, 0 56%, 2% 56%)",
-            }}
+            style={{ clipPath: "var(--clip-path-map-frame)" }}
           ></div>
 
           {/* Background Frame with Google Maps */}
           <div
             className="w-full h-full relative overflow-hidden"
-            style={{
-              clipPath:
-                "polygon(2% 42%, 0 42%, 3% 0, 97% 0, 100% 42%, 98% 42%, 98% 55%, 100% 55%, 97% 100%, 3% 100%, 0 56%, 2% 56%)",
-            }}
+            style={{ clipPath: "var(--clip-path-map-frame)" }}
           >
             {/* Google Maps iframe container with same clip-path */}
             <div
               className="absolute inset-0 w-full h-full"
-              style={{
-                clipPath:
-                  "polygon(2% 42%, 0 42%, 3% 0, 97% 0, 100% 42%, 98% 42%, 98% 55%, 100% 55%, 97% 100%, 3% 100%, 0 56%, 2% 56%)",
-              }}
+              style={{ clipPath: "var(--clip-path-map-frame)" }}
             >
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3685.2097842471743!2d88.43373731495658!3d22.53945688519166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a02778c0c5e0c0b%3A0x7a9b4d2b7a9b4d2b!2sFuture%20Institute%20of%20Management!5e0!3m2!1sen!2sin!4v1635678901234"
@@ -767,18 +597,14 @@ function ContactUs() {
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center space-y-4">
                 <motion.h2
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 1.2 }}
-                  className="text-4xl md:text-6xl lg:text-7xl font-bold text-yellow-400 font-sddystopiandemo drop-shadow-2xl"
+                  {...mapTitleAnimation}
+                  className={CONTACT_MAP_TITLE_CLASSES}
                 >
                   FIND US
                 </motion.h2>
                 <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 1.4 }}
-                  className="text-lg md:text-xl text-white font-mokoto max-w-2xl mx-auto px-4"
+                  {...mapSubtitleAnimation}
+                  className={CONTACT_MAP_SUBTITLE_CLASSES}
                 >
                   Future Institute and Management - Your Gateway to Innovation
                 </motion.p>
@@ -786,29 +612,11 @@ function ContactUs() {
             </div>
 
             {/* Enhanced Circuit patterns inside frame */}
-            <div className="absolute inset-0 opacity-30 pointer-events-none">
-              {/* Horizontal circuit lines */}
-              <div className="absolute top-4 left-8 right-8 h-px bg-yellow-300 opacity-80"></div>
-              <div className="absolute top-8 left-12 right-12 h-px bg-yellow-300 opacity-60"></div>
-              <div className="absolute top-12 left-8 right-8 h-px bg-yellow-300 opacity-70"></div>
-              <div className="absolute bottom-4 left-8 right-8 h-px bg-yellow-300 opacity-80"></div>
-              <div className="absolute bottom-8 left-12 right-12 h-px bg-yellow-300 opacity-60"></div>
-              <div className="absolute bottom-12 left-8 right-8 h-px bg-yellow-300 opacity-70"></div>
-
-              {/* Vertical circuit lines */}
-              <div className="absolute left-4 top-8 bottom-8 w-px bg-yellow-300 opacity-80"></div>
-              <div className="absolute left-8 top-12 bottom-12 w-px bg-yellow-300 opacity-60"></div>
-              <div className="absolute left-12 top-8 bottom-8 w-px bg-yellow-300 opacity-70"></div>
-              <div className="absolute right-4 top-8 bottom-8 w-px bg-yellow-300 opacity-80"></div>
-              <div className="absolute right-8 top-12 bottom-12 w-px bg-yellow-300 opacity-60"></div>
-              <div className="absolute right-12 top-8 bottom-8 w-px bg-yellow-300 opacity-70"></div>
-
-              {/* Corner circuit nodes */}
-              <div className="absolute top-8 left-8 w-2 h-2 bg-yellow-300 opacity-70 rounded-full"></div>
-              <div className="absolute top-8 right-8 w-2 h-2 bg-yellow-300 opacity-70 rounded-full"></div>
-              <div className="absolute bottom-8 left-8 w-2 h-2 bg-yellow-300 opacity-70 rounded-full"></div>
-              <div className="absolute bottom-8 right-8 w-2 h-2 bg-yellow-300 opacity-70 rounded-full"></div>
-            </div>
+            <CircuitOverlay
+              variant="secondary"
+              opacity="low"
+              className="opacity-30 pointer-events-none"
+            />
           </div>
 
           {/* Additional Light Rays from bottom */}
@@ -819,151 +627,6 @@ function ContactUs() {
           <div className="absolute bottom-0 right-1/4 w-px h-20 bg-gradient-to-t from-yellow-400/80 to-transparent transform -rotate-12 opacity-60"></div>
         </div>
       </motion.div>
-
-      {/* CSS for matrix animation and cyberpunk styling */}
-      <style jsx>{`
-        .matrix-column-animated {
-          animation: matrix-fall linear infinite;
-        }
-
-        @keyframes matrix-fall {
-          0% {
-            transform: translateY(-100vh);
-            opacity: 0;
-          }
-          10% {
-            opacity: 1;
-          }
-          90% {
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(100vh);
-            opacity: 0;
-          }
-        }
-
-        .cyber-card {
-          position: relative;
-          overflow: hidden;
-          transition: all 0.3s ease;
-        }
-
-        .cyber-card:hover {
-          transform: translateY(-5px);
-        }
-
-        .cyber-card-background {
-          clip-path: polygon(
-            15px 0%,
-            100% 0%,
-            100% calc(100% - 15px),
-            calc(100% - 15px) 100%,
-            0% 100%,
-            0% 15px
-          );
-        }
-
-        .cyber-card-border {
-          clip-path: polygon(
-            15px 0%,
-            100% 0%,
-            100% calc(100% - 15px),
-            calc(100% - 15px) 100%,
-            0% 100%,
-            0% 15px
-          );
-          z-index: -1;
-        }
-
-        .cyber-form-container {
-          position: relative;
-          overflow: hidden;
-        }
-
-        .cyber-form-background {
-          clip-path: polygon(
-            20px 0%,
-            100% 0%,
-            100% calc(100% - 20px),
-            calc(100% - 20px) 100%,
-            0% 100%,
-            0% 20px
-          );
-        }
-
-        .cyber-form-border {
-          clip-path: polygon(
-            20px 0%,
-            100% 0%,
-            100% calc(100% - 20px),
-            calc(100% - 20px) 100%,
-            0% 100%,
-            0% 20px
-          );
-          z-index: -1;
-        }
-
-        .cyber-input {
-          clip-path: polygon(
-            10px 0%,
-            100% 0%,
-            100% calc(100% - 10px),
-            calc(100% - 10px) 100%,
-            0% 100%,
-            0% 10px
-          );
-        }
-
-        .cyber-button {
-          position: relative;
-          overflow: hidden;
-        }
-
-        .cyber-button-background {
-          clip-path: polygon(
-            15px 0%,
-            100% 0%,
-            100% calc(100% - 15px),
-            calc(100% - 15px) 100%,
-            0% 100%,
-            0% 15px
-          );
-        }
-
-        .cyber-button-border {
-          clip-path: polygon(
-            15px 0%,
-            100% 0%,
-            100% calc(100% - 15px),
-            calc(100% - 15px) 100%,
-            0% 100%,
-            0% 15px
-          );
-          z-index: -1;
-        }
-
-        .cyber-button-small {
-          position: relative;
-          overflow: hidden;
-        }
-
-        .cyber-button-large {
-          position: relative;
-          overflow: hidden;
-        }
-
-        .cyber-success-message {
-          clip-path: polygon(
-            10px 0%,
-            100% 0%,
-            100% calc(100% - 10px),
-            calc(100% - 10px) 100%,
-            0% 100%,
-            0% 10px
-          );
-        }
-      `}</style>
     </div>
   );
 }
