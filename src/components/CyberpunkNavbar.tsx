@@ -70,9 +70,9 @@ export function CyberpunkNavbar() {
       link: "/collabs",
     },
     {
-      name:"Contact Us",
-      link:"/contact"
-    }
+      name: "Contact Us",
+      link: "/contact",
+    },
   ];
 
   return (
@@ -87,7 +87,7 @@ export function CyberpunkNavbar() {
                 alt="Hackspire Logo"
                 width={600}
                 height={150}
-                className="h-16 md:h-20 w-auto object-contain"
+                className="h-20 md:h-24 lg:h-28 w-auto object-contain"
                 priority
               />
             </Link>
