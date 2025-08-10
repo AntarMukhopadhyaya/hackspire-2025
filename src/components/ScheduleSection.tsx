@@ -131,7 +131,7 @@ export default function ScheduleSection() {
             transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
             className="mb-6 text-5xl sm:text-7xl md:text-[5rem] lg:text-[6rem] xl:text-8xl 2xl:text-[8rem] font-bold text-black font-sddystopiandemo"
           >
-            CYBER PROTOCOL TIMELINE
+            PROTOCOL TIMELINE
           </motion.h2>
 
           <motion.p
@@ -146,7 +146,7 @@ export default function ScheduleSection() {
           </motion.p>
         </motion.div>
 
-        <TracingBeam className="px-6 relative z-10">
+        <TracingBeam className="px-6 relative z-10 mt-56 sm:mt-28">
           <div className="max-w-2xl mx-auto antialiased pt-4 relative">
             {hackathonContent.map((item, index) => (
               <motion.div

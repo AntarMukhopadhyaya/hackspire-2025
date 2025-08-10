@@ -274,7 +274,7 @@ function ContactUs() {
       </div>
 
       {/* Contact Information Cards */}
-      <div className="max-w-6xl mx-auto mb-16 relative z-10">
+      <div className="max-w-6xl mx-auto mt-36 sm:mt-0 mb-16 relative z-10">
         <div className="grid md:grid-cols-3 gap-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
