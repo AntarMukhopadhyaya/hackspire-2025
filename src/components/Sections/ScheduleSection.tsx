@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { TracingBeam } from "./ui/tracing-beam";
+import { TracingBeam } from "../ui/tracing-beam";
 import { motion } from "framer-motion";
 
 export default function ScheduleSection() {

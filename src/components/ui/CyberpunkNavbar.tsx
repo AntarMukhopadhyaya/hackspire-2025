@@ -45,10 +45,10 @@ export function CyberpunkNavbar() {
   }, []);
 
   const navItems = [
-    {
-      name: "About",
-      link: "/about",
-    },
+    // {
+    //   name: "About",
+    //   link: "/about",
+    // },
     {
       name: "Tracks",
       link: "/tracks",
@@ -59,25 +59,25 @@ export function CyberpunkNavbar() {
     },
     {
       name: "Glory",
-      link: "/glory",
+      link: "#glory",
     },
     {
       name: "Crews",
       link: "/crews",
     },
+    // {
+    //   name: "Collaborations",
+    //   link: "/collabs",
+    // },
     {
-      name: "Collaborations",
-      link: "/collabs",
+      name: "Contact",
+      link: "/contact",
     },
-    {
-      name:"Contact Us",
-      link:"/contact"
-    }
   ];
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 px-4 md:px-8 pt-4">
+      <nav className="fixed top-0 left-0 right-0 z-50 px-4 md:px-8 pt-1">
         <div className="relative w-full">
           <div className="flex items-center justify-between">
             {/* Logo - Outside the cyberpunk container */}
@@ -87,7 +87,7 @@ export function CyberpunkNavbar() {
                 alt="Hackspire Logo"
                 width={600}
                 height={150}
-                className="h-16 md:h-20 w-auto object-contain"
+                className="h-20 md:h-28 w-auto object-contain"
                 priority
               />
             </Link>

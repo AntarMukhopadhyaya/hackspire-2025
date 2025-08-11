@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown, ChevronUp, HelpCircle } from "lucide-react";
-import Link from "next/link";
-import CyberButton from "./ui/CyberButton";
+
+import CyberButton from "../ui/CyberButton";
 
 interface FAQItem {
   id: number;
@@ -131,7 +131,7 @@ const FAQSection: React.FC = () => {
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-4xl md:text-5xl font-bold text-white font-sddystopiandemo"
+          className="text-5xl sm:text-7xl md:text-[5rem] lg:text-[6rem] xl:text-8xl 2xl:text-[8rem] font-bold text-white font-sddystopiandemo"
         >
           FAQ
         </motion.h1>

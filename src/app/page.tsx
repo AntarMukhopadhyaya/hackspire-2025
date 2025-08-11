@@ -1,11 +1,14 @@
 "use client";
 import { useRef } from "react";
-import HeroSection from "@/components/HeroSection";
+import HeroSection from "@/components/Sections/HeroSection";
 
-import ScheduleSection from "@/components/ScheduleSection";
+import ScheduleSection from "@/components/Sections/ScheduleSection";
 
-import SpireCompleters from "@/components/SpireCompleters";
-import FAQSection from "@/components/FAQSection";
+import SpireCompleters from "@/components/Sections/SpireCompleters";
+import FAQSection from "@/components/Sections/FAQSection";
+import SponsorsSection from "@/components/Sections/SponsorsSection";
+import CollaborationsSection from "@/components/Sections/CollaborationsSection";
+import GlorySection from "@/components/Sections/GlorySection";
 export default function Home() {
   const mainRef = useRef<HTMLElement>(null);
 
@@ -22,6 +25,9 @@ export default function Home() {
         <HeroSection />
         <SpireCompleters />
         <ScheduleSection />
+        <GlorySection />
+        <SponsorsSection />
+        <CollaborationsSection />
         <FAQSection />
       </div>
     </main>

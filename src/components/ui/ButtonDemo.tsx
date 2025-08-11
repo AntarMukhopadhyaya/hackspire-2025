@@ -1,4 +1,4 @@
-import CyberButton from "@/components/ui/CyberButton";
+import CyberButton from "./CyberButton";
 
 export default function ButtonDemo() {
   const handleRegisterClick = () => {

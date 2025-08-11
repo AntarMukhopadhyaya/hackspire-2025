@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Filter, Users, Code, Wrench, Star } from "lucide-react";
-import { CrewCard, type CrewMember } from "../../components/CrewCard";
+import { CrewCard, type CrewMember } from "../../components/ui/CrewCard";
 import crewMembersData from "../../data/crew-members.json";
 
 const filterOptions = [

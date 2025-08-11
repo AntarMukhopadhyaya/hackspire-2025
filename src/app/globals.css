@@ -37,7 +37,8 @@ body {
   font-family: "Poppins", sans-serif;
   min-height: 100vh;
   overflow-x: hidden;
-  scroll-behavior: smooth;
+  /* Disable native smooth scrolling; Lenis controls it */
+  scroll-behavior: auto;
   position: relative;
   /* Restored default cursor */
 }

@@ -1,12 +1,12 @@
 "use client";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import MatrixRain from "./MatrixRain";
-import { TechnicalOverlay } from "./TechnicalOverlay";
-import CyberButton from "./ui/CyberButton";
-import CountdownTimer from "./CountdownTimer";
-import NeonXElements from "./NeonXElements";
-import CellTerminal from "./CellTerminal";
+import MatrixRain from "../ui/MatrixRain";
+import { TechnicalOverlay } from "../ui/TechnicalOverlay";
+import CyberButton from "../ui/CyberButton";
+import CountdownTimer from "../ui/CountdownTimer";
+import NeonXElements from "../ui/NeonXElements";
+import CellTerminal from "../ui/CellTerminal";
 
 export default function HeroSection() {
   return (
@@ -95,7 +95,6 @@ export default function HeroSection() {
               />
             </motion.div>
 
-
             {/* Main Logo - Adjusted sizes for mobile */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -143,8 +142,6 @@ export default function HeroSection() {
       </motion.div>
 
       <div className="sm:mt-8 md:mt-42 lg:mt-32">
-
-
         {/* Register Now Button - Better mobile positioning */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}

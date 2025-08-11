@@ -11,7 +11,7 @@ import {
   MessageCircle,
   Clock,
 } from "lucide-react";
-import FAQSection from "@/components/FAQSection";
+import FAQSection from "@/components/Sections/FAQSection";
 import CyberButton from "@/components/ui/CyberButton";
 
 function ContactUs() {
@@ -41,14 +41,31 @@ function ContactUs() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    setIsSubmitting(false);
-    setSubmitStatus("success");
-    setFormData({ name: "", email: "", subject: "", message: "" });
+      const result = await response.json();
 
-    setTimeout(() => setSubmitStatus("idle"), 3000);
+      if (response.ok) {
+        setSubmitStatus("success");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setSubmitStatus("error");
+        console.error("Contact form error:", result.error);
+      }
+    } catch (error) {
+      console.error("Network error:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setSubmitStatus("idle"), 5000);
+    }
   };
 
   return (
@@ -680,7 +697,24 @@ function ContactUs() {
                   className="text-green-300 font-medium"
                   style={{ fontFamily: "Poppins, sans-serif" }}
                 >
-                  Message sent successfully! We'll get back to you soon.
+                  🎉 Message sent successfully! Check your email for
+                  confirmation. We'll get back to you soon.
+                </p>
+              </motion.div>
+            )}
+
+            {submitStatus === "error" && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-center p-4 bg-red-500/20 border border-red-500/30 cyber-error-message"
+              >
+                <p
+                  className="text-red-300 font-medium"
+                  style={{ fontFamily: "Poppins, sans-serif" }}
+                >
+                  ❌ Failed to send message. Please try again or contact us
+                  through Discord.
                 </p>
               </motion.div>
             )}
@@ -710,12 +744,12 @@ function ContactUs() {
       >
         <div className="relative w-full max-w-6xl h-[33.75rem]">
           {/* Upward Light Effect */}
-          <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 w-full h-20 bg-gradient-to-t from-yellow-400/30 via-yellow-300/20 to-transparent blur-xl opacity-70"></div>
-          <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-3/4 h-12 bg-gradient-to-t from-yellow-500/50 via-yellow-400/30 to-transparent blur-lg opacity-60"></div>
+          <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 w-full h-20 bg-gradient-to-t from-yellow-400/30 via-yellow-300/20 to-transparent blur-xl opacity-70 group-hover:opacity-90 group-hover:h-24 transition-all duration-500 ease-in-out"></div>
+          <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-3/4 h-12 bg-gradient-to-t from-yellow-500/50 via-yellow-400/30 to-transparent blur-lg opacity-60 group-hover:opacity-80 group-hover:h-16 transition-all duration-500 ease-in-out"></div>
 
           {/* Outer Glow Border */}
           <div
-            className="absolute -inset-2 bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-500 opacity-75"
+            className="absolute -inset-2 bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-500 opacity-75 group-hover:opacity-100 group-hover:from-yellow-400 group-hover:via-yellow-300 group-hover:to-yellow-400 transition-all duration-500 ease-in-out"
             style={{
               clipPath:
                 "polygon(2% 42%, 0 42%, 3% 0, 97% 0, 100% 42%, 98% 42%, 98% 55%, 100% 55%, 97% 100%, 3% 100%, 0 56%, 2% 56%)",
@@ -734,7 +768,7 @@ function ContactUs() {
 
           {/* Background Frame with Google Maps */}
           <div
-            className="w-full h-full relative overflow-hidden"
+            className="w-full h-full relative overflow-hidden group cursor-pointer transform transition-transform duration-500 ease-in-out group-hover:scale-[1.02]"
             style={{
               clipPath:
                 "polygon(2% 42%, 0 42%, 3% 0, 97% 0, 100% 42%, 98% 42%, 98% 55%, 100% 55%, 97% 100%, 3% 100%, 0 56%, 2% 56%)",
@@ -742,29 +776,29 @@ function ContactUs() {
           >
             {/* Google Maps iframe container with same clip-path */}
             <div
-              className="absolute inset-0 w-full h-full"
+              className="absolute inset-0 w-full h-full group"
               style={{
                 clipPath:
                   "polygon(2% 42%, 0 42%, 3% 0, 97% 0, 100% 42%, 98% 42%, 98% 55%, 100% 55%, 97% 100%, 3% 100%, 0 56%, 2% 56%)",
               }}
             >
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3685.2097842471743!2d88.43373731495658!3d22.53945688519166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a02778c0c5e0c0b%3A0x7a9b4d2b7a9b4d2b!2sFuture%20Institute%20of%20Management!5e0!3m2!1sen!2sin!4v1635678901234"
+                src="https://www.google.com/maps?q=Future+Institute+of+Engineering+and+Management,CCV8%2B85M+Sonarpur+Station+Rd+Mission+Pally+Narendrapur+Rajpur+Sonarpur+West+Bengal+700150&z=17&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen
-                loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="w-full h-full"
+                title="Google Maps showing Future Institute of Engineering and Management location"
               />
             </div>
 
-            {/* Dark overlay for text readability */}
-            <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px]"></div>
+            {/* Dark overlay for text readability - disappears and lets clicks through on hover */}
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px] group-hover:opacity-0 group-hover:pointer-events-none transition-all duration-500 ease-in-out"></div>
 
-            {/* Content overlay */}
-            <div className="absolute inset-0 flex items-center justify-center">
+            {/* Content overlay - disappears and lets clicks through on hover */}
+            <div className="absolute inset-0 flex items-center justify-center group-hover:opacity-0 group-hover:pointer-events-none transition-all duration-500 ease-in-out">
               <div className="text-center space-y-4">
                 <motion.h2
                   initial={{ opacity: 0, y: 20 }}
@@ -780,13 +814,14 @@ function ContactUs() {
                   transition={{ duration: 0.8, delay: 1.4 }}
                   className="text-lg md:text-xl text-white font-mokoto max-w-2xl mx-auto px-4"
                 >
-                  Future Institute and Management - Your Gateway to Innovation
+                  Future Institute of Engineering and Management - Your Gateway
+                  to Innovation
                 </motion.p>
               </div>
             </div>
 
-            {/* Enhanced Circuit patterns inside frame */}
-            <div className="absolute inset-0 opacity-30 pointer-events-none">
+            {/* Enhanced Circuit patterns inside frame - disappear on hover */}
+            <div className="absolute inset-0 opacity-30 pointer-events-none group-hover:opacity-0 transition-all duration-500 ease-in-out">
               {/* Horizontal circuit lines */}
               <div className="absolute top-4 left-8 right-8 h-px bg-yellow-300 opacity-80"></div>
               <div className="absolute top-8 left-12 right-12 h-px bg-yellow-300 opacity-60"></div>
@@ -812,11 +847,11 @@ function ContactUs() {
           </div>
 
           {/* Additional Light Rays from bottom */}
-          <div className="absolute bottom-0 left-1/4 w-px h-20 bg-gradient-to-t from-yellow-400/80 to-transparent transform rotate-12 opacity-60"></div>
-          <div className="absolute bottom-0 left-1/3 w-px h-16 bg-gradient-to-t from-yellow-300/70 to-transparent transform -rotate-6 opacity-50"></div>
-          <div className="absolute bottom-0 left-1/2 w-px h-24 bg-gradient-to-t from-yellow-500/90 to-transparent opacity-70"></div>
-          <div className="absolute bottom-0 right-1/3 w-px h-16 bg-gradient-to-t from-yellow-300/70 to-transparent transform rotate-6 opacity-50"></div>
-          <div className="absolute bottom-0 right-1/4 w-px h-20 bg-gradient-to-t from-yellow-400/80 to-transparent transform -rotate-12 opacity-60"></div>
+          <div className="absolute bottom-0 left-1/4 w-px h-20 bg-gradient-to-t from-yellow-400/80 to-transparent transform rotate-12 opacity-60 group-hover:opacity-80 group-hover:h-24 transition-all duration-500 ease-in-out"></div>
+          <div className="absolute bottom-0 left-1/3 w-px h-16 bg-gradient-to-t from-yellow-300/70 to-transparent transform -rotate-6 opacity-50 group-hover:opacity-70 group-hover:h-20 transition-all duration-500 ease-in-out"></div>
+          <div className="absolute bottom-0 left-1/2 w-px h-24 bg-gradient-to-t from-yellow-500/90 to-transparent opacity-70 group-hover:opacity-90 group-hover:h-28 transition-all duration-500 ease-in-out"></div>
+          <div className="absolute bottom-0 right-1/3 w-px h-16 bg-gradient-to-t from-yellow-300/70 to-transparent transform rotate-6 opacity-50 group-hover:opacity-70 group-hover:h-20 transition-all duration-500 ease-in-out"></div>
+          <div className="absolute bottom-0 right-1/4 w-px h-20 bg-gradient-to-t from-yellow-400/80 to-transparent transform -rotate-12 opacity-60 group-hover:opacity-80 group-hover:h-24 transition-all duration-500 ease-in-out"></div>
         </div>
       </motion.div>
 
@@ -954,6 +989,17 @@ function ContactUs() {
         }
 
         .cyber-success-message {
+          clip-path: polygon(
+            10px 0%,
+            100% 0%,
+            100% calc(100% - 10px),
+            calc(100% - 10px) 100%,
+            0% 100%,
+            0% 10px
+          );
+        }
+
+        .cyber-error-message {
           clip-path: polygon(
             10px 0%,
             100% 0%,

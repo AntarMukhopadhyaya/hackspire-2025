@@ -9,7 +9,7 @@ import {
   FaExternalLinkAlt,
 } from "react-icons/fa";
 import CyberButton from "@/components/ui/CyberButton";
-import GloryBentoGrid from "../../components/GloryBentoGrid";
+import GloryBentoGrid from "../../components/ui/GloryBentoGrid";
 
 const tracks = [
   {

@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-import { CyberpunkNavbar } from "@/components/CyberpunkNavbar";
+import { CyberpunkNavbar } from "@/components/ui/CyberpunkNavbar";
 import Footer from "@/components/Footer";
-// import { AudioProvider } from "@/components/AudioContext"; // Commented out for now
-import AppLoader from "@/components/AppLoader";
-// import CustomCursor from "@/components/CustomCursor";
+// import { AudioProvider } from "@/components/ui/AudioContext"; // Commented out for now
+import AppLoader from "@/components/ui/AppLoader";
+import LenisProvider from "@/components/ui/LenisProvider";
+// import CustomCursor from "@/components/ui/CustomCursor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -75,31 +76,33 @@ export default function RootLayout({
         {/* Navbar */}
         {/* <AudioProvider> */}
         <AppLoader>
-          <CyberpunkNavbar />
+          <LenisProvider>
+            <CyberpunkNavbar />
 
-          {/* Global Cyberpunk Yellow Spotlight */}
-          <div className="fixed top-0 left-0 w-full h-full z-0 pointer-events-none">
-            <div
-              className="w-full h-full"
-              style={{
-                background:
-                  "radial-gradient(ellipse 60% 40% at 20% 10%, rgba(234, 179, 8, 0.25) 0%, rgba(161, 98, 7, 0.15) 40%, rgba(120, 53, 15, 0.08) 70%, transparent 100%)",
-              }}
-            ></div>
-          </div>
+            {/* Global Cyberpunk Yellow Spotlight */}
+            <div className="fixed top-0 left-0 w-full h-full z-0 pointer-events-none">
+              <div
+                className="w-full h-full"
+                style={{
+                  background:
+                    "radial-gradient(ellipse 60% 40% at 20% 10%, rgba(234, 179, 8, 0.25) 0%, rgba(161, 98, 7, 0.15) 40%, rgba(120, 53, 15, 0.08) 70%, transparent 100%)",
+                }}
+              ></div>
+            </div>
 
-          {/* Global Holographic Overlay */}
-          {/* <div
+            {/* Global Holographic Overlay */}
+            {/* <div
               className="fixed inset-0 z-0 pointer-events-none"
               style={{
                 background:
                   "radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.6) 75%)",
               }}
             /> */}
-          {/* <SplashCursor /> */}
+            {/* <SplashCursor /> */}
 
-          <div className="relative z-10">{children}</div>
-          <Footer />
+            <div className="relative z-10">{children}</div>
+            <Footer />
+          </LenisProvider>
         </AppLoader>
         {/* </AudioProvider> */}
       </body>
