@@ -54,8 +54,8 @@ export async function POST(request: NextRequest) {
         <div style="font-family: 'Poppins', Arial, sans-serif; max-width: 700px; margin: 0 auto; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%); color: #ffffff; padding: 0; border-radius: 15px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
           
           <!-- Techy Header with Polygon Design -->
-          <div style="background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ffd23f 100%); padding: 30px 20px; position: relative; overflow: hidden;">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><polygon points=\"0,0 100,0 100,100 0,100\" fill=\"none\" stroke=\"rgba(255,255,255,0.2)\" stroke-width=\"2\"/><polygon points=\"20,20 80,20 80,80 20,80\" fill=\"none\" stroke=\"rgba(255,255,255,0.3)\" stroke-width=\"1\"/></svg>') repeat; opacity: 0.1;"></div>
+          <div style="background: linear-gradient(135deg, #0066ff 0%, #0099cc 50%, #00d4ff 100%); padding: 30px 20px; position: relative; overflow: hidden; clip-path: polygon(5% 0, 95% 0, 100% 15%, 85% 90%, 75% 100%, 25% 100%, 15% 90%, 0 15%); -webkit-clip-path: polygon(5% 0, 95% 0, 100% 15%, 85% 90%, 75% 100%, 25% 100%, 15% 90%, 0 15%);">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.1); opacity: 0.1;"></div>
             
             <!-- Polygon Corner Accents -->
             <div style="position: absolute; top: 0; left: 0; width: 0; height: 0; border-left: 20px solid transparent; border-top: 20px solid #0a0a0a;"></div>
@@ -162,8 +162,8 @@ Timestamp: ${new Date().toLocaleString()}
         <div style="font-family: 'Poppins', Arial, sans-serif; max-width: 700px; margin: 0 auto; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%); color: #ffffff; padding: 0; border-radius: 15px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
           
           <!-- Techy Header with Polygon Design -->
-          <div style="background: linear-gradient(135deg, #00d4ff 0%, #0099cc 50%, #0066ff 100%); padding: 30px 20px; position: relative; overflow: hidden;">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><polygon points=\"0,0 100,0 100,100 0,100\" fill=\"none\" stroke=\"rgba(255,255,255,0.2)\" stroke-width=\"2\"/><polygon points=\"20,20 80,20 80,80 20,80\" fill=\"none\" stroke=\"rgba(255,255,255,0.3)\" stroke-width=\"1\"/></svg>') repeat; opacity: 0.1;"></div>
+          <div style="background: linear-gradient(135deg, #ffd23f 0%, #f7931e 50%, #ff6b35 100%); padding: 30px 20px; position: relative; overflow: hidden; clip-path: polygon(5% 0, 95% 0, 100% 15%, 85% 90%, 75% 100%, 25% 100%, 15% 90%, 0 15%); -webkit-clip-path: polygon(5% 0, 95% 0, 100% 15%, 85% 90%, 75% 100%, 25% 100%, 15% 90%, 0 15%);">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.1); opacity: 0.1;"></div>
             
             <!-- Polygon Corner Accents -->
             <div style="position: absolute; top: 0; left: 0; width: 0; height: 0; border-left: 20px solid transparent; border-top: 20px solid #0a0a0a;"></div>

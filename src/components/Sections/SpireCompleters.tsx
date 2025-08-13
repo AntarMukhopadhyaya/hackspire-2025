@@ -371,7 +371,7 @@ function SpireCompleters() {
             className="text-center md:text-left"
           >
             {/* Cyberpunk Yellow Container with Clip-Path Cut Edges */}
-            <div className="relative p-4 md:p-6 group cursor-pointer transition-all duration-300 hover:scale-105">
+            <div className="relative p-4 md:p-6 group cursor-pointer transition-all duration-300 hover:scale-105 h-full">
               {/* Background with clip-path cuts */}
               <div
                 className="absolute inset-0 bg-yellow-400 transition-all duration-300 group-hover:animate-pulse"
@@ -442,7 +442,7 @@ function SpireCompleters() {
             className="text-center md:text-right"
           >
             {/* Cyberpunk Yellow Container with Clip-Path Cut Edges */}
-            <div className="relative p-4 md:p-6 group cursor-pointer transition-all duration-300 hover:scale-105">
+            <div className="relative p-4 md:p-6 group cursor-pointer transition-all duration-300 hover:scale-105 h-full">
               {/* Background with clip-path cuts */}
               <div
                 className="absolute inset-0 bg-yellow-400 transition-all duration-300 group-hover:animate-pulse"

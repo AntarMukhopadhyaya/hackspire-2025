@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-import { CyberpunkNavbar } from "@/components/ui/CyberpunkNavbar";
+import { Navbar } from "@/components/ui/Navbar";
 import Footer from "@/components/Footer";
 // import { AudioProvider } from "@/components/ui/AudioContext"; // Commented out for now
 import AppLoader from "@/components/ui/AppLoader";
@@ -80,7 +80,7 @@ export default function RootLayout({
         <AppLoader>
           <LenisProvider>
             <RouteChangeAnimation />
-            <CyberpunkNavbar />
+            <Navbar />
 
             {/* Global Cyberpunk Yellow Spotlight */}
             <div className="fixed top-0 left-0 w-full h-full z-0 pointer-events-none">

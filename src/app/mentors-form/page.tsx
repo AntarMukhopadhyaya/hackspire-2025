@@ -1,25 +1,33 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
+  Send,
+  User,
   Mail,
   Phone,
-  MapPin,
-  Send,
-  Users,
-  MessageCircle,
-  Clock,
+  Briefcase,
+  Globe,
+  Award,
+  Upload,
+  Image as ImageIcon,
 } from "lucide-react";
-import FAQSection from "@/components/Sections/FAQSection";
 import CyberButton from "@/components/ui/CyberButton";
 
-function ContactUs() {
+function MentorsForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    subject: "",
-    message: "",
+    phone: "",
+    company: "",
+    website: "",
+    expertise: [] as string[],
+    experience: "",
+    bio: "",
+    availability: "",
+    motivation: "",
+    profileImage: null as File | null,
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -28,7 +36,9 @@ function ContactUs() {
   >("idle");
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -37,30 +47,73 @@ function ContactUs() {
     }));
   };
 
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setFormData((prev) => ({
+        ...prev,
+        profileImage: file,
+      }));
+    }
+  };
+
+  const [isExpertiseOpen, setIsExpertiseOpen] = useState(false);
+
+  const handleExpertiseToggle = (expertise: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      expertise: prev.expertise.includes(expertise)
+        ? prev.expertise.filter((exp) => exp !== expertise)
+        : [...prev.expertise, expertise],
+    }));
+  };
+
+  const removeExpertise = (expertise: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      expertise: prev.expertise.filter((exp) => exp !== expertise),
+    }));
+  };
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isExpertiseOpen &&
+        !(event.target as Element).closest(".expertise-dropdown")
+      ) {
+        setIsExpertiseOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isExpertiseOpen]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+      // Simulate API call - replace with actual endpoint
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      setSubmitStatus("success");
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        website: "",
+        expertise: [],
+        experience: "",
+        bio: "",
+        availability: "",
+        motivation: "",
+        profileImage: null,
       });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        setSubmitStatus("success");
-        setFormData({ name: "", email: "", subject: "", message: "" });
-      } else {
-        setSubmitStatus("error");
-        console.error("Contact form error:", result.error);
-      }
     } catch (error) {
-      console.error("Network error:", error);
+      console.error("Form submission error:", error);
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -70,77 +123,6 @@ function ContactUs() {
 
   return (
     <div className="min-h-screen text-white py-20 px-4 relative bg-transparent">
-      {/* Matrix Rain Background */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          {/* Dynamic CSS for matrix columns */}
-          <style>
-            {Array.from({ length: 50 })
-              .map((_, i) => {
-                const delay = Math.random() * 5;
-                const duration = 3 + Math.random() * 4;
-                return `.matrix-column-${i} {
-                left: ${i * 2}%;
-                animation-delay: ${delay}s;
-                animation-duration: ${duration}s;
-              }`;
-              })
-              .join("\n")}
-          </style>
-
-          {/* Matrix columns */}
-          {Array.from({ length: 50 }).map((_, i) => (
-            <div
-              key={i}
-              className={`absolute top-0 text-green-400 font-mono text-xs leading-none matrix-column-animated matrix-column-${i}`}
-            >
-              {Array.from({ length: 20 }).map((_, j) => (
-                <div key={j} className="opacity-70">
-                  {String.fromCharCode(33 + Math.floor(Math.random() * 94))}
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Yellow Trapezium Background with Clip-Path */}
-      <div className="absolute top-0 left-0 right-0 h-96 z-0">
-        {/* Main trapezium with clip-path */}
-        <div
-          className="w-full h-full bg-yellow-400 relative"
-          style={{
-            clipPath:
-              "polygon(3% 0, 97% 0, 100% 11%, 80% 91%, 72% 100%, 24% 100%, 16% 90%, 0 12%)",
-          }}
-        >
-          {/* PCB-like lines */}
-          <div className="absolute inset-0">
-            {/* Horizontal lines */}
-            <div className="absolute top-8 left-0 right-0 h-px bg-black opacity-60"></div>
-            <div className="absolute top-16 left-0 right-0 h-px bg-black opacity-40"></div>
-            <div className="absolute top-24 left-0 right-0 h-px bg-black opacity-30"></div>
-            <div className="absolute top-32 left-0 right-0 h-px bg-black opacity-20"></div>
-
-            {/* Vertical lines */}
-            <div className="absolute top-0 bottom-0 left-8 w-px bg-black opacity-60"></div>
-            <div className="absolute top-0 bottom-0 left-16 w-px bg-black opacity-40"></div>
-            <div className="absolute top-0 bottom-0 left-24 w-px bg-black opacity-30"></div>
-            <div className="absolute top-0 bottom-0 left-32 w-px bg-black opacity-20"></div>
-            <div className="absolute top-0 bottom-0 right-8 w-px bg-black opacity-60"></div>
-            <div className="absolute top-0 bottom-0 right-16 w-px bg-black opacity-40"></div>
-            <div className="absolute top-0 bottom-0 right-24 w-px bg-black opacity-30"></div>
-            <div className="absolute top-0 bottom-0 right-32 w-px bg-black opacity-20"></div>
-
-            {/* Diagonal lines for futuristic effect */}
-            <div className="absolute top-0 left-0 w-32 h-32 border-l-2 border-t-2 border-black opacity-40"></div>
-            <div className="absolute top-0 right-0 w-32 h-32 border-r-2 border-t-2 border-black opacity-40"></div>
-            <div className="absolute bottom-0 left-0 w-32 h-32 border-l-2 border-b-2 border-black opacity-40"></div>
-            <div className="absolute bottom-0 right-0 w-32 h-32 border-r-2 border-b-2 border-black opacity-40"></div>
-          </div>
-        </div>
-      </div>
-
       {/* Multiple Left Side Vertical Trapezium Shapes */}
       <div className="absolute left-0 top-1/4 w-20 h-64 z-0">
         <div className="w-full h-full bg-yellow-400 relative left-trapezium-main">
@@ -267,246 +249,34 @@ function ContactUs() {
         </div>
       </div>
 
-      {/* Centered Contact Title */}
+      {/* Centered Mentors Form Title */}
       <div className="text-center mb-16 relative z-10">
         <motion.h1
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-7xl sm:text-8xl md:text-[8rem] lg:text-[10rem] xl:text-8xl 2xl:text-[8rem] font-bold text-black font-sddystopiandemo"
+          className="text-7xl sm:text-8xl md:text-[8rem] lg:text-[10rem] xl:text-8xl 2xl:text-[8rem] font-bold text-white font-sddystopiandemo"
         >
-          Contact Us
+          Mentors Form
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-center max-w-4xl mx-auto -mt-4 pb-8 text-sm sm:text-sm md:text-xl text-black leading-relaxed font-mokoto px-12 md:px-30"
+          className="text-center max-w-4xl mx-auto -mt-4 pb-8 text-sm sm:text-sm md:text-xl text-white leading-relaxed font-mokoto px-12 md:px-30"
         >
-          Have questions about HackSpire 2025? Want to partner with us?
+          Ready to inspire the next generation of hackers?
           <br />
-          We'd love to hear from you. Reach out and let's build something
-          extraordinary together.
+          Join our elite mentor network and shape the future of innovation.
+          <br />
+          <span className="text-yellow-300">FIEM ACM Student Chapter</span> -
+          Empowering minds, building futures.
         </motion.p>
       </div>
 
-      {/* Contact Information Cards */}
-      <div className="max-w-6xl mx-auto mt-36 sm:mt-0 mb-16 relative z-10">
-        <div className="grid md:grid-cols-3 gap-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
-            className="text-center"
-          >
-            {/* Cyberpunk Yellow Container with Clip-Path Cut Edges */}
-            <div className="relative p-6 group cursor-pointer transition-all duration-300 hover:scale-105">
-              {/* Background with clip-path cuts */}
-              <div
-                className="absolute inset-0 bg-yellow-400 transition-all duration-300 group-hover:animate-pulse"
-                style={{
-                  clipPath:
-                    "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
-                }}
-              ></div>
-
-              {/* Border with clip-path cuts */}
-              <div
-                className="absolute -inset-1 bg-yellow-500 transition-all duration-300 group-hover:bg-orange-500"
-                style={{
-                  clipPath:
-                    "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
-                  zIndex: -1,
-                }}
-              ></div>
-
-              {/* Glitch overlays for hover effect */}
-              <div
-                className="absolute inset-0 bg-red-500 opacity-0 group-hover:opacity-30 transition-opacity duration-150 glitch-overlay-1"
-                style={{
-                  clipPath:
-                    "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
-                  mixBlendMode: "screen",
-                  transform: "translateX(-2px)",
-                  zIndex: 1,
-                }}
-              ></div>
-
-              <div
-                className="absolute inset-0 bg-cyan-500 opacity-0 group-hover:opacity-30 transition-opacity duration-150 glitch-overlay-2"
-                style={{
-                  clipPath:
-                    "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
-                  mixBlendMode: "screen",
-                  transform: "translateX(2px)",
-                  zIndex: 2,
-                }}
-              ></div>
-
-              {/* Content */}
-              <div className="relative z-10">
-                <h3
-                  className="text-4xl md:text-5xl font-bold text-black mb-2"
-                  style={{ fontFamily: "'Mokoto Demo', monospace" }}
-                >
-                  Location
-                </h3>
-                <p
-                  className="text-black text-lg font-medium whitespace-nowrap"
-                  style={{ fontFamily: "'Mokoto Demo', monospace" }}
-                >
-                  Sonarpur, Kolkata, West Bengal
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }}
-            className="text-center"
-          >
-            {/* Cyberpunk Yellow Container with Clip-Path Cut Edges */}
-            <div className="relative p-6 group cursor-pointer transition-all duration-300 hover:scale-105">
-              {/* Background with clip-path cuts */}
-              <div
-                className="absolute inset-0 bg-yellow-400 transition-all duration-300 group-hover:animate-pulse"
-                style={{
-                  clipPath:
-                    "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
-                }}
-              ></div>
-
-              {/* Border with clip-path cuts */}
-              <div
-                className="absolute -inset-1 bg-yellow-500 transition-all duration-300 group-hover:bg-orange-500"
-                style={{
-                  clipPath:
-                    "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
-                  zIndex: -1,
-                }}
-              ></div>
-
-              {/* Glitch overlays for hover effect */}
-              <div
-                className="absolute inset-0 bg-red-500 opacity-0 group-hover:opacity-30 transition-opacity duration-150 glitch-overlay-1"
-                style={{
-                  clipPath:
-                    "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
-                  mixBlendMode: "screen",
-                  transform: "translateX(-2px)",
-                  zIndex: 1,
-                }}
-              ></div>
-
-              <div
-                className="absolute inset-0 bg-cyan-500 opacity-0 group-hover:opacity-30 transition-opacity duration-150 glitch-overlay-2"
-                style={{
-                  clipPath:
-                    "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
-                  mixBlendMode: "screen",
-                  transform: "translateX(2px)",
-                  zIndex: 2,
-                }}
-              ></div>
-
-              {/* Content */}
-              <div className="relative z-10">
-                <h3
-                  className="text-4xl md:text-5xl font-bold text-black mb-2"
-                  style={{ fontFamily: "'Mokoto Demo', monospace" }}
-                >
-                  Email
-                </h3>
-                <a
-                  href="mailto:fiemacm@gmail.com"
-                  className="text-black text-lg font-medium hover:text-blue-600 transition-colors cursor-pointer"
-                  style={{ fontFamily: "'Mokoto Demo', monospace" }}
-                >
-                  fiemacm@gmail.com
-                </a>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 1.0, ease: "easeOut" }}
-            className="text-center"
-          >
-            {/* Cyberpunk Yellow Container with Clip-Path Cut Edges */}
-            <div className="relative p-6 group cursor-pointer transition-all duration-300 hover:scale-105">
-              {/* Background with clip-path cuts */}
-              <div
-                className="absolute inset-0 bg-yellow-400 transition-all duration-300 group-hover:animate-pulse"
-                style={{
-                  clipPath:
-                    "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
-                }}
-              ></div>
-
-              {/* Border with clip-path cuts */}
-              <div
-                className="absolute -inset-1 bg-yellow-500 transition-all duration-300 group-hover:bg-orange-500"
-                style={{
-                  clipPath:
-                    "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
-                  zIndex: -1,
-                }}
-              ></div>
-
-              {/* Glitch overlays for hover effect */}
-              <div
-                className="absolute inset-0 bg-red-500 opacity-0 group-hover:opacity-30 transition-opacity duration-150 glitch-overlay-1"
-                style={{
-                  clipPath:
-                    "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
-                  mixBlendMode: "screen",
-                  transform: "translateX(-2px)",
-                  zIndex: 1,
-                }}
-              ></div>
-
-              <div
-                className="absolute inset-0 bg-cyan-500 opacity-0 group-hover:opacity-30 transition-opacity duration-150 glitch-overlay-2"
-                style={{
-                  clipPath:
-                    "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
-                  mixBlendMode: "screen",
-                  transform: "translateX(2px)",
-                  zIndex: 2,
-                }}
-              ></div>
-
-              {/* Content */}
-              <div className="relative z-10">
-                <h3
-                  className="text-4xl md:text-5xl font-bold text-black mb-2"
-                  style={{ fontFamily: "'Mokoto Demo', monospace" }}
-                >
-                  Phone
-                </h3>
-                <p
-                  className="text-black text-lg font-medium"
-                  style={{ fontFamily: "'Mokoto Demo', monospace" }}
-                >
-                  +91 7074757878
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Contact Form Section */}
-
+      {/* Mentors Form Section */}
       <div
-        className={`relative overflow-hidden from-yellow-400/20 max-w-4xl mx-auto mb-20 z-10 to-orange-500/20 backdrop-blur-sm border border-yellow-400/40 group cursor-pointer bg-gradient-to-br flex flex-col justify-end p-4 ${5}`}
+        className={`relative overflow-hidden from-yellow-400/20 max-w-5xl mx-auto mb-20 z-10 to-orange-500/20 backdrop-blur-sm border border-yellow-400/40 group cursor-pointer bg-gradient-to-br flex flex-col justify-end p-8 ${5}`}
         style={{
           animationDelay: `2ms`,
           clipPath:
@@ -530,132 +300,479 @@ function ContactUs() {
         </div>
 
         {/* Content */}
-        <div className=" w-full flex flex-col justify-end h-full">
+        <div className="w-full flex flex-col justify-end h-full">
           <h3
             className={`text-4xl md:text-5xl font-bold text-white mb-2 leading-tight break-words`}
             style={{ fontFamily: "'Mokoto Demo', monospace" }}
           >
-            Get in Touch
+            Join Our Mentor Network
           </h3>
           <p
-            className={`text-yellow-300 text-lg font-medium mb-2 leading-tight`}
+            className={`text-yellow-300 text-lg font-medium mb-6 leading-tight`}
             style={{ fontFamily: "'Mokoto Demo', monospace" }}
           >
-            Ready to be part of the revolution? Send us a message!
+            Share your expertise and guide the next generation of innovators!
           </p>
+
           <form
-            className={`text-gray-300 leading-snug
-                               transition-opacity duration-500 space-y-6`}
+            className={`text-gray-300 leading-snug transition-opacity duration-500 space-y-6`}
             style={{ fontFamily: "'Mokoto Demo', monospace" }}
             onSubmit={handleSubmit}
           >
-            <motion.div
-              whileFocus={{ scale: 1.02 }}
-              transition={{ duration: 0.2 }}
-            >
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-white mb-2"
-                style={{ fontFamily: "Poppins, sans-serif" }}
+            {/* Personal Information Row */}
+            <div className="grid md:grid-cols-2 gap-6">
+              <motion.div
+                whileFocus={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
               >
-                Full Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                required
-                className="w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300"
-                placeholder="Your name"
-                style={{
-                  fontFamily: "Poppins, sans-serif",
-                  clipPath:
-                    "polygon(0 1%, 100% 1%, 100% 30%, 96% 79%, 68% 80%, 14% 81%, 11% 100%, 0 100%)",
-                }}
-              />
-            </motion.div>
-            <motion.div
-              whileFocus={{ scale: 1.02 }}
-              transition={{ duration: 0.2 }}
-            >
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-white mb-2"
-                style={{ fontFamily: "Poppins, sans-serif" }}
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-white mb-2"
+                  style={{ fontFamily: "Poppins, sans-serif" }}
+                >
+                  Full Name *
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300"
+                  placeholder="Your full name"
+                  style={{
+                    fontFamily: "Poppins, sans-serif",
+                    clipPath:
+                      "polygon(0 1%, 100% 1%, 100% 30%, 96% 79%, 68% 80%, 14% 81%, 11% 100%, 0 100%)",
+                  }}
+                />
+              </motion.div>
+
+              <motion.div
+                whileFocus={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
               >
-                Email Address
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                required
-                className="w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300"
-                placeholder="your@email.com"
-                style={{
-                  fontFamily: "Poppins, sans-serif",
-                  clipPath:
-                    "polygon(0 1%, 100% 1%, 100% 30%, 96% 79%, 68% 80%, 14% 81%, 11% 100%, 0 100%)",
-                }}
-              />
-            </motion.div>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-white mb-2"
+                  style={{ fontFamily: "Poppins, sans-serif" }}
+                >
+                  Email Address *
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300"
+                  placeholder="your@email.com"
+                  style={{
+                    fontFamily: "Poppins, sans-serif",
+                    clipPath:
+                      "polygon(0 1%, 100% 1%, 100% 30%, 96% 79%, 68% 80%, 14% 81%, 11% 100%, 0 100%)",
+                  }}
+                />
+              </motion.div>
+            </div>
+
+            {/* Contact Information Row */}
+            <div className="grid md:grid-cols-2 gap-6">
+              <motion.div
+                whileFocus={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <label
+                  htmlFor="phone"
+                  className="block text-sm font-medium text-white mb-2"
+                  style={{ fontFamily: "Poppins, sans-serif" }}
+                >
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300"
+                  placeholder="+91 1234567890"
+                  style={{
+                    fontFamily: "Poppins, sans-serif",
+                    clipPath:
+                      "polygon(0 1%, 100% 1%, 100% 30%, 96% 79%, 68% 80%, 14% 81%, 11% 100%, 0 100%)",
+                  }}
+                />
+              </motion.div>
+
+              <motion.div
+                whileFocus={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <label
+                  htmlFor="company"
+                  className="block text-sm font-medium text-white mb-2"
+                  style={{ fontFamily: "Poppins, sans-serif" }}
+                >
+                  Company/Organization
+                </label>
+                <input
+                  type="text"
+                  id="company"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300"
+                  placeholder="Your company name"
+                  style={{
+                    fontFamily: "Poppins, sans-serif",
+                    clipPath:
+                      "polygon(0 1%, 100% 1%, 100% 30%, 96% 79%, 68% 80%, 14% 81%, 11% 100%, 0 100%)",
+                  }}
+                />
+              </motion.div>
+            </div>
+
+            {/* Website and Expertise Row */}
+            <div className="grid md:grid-cols-2 gap-6">
+              <motion.div
+                whileFocus={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <label
+                  htmlFor="website"
+                  className="block text-sm font-medium text-white mb-2"
+                  style={{ fontFamily: "Poppins, sans-serif" }}
+                >
+                  Website/Portfolio
+                </label>
+                <input
+                  type="url"
+                  id="website"
+                  name="website"
+                  value={formData.website}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300"
+                  placeholder="https://yourwebsite.com"
+                  style={{
+                    fontFamily: "Poppins, sans-serif",
+                    clipPath:
+                      "polygon(0 1%, 100% 1%, 100% 30%, 96% 79%, 68% 80%, 14% 81%, 11% 100%, 0 100%)",
+                  }}
+                />
+              </motion.div>
+
+              <motion.div
+                whileFocus={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <label
+                  htmlFor="expertise"
+                  className="block text-sm font-medium text-white mb-2"
+                  style={{ fontFamily: "Poppins, sans-serif" }}
+                >
+                  Primary Expertise *
+                </label>
+                <div className="w-full relative expertise-dropdown">
+                  {/* Selected Tags Display */}
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    {formData.expertise.map((expertise) => (
+                      <div
+                        key={expertise}
+                        className="flex items-center gap-2 px-3 py-2 bg-yellow-400 text-black rounded-lg font-mokoto text-sm"
+                        style={{
+                          clipPath:
+                            "polygon(0 1%, 100% 1%, 100% 30%, 96% 79%, 68% 80%, 14% 81%, 11% 100%, 0 100%)",
+                        }}
+                      >
+                        <span>{expertise}</span>
+                        <button
+                          type="button"
+                          onClick={() => removeExpertise(expertise)}
+                          className="w-4 h-4 flex items-center justify-center hover:bg-black/20 rounded-full transition-colors"
+                        >
+                          ×
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Dropdown Button */}
+                  <button
+                    type="button"
+                    onClick={() => setIsExpertiseOpen(!isExpertiseOpen)}
+                    className="w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white focus:outline-none focus:border-yellow-400 transition-all duration-300 flex items-center justify-between"
+                    style={{
+                      fontFamily: "Poppins, sans-serif",
+                      clipPath:
+                        "polygon(0 1%, 100% 1%, 100% 30%, 96% 79%, 68% 80%, 14% 81%, 11% 100%, 0 100%)",
+                    }}
+                  >
+                    <span
+                      className={
+                        formData.expertise.length === 0
+                          ? "text-gray-400"
+                          : "text-white"
+                      }
+                    >
+                      {formData.expertise.length === 0
+                        ? "Select your expertise areas"
+                        : `${formData.expertise.length} expertise area${
+                            formData.expertise.length === 1 ? "" : "s"
+                          } selected`}
+                    </span>
+                    <svg
+                      className={`w-5 h-5 transition-transform duration-300 ${
+                        isExpertiseOpen ? "rotate-180" : ""
+                      }`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </button>
+
+                  {/* Dropdown Options */}
+                  {isExpertiseOpen && (
+                    <div className="absolute top-full left-0 right-0 mt-1 bg-black/90 border-2 border-yellow-400/50 rounded-lg z-50 max-h-60 overflow-y-auto">
+                      {[
+                        "Web Development",
+                        "Mobile Development",
+                        "AI & Machine Learning",
+                        "Cybersecurity",
+                        "Blockchain",
+                        "Cloud Computing",
+                        "Data Science",
+                        "Internet of Things",
+                        "Game Development",
+                        "Other",
+                      ].map((expertise) => (
+                        <div
+                          key={expertise}
+                          className={`px-4 py-3 cursor-pointer transition-colors duration-200 ${
+                            formData.expertise.includes(expertise)
+                              ? "bg-yellow-400/20 text-yellow-400"
+                              : "text-white hover:bg-yellow-400/10"
+                          }`}
+                          onClick={() => {
+                            handleExpertiseToggle(expertise);
+                            // Don't close dropdown immediately to allow multiple selections
+                          }}
+                        >
+                          <div className="flex items-center gap-3">
+                            <div
+                              className={`w-4 h-4 border-2 rounded ${
+                                formData.expertise.includes(expertise)
+                                  ? "bg-yellow-400 border-yellow-400"
+                                  : "border-yellow-400/50"
+                              }`}
+                            >
+                              {formData.expertise.includes(expertise) && (
+                                <svg
+                                  className="w-3 h-3 text-black"
+                                  fill="currentColor"
+                                  viewBox="0 0 20 20"
+                                >
+                                  <path
+                                    fillRule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clipRule="evenodd"
+                                  />
+                                </svg>
+                              )}
+                            </div>
+                            <span className="font-mokoto">{expertise}</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Experience and Availability Row */}
+            <div className="grid md:grid-cols-2 gap-6">
+              <motion.div
+                whileFocus={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <label
+                  htmlFor="experience"
+                  className="block text-sm font-medium text-white mb-2"
+                  style={{ fontFamily: "Poppins, sans-serif" }}
+                >
+                  Years of Experience *
+                </label>
+                <select
+                  id="experience"
+                  name="experience"
+                  value={formData.experience}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white focus:outline-none focus:border-yellow-400 transition-all duration-300"
+                  style={{
+                    fontFamily: "Poppins, sans-serif",
+                    clipPath:
+                      "polygon(0 1%, 100% 1%, 100% 30%, 96% 79%, 68% 80%, 14% 81%, 11% 100%, 0 100%)",
+                  }}
+                >
+                  <option value="">Select experience level</option>
+                  <option value="1-3">1-3 years</option>
+                  <option value="4-6">4-6 years</option>
+                  <option value="7-10">7-10 years</option>
+                  <option value="10+">10+ years</option>
+                </select>
+              </motion.div>
+
+              <motion.div
+                whileFocus={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <label
+                  htmlFor="availability"
+                  className="block text-sm font-medium text-white mb-2"
+                  style={{ fontFamily: "Poppins, sans-serif" }}
+                >
+                  Availability *
+                </label>
+                <select
+                  id="availability"
+                  name="availability"
+                  value={formData.availability}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white focus:outline-none focus:border-yellow-400 transition-all duration-300"
+                  style={{
+                    fontFamily: "Poppins, sans-serif",
+                    clipPath:
+                      "polygon(0 1%, 100% 1%, 100% 30%, 96% 79%, 68% 80%, 14% 81%, 11% 100%, 0 100%)",
+                  }}
+                >
+                  <option value="">Select availability</option>
+                  <option value="full-time">Full-time during event</option>
+                  <option value="part-time">Part-time during event</option>
+                  <option value="weekends">Weekends only</option>
+                  <option value="flexible">Flexible schedule</option>
+                </select>
+              </motion.div>
+            </div>
+
+            {/* Bio and Motivation */}
             <motion.div
               whileFocus={{ scale: 1.01 }}
               transition={{ duration: 0.2 }}
             >
               <label
-                htmlFor="subject"
+                htmlFor="bio"
                 className="block text-sm font-medium text-white mb-2"
                 style={{ fontFamily: "Poppins, sans-serif" }}
               >
-                Subject
-              </label>
-              <input
-                type="text"
-                id="subject"
-                name="subject"
-                value={formData.subject}
-                onChange={handleInputChange}
-                required
-                className="w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300"
-                placeholder="What's this about?"
-                style={{
-                  fontFamily: "Poppins, sans-serif",
-                  clipPath:
-                    "polygon(0 1%, 100% 1%, 100% 30%, 96% 79%, 68% 80%, 14% 81%, 11% 100%, 0 100%)",
-                }}
-              />
-            </motion.div>
-            <motion.div
-              whileFocus={{ scale: 1.01 }}
-              transition={{ duration: 0.2 }}
-            >
-              <label
-                htmlFor="message"
-                className="block text-sm font-medium text-white mb-2"
-                style={{ fontFamily: "Poppins, sans-serif" }}
-              >
-                Message
+                Professional Bio *
               </label>
               <textarea
-                id="message"
-                name="message"
-                value={formData.message}
+                id="bio"
+                name="bio"
+                value={formData.bio}
                 onChange={handleInputChange}
                 required
-                rows={6}
+                rows={4}
                 className="w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300 resize-none"
-                placeholder="Tell us more about your inquiry..."
+                placeholder="Tell us about your background, achievements, and expertise..."
                 style={{
                   fontFamily: "Poppins, sans-serif",
                   clipPath:
                     "polygon(0 1%, 100% 1%, 100% 30%, 96% 79%, 68% 80%, 14% 81%, 11% 100%, 0 100%)",
                 }}
               />
+            </motion.div>
+
+            <motion.div
+              whileFocus={{ scale: 1.01 }}
+              transition={{ duration: 0.2 }}
+            >
+              <label
+                htmlFor="motivation"
+                className="block text-sm font-medium text-white mb-2"
+                style={{ fontFamily: "Poppins, sans-serif" }}
+              >
+                Why do you want to mentor? *
+              </label>
+              <textarea
+                id="motivation"
+                name="motivation"
+                value={formData.motivation}
+                onChange={handleInputChange}
+                required
+                rows={4}
+                className="w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300 resize-none"
+                placeholder="Share your motivation for becoming a mentor..."
+                style={{
+                  fontFamily: "Poppins, sans-serif",
+                  clipPath:
+                    "polygon(0 1%, 100% 1%, 100% 30%, 96% 79%, 68% 80%, 14% 81%, 11% 100%, 0 100%)",
+                }}
+              />
+            </motion.div>
+
+            {/* Profile Image Upload Row */}
+            <motion.div
+              whileFocus={{ scale: 1.02 }}
+              transition={{ duration: 0.2 }}
+              className="w-full mb-8"
+            >
+              <label
+                htmlFor="profileImage"
+                className="block text-sm font-medium text-white mb-3"
+                style={{ fontFamily: "Poppins, sans-serif" }}
+              >
+                Profile Image
+              </label>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                <input
+                  type="file"
+                  id="profileImage"
+                  name="profileImage"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  className="hidden"
+                />
+                <CyberButton
+                  onClick={() =>
+                    document.getElementById("profileImage")?.click()
+                  }
+                  className="flex items-center gap-2 px-6 py-3"
+                >
+                  <Upload className="w-5 h-5" />
+                  Choose Image
+                </CyberButton>
+
+                {formData.profileImage && (
+                  <div className="flex items-center gap-3 p-3 bg-black/40 border border-yellow-400/30 rounded-sm">
+                    <ImageIcon className="w-5 h-5 text-yellow-400" />
+                    <div className="flex flex-col">
+                      <span className="text-sm text-yellow-300 font-medium">
+                        {formData.profileImage.name}
+                      </span>
+                      <span className="text-xs text-gray-400">
+                        {(formData.profileImage.size / 1024 / 1024).toFixed(2)}{" "}
+                        MB
+                      </span>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <p className="text-xs text-gray-400 mt-3 font-mokoto">
+                Upload a professional photo (JPG, PNG, GIF - Max 5MB)
+              </p>
             </motion.div>
 
             <motion.div
@@ -677,12 +794,12 @@ function ContactUs() {
                   {isSubmitting ? (
                     <>
                       <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
-                      Sending...
+                      Submitting...
                     </>
                   ) : (
                     <>
                       <Send className="w-5 h-5" />
-                      Send Message
+                      Submit Application
                     </>
                   )}
                 </span>
@@ -699,8 +816,8 @@ function ContactUs() {
                   className="text-green-300 font-medium"
                   style={{ fontFamily: "Poppins, sans-serif" }}
                 >
-                  🎉 Message sent successfully! Check your email for
-                  confirmation. We'll get back to you soon.
+                  🎉 Application submitted successfully! We'll review your
+                  profile and get back to you soon.
                 </p>
               </motion.div>
             )}
@@ -715,8 +832,8 @@ function ContactUs() {
                   className="text-red-300 font-medium"
                   style={{ fontFamily: "Poppins, sans-serif" }}
                 >
-                  ❌ Failed to send message. Please try again or contact us
-                  through Discord.
+                  ❌ Failed to submit application. Please try again or contact
+                  us through Discord.
                 </p>
               </motion.div>
             )}
@@ -849,150 +966,61 @@ function ContactUs() {
                 <div className="absolute bottom-8 right-8 w-2 h-2 bg-yellow-300 opacity-70 rounded-full"></div>
               </div>
             </div>
-
-            {/* Additional Light Rays from bottom */}
-            <div className="absolute bottom-0 left-1/4 w-px h-20 bg-gradient-to-t from-yellow-400/80 to-transparent transform rotate-12 opacity-60 group-hover:opacity-80 group-hover:h-24 transition-all duration-500 ease-in-out"></div>
-            <div className="absolute bottom-0 left-1/3 w-px h-16 bg-gradient-to-t from-yellow-300/70 to-transparent transform -rotate-6 opacity-50 group-hover:opacity-70 group-hover:h-20 transition-all duration-500 ease-in-out"></div>
-            <div className="absolute bottom-0 left-1/2 w-px h-24 bg-gradient-to-t from-yellow-500/90 to-transparent opacity-70 group-hover:opacity-90 group-hover:h-28 transition-all duration-500 ease-in-out"></div>
-            <div className="absolute bottom-0 right-1/3 w-px h-16 bg-gradient-to-t from-yellow-300/70 to-transparent transform rotate-6 opacity-50 group-hover:opacity-70 group-hover:h-20 transition-all duration-500 ease-in-out"></div>
-            <div className="absolute bottom-0 right-1/4 w-px h-20 bg-gradient-to-t from-yellow-400/80 to-transparent transform -rotate-12 opacity-60 group-hover:opacity-80 group-hover:h-24 transition-all duration-500 ease-in-out"></div>
           </div>
         </div>
       </motion.div>
 
-      {/* CSS for matrix animation and cyberpunk styling */}
+      {/* Simple Logos Section - Just the images */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1.0 }}
+        className="text-center relative z-10 mb-20 mt-16"
+      >
+        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+          <img
+            src="https://res.cloudinary.com/dislegzga/image/upload/v1755067912/new_fiem_logo_iq0bn8.jpg"
+            alt="FIEM Logo"
+            className="w-40 h-40 md:w-48 md:h-48 object-contain"
+          />
+          <img
+            src="https://res.cloudinary.com/dislegzga/image/upload/v1755068141/fiemacm_mx8uox.jpg"
+            alt="ACM Student Chapter Logo"
+            className="w-32 h-32 md:w-40 md:h-40 object-contain"
+          />
+        </div>
+      </motion.div>
+
+      {/* Visit Our Podium Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1.2 }}
+        className="text-center relative z-10"
+      >
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-sddystopiandemo">
+            Ready to Take the Stage?
+          </h2>
+          <p className="text-lg md:text-xl text-gray-300 mb-6 font-mokoto">
+            Join our community of mentors and inspire the next generation
+          </p>
+          <div className="inline-block">
+            <a
+              href="https://hackspire.tech"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-yellow-400 hover:text-yellow-300 transition-colors duration-300 font-mokoto text-lg"
+            >
+              <span>Visit our podium</span>
+              <Globe className="w-5 h-5" />
+            </a>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* CSS for cyberpunk styling */}
       <style jsx>{`
-        .matrix-column-animated {
-          animation: matrix-fall linear infinite;
-        }
-
-        @keyframes matrix-fall {
-          0% {
-            transform: translateY(-100vh);
-            opacity: 0;
-          }
-          10% {
-            opacity: 1;
-          }
-          90% {
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(100vh);
-            opacity: 0;
-          }
-        }
-
-        .cyber-card {
-          position: relative;
-          overflow: hidden;
-          transition: all 0.3s ease;
-        }
-
-        .cyber-card:hover {
-          transform: translateY(-5px);
-        }
-
-        .cyber-card-background {
-          clip-path: polygon(
-            15px 0%,
-            100% 0%,
-            100% calc(100% - 15px),
-            calc(100% - 15px) 100%,
-            0% 100%,
-            0% 15px
-          );
-        }
-
-        .cyber-card-border {
-          clip-path: polygon(
-            15px 0%,
-            100% 0%,
-            100% calc(100% - 15px),
-            calc(100% - 15px) 100%,
-            0% 100%,
-            0% 15px
-          );
-          z-index: -1;
-        }
-
-        .cyber-form-container {
-          position: relative;
-          overflow: hidden;
-        }
-
-        .cyber-form-background {
-          clip-path: polygon(
-            20px 0%,
-            100% 0%,
-            100% calc(100% - 20px),
-            calc(100% - 20px) 100%,
-            0% 100%,
-            0% 20px
-          );
-        }
-
-        .cyber-form-border {
-          clip-path: polygon(
-            20px 0%,
-            100% 0%,
-            100% calc(100% - 20px),
-            calc(100% - 20px) 100%,
-            0% 100%,
-            0% 20px
-          );
-          z-index: -1;
-        }
-
-        .cyber-input {
-          clip-path: polygon(
-            10px 0%,
-            100% 0%,
-            100% calc(100% - 10px),
-            calc(100% - 10px) 100%,
-            0% 100%,
-            0% 10px
-          );
-        }
-
-        .cyber-button {
-          position: relative;
-          overflow: hidden;
-        }
-
-        .cyber-button-background {
-          clip-path: polygon(
-            15px 0%,
-            100% 0%,
-            100% calc(100% - 15px),
-            calc(100% - 15px) 100%,
-            0% 100%,
-            0% 15px
-          );
-        }
-
-        .cyber-button-border {
-          clip-path: polygon(
-            15px 0%,
-            100% 0%,
-            100% calc(100% - 15px),
-            calc(100% - 15px) 100%,
-            0% 100%,
-            0% 15px
-          );
-          z-index: -1;
-        }
-
-        .cyber-button-small {
-          position: relative;
-          overflow: hidden;
-        }
-
-        .cyber-button-large {
-          position: relative;
-          overflow: hidden;
-        }
-
         .cyber-success-message {
           clip-path: polygon(
             10px 0%,
@@ -1019,4 +1047,4 @@ function ContactUs() {
   );
 }
 
-export default ContactUs;
+export default MentorsForm;

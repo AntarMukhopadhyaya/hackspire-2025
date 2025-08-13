@@ -7,6 +7,7 @@ interface CyberButtonProps {
   onClick?: () => void;
   className?: string;
   href?: string;
+  isSending?: boolean;
 }
 
 export default function CyberButton({
@@ -14,13 +15,17 @@ export default function CyberButton({
   onClick,
   className = "",
   href,
+  isSending = false,
 }: CyberButtonProps) {
   const [isHovered, setIsHovered] = useState(false);
+
+  // Apply glitch effect when sending OR hovering
+  const shouldGlitch = isSending || isHovered;
 
   const buttonContent = (
     <motion.div
       className={`cyber-button-container relative inline-block ${
-        isHovered ? "glitch-active" : ""
+        shouldGlitch ? "glitch-active" : ""
       } ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -42,13 +47,13 @@ export default function CyberButton({
 
         {/* Text */}
         <span
-          className={`cyber-button-text ${isHovered ? "glitch-active" : ""}`}
+          className={`cyber-button-text ${shouldGlitch ? "glitch-active" : ""}`}
         >
           {children}
         </span>
 
         {/* Glitch overlay effect */}
-        {isHovered && (
+        {shouldGlitch && (
           <>
             <motion.div
               className="cyber-button-glitch-1"
@@ -83,7 +88,7 @@ export default function CyberButton({
         )}
 
         {/* Scan line effect */}
-        {isHovered && (
+        {shouldGlitch && (
           <motion.div
             className="cyber-button-scan"
             initial={{ x: "-100%" }}
