@@ -353,10 +353,10 @@ function ContactUs() {
                   Location
                 </h3>
                 <p
-                  className="text-black text-lg font-medium"
+                  className="text-black text-lg font-medium whitespace-nowrap"
                   style={{ fontFamily: "'Mokoto Demo', monospace" }}
                 >
-                  Kolkata, West Bengal
+                  Sonarpur, Kolkata, West Bengal
                 </p>
               </div>
             </div>
@@ -421,12 +421,13 @@ function ContactUs() {
                 >
                   Email
                 </h3>
-                <p
-                  className="text-black text-lg font-medium"
+                <a
+                  href="mailto:fiemacm@gmail.com"
+                  className="text-black text-lg font-medium hover:text-blue-600 transition-colors cursor-pointer"
                   style={{ fontFamily: "'Mokoto Demo', monospace" }}
                 >
-                  xyz@gmail.com
-                </p>
+                  fiemacm@gmail.com
+                </a>
               </div>
             </div>
           </motion.div>
@@ -494,7 +495,7 @@ function ContactUs() {
                   className="text-black text-lg font-medium"
                   style={{ fontFamily: "'Mokoto Demo', monospace" }}
                 >
-                  +91 1234567890
+                  +91 7074757878
                 </p>
               </div>
             </div>

@@ -1,10 +1,139 @@
 "use client";
 import { motion } from "framer-motion";
+import ProfileCard from "../blocks/Components/ProfileCard/ProfileCard";
 
-function SpireCompleters() {
+function CategoryBadge({ label }: { label: string }) {
+  return (
+    <div className="flex items-center justify-center mb-8 md:mb-12">
+      <div className="relative inline-block">
+        <div
+          className="absolute -inset-2 bg-gradient-to-r from-yellow-500 to-orange-500 opacity-80"
+          style={{
+            clipPath:
+              "polygon(18px 0%, 100% 0%, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0% 100%, 0% 18px)",
+          }}
+        />
+        <div
+          className="relative px-8 py-4 bg-black text-yellow-300 border border-yellow-500 text-xl md:text-2xl font-bold"
+          style={{
+            fontFamily: "'Mokoto Demo', monospace",
+            clipPath:
+              "polygon(16px 0%, 100% 0%, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0% 100%, 0% 16px)",
+          }}
+        >
+          {label.toUpperCase()}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MentorsSection() {
+  const judges = [
+    {
+      name: "Sarah Chen",
+      title: "Senior Full Stack Developer",
+      handle: "sarahcodes",
+      status: "Online",
+      avatarUrl:
+        "https://res.cloudinary.com/dislegzga/image/upload/b_rgb:333B4C/v1754574925/Indrajit_Ari-removebg-preview_kdozsw.png",
+    },
+    {
+      name: "Marcus Rodriguez",
+      title: "DevOps Engineer",
+      handle: "marcusdev",
+      status: "Online",
+      avatarUrl:
+        "https://res.cloudinary.com/dislegzga/image/upload/b_rgb:333B4C/v1754574925/Indrajit_Ari-removebg-preview_kdozsw.png",
+    },
+    {
+      name: "Priya Sharma",
+      title: "AI/ML Specialist",
+      handle: "priyaai",
+      status: "Away",
+      avatarUrl:
+        "https://res.cloudinary.com/dislegzga/image/upload/b_rgb:333B4C/v1754574925/Indrajit_Ari-removebg-preview_kdozsw.png",
+    },
+    {
+      name: "Alex Thompson",
+      title: "Cybersecurity Expert",
+      handle: "alexsec",
+      status: "Online",
+      avatarUrl:
+        "https://res.cloudinary.com/dislegzga/image/upload/v1755066065/Indrajit_Ari-removebg-preview_vwed7h.png",
+    },
+    {
+      name: "Zara Ahmed",
+      title: "Mobile App Developer",
+      handle: "zaramobile",
+      status: "Online",
+      avatarUrl:
+        "https://res.cloudinary.com/dislegzga/image/upload/b_rgb:333B4C/v1754574925/Indrajit_Ari-removebg-preview_kdozsw.png",
+    },
+    {
+      name: "David Kim",
+      title: "Blockchain Developer",
+      handle: "davidchain",
+      status: "Busy",
+      avatarUrl:
+        "https://res.cloudinary.com/dislegzga/image/upload/b_rgb:333B4C/v1754574925/Indrajit_Ari-removebg-preview_kdozsw.png",
+    },
+  ];
+
+  const mentors = [
+    {
+      name: "Emma Wilson",
+      title: "Frontend Architect",
+      handle: "emmaweb",
+      status: "Online",
+      avatarUrl:
+        "https://res.cloudinary.com/dislegzga/image/upload/b_rgb:333B4C/v1754574925/Indrajit_Ari-removebg-preview_kdozsw.png",
+    },
+    {
+      name: "James Rodriguez",
+      title: "Backend Engineer",
+      handle: "jamesback",
+      status: "Online",
+      avatarUrl:
+        "https://res.cloudinary.com/dislegzga/image/upload/b_rgb:333B4C/v1754574925/Indrajit_Ari-removebg-preview_kdozsw.png",
+    },
+    {
+      name: "Lisa Park",
+      title: "Data Scientist",
+      handle: "lisadata",
+      status: "Away",
+      avatarUrl:
+        "https://res.cloudinary.com/dislegzga/image/upload/b_rgb:333B4C/v1754574925/Indrajit_Ari-removebg-preview_kdozsw.png",
+    },
+    {
+      name: "Michael Chen",
+      title: "Cloud Architect",
+      handle: "mikecloud",
+      status: "Online",
+      avatarUrl:
+        "https://res.cloudinary.com/dislegzga/image/upload/b_rgb:333B4C/v1754574925/Indrajit_Ari-removebg-preview_kdozsw.png",
+    },
+    {
+      name: "Sofia Martinez",
+      title: "UX Designer",
+      handle: "sofiaux",
+      status: "Online",
+      avatarUrl:
+        "https://res.cloudinary.com/dislegzga/image/upload/b_rgb:333B4C/v1754574925/Indrajit_Ari-removebg-preview_kdozsw.png",
+    },
+    {
+      name: "Ryan Taylor",
+      title: "Security Engineer",
+      handle: "ryansec",
+      status: "Busy",
+      avatarUrl:
+        "https://res.cloudinary.com/dislegzga/image/upload/b_rgb:333B4C/v1754574925/Indrajit_Ari-removebg-preview_kdozsw.png",
+    },
+  ];
+
   return (
     <section
-      id="spire-completers"
+      id="experts"
       className="relative py-12 md:py-16 text-white overflow-hidden"
     >
       {/* Yellow Trapezium Background with Clip-Path */}
@@ -14,7 +143,9 @@ function SpireCompleters() {
           className="w-full h-full bg-yellow-400 relative"
           style={{
             clipPath:
-              "polygon(3% 0, 97% 0, 100% 11%, 80% 91%, 72% 100%, 24% 100%, 16% 90%, 0 12%)",
+              "polygon(5% 0, 95% 0, 100% 15%, 85% 90%, 75% 100%, 25% 100%, 15% 90%, 0 15%)",
+            WebkitClipPath:
+              "polygon(5% 0, 95% 0, 100% 15%, 85% 90%, 75% 100%, 25% 100%, 15% 90%, 0 15%)",
           }}
         >
           {/* PCB-like lines */}
@@ -149,7 +280,7 @@ function SpireCompleters() {
               className="overflow-hidden whitespace-nowrap"
             >
               <span className="text-green-300/90">
-                $ sudo ./spire_protocol_v2.sh --initialize --mode=elite
+                $ sudo ./mentor_network.sh --initialize --mode=guidance
               </span>
             </motion.div>
 
@@ -168,7 +299,7 @@ function SpireCompleters() {
               className="overflow-hidden whitespace-nowrap"
             >
               <span className="text-cyan-300/90">
-                $ python3 elite_scanner.py --scan-candidates
+                $ python3 expert_finder.py --scan-mentors
               </span>
             </motion.div>
 
@@ -187,7 +318,7 @@ function SpireCompleters() {
               className="overflow-hidden whitespace-nowrap"
             >
               <span className="text-blue-300/90">
-                $ ./verify_legend_status.exe --check-achievements
+                $ ./verify_expertise.exe --check-credentials
               </span>
             </motion.div>
 
@@ -206,7 +337,7 @@ function SpireCompleters() {
               className="overflow-hidden whitespace-nowrap"
             >
               <span className="text-purple-300/90">
-                $ access_granted: spire_completers_database
+                $ access_granted: mentor_database
               </span>
             </motion.div>
 
@@ -225,7 +356,7 @@ function SpireCompleters() {
               className="overflow-hidden whitespace-nowrap"
             >
               <span className="text-yellow-300/90">
-                $ node hall_of_fame_executor.js
+                $ node guidance_system.js --activate
               </span>
             </motion.div>
 
@@ -254,7 +385,7 @@ function SpireCompleters() {
                 }}
                 className="inline-block text-green-300/70 bg-green-400/10 px-1 text-xs sm:text-sm"
               >
-                [████████████████████████████] 100% COMPLETE
+                [████████████████████████████] 100% READY
               </motion.span>
             </motion.div>
           </motion.div>
@@ -292,7 +423,7 @@ function SpireCompleters() {
             transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
             className="text-5xl sm:text-7xl md:text-[5rem] lg:text-[6rem] xl:text-8xl 2xl:text-[8rem] font-bold text-black font-sddystopiandemo"
           >
-            SPIRE COMPLETERS
+            EXPERTS
           </motion.h2>
 
           <motion.p
@@ -300,252 +431,152 @@ function SpireCompleters() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-            className="text-black max-w-2xl mx-auto mb-4 px-12 sm:px-0 md:mb-8 font-medium text-sm md:text-lg lg:text-xl"
+            className="text-black mx-auto mb-4 md:mb-8 font-medium text-sm md:text-lg lg:text-xl whitespace-nowrap"
             style={{ fontFamily: "Mokoto Demo" }}
           >
-            Recognizing those who conquered the ultimate challenge.
+            Connect with industry experts ready to guide your journey.
           </motion.p>
+        </motion.div>
 
+        {/* Profile Cards Sections */}
+        <div className="mt-32 md:mt-40 space-y-16 md:space-y-20">
+          {/* Judges Section */}
           <motion.div
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-30px" }}
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-            className="flex justify-center items-center gap-4 md:gap-8 lg:gap-12 flex-wrap md:flex-nowrap mt-44 sm:mt-20 md:mt-48 lg:mt-40"
           >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
-              className="w-24 md:w-32 lg:w-40"
-            >
-              <img
-                src="https://res.cloudinary.com/dislegzga/image/upload/v1755067912/new_fiem_logo_iq0bn8.jpg"
-                alt="Future"
-                className="w-full h-auto scale-150 -translate-x-8"
-              />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.5, ease: "easeOut" }}
-              className="w-20 md:w-24 lg:w-32"
-            >
-              <img
-                src="/icons/starcyber.png"
-                alt="Logo Icon"
-                className="w-full h-auto"
-              />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.6, ease: "easeOut" }}
-              className="w-24 md:w-32 lg:w-40"
-            >
-              <img
-                src="https://res.cloudinary.com/dislegzga/image/upload/v1755068141/fiemacm_mx8uox.jpg"
-                alt="ACM"
-                className="w-full h-auto"
-              />
-            </motion.div>
+            <CategoryBadge label="JUDGES" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {judges.map((judge, index) => (
+                <motion.div
+                  key={judge.handle}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 0.4 + index * 0.1,
+                    ease: "easeOut",
+                  }}
+                  className="flex justify-center"
+                >
+                  <ProfileCard
+                    name={judge.name}
+                    title={judge.title}
+                    handle={judge.handle}
+                    status={judge.status}
+                    contactText="Contact Me"
+                    avatarUrl={judge.avatarUrl}
+                    showUserInfo={true}
+                    enableTilt={true}
+                    enableMobileTilt={false}
+                    onContactClick={() =>
+                      console.log(`Contact ${judge.name} clicked`)
+                    }
+                  />
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
-        </motion.div>
 
-        {/* Additional Content - Adjusted grid for mobile */}
-        <motion.div
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-30px" }}
-          transition={{ duration: 0.6, delay: 0.7, ease: "easeOut" }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-8 md:mt-12"
-        >
+          {/* Glowing Yellow Underline */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, scaleX: 0 }}
+            whileInView={{ opacity: 1, scaleX: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
-            className="text-center md:text-left"
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="flex justify-center my-12 md:my-16"
           >
-            {/* Cyberpunk Yellow Container with Clip-Path Cut Edges */}
-            <div className="relative p-4 md:p-6 group cursor-pointer transition-all duration-300 hover:scale-105">
-              {/* Background with clip-path cuts */}
-              <div
-                className="absolute inset-0 bg-yellow-400 transition-all duration-300 group-hover:animate-pulse"
-                style={{
-                  clipPath:
-                    "polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
-                }}
-              ></div>
+            <div className="w-full max-w-4xl mx-8 md:mx-16 relative">
+              {/* Main line with enhanced glow and shadow */}
+              <div className="h-0.5 bg-yellow-400 relative shadow-2xl shadow-yellow-400/80">
+                {/* Tapered glow layers - stronger at center, fading to edges */}
+                <div
+                  className="absolute inset-0 h-0.5 blur-sm shadow-lg shadow-yellow-400/60"
+                  style={{
+                    background:
+                      "linear-gradient(to right, transparent 0%, rgba(250, 204, 21, 0.8) 20%, rgba(250, 204, 21, 1) 50%, rgba(250, 204, 21, 0.8) 80%, transparent 100%)",
+                  }}
+                ></div>
+                <div
+                  className="absolute inset-0 h-1 blur-md shadow-xl shadow-yellow-300/50"
+                  style={{
+                    background:
+                      "linear-gradient(to right, transparent 0%, rgba(253, 224, 71, 0.6) 25%, rgba(253, 224, 71, 0.9) 50%, rgba(253, 224, 71, 0.6) 75%, transparent 100%)",
+                  }}
+                ></div>
+                <div
+                  className="absolute inset-0 h-2 blur-lg shadow-2xl shadow-yellow-200/40"
+                  style={{
+                    background:
+                      "linear-gradient(to right, transparent 0%, rgba(254, 240, 138, 0.3) 30%, rgba(254, 240, 138, 0.6) 50%, rgba(254, 240, 138, 0.3) 70%, transparent 100%)",
+                  }}
+                ></div>
+                <div
+                  className="absolute inset-0 h-3 blur-xl shadow-2xl shadow-yellow-100/30"
+                  style={{
+                    background:
+                      "linear-gradient(to right, transparent 0%, rgba(254, 249, 195, 0.1) 35%, rgba(254, 249, 195, 0.3) 50%, rgba(254, 249, 195, 0.1) 65%, transparent 100%)",
+                  }}
+                ></div>
 
-              {/* Border with clip-path cuts */}
-              <div
-                className="absolute -inset-0.5 md:-inset-1 bg-yellow-500 transition-all duration-300 group-hover:bg-orange-500"
-                style={{
-                  clipPath:
-                    "polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
-                  zIndex: -1,
-                }}
-              ></div>
-
-              {/* Glitch overlays for hover effect */}
-              <div
-                className="absolute inset-0 bg-red-500 opacity-0 group-hover:opacity-30 transition-opacity duration-150 glitch-overlay-1"
-                style={{
-                  clipPath:
-                    "polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
-                  mixBlendMode: "screen",
-                  transform: "translateX(-2px)",
-                  zIndex: 1,
-                }}
-              ></div>
-
-              <div
-                className="absolute inset-0 bg-cyan-500 opacity-0 group-hover:opacity-30 transition-opacity duration-150 glitch-overlay-2"
-                style={{
-                  clipPath:
-                    "polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
-                  mixBlendMode: "screen",
-                  transform: "translateX(2px)",
-                  zIndex: 2,
-                }}
-              ></div>
-
-              {/* Content */}
-              <div className="relative z-10">
-                <h3
-                  className="text-xl md:text-2xl lg:text-3xl font-bold text-black mb-2 md:mb-4 transition-all duration-300 group-hover:glitch-text"
-                  style={{ fontFamily: "'Mokoto Demo', monospace" }}
-                >
-                  The Ultimate Challenge
-                </h3>
-                <p
-                  className="text-black text-sm md:text-base lg:text-lg leading-relaxed transition-all duration-300 group-hover:text-shadow-glow"
-                  style={{ fontFamily: "'Mokoto Demo', monospace" }}
-                >
-                  Only the most dedicated hackers who complete every challenge,
-                  solve every puzzle, and push their limits beyond imagination
-                  earn the prestigious title of Spire Completer.
-                </p>
+                {/* Core bright line with center emphasis */}
+                <div
+                  className="absolute inset-0 h-px shadow-md shadow-yellow-200/80"
+                  style={{
+                    background:
+                      "linear-gradient(to right, transparent 0%, rgba(254, 240, 138, 0.7) 25%, rgba(254, 240, 138, 1) 50%, rgba(254, 240, 138, 0.7) 75%, transparent 100%)",
+                  }}
+                ></div>
               </div>
             </div>
           </motion.div>
 
+          {/* Mentors Section */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }}
-            className="text-center md:text-right"
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-30px" }}
+            transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
           >
-            {/* Cyberpunk Yellow Container with Clip-Path Cut Edges */}
-            <div className="relative p-4 md:p-6 group cursor-pointer transition-all duration-300 hover:scale-105">
-              {/* Background with clip-path cuts */}
-              <div
-                className="absolute inset-0 bg-yellow-400 transition-all duration-300 group-hover:animate-pulse"
-                style={{
-                  clipPath:
-                    "polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
-                }}
-              ></div>
-
-              {/* Border with clip-path cuts */}
-              <div
-                className="absolute -inset-0.5 md:-inset-1 bg-yellow-500 transition-all duration-300 group-hover:bg-orange-500"
-                style={{
-                  clipPath:
-                    "polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
-                  zIndex: -1,
-                }}
-              ></div>
-
-              {/* Glitch overlays for hover effect */}
-              <div
-                className="absolute inset-0 bg-red-500 opacity-0 group-hover:opacity-30 transition-opacity duration-150 glitch-overlay-1"
-                style={{
-                  clipPath:
-                    "polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
-                  mixBlendMode: "screen",
-                  transform: "translateX(-2px)",
-                  zIndex: 1,
-                }}
-              ></div>
-
-              <div
-                className="absolute inset-0 bg-cyan-500 opacity-0 group-hover:opacity-30 transition-opacity duration-150 glitch-overlay-2"
-                style={{
-                  clipPath:
-                    "polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
-                  mixBlendMode: "screen",
-                  transform: "translateX(2px)",
-                  zIndex: 2,
-                }}
-              ></div>
-
-              {/* Content */}
-              <div className="relative z-10">
-                <h3
-                  className="text-xl md:text-2xl lg:text-3xl font-bold text-black mb-2 md:mb-4 transition-all duration-300 group-hover:glitch-text"
-                  style={{ fontFamily: "'Mokoto Demo', monospace" }}
+            <CategoryBadge label="MENTORS" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {mentors.map((mentor, index) => (
+                <motion.div
+                  key={mentor.handle}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 0.6 + index * 0.1,
+                    ease: "easeOut",
+                  }}
+                  className="flex justify-center"
                 >
-                  Legacy of Excellence
-                </h3>
-                <p
-                  className="text-black text-sm md:text-base lg:text-lg leading-relaxed transition-all duration-300 group-hover:text-shadow-glow"
-                  style={{ fontFamily: "'Mokoto Demo', monospace" }}
-                >
-                  Each Spire Completer joins an elite community of innovators,
-                  problem-solvers, and boundary-pushers.
-                </p>
-              </div>
+                  <ProfileCard
+                    name={mentor.name}
+                    title={mentor.title}
+                    handle={mentor.handle}
+                    status={mentor.status}
+                    contactText="Contact Me"
+                    avatarUrl={mentor.avatarUrl}
+                    iconUrl="/icons/codeicon.png"
+                    grainUrl="/images/grain.png"
+                    showUserInfo={true}
+                    enableTilt={true}
+                    enableMobileTilt={false}
+                    onContactClick={() =>
+                      console.log(`Contact ${mentor.name} clicked`)
+                    }
+                  />
+                </motion.div>
+              ))}
             </div>
           </motion.div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 1.0, ease: "easeOut" }}
-          className="text-center mt-8 md:mt-12"
-        >
-          {/* Cyberpunk Container with Cut Edges */}
-          <div className="inline-flex items-center gap-2 md:gap-4 relative">
-            {/* Main container with cut edges */}
-            <div className="relative bg-gradient-to-r from-purple-600/20 to-blue-600/20 border border-purple-500/30 px-4 py-2 md:px-8 md:py-4">
-              {/* Cut edge effect - top left */}
-              <div className="absolute top-0 left-0 w-3 h-3 md:w-4 md:h-4 bg-black transform -translate-x-0.5 -translate-y-0.5 md:-translate-x-1 md:-translate-y-1">
-                <div className="w-full h-full bg-gradient-to-br from-purple-600/20 to-blue-600/20 border-l border-t border-purple-500/30"></div>
-              </div>
-
-              {/* Cut edge effect - top right */}
-              <div className="absolute top-0 right-0 w-3 h-3 md:w-4 md:h-4 bg-black transform translate-x-0.5 -translate-y-0.5 md:translate-x-1 md:-translate-y-1">
-                <div className="w-full h-full bg-gradient-to-br from-purple-600/20 to-blue-600/20 border-r border-t border-purple-500/30"></div>
-              </div>
-
-              {/* Cut edge effect - bottom left */}
-              <div className="absolute bottom-0 left-0 w-3 h-3 md:w-4 md:h-4 bg-black transform -translate-x-0.5 translate-y-0.5 md:-translate-x-1 md:translate-y-1">
-                <div className="w-full h-full bg-gradient-to-br from-purple-600/20 to-blue-600/20 border-l border-b border-purple-500/30"></div>
-              </div>
-
-              {/* Cut edge effect - bottom right */}
-              <div className="absolute bottom-0 right-0 w-3 h-3 md:w-4 md:h-4 bg-black transform translate-x-0.5 translate-y-0.5 md:translate-x-1 md:translate-y-1">
-                <div className="w-full h-full bg-gradient-to-br from-purple-600/20 to-blue-600/20 border-r border-b border-purple-500/30"></div>
-              </div>
-
-              {/* Content */}
-              <span
-                className="text-purple-300 text-sm md:text-lg font-medium relative z-10"
-                style={{ fontFamily: "'Mokoto Demo', monospace" }}
-              >
-                🏆 Only 0.1% of participants achieve this status
-              </span>
-            </div>
-          </div>
-        </motion.div>
+        </div>
       </div>
 
       {/* Large Decorative Trapezium - Adjusted for mobile */}
@@ -606,10 +637,10 @@ function SpireCompleters() {
             {/* Mission Text - Adjusted for mobile */}
             <div className="absolute inset-0 flex items-center justify-center z-20 px-2">
               <span
-                className="text-black text-xs sm:text-sm md:text-4xl lg:text-xl xl:text-2xl font-bold tracking-wider glitch-text md:glitch-text-large text-center whitespace-normal sm:whitespace-nowrap px-1  "
+                className="text-black text-xs sm:text-sm md:text-4xl lg:text-xl xl:text-2xl font-bold tracking-wider glitch-text md:glitch-text-large text-center whitespace-normal sm:whitespace-nowrap px-1"
                 style={{ fontFamily: "'Mokoto Demo', monospace" }}
               >
-                MISSION KOLKATA ACCOMPLISHED
+                GUIDANCE NETWORK ACTIVATED
               </span>
             </div>
           </div>
@@ -619,4 +650,4 @@ function SpireCompleters() {
   );
 }
 
-export default SpireCompleters;
+export default MentorsSection;

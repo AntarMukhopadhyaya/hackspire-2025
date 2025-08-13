@@ -3,6 +3,194 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Page Transition Animations - Optimized for smooth performance */
+@keyframes pageEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.99);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+@keyframes pageExit {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.99);
+    filter: blur(6px);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(60px);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0px);
+  }
+}
+
+@keyframes slideOutLeft {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-60px);
+    filter: blur(6px);
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) rotateY(-10deg);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+    filter: blur(0px);
+  }
+}
+
+@keyframes scaleOut {
+  0% {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.95) rotateY(10deg);
+    filter: blur(6px);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    filter: blur(12px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 0;
+    filter: blur(12px);
+  }
+}
+
+@keyframes heroEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+@keyframes heroExit {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-40px) scale(0.98);
+    filter: blur(8px);
+  }
+}
+
+/* Loading spinner animations - Optimized */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Page transition classes - Optimized timing */
+.page-transition-enter {
+  animation: pageEnter 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.page-transition-exit {
+  animation: pageExit 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.slide-transition-enter {
+  animation: slideInRight 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.slide-transition-exit {
+  animation: slideOutLeft 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.scale-transition-enter {
+  animation: scaleIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.scale-transition-exit {
+  animation: scaleOut 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.fade-transition-enter {
+  animation: fadeIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.fade-transition-exit {
+  animation: fadeOut 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.hero-transition-enter {
+  animation: heroEnter 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.hero-transition-exit {
+  animation: heroExit 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
 /* Prevent FOUT (Flash of Unstyled Text) */
 .font-loading {
   visibility: hidden;

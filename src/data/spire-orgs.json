@@ -1,0 +1,50 @@
+[
+  {
+    "id": 101,
+    "name": "Alex Johnson",
+    "position": "Organization Lead",
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+    "instagram": "https://www.instagram.com/alex_johnson_dev/",
+    "github": "https://github.com/alexjohnson",
+    "linkedin": "https://www.linkedin.com/in/alex-johnson-dev/",
+    "twitter": "https://x.com/AlexJohnsonDev",
+    "crew": "spireorgs",
+    "crewfilter": "SPIREORGS"
+  },
+  {
+    "id": 102,
+    "name": "Sarah Chen",
+    "position": "Event Coordinator",
+    "image": "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face",
+    "instagram": "https://www.instagram.com/sarah_chen_events/",
+    "github": "https://github.com/sarahchen",
+    "linkedin": "https://www.linkedin.com/in/sarah-chen-events/",
+    "twitter": "https://x.com/SarahChenEvents",
+    "crew": "spireorgs",
+    "crewfilter": "SPIREORGS"
+  },
+  {
+    "id": 103,
+    "name": "Michael Rodriguez",
+    "position": "Logistics Manager",
+    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
+    "instagram": "https://www.instagram.com/mike_logistics/",
+    "github": "https://github.com/mikerodriguez",
+    "linkedin": "https://www.linkedin.com/in/michael-rodriguez-logistics/",
+    "twitter": "https://x.com/MikeLogistics",
+    "crew": "spireorgs",
+    "crewfilter": "SPIREORGS"
+  },
+  {
+    "id": 104,
+    "name": "Emily Davis",
+    "position": "Sponsorship Director",
+    "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face",
+    "instagram": "https://www.instagram.com/emily_sponsorships/",
+    "github": "https://github.com/emilydavis",
+    "linkedin": "https://www.linkedin.com/in/emily-davis-sponsorships/",
+    "twitter": "https://x.com/EmilySponsors",
+    "crew": "spireorgs",
+    "crewfilter": "SPIREORGS"
+  }
+]

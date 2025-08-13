@@ -5,11 +5,44 @@ import Image from "next/image";
 // import { useAudio } from "./AudioContext"; // Commented out for now
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter, usePathname } from "next/navigation";
 
 export function CyberpunkNavbar() {
   // const { isPlaying, toggleAudio, isInitialized } = useAudio(); // Commented out for now
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const pathname = usePathname();
+
+  // Smooth scroll to section or navigate to home page first
+  const handleSectionClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      const targetId = href.substring(1);
+
+      // Check if we're currently on the home page
+      if (pathname === "/") {
+        // We're on home page, scroll to section
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+        // Close mobile menu if open
+        setIsMobileMenuOpen(false);
+      } else {
+        // We're on another page, navigate to home page with section hash
+        router.push(`/${href}`);
+        // Close mobile menu if open
+        setIsMobileMenuOpen(false);
+      }
+    }
+  };
 
   // Close mobile menu when clicking outside
   useEffect(() => {
@@ -44,6 +77,46 @@ export function CyberpunkNavbar() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Handle scrolling to section when navigating from another page
+  useEffect(() => {
+    // Check if we have a hash in the URL and we're on the home page
+    if (pathname === "/" && window.location.hash) {
+      const targetId = window.location.hash.substring(1);
+
+      // Wait a bit for the page to fully load, then scroll to section
+      const timer = setTimeout(() => {
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      }, 100);
+
+      return () => clearTimeout(timer);
+    }
+  }, [pathname]);
+
+  // Also handle hash changes on the same page
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (pathname === "/" && window.location.hash) {
+        const targetId = window.location.hash.substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      }
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, [pathname]);
+
   const navItems = [
     // {
     //   name: "About",
@@ -64,6 +137,10 @@ export function CyberpunkNavbar() {
     {
       name: "Crews",
       link: "/crews",
+    },
+    {
+      name: "Experts",
+      link: "#experts",
     },
     // {
     //   name: "Collaborations",
@@ -101,6 +178,7 @@ export function CyberpunkNavbar() {
                     <div key={item.name} className="flex items-center">
                       <Link
                         href={item.link}
+                        onClick={(e) => handleSectionClick(e, item.link)}
                         className="text-white/80 hover:text-yellow-400 transition-colors duration-200 text-sm font-medium tracking-wide uppercase px-3 py-1"
                       >
                         {item.name}
@@ -125,39 +203,6 @@ export function CyberpunkNavbar() {
                       <Menu className="w-5 h-5" />
                     )}
                   </button>
-                </div>
-
-                {/* Audio Control & Discord - Desktop Only */}
-                <div className="hidden md:flex items-center space-x-2 ml-6 pl-4 border-l border-yellow-400/30">
-                  {/* Audio Toggle - Commented out for now */}
-                  {/* <button
-                    onClick={toggleAudio}
-                    className="text-white/80 hover:text-yellow-400 transition-colors duration-200 p-1.5"
-                    aria-label={isPlaying ? "Mute audio" : "Play audio"}
-                  >
-                    {isPlaying ? (
-                      <Volume2 className="w-4 h-4" />
-                    ) : (
-                      <VolumeX className="w-4 h-4" />
-                    )}
-                  </button> */}
-
-                  {/* Discord Link */}
-                  <Link
-                    href="https://discord.gg/your-discord"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white/80 hover:text-yellow-400 transition-colors duration-200 p-1.5"
-                    aria-label="Join Discord"
-                  >
-                    <svg
-                      className="w-4 h-4"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.30z" />
-                    </svg>
-                  </Link>
                 </div>
               </div>
             </div>
@@ -188,7 +233,7 @@ export function CyberpunkNavbar() {
                   >
                     <Link
                       href={item.link}
-                      onClick={() => setIsMobileMenuOpen(false)}
+                      onClick={(e) => handleSectionClick(e, item.link)}
                       className="block text-white/80 hover:text-yellow-400 transition-colors duration-200 text-base font-medium tracking-wide uppercase py-3 px-4 border-l-2 border-transparent hover:border-yellow-400"
                       style={{ fontFamily: "Mokoto Demo" }}
                     >

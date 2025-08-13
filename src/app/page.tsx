@@ -5,6 +5,7 @@ import HeroSection from "@/components/Sections/HeroSection";
 import ScheduleSection from "@/components/Sections/ScheduleSection";
 
 import SpireCompleters from "@/components/Sections/SpireCompleters";
+import MentorsSection from "@/components/Sections/MentorsSection";
 import FAQSection from "@/components/Sections/FAQSection";
 import SponsorsSection from "@/components/Sections/SponsorsSection";
 import CollaborationsSection from "@/components/Sections/CollaborationsSection";
@@ -24,6 +25,7 @@ export default function Home() {
       <div className="relative z-10">
         <HeroSection />
         <SpireCompleters />
+        <MentorsSection />
         <ScheduleSection />
         <GlorySection />
         <SponsorsSection />

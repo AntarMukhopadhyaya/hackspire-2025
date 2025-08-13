@@ -7,6 +7,8 @@ import Footer from "@/components/Footer";
 // import { AudioProvider } from "@/components/ui/AudioContext"; // Commented out for now
 import AppLoader from "@/components/ui/AppLoader";
 import LenisProvider from "@/components/ui/LenisProvider";
+import PageTransition from "@/lib/PageTransition";
+import RouteChangeAnimation from "@/lib/RouteChangeAnimation";
 // import CustomCursor from "@/components/ui/CustomCursor";
 
 const geistSans = Geist({
@@ -77,6 +79,7 @@ export default function RootLayout({
         {/* <AudioProvider> */}
         <AppLoader>
           <LenisProvider>
+            <RouteChangeAnimation />
             <CyberpunkNavbar />
 
             {/* Global Cyberpunk Yellow Spotlight */}
@@ -100,7 +103,9 @@ export default function RootLayout({
             /> */}
             {/* <SplashCursor /> */}
 
-            <div className="relative z-10">{children}</div>
+            <div className="relative z-10">
+              <PageTransition>{children}</PageTransition>
+            </div>
             <Footer />
           </LenisProvider>
         </AppLoader>

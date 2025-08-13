@@ -16,15 +16,34 @@ const filterOptions = [
 function Crews() {
   const [activeFilter, setActiveFilter] = useState("all");
   const [crewMembers, setCrewMembers] = useState<CrewMember[]>([]);
+  const [spireOrgs, setSpireOrgs] = useState<CrewMember[]>([]);
 
   useEffect(() => {
     setCrewMembers(crewMembersData);
+
+    // Load SpireOrgs data dynamically
+    const loadSpireOrgs = async () => {
+      try {
+        const spireOrgsModule = await import("../../data/spire-orgs.json");
+        setSpireOrgs(spireOrgsModule.default);
+      } catch (error) {
+        console.error("Failed to load SpireOrgs data:", error);
+        setSpireOrgs([]);
+      }
+    };
+
+    loadSpireOrgs();
   }, []);
 
-  const filteredMembers =
-    activeFilter === "all"
-      ? crewMembers
-      : crewMembers.filter((member) => member.crew === activeFilter);
+  const filteredMembers = (() => {
+    if (activeFilter === "all") {
+      return crewMembers;
+    } else if (activeFilter === "spireorgs") {
+      return spireOrgs;
+    } else {
+      return crewMembers.filter((member) => member.crew === activeFilter);
+    }
+  })();
 
   return (
     <div className="min-h-screen text-white py-20 px-4 relative">
