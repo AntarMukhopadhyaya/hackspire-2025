@@ -1,6 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
+// Hardcoded credentials and NextAuth config as requested
+const GMAIL_USER = "acmfiem@gmail.com";
+// TODO: Replace with the actual 16-character Gmail App Password for the above account
+const GMAIL_APP_PASSWORD = "vkyvtpgectmxplbf";
+const NEXTAUTH_SECRET =
+  "f4b23c7d1de74a13a3d8a2f4f7a9c3b6b1e2d3c4a5f6a7b8c9d0e1f2a3b4c5d6";
+const NEXTAUTH_URL = "https://hackspire.tech";
+const NEXTAUTH_URL_LOCAL = "http://localhost:3000";
+
 export async function POST(request: NextRequest) {
   try {
     const { name, email, subject, message } = await request.json();
@@ -22,21 +31,25 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create transporter with Gmail SMTP
+    // Create transporter with Gmail SMTP (hardcoded)
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: process.env.GMAIL_USER, // Your Gmail address
-        pass: process.env.GMAIL_APP_PASSWORD, // Your Gmail App Password
+        user: GMAIL_USER,
+        pass: GMAIL_APP_PASSWORD,
       },
     });
 
     // Email content
     const mailOptions = {
-      from: process.env.GMAIL_USER,
-      to: process.env.CONTACT_EMAIL || process.env.GMAIL_USER, // Where to send contact form submissions
+      from: GMAIL_USER,
+      to: GMAIL_USER, // Where to send contact form submissions
       replyTo: email, // Reply-to will be the sender's email
       subject: `Contact Form: ${subject}`,
+      headers: {
+        "X-NextAuth-URL": NEXTAUTH_URL,
+        "X-NextAuth-URL-Local": NEXTAUTH_URL_LOCAL,
+      },
       html: `
         <div style="font-family: 'Poppins', Arial, sans-serif; max-width: 700px; margin: 0 auto; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%); color: #ffffff; padding: 0; border-radius: 15px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
           
@@ -142,7 +155,7 @@ Timestamp: ${new Date().toLocaleString()}
 
     // Send confirmation email to sender
     const confirmationMailOptions = {
-      from: process.env.GMAIL_USER,
+      from: GMAIL_USER,
       to: email,
       subject: "Thank you for contacting HackSpire 2025",
       html: `

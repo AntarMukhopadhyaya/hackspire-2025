@@ -743,116 +743,119 @@ function ContactUs() {
         transition={{ duration: 1, delay: 0.9 }}
         className="flex justify-center mt-20 relative z-10 px-4"
       >
-        <div className="relative w-full max-w-6xl h-[33.75rem]">
-          {/* Upward Light Effect */}
-          <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 w-full h-20 bg-gradient-to-t from-yellow-400/30 via-yellow-300/20 to-transparent blur-xl opacity-70 group-hover:opacity-90 group-hover:h-24 transition-all duration-500 ease-in-out"></div>
-          <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-3/4 h-12 bg-gradient-to-t from-yellow-500/50 via-yellow-400/30 to-transparent blur-lg opacity-60 group-hover:opacity-80 group-hover:h-16 transition-all duration-500 ease-in-out"></div>
+        <div className="relative w-full max-w-md sm:max-w-2xl md:max-w-4xl lg:max-w-6xl">
+          {/* 16:9 wrapper */}
+          <div className="relative w-full" style={{ aspectRatio: "16 / 9" }}>
+            {/* Upward Light Effect */}
+            <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 w-full h-20 bg-gradient-to-t from-yellow-400/30 via-yellow-300/20 to-transparent blur-xl opacity-70 group-hover:opacity-90 group-hover:h-24 transition-all duration-500 ease-in-out"></div>
+            <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-3/4 h-12 bg-gradient-to-t from-yellow-500/50 via-yellow-400/30 to-transparent blur-lg opacity-60 group-hover:opacity-80 group-hover:h-16 transition-all duration-500 ease-in-out"></div>
 
-          {/* Outer Glow Border */}
-          <div
-            className="absolute -inset-2 bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-500 opacity-75 group-hover:opacity-100 group-hover:from-yellow-400 group-hover:via-yellow-300 group-hover:to-yellow-400 transition-all duration-500 ease-in-out"
-            style={{
-              clipPath:
-                "polygon(2% 42%, 0 42%, 3% 0, 97% 0, 100% 42%, 98% 42%, 98% 55%, 100% 55%, 97% 100%, 3% 100%, 0 56%, 2% 56%)",
-              filter: "blur(2px)",
-            }}
-          ></div>
-
-          {/* Main Border Frame */}
-          <div
-            className="absolute -inset-1 bg-yellow-500"
-            style={{
-              clipPath:
-                "polygon(2% 42%, 0 42%, 3% 0, 97% 0, 100% 42%, 98% 42%, 98% 55%, 100% 55%, 97% 100%, 3% 100%, 0 56%, 2% 56%)",
-            }}
-          ></div>
-
-          {/* Background Frame with Google Maps */}
-          <div
-            className="w-full h-full relative overflow-hidden group cursor-pointer transform transition-transform duration-500 ease-in-out group-hover:scale-[1.02]"
-            style={{
-              clipPath:
-                "polygon(2% 42%, 0 42%, 3% 0, 97% 0, 100% 42%, 98% 42%, 98% 55%, 100% 55%, 97% 100%, 3% 100%, 0 56%, 2% 56%)",
-            }}
-          >
-            {/* Google Maps iframe container with same clip-path */}
+            {/* Outer Glow Border */}
             <div
-              className="absolute inset-0 w-full h-full group"
+              className="absolute -inset-2 bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-500 opacity-75 group-hover:opacity-100 group-hover:from-yellow-400 group-hover:via-yellow-300 group-hover:to-yellow-400 transition-all duration-500 ease-in-out"
+              style={{
+                clipPath:
+                  "polygon(2% 42%, 0 42%, 3% 0, 97% 0, 100% 42%, 98% 42%, 98% 55%, 100% 55%, 97% 100%, 3% 100%, 0 56%, 2% 56%)",
+                filter: "blur(2px)",
+              }}
+            ></div>
+
+            {/* Main Border Frame */}
+            <div
+              className="absolute -inset-1 bg-yellow-500"
+              style={{
+                clipPath:
+                  "polygon(2% 42%, 0 42%, 3% 0, 97% 0, 100% 42%, 98% 42%, 98% 55%, 100% 55%, 97% 100%, 3% 100%, 0 56%, 2% 56%)",
+              }}
+            ></div>
+
+            {/* Background Frame with Google Maps */}
+            <div
+              className="w-full h-full relative overflow-hidden group cursor-pointer transform transition-transform duration-500 ease-in-out group-hover:scale-[1.02]"
               style={{
                 clipPath:
                   "polygon(2% 42%, 0 42%, 3% 0, 97% 0, 100% 42%, 98% 42%, 98% 55%, 100% 55%, 97% 100%, 3% 100%, 0 56%, 2% 56%)",
               }}
             >
-              <iframe
-                src="https://www.google.com/maps?q=Future+Institute+of+Engineering+and+Management,CCV8%2B85M+Sonarpur+Station+Rd+Mission+Pally+Narendrapur+Rajpur+Sonarpur+West+Bengal+700150&z=17&output=embed"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                referrerPolicy="no-referrer-when-downgrade"
-                className="w-full h-full"
-                title="Google Maps showing Future Institute of Engineering and Management location"
-              />
-            </div>
+              {/* Google Maps iframe container with same clip-path */}
+              <div
+                className="absolute inset-0 w-full h-full group"
+                style={{
+                  clipPath:
+                    "polygon(2% 42%, 0 42%, 3% 0, 97% 0, 100% 42%, 98% 42%, 98% 55%, 100% 55%, 97% 100%, 3% 100%, 0 56%, 2% 56%)",
+                }}
+              >
+                <iframe
+                  src="https://www.google.com/maps?q=Future+Institute+of+Engineering+and+Management,CCV8%2B85M+Sonarpur+Station+Rd+Mission+Pally+Narendrapur+Rajpur+Sonarpur+West+Bengal+700150&z=17&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-full"
+                  title="Google Maps showing Future Institute of Engineering and Management location"
+                />
+              </div>
 
-            {/* Dark overlay for text readability - disappears and lets clicks through on hover */}
-            <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px] group-hover:opacity-0 group-hover:pointer-events-none transition-all duration-500 ease-in-out"></div>
+              {/* Dark overlay for text readability - disappears and lets clicks through on hover */}
+              <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px] group-hover:opacity-0 group-hover:pointer-events-none transition-all duration-500 ease-in-out"></div>
 
-            {/* Content overlay - disappears and lets clicks through on hover */}
-            <div className="absolute inset-0 flex items-center justify-center group-hover:opacity-0 group-hover:pointer-events-none transition-all duration-500 ease-in-out">
-              <div className="text-center space-y-4">
-                <motion.h2
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 1.2 }}
-                  className="text-4xl md:text-6xl lg:text-7xl font-bold text-yellow-400 font-sddystopiandemo drop-shadow-2xl"
-                >
-                  FIND US
-                </motion.h2>
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 1.4 }}
-                  className="text-lg md:text-xl text-white font-mokoto max-w-2xl mx-auto px-4"
-                >
-                  Future Institute of Engineering and Management - Your Gateway
-                  to Innovation
-                </motion.p>
+              {/* Content overlay - disappears and lets clicks through on hover */}
+              <div className="absolute inset-0 flex items-center justify-center group-hover:opacity-0 group-hover:pointer-events-none transition-all duration-500 ease-in-out">
+                <div className="text-center space-y-4">
+                  <motion.h2
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 1.2 }}
+                    className="text-4xl md:text-6xl lg:text-7xl font-bold text-yellow-400 font-sddystopiandemo drop-shadow-2xl"
+                  >
+                    FIND US
+                  </motion.h2>
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 1.4 }}
+                    className="text-lg md:text-xl text-white font-mokoto max-w-2xl mx-auto px-4"
+                  >
+                    Future Institute of Engineering and Management - Your
+                    Gateway to Innovation
+                  </motion.p>
+                </div>
+              </div>
+
+              {/* Enhanced Circuit patterns inside frame - disappear on hover */}
+              <div className="absolute inset-0 opacity-30 pointer-events-none group-hover:opacity-0 transition-all duration-500 ease-in-out">
+                {/* Horizontal circuit lines */}
+                <div className="absolute top-4 left-8 right-8 h-px bg-yellow-300 opacity-80"></div>
+                <div className="absolute top-8 left-12 right-12 h-px bg-yellow-300 opacity-60"></div>
+                <div className="absolute top-12 left-8 right-8 h-px bg-yellow-300 opacity-70"></div>
+                <div className="absolute bottom-4 left-8 right-8 h-px bg-yellow-300 opacity-80"></div>
+                <div className="absolute bottom-8 left-12 right-12 h-px bg-yellow-300 opacity-60"></div>
+                <div className="absolute bottom-12 left-8 right-8 h-px bg-yellow-300 opacity-70"></div>
+
+                {/* Vertical circuit lines */}
+                <div className="absolute left-4 top-8 bottom-8 w-px bg-yellow-300 opacity-80"></div>
+                <div className="absolute left-8 top-12 bottom-12 w-px bg-yellow-300 opacity-60"></div>
+                <div className="absolute left-12 top-8 bottom-8 w-px bg-yellow-300 opacity-70"></div>
+                <div className="absolute right-4 top-8 bottom-8 w-px bg-yellow-300 opacity-80"></div>
+                <div className="absolute right-8 top-12 bottom-12 w-px bg-yellow-300 opacity-60"></div>
+                <div className="absolute right-12 top-8 bottom-8 w-px bg-yellow-300 opacity-70"></div>
+
+                {/* Corner circuit nodes */}
+                <div className="absolute top-8 left-8 w-2 h-2 bg-yellow-300 opacity-70 rounded-full"></div>
+                <div className="absolute top-8 right-8 w-2 h-2 bg-yellow-300 opacity-70 rounded-full"></div>
+                <div className="absolute bottom-8 left-8 w-2 h-2 bg-yellow-300 opacity-70 rounded-full"></div>
+                <div className="absolute bottom-8 right-8 w-2 h-2 bg-yellow-300 opacity-70 rounded-full"></div>
               </div>
             </div>
 
-            {/* Enhanced Circuit patterns inside frame - disappear on hover */}
-            <div className="absolute inset-0 opacity-30 pointer-events-none group-hover:opacity-0 transition-all duration-500 ease-in-out">
-              {/* Horizontal circuit lines */}
-              <div className="absolute top-4 left-8 right-8 h-px bg-yellow-300 opacity-80"></div>
-              <div className="absolute top-8 left-12 right-12 h-px bg-yellow-300 opacity-60"></div>
-              <div className="absolute top-12 left-8 right-8 h-px bg-yellow-300 opacity-70"></div>
-              <div className="absolute bottom-4 left-8 right-8 h-px bg-yellow-300 opacity-80"></div>
-              <div className="absolute bottom-8 left-12 right-12 h-px bg-yellow-300 opacity-60"></div>
-              <div className="absolute bottom-12 left-8 right-8 h-px bg-yellow-300 opacity-70"></div>
-
-              {/* Vertical circuit lines */}
-              <div className="absolute left-4 top-8 bottom-8 w-px bg-yellow-300 opacity-80"></div>
-              <div className="absolute left-8 top-12 bottom-12 w-px bg-yellow-300 opacity-60"></div>
-              <div className="absolute left-12 top-8 bottom-8 w-px bg-yellow-300 opacity-70"></div>
-              <div className="absolute right-4 top-8 bottom-8 w-px bg-yellow-300 opacity-80"></div>
-              <div className="absolute right-8 top-12 bottom-12 w-px bg-yellow-300 opacity-60"></div>
-              <div className="absolute right-12 top-8 bottom-8 w-px bg-yellow-300 opacity-70"></div>
-
-              {/* Corner circuit nodes */}
-              <div className="absolute top-8 left-8 w-2 h-2 bg-yellow-300 opacity-70 rounded-full"></div>
-              <div className="absolute top-8 right-8 w-2 h-2 bg-yellow-300 opacity-70 rounded-full"></div>
-              <div className="absolute bottom-8 left-8 w-2 h-2 bg-yellow-300 opacity-70 rounded-full"></div>
-              <div className="absolute bottom-8 right-8 w-2 h-2 bg-yellow-300 opacity-70 rounded-full"></div>
-            </div>
+            {/* Additional Light Rays from bottom */}
+            <div className="absolute bottom-0 left-1/4 w-px h-20 bg-gradient-to-t from-yellow-400/80 to-transparent transform rotate-12 opacity-60 group-hover:opacity-80 group-hover:h-24 transition-all duration-500 ease-in-out"></div>
+            <div className="absolute bottom-0 left-1/3 w-px h-16 bg-gradient-to-t from-yellow-300/70 to-transparent transform -rotate-6 opacity-50 group-hover:opacity-70 group-hover:h-20 transition-all duration-500 ease-in-out"></div>
+            <div className="absolute bottom-0 left-1/2 w-px h-24 bg-gradient-to-t from-yellow-500/90 to-transparent opacity-70 group-hover:opacity-90 group-hover:h-28 transition-all duration-500 ease-in-out"></div>
+            <div className="absolute bottom-0 right-1/3 w-px h-16 bg-gradient-to-t from-yellow-300/70 to-transparent transform rotate-6 opacity-50 group-hover:opacity-70 group-hover:h-20 transition-all duration-500 ease-in-out"></div>
+            <div className="absolute bottom-0 right-1/4 w-px h-20 bg-gradient-to-t from-yellow-400/80 to-transparent transform -rotate-12 opacity-60 group-hover:opacity-80 group-hover:h-24 transition-all duration-500 ease-in-out"></div>
           </div>
-
-          {/* Additional Light Rays from bottom */}
-          <div className="absolute bottom-0 left-1/4 w-px h-20 bg-gradient-to-t from-yellow-400/80 to-transparent transform rotate-12 opacity-60 group-hover:opacity-80 group-hover:h-24 transition-all duration-500 ease-in-out"></div>
-          <div className="absolute bottom-0 left-1/3 w-px h-16 bg-gradient-to-t from-yellow-300/70 to-transparent transform -rotate-6 opacity-50 group-hover:opacity-70 group-hover:h-20 transition-all duration-500 ease-in-out"></div>
-          <div className="absolute bottom-0 left-1/2 w-px h-24 bg-gradient-to-t from-yellow-500/90 to-transparent opacity-70 group-hover:opacity-90 group-hover:h-28 transition-all duration-500 ease-in-out"></div>
-          <div className="absolute bottom-0 right-1/3 w-px h-16 bg-gradient-to-t from-yellow-300/70 to-transparent transform rotate-6 opacity-50 group-hover:opacity-70 group-hover:h-20 transition-all duration-500 ease-in-out"></div>
-          <div className="absolute bottom-0 right-1/4 w-px h-20 bg-gradient-to-t from-yellow-400/80 to-transparent transform -rotate-12 opacity-60 group-hover:opacity-80 group-hover:h-24 transition-all duration-500 ease-in-out"></div>
         </div>
       </motion.div>
 
