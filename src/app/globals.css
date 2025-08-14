@@ -1842,3 +1842,8 @@ html {
     transform: translateX(2px);
   }
 }
+
+/* Hide navbar for specific pages */
+.hide-navbar nav {
+  display: none !important;
+}

@@ -14,6 +14,8 @@ import {
   Image as ImageIcon,
 } from "lucide-react";
 import CyberButton from "@/components/ui/CyberButton";
+import { UploadButton } from "@/utils/uploadthing";
+import { toast } from "sonner";
 
 function MentorsForm() {
   const [formData, setFormData] = useState({
@@ -22,6 +24,7 @@ function MentorsForm() {
     phone: "",
     company: "",
     website: "",
+    linkedin: "",
     expertise: [] as string[],
     experience: "",
     bio: "",
@@ -29,6 +32,10 @@ function MentorsForm() {
     motivation: "",
     profileImage: null as File | null,
   });
+
+  const [profileImageUrl, setProfileImageUrl] = useState<string>("");
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
+  const [isImageLoading, setIsImageLoading] = useState(false);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<
@@ -45,16 +52,6 @@ function MentorsForm() {
       ...prev,
       [name]: value,
     }));
-  };
-
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setFormData((prev) => ({
-        ...prev,
-        profileImage: file,
-      }));
-    }
   };
 
   const [isExpertiseOpen, setIsExpertiseOpen] = useState(false);
@@ -92,32 +89,77 @@ function MentorsForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Prevent double submission
+    if (isSubmitting) return;
+
     setIsSubmitting(true);
 
     try {
-      // Simulate API call - replace with actual endpoint
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      // Prepare data for Google Sheets
+      const submissionData = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company,
+        website: formData.website,
+        linkedin: formData.linkedin,
+        expertise: formData.expertise,
+        experience: formData.experience,
+        bio: formData.bio,
+        availability: formData.availability,
+        motivation: formData.motivation,
+        profileImageUrl: profileImageUrl,
+      };
 
-      setSubmitStatus("success");
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        company: "",
-        website: "",
-        expertise: [],
-        experience: "",
-        bio: "",
-        availability: "",
-        motivation: "",
-        profileImage: null,
+      // Submit to Google Sheets via API route
+      const response = await fetch("/api/submit-mentor", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(submissionData),
       });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Show success toast
+        toast.success("🚀 Application Submitted Successfully!", {
+          description:
+            "Welcome to the HackSpire 2025 mentor network! We'll be in touch soon.",
+          duration: 5000,
+        });
+
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          company: "",
+          website: "",
+          linkedin: "",
+          expertise: [],
+          experience: "",
+          bio: "",
+          availability: "",
+          motivation: "",
+          profileImage: null,
+        });
+        setProfileImageUrl("");
+      } else {
+        throw new Error(result.error || "Submission failed");
+      }
     } catch (error) {
       console.error("Form submission error:", error);
-      setSubmitStatus("error");
+      // Show error toast
+      toast.error("❌ Submission Failed", {
+        description:
+          "Something went wrong. Please try again or contact support.",
+        duration: 5000,
+      });
     } finally {
       setIsSubmitting(false);
-      setTimeout(() => setSubmitStatus("idle"), 5000);
     }
   };
 
@@ -276,7 +318,7 @@ function MentorsForm() {
 
       {/* Mentors Form Section */}
       <div
-        className={`relative overflow-hidden from-yellow-400/20 max-w-5xl mx-auto mb-20 z-10 to-orange-500/20 backdrop-blur-sm border border-yellow-400/40 group cursor-pointer bg-gradient-to-br flex flex-col justify-end p-8 ${5}`}
+        className={`relative overflow-hidden from-yellow-400/20 max-w-5xl mx-auto mb-20 z-10 to-orange-500/20 backdrop-blur-sm border border-yellow-400/40 group bg-gradient-to-br flex flex-col justify-end p-8 ${5}`}
         style={{
           animationDelay: `2ms`,
           clipPath:
@@ -456,6 +498,34 @@ function MentorsForm() {
                   onChange={handleInputChange}
                   className="w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300"
                   placeholder="https://yourwebsite.com"
+                  style={{
+                    fontFamily: "Poppins, sans-serif",
+                    clipPath:
+                      "polygon(0 1%, 100% 1%, 100% 30%, 96% 79%, 68% 80%, 14% 81%, 11% 100%, 0 100%)",
+                  }}
+                />
+              </motion.div>
+
+              {/* {LinkdIn field} */}
+              <motion.div
+                whileFocus={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <label
+                  htmlFor="linkedin"
+                  className="block text-sm font-medium text-white mb-2"
+                  style={{ fontFamily: "Poppins, sans-serif" }}
+                >
+                  LinkedIn
+                </label>
+                <input
+                  type="url"
+                  id="linkedin"
+                  name="linkedin"
+                  value={formData.linkedin}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300"
+                  placeholder="https://linkedin.com/in/yourprofile"
                   style={{
                     fontFamily: "Poppins, sans-serif",
                     clipPath:
@@ -730,48 +800,57 @@ function MentorsForm() {
               className="w-full mb-8"
             >
               <label
-                htmlFor="profileImage"
                 className="block text-sm font-medium text-white mb-3"
                 style={{ fontFamily: "Poppins, sans-serif" }}
               >
                 Profile Image
               </label>
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                <input
-                  type="file"
-                  id="profileImage"
-                  name="profileImage"
-                  accept="image/*"
-                  onChange={handleImageUpload}
-                  className="hidden"
+              <div className="flex flex-col items-start gap-4">
+                <UploadButton
+                  endpoint="profileImageUploader"
+                  onClientUploadComplete={(res) => {
+                    if (res && res[0]) {
+                      setProfileImageUrl(res[0].ufsUrl);
+                      console.log("Upload Completed:", res[0].ufsUrl);
+                    }
+                  }}
+                  onUploadError={(error: Error) => {
+                    console.error("Upload Error:", error);
+                    alert(`Upload failed: ${error.message}`);
+                  }}
+                  appearance={{
+                    button:
+                      "bg-yellow-400 text-black hover:bg-yellow-500 px-6 py-3 font-mokoto transition-colors duration-300",
+                    container: "w-full",
+                    allowedContent: "text-gray-400 text-xs font-mokoto mt-2",
+                  }}
                 />
-                <CyberButton
-                  onClick={() =>
-                    document.getElementById("profileImage")?.click()
-                  }
-                  className="flex items-center gap-2 px-6 py-3"
-                >
-                  <Upload className="w-5 h-5" />
-                  Choose Image
-                </CyberButton>
 
-                {formData.profileImage && (
-                  <div className="flex items-center gap-3 p-3 bg-black/40 border border-yellow-400/30 rounded-sm">
+                {profileImageUrl && (
+                  <div className="flex items-center gap-3 p-3 bg-black/40 border border-yellow-400/30 rounded-sm relative z-10">
                     <ImageIcon className="w-5 h-5 text-yellow-400" />
                     <div className="flex flex-col">
                       <span className="text-sm text-yellow-300 font-medium">
-                        {formData.profileImage.name}
+                        Image uploaded successfully
                       </span>
-                      <span className="text-xs text-gray-400">
-                        {(formData.profileImage.size / 1024 / 1024).toFixed(2)}{" "}
-                        MB
-                      </span>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setIsImageLoading(true);
+                          setIsImageModalOpen(true);
+                        }}
+                        className="text-xs text-blue-400 hover:text-blue-300 underline cursor-pointer bg-transparent border-none relative z-30 p-1 hover:bg-blue-400/10 rounded transition-colors duration-200"
+                      >
+                        View uploaded image
+                      </button>
                     </div>
                   </div>
                 )}
               </div>
               <p className="text-xs text-gray-400 mt-3 font-mokoto">
-                Upload a professional photo (JPG, PNG, GIF - Max 5MB)
+                Upload a professional photo (JPG, PNG, GIF - Max 4MB)
               </p>
             </motion.div>
 
@@ -805,38 +884,6 @@ function MentorsForm() {
                 </span>
               </CyberButton>
             </motion.div>
-
-            {submitStatus === "success" && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-center p-4 bg-green-500/20 border border-green-500/30 cyber-success-message"
-              >
-                <p
-                  className="text-green-300 font-medium"
-                  style={{ fontFamily: "Poppins, sans-serif" }}
-                >
-                  🎉 Application submitted successfully! We'll review your
-                  profile and get back to you soon.
-                </p>
-              </motion.div>
-            )}
-
-            {submitStatus === "error" && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-center p-4 bg-red-500/20 border border-red-500/30 cyber-error-message"
-              >
-                <p
-                  className="text-red-300 font-medium"
-                  style={{ fontFamily: "Poppins, sans-serif" }}
-                >
-                  ❌ Failed to submit application. Please try again or contact
-                  us through Discord.
-                </p>
-              </motion.div>
-            )}
           </form>
         </div>
 
@@ -1019,30 +1066,111 @@ function MentorsForm() {
         </div>
       </motion.div>
 
-      {/* CSS for cyberpunk styling */}
-      <style jsx>{`
-        .cyber-success-message {
-          clip-path: polygon(
-            10px 0%,
-            100% 0%,
-            100% calc(100% - 10px),
-            calc(100% - 10px) 100%,
-            0% 100%,
-            0% 10px
-          );
-        }
+      {/* Image Modal */}
+      {isImageModalOpen && profileImageUrl && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+          onClick={() => setIsImageModalOpen(false)}
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.3 }}
+            className="relative w-full max-w-4xl max-h-[90vh] mx-4 sm:mx-8 md:mx-auto p-2 sm:p-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Cyberpunk Modal Container */}
+            <div
+              className="relative bg-black/90 border-2 border-yellow-400 p-3 sm:p-6 overflow-hidden"
+              style={{
+                clipPath:
+                  "polygon(10px 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 10px)",
+              }}
+            >
+              {/* Cyberpunk Circuit Overlay */}
+              <div className="absolute inset-0 opacity-30">
+                <div className="absolute top-2 left-2 w-8 h-px bg-yellow-400 opacity-60"></div>
+                <div className="absolute top-2 left-2 w-px h-8 bg-yellow-400 opacity-60"></div>
+                <div className="absolute bottom-2 right-2 w-8 h-px bg-yellow-400 opacity-60"></div>
+                <div className="absolute bottom-2 right-2 w-px h-8 bg-yellow-400 opacity-60"></div>
+                <div className="absolute top-1/2 left-1 w-4 h-px bg-yellow-400/40"></div>
+                <div className="absolute top-1/3 right-1 w-4 h-px bg-yellow-400/40"></div>
+              </div>
 
-        .cyber-error-message {
-          clip-path: polygon(
-            10px 0%,
-            100% 0%,
-            100% calc(100% - 10px),
-            calc(100% - 10px) 100%,
-            0% 100%,
-            0% 10px
-          );
-        }
-      `}</style>
+              {/* Close Button */}
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setIsImageModalOpen(false);
+                }}
+                className="absolute top-2 right-2 sm:top-4 sm:right-4 z-50 w-8 h-8 sm:w-10 sm:h-10 bg-red-500 hover:bg-red-600 text-white font-bold text-lg sm:text-xl flex items-center justify-center transition-colors duration-200 cursor-pointer"
+                style={{
+                  clipPath:
+                    "polygon(20% 0%, 100% 0%, 100% 80%, 80% 100%, 0% 100%, 0% 20%)",
+                }}
+              >
+                ×
+              </button>
+
+              {/* Modal Header */}
+              <div className="relative z-10 mb-3 sm:mb-4">
+                <h3
+                  className="text-lg sm:text-2xl font-bold text-yellow-400 font-mokoto"
+                  style={{ fontFamily: "'Mokoto Demo', monospace" }}
+                >
+                  Profile Image Preview
+                </h3>
+                <div className="w-full h-px bg-yellow-400/30 mt-2"></div>
+              </div>
+
+              {/* Image Container */}
+              <div className="relative z-10 flex justify-center items-center min-h-[200px]">
+                {isImageLoading && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-lg">
+                    <div className="flex flex-col items-center gap-3">
+                      <div className="w-8 h-8 border-2 border-yellow-400 border-t-transparent rounded-full animate-spin"></div>
+                      <span className="text-yellow-400 text-sm font-mokoto">
+                        Loading image...
+                      </span>
+                    </div>
+                  </div>
+                )}
+                <img
+                  src={profileImageUrl}
+                  alt="Profile Preview"
+                  className={`max-w-full max-h-[60vh] sm:max-h-[70vh] object-contain border-2 border-yellow-400/50 rounded-lg shadow-2xl transition-opacity duration-300 ${
+                    isImageLoading ? "opacity-0" : "opacity-100"
+                  }`}
+                  style={{
+                    filter: "drop-shadow(0 0 20px rgba(255, 212, 63, 0.3))",
+                  }}
+                  onLoad={() => setIsImageLoading(false)}
+                  onLoadStart={() => setIsImageLoading(true)}
+                />
+              </div>
+
+              {/* Modal Footer */}
+              <div className="relative z-10 mt-3 sm:mt-4 flex justify-center">
+                <a
+                  href={profileImageUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-2 font-mokoto font-bold transition-colors duration-200"
+                  style={{
+                    clipPath:
+                      "polygon(10px 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 10px)",
+                  }}
+                >
+                  Open in New Tab
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      )}
     </div>
   );
 }

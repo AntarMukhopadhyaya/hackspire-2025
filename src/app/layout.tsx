@@ -9,6 +9,7 @@ import AppLoader from "@/components/ui/AppLoader";
 import LenisProvider from "@/components/ui/LenisProvider";
 import PageTransition from "@/lib/PageTransition";
 import RouteChangeAnimation from "@/lib/RouteChangeAnimation";
+import { Toaster } from "@/components/ui/sonner";
 // import CustomCursor from "@/components/ui/CustomCursor";
 
 const geistSans = Geist({
@@ -107,6 +108,7 @@ export default function RootLayout({
               <PageTransition>{children}</PageTransition>
             </div>
             <Footer />
+            <Toaster />
           </LenisProvider>
         </AppLoader>
         {/* </AudioProvider> */}

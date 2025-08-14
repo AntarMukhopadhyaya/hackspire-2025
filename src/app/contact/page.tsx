@@ -2,17 +2,9 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Send,
-  Users,
-  MessageCircle,
-  Clock,
-} from "lucide-react";
-import FAQSection from "@/components/Sections/FAQSection";
+import { Send } from "lucide-react";
 import CyberButton from "@/components/ui/CyberButton";
+import { toast } from "sonner";
 
 function ContactUs() {
   const [formData, setFormData] = useState({
@@ -23,9 +15,6 @@ function ContactUs() {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<
-    "idle" | "success" | "error"
-  >("idle");
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -39,6 +28,10 @@ function ContactUs() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Prevent double submission
+    if (isSubmitting) return;
+
     setIsSubmitting(true);
 
     try {
@@ -53,18 +46,28 @@ function ContactUs() {
       const result = await response.json();
 
       if (response.ok) {
-        setSubmitStatus("success");
+        // Show success toast
+        toast.success("🚀 Message Sent Successfully!", {
+          description: "Thanks for reaching out! We'll get back to you soon.",
+          duration: 5000,
+        });
         setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
-        setSubmitStatus("error");
         console.error("Contact form error:", result.error);
+        toast.error("❌ Message Failed to Send", {
+          description:
+            "Something went wrong. Please try again or contact us on Discord.",
+          duration: 5000,
+        });
       }
     } catch (error) {
       console.error("Network error:", error);
-      setSubmitStatus("error");
+      toast.error("❌ Network Error", {
+        description: "Please check your connection and try again.",
+        duration: 5000,
+      });
     } finally {
       setIsSubmitting(false);
-      setTimeout(() => setSubmitStatus("idle"), 5000);
     }
   };
 
@@ -688,38 +691,6 @@ function ContactUs() {
                 </span>
               </CyberButton>
             </motion.div>
-
-            {submitStatus === "success" && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-center p-4 bg-green-500/20 border border-green-500/30 cyber-success-message"
-              >
-                <p
-                  className="text-green-300 font-medium"
-                  style={{ fontFamily: "Poppins, sans-serif" }}
-                >
-                  🎉 Message sent successfully! Check your email for
-                  confirmation. We'll get back to you soon.
-                </p>
-              </motion.div>
-            )}
-
-            {submitStatus === "error" && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-center p-4 bg-red-500/20 border border-red-500/30 cyber-error-message"
-              >
-                <p
-                  className="text-red-300 font-medium"
-                  style={{ fontFamily: "Poppins, sans-serif" }}
-                >
-                  ❌ Failed to send message. Please try again or contact us
-                  through Discord.
-                </p>
-              </motion.div>
-            )}
           </form>
         </div>
 
@@ -991,28 +962,6 @@ function ContactUs() {
         .cyber-button-large {
           position: relative;
           overflow: hidden;
-        }
-
-        .cyber-success-message {
-          clip-path: polygon(
-            10px 0%,
-            100% 0%,
-            100% calc(100% - 10px),
-            calc(100% - 10px) 100%,
-            0% 100%,
-            0% 10px
-          );
-        }
-
-        .cyber-error-message {
-          clip-path: polygon(
-            10px 0%,
-            100% 0%,
-            100% calc(100% - 10px),
-            calc(100% - 10px) 100%,
-            0% 100%,
-            0% 10px
-          );
         }
       `}</style>
     </div>
