@@ -311,7 +311,7 @@ function SpireCompleters() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-            className="flex items-center justify-center gap-8 md:gap-12 lg:gap-16 flex-wrap flex-col sm:flex-row sm:flex-nowrap mt-44 sm:mt-20 md:mt-48 lg:mt-40"
+            className="flex items-center justify-center gap-8 sm:gap-16 flex-wrap flex-col sm:flex-row sm:flex-nowrap mt-44 sm:mt-20 md:mt-48 lg:mt-40"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
