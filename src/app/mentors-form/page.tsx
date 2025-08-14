@@ -91,31 +91,6 @@ function MentorsForm() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isExpertiseOpen]);
 
-  // Lock body scroll when modals are open
-  useEffect(() => {
-    if (isImageModalOpen || isTermsModalOpen) {
-      // Save current scroll position
-      const scrollY = window.scrollY;
-
-      // Lock body scroll
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = "100%";
-      document.body.style.overflow = "hidden";
-
-      return () => {
-        // Restore body scroll
-        document.body.style.position = "";
-        document.body.style.top = "";
-        document.body.style.width = "";
-        document.body.style.overflow = "";
-
-        // Restore scroll position
-        window.scrollTo(0, scrollY);
-      };
-    }
-  }, [isImageModalOpen, isTermsModalOpen]);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -1310,15 +1285,16 @@ function MentorsForm() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.3 }}
-            className="relative w-full max-w-4xl max-h-[90vh] mx-4 sm:mx-8 md:mx-auto p-2 sm:p-4"
+            className="relative w-full max-w-4xl max-h-[90vh] mx-2 sm:mx-8 md:mx-auto p-1 sm:p-4"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Cyberpunk Modal Container */}
             <div
-              className="relative bg-black/90 border-2 border-yellow-400 p-3 sm:p-6 overflow-hidden max-h-[90vh] overflow-y-auto"
+              className="relative bg-black/90 border-2 border-yellow-400 p-2 sm:p-6 max-h-[90vh] overflow-y-auto"
               style={{
                 clipPath:
                   "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
+                scrollBehavior: "smooth",
               }}
             >
               {/* Close Button */}
@@ -1348,7 +1324,7 @@ function MentorsForm() {
                 <div className="absolute top-1/3 right-1 w-4 h-px bg-yellow-400/40"></div>
               </div>
 
-              <div className="relative z-10 p-4 sm:p-8">
+              <div className="relative z-10 p-2 sm:p-8">
                 <h2
                   className="text-3xl md:text-4xl font-bold text-yellow-400 mb-6 text-center font-mokoto"
                   style={{ fontFamily: "'Mokoto Demo', monospace" }}
@@ -1360,7 +1336,7 @@ function MentorsForm() {
                   className="space-y-6 text-white"
                   style={{ fontFamily: "Poppins, sans-serif" }}
                 >
-                  <div className="bg-yellow-400/10 border border-yellow-400/30 p-6 rounded-lg">
+                  <div className="bg-yellow-400/10 border border-yellow-400/30 p-3 sm:p-6 rounded-lg">
                     <h3 className="text-xl font-bold text-yellow-400 mb-4">
                       🎯 MENTOR ROLE & RESPONSIBILITIES
                     </h3>
@@ -1404,7 +1380,7 @@ function MentorsForm() {
                     </ul>
                   </div>
 
-                  <div className="bg-red-400/10 border border-red-400/30 p-6 rounded-lg">
+                  <div className="bg-red-400/10 border border-red-400/30 p-3 sm:p-6 rounded-lg">
                     <h3 className="text-xl font-bold text-red-400 mb-4">
                       ⚖️ IMPORTANT: MENTORS ARE NOT JUDGES
                     </h3>
@@ -1453,7 +1429,7 @@ function MentorsForm() {
                     </ul>
                   </div>
 
-                  <div className="bg-blue-400/10 border border-blue-400/30 p-6 rounded-lg">
+                  <div className="bg-blue-400/10 border border-blue-400/30 p-3 sm:p-6 rounded-lg">
                     <h3 className="text-xl font-bold text-blue-400 mb-4">
                       🤝 COLLABORATION WITH JUDGES
                     </h3>
@@ -1489,7 +1465,7 @@ function MentorsForm() {
                     </ul>
                   </div>
 
-                  <div className="bg-green-400/10 border border-green-400/30 p-6 rounded-lg">
+                  <div className="bg-green-400/10 border border-green-400/30 p-3 sm:p-6 rounded-lg">
                     <h3 className="text-xl font-bold text-green-400 mb-4">
                       📋 CODE OF CONDUCT
                     </h3>
@@ -1537,7 +1513,7 @@ function MentorsForm() {
                     </ul>
                   </div>
 
-                  <div className="bg-purple-400/10 border border-purple-400/30 p-6 rounded-lg">
+                  <div className="bg-purple-400/10 border border-purple-400/30 p-3 sm:p-6 rounded-lg">
                     <h3 className="text-xl font-bold text-purple-400 mb-4">
                       📞 COMMITMENT & COMMUNICATION
                     </h3>
@@ -1573,7 +1549,7 @@ function MentorsForm() {
                     </ul>
                   </div>
 
-                  <div className="text-center mt-8 p-6 bg-yellow-400/10 border border-yellow-400/30 rounded-lg">
+                  <div className="text-center mt-8 p-3 sm:p-6 bg-yellow-400/10 border border-yellow-400/30 rounded-lg">
                     <p className="text-lg text-yellow-400 font-semibold mb-4">
                       By accepting these terms, you agree to uphold the values
                       of HackSpire 2025 and contribute to creating an amazing
