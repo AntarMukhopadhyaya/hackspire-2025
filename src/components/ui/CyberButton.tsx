@@ -8,6 +8,8 @@ interface CyberButtonProps {
   className?: string;
   href?: string;
   isSending?: boolean;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 }
 
 export default function CyberButton({
@@ -16,6 +18,8 @@ export default function CyberButton({
   className = "",
   href,
   isSending = false,
+  type = "button",
+  disabled = false,
 }: CyberButtonProps) {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -114,7 +118,12 @@ export default function CyberButton({
   }
 
   return (
-    <button onClick={onClick} className="inline-block">
+    <button
+      onClick={onClick}
+      type={type}
+      disabled={disabled}
+      className="inline-block"
+    >
       {buttonContent}
     </button>
   );

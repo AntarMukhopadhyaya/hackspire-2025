@@ -1,18 +1,53 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
-// Hardcoded credentials and NextAuth config as requested
-const GMAIL_USER = "acmfiem@gmail.com";
-// TODO: Replace with the actual 16-character Gmail App Password for the above account
-const GMAIL_APP_PASSWORD = "vkyvtpgectmxplbf";
-const NEXTAUTH_SECRET =
-  "f4b23c7d1de74a13a3d8a2f4f7a9c3b6b1e2d3c4a5f6a7b8c9d0e1f2a3b4c5d6";
-const NEXTAUTH_URL = "https://hackspire.tech";
-const NEXTAUTH_URL_LOCAL = "http://localhost:3000";
+// Environment variables for email configuration
+const GMAIL_USER = process.env.GMAIL_USER;
+const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD;
+const NEXTAUTH_SECRET = process.env.NEXTAUTH_SECRET;
+const NEXTAUTH_URL = process.env.NEXTAUTH_URL;
+const NEXTAUTH_URL_LOCAL = process.env.NEXTAUTH_URL_LOCAL;
+
+// Store recent submissions to prevent duplicates
+const recentSubmissions = new Map<string, number>();
 
 export async function POST(request: NextRequest) {
   try {
+    // Validate environment variables
+    if (!GMAIL_USER || !GMAIL_APP_PASSWORD) {
+      return NextResponse.json(
+        { error: "Email configuration not found" },
+        { status: 500 }
+      );
+    }
+
     const { name, email, subject, message } = await request.json();
+
+    // Create a unique key for this submission
+    const submissionKey = `${email}-${subject}-${Date.now()}`;
+    const now = Date.now();
+
+    // Check for duplicate submissions within the last 30 seconds
+    const recentSubmission = recentSubmissions.get(`${email}-${subject}`);
+    if (recentSubmission && now - recentSubmission < 30000) {
+      return NextResponse.json(
+        {
+          error:
+            "Duplicate submission detected. Please wait before sending another message.",
+        },
+        { status: 429 }
+      );
+    }
+
+    // Store this submission
+    recentSubmissions.set(`${email}-${subject}`, now);
+
+    // Clean up old entries (older than 5 minutes)
+    for (const [key, timestamp] of recentSubmissions.entries()) {
+      if (now - timestamp > 300000) {
+        recentSubmissions.delete(key);
+      }
+    }
 
     // Validate required fields
     if (!name || !email || !subject || !message) {
@@ -46,10 +81,6 @@ export async function POST(request: NextRequest) {
       to: GMAIL_USER, // Where to send contact form submissions
       replyTo: email, // Reply-to will be the sender's email
       subject: `Contact Form: ${subject}`,
-      headers: {
-        "X-NextAuth-URL": NEXTAUTH_URL,
-        "X-NextAuth-URL-Local": NEXTAUTH_URL_LOCAL,
-      },
       html: `
         <div style="font-family: 'Poppins', Arial, sans-serif; max-width: 700px; margin: 0 auto; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%); color: #ffffff; padding: 0; border-radius: 15px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
           

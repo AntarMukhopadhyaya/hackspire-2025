@@ -12,8 +12,11 @@ import {
   Award,
   Upload,
   Image as ImageIcon,
+  X,
 } from "lucide-react";
 import CyberButton from "@/components/ui/CyberButton";
+import { UploadButton } from "@/utils/uploadthing";
+import { toast } from "sonner";
 
 function MentorsForm() {
   const [formData, setFormData] = useState({
@@ -22,6 +25,7 @@ function MentorsForm() {
     phone: "",
     company: "",
     website: "",
+    linkedin: "",
     expertise: [] as string[],
     experience: "",
     bio: "",
@@ -30,10 +34,17 @@ function MentorsForm() {
     profileImage: null as File | null,
   });
 
+  const [profileImageUrl, setProfileImageUrl] = useState<string>("");
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
+  const [isImageLoading, setIsImageLoading] = useState(false);
+  const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(false);
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
   >("idle");
+  const [showValidationWarning, setShowValidationWarning] = useState(false);
 
   const handleInputChange = (
     e: React.ChangeEvent<
@@ -45,16 +56,6 @@ function MentorsForm() {
       ...prev,
       [name]: value,
     }));
-  };
-
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setFormData((prev) => ({
-        ...prev,
-        profileImage: file,
-      }));
-    }
   };
 
   const [isExpertiseOpen, setIsExpertiseOpen] = useState(false);
@@ -92,32 +93,102 @@ function MentorsForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Prevent double submission
+    if (isSubmitting) return;
+
+    // Show validation warning and check requirements
+    setShowValidationWarning(true);
+
+    // Validate profile image
+    if (!profileImageUrl) {
+      toast.error("❌ Profile Image Required", {
+        description: "Please upload a profile image before submitting.",
+        duration: 5000,
+      });
+      return;
+    }
+
+    // Validate terms acceptance
+    if (!termsAccepted) {
+      toast.error("❌ Terms & Conditions Required", {
+        description:
+          "Please accept the mentor terms and conditions to proceed.",
+        duration: 5000,
+      });
+      return;
+    }
+
+    // Hide validation warning if all requirements are met
+    setShowValidationWarning(false);
+
     setIsSubmitting(true);
 
     try {
-      // Simulate API call - replace with actual endpoint
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      // Prepare data for Google Sheets
+      const submissionData = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company,
+        website: formData.website,
+        linkedin: formData.linkedin,
+        expertise: formData.expertise,
+        experience: formData.experience,
+        bio: formData.bio,
+        availability: formData.availability,
+        motivation: formData.motivation,
+        profileImageUrl: profileImageUrl,
+      };
 
-      setSubmitStatus("success");
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        company: "",
-        website: "",
-        expertise: [],
-        experience: "",
-        bio: "",
-        availability: "",
-        motivation: "",
-        profileImage: null,
+      // Submit to Google Sheets via API route
+      const response = await fetch("/api/submit-mentor", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(submissionData),
       });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Show success toast
+        toast.success("🚀 Application Submitted Successfully!", {
+          description:
+            "Welcome to the HackSpire 2025 mentor network! We'll be in touch soon.",
+          duration: 5000,
+        });
+
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          company: "",
+          website: "",
+          linkedin: "",
+          expertise: [],
+          experience: "",
+          bio: "",
+          availability: "",
+          motivation: "",
+          profileImage: null,
+        });
+        setProfileImageUrl("");
+      } else {
+        throw new Error(result.error || "Submission failed");
+      }
     } catch (error) {
       console.error("Form submission error:", error);
-      setSubmitStatus("error");
+      // Show error toast
+      toast.error("❌ Submission Failed", {
+        description:
+          "Something went wrong. Please try again or contact support.",
+        duration: 5000,
+      });
     } finally {
       setIsSubmitting(false);
-      setTimeout(() => setSubmitStatus("idle"), 5000);
     }
   };
 
@@ -276,7 +347,7 @@ function MentorsForm() {
 
       {/* Mentors Form Section */}
       <div
-        className={`relative overflow-hidden from-yellow-400/20 max-w-5xl mx-auto mb-20 z-10 to-orange-500/20 backdrop-blur-sm border border-yellow-400/40 group cursor-pointer bg-gradient-to-br flex flex-col justify-end p-8 ${5}`}
+        className={`relative overflow-hidden from-yellow-400/20 max-w-5xl mx-auto mb-20 z-10 to-orange-500/20 backdrop-blur-sm border border-yellow-400/40 group bg-gradient-to-br flex flex-col justify-end p-8 ${5}`}
         style={{
           animationDelay: `2ms`,
           clipPath:
@@ -416,7 +487,7 @@ function MentorsForm() {
                   className="block text-sm font-medium text-white mb-2"
                   style={{ fontFamily: "Poppins, sans-serif" }}
                 >
-                  Company/Organization
+                  Company/Organization & Position
                 </label>
                 <input
                   type="text"
@@ -425,7 +496,7 @@ function MentorsForm() {
                   value={formData.company}
                   onChange={handleInputChange}
                   className="w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300"
-                  placeholder="Your company name"
+                  placeholder="Your company name & Position"
                   style={{
                     fontFamily: "Poppins, sans-serif",
                     clipPath:
@@ -456,6 +527,34 @@ function MentorsForm() {
                   onChange={handleInputChange}
                   className="w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300"
                   placeholder="https://yourwebsite.com"
+                  style={{
+                    fontFamily: "Poppins, sans-serif",
+                    clipPath:
+                      "polygon(0 1%, 100% 1%, 100% 30%, 96% 79%, 68% 80%, 14% 81%, 11% 100%, 0 100%)",
+                  }}
+                />
+              </motion.div>
+
+              {/* {LinkdIn field} */}
+              <motion.div
+                whileFocus={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <label
+                  htmlFor="linkedin"
+                  className="block text-sm font-medium text-white mb-2"
+                  style={{ fontFamily: "Poppins, sans-serif" }}
+                >
+                  LinkedIn
+                </label>
+                <input
+                  type="url"
+                  id="linkedin"
+                  name="linkedin"
+                  value={formData.linkedin}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300"
+                  placeholder="https://linkedin.com/in/yourprofile"
                   style={{
                     fontFamily: "Poppins, sans-serif",
                     clipPath:
@@ -730,58 +829,104 @@ function MentorsForm() {
               className="w-full mb-8"
             >
               <label
-                htmlFor="profileImage"
                 className="block text-sm font-medium text-white mb-3"
                 style={{ fontFamily: "Poppins, sans-serif" }}
               >
                 Profile Image
               </label>
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                <input
-                  type="file"
-                  id="profileImage"
-                  name="profileImage"
-                  accept="image/*"
-                  onChange={handleImageUpload}
-                  className="hidden"
+              <div className="flex flex-col items-start gap-4">
+                <UploadButton
+                  endpoint="profileImageUploader"
+                  onClientUploadComplete={(res) => {
+                    if (res && res[0]) {
+                      setProfileImageUrl(res[0].ufsUrl);
+                      console.log("Upload Completed:", res[0].ufsUrl);
+                    }
+                  }}
+                  onUploadError={(error: Error) => {
+                    console.error("Upload Error:", error);
+                    alert(`Upload failed: ${error.message}`);
+                  }}
+                  appearance={{
+                    button:
+                      "bg-yellow-400 text-black hover:bg-yellow-500 px-6 py-3 font-mokoto transition-colors duration-300",
+                    container: "w-full",
+                    allowedContent: "text-gray-400 text-xs font-mokoto mt-2",
+                  }}
                 />
-                <CyberButton
-                  onClick={() =>
-                    document.getElementById("profileImage")?.click()
-                  }
-                  className="flex items-center gap-2 px-6 py-3"
-                >
-                  <Upload className="w-5 h-5" />
-                  Choose Image
-                </CyberButton>
 
-                {formData.profileImage && (
-                  <div className="flex items-center gap-3 p-3 bg-black/40 border border-yellow-400/30 rounded-sm">
+                {profileImageUrl && (
+                  <div className="flex items-center gap-3 p-3 bg-black/40 border border-yellow-400/30 rounded-sm relative z-10">
                     <ImageIcon className="w-5 h-5 text-yellow-400" />
                     <div className="flex flex-col">
                       <span className="text-sm text-yellow-300 font-medium">
-                        {formData.profileImage.name}
+                        Image uploaded successfully
                       </span>
-                      <span className="text-xs text-gray-400">
-                        {(formData.profileImage.size / 1024 / 1024).toFixed(2)}{" "}
-                        MB
-                      </span>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setIsImageLoading(true);
+                          setIsImageModalOpen(true);
+                        }}
+                        className="text-xs text-blue-400 hover:text-blue-300 underline cursor-pointer bg-transparent border-none relative z-30 p-1 hover:bg-blue-400/10 rounded transition-colors duration-200"
+                      >
+                        View uploaded image
+                      </button>
                     </div>
                   </div>
                 )}
               </div>
               <p className="text-xs text-gray-400 mt-3 font-mokoto">
-                Upload a professional photo (JPG, PNG, GIF - Max 5MB)
+                Upload a professional photo (JPG, PNG, GIF - Max 4MB)
               </p>
+            </motion.div>
+
+            {/* Terms and Conditions */}
+            <motion.div
+              whileFocus={{ scale: 1.02 }}
+              transition={{ duration: 0.2 }}
+              className="flex items-start gap-4 p-6 bg-yellow-400/10 border border-yellow-400/30 rounded-lg relative z-20"
+            >
+              <div className="flex items-center gap-3 relative z-30">
+                <input
+                  type="checkbox"
+                  id="termsAccepted"
+                  checked={termsAccepted}
+                  onChange={(e) => setTermsAccepted(e.target.checked)}
+                  className="w-5 h-5 bg-black/60 border-2 border-yellow-400/50 rounded focus:outline-none focus:border-yellow-400 accent-yellow-400 relative z-40 cursor-pointer"
+                />
+                <label
+                  htmlFor="termsAccepted"
+                  className="text-white text-sm cursor-pointer relative z-30"
+                  style={{ fontFamily: "Poppins, sans-serif" }}
+                >
+                  I accept the{" "}
+                  <button
+                    type="button"
+                    onClick={() => setIsTermsModalOpen(true)}
+                    className="text-yellow-400 hover:text-yellow-300 underline font-semibold relative z-30"
+                  >
+                    Mentor Terms & Conditions
+                  </button>{" "}
+                  and understand my role and responsibilities *
+                </label>
+              </div>
             </motion.div>
 
             <motion.div
               className="text-center"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={
+                !termsAccepted || !profileImageUrl ? {} : { scale: 1.05 }
+              }
+              whileTap={
+                !termsAccepted || !profileImageUrl ? {} : { scale: 0.95 }
+              }
             >
               <CyberButton
                 isSending={isSubmitting}
+                disabled={isSubmitting}
                 onClick={() => {
                   if (!isSubmitting) {
                     handleSubmit({
@@ -804,39 +949,31 @@ function MentorsForm() {
                   )}
                 </span>
               </CyberButton>
+
+              {/* Validation Status */}
+              {showValidationWarning &&
+                (!termsAccepted || !profileImageUrl) && (
+                  <div className="mt-4 p-4 bg-red-400/10 border border-red-400/30 rounded-lg relative z-30">
+                    <p className="text-red-400 text-sm font-semibold mb-2">
+                      ⚠️ Please complete the following to submit:
+                    </p>
+                    <ul className="text-red-300 text-sm space-y-1">
+                      {!profileImageUrl && (
+                        <li className="flex items-center gap-2">
+                          <span>•</span>
+                          <span>Upload a profile image</span>
+                        </li>
+                      )}
+                      {!termsAccepted && (
+                        <li className="flex items-center gap-2">
+                          <span>•</span>
+                          <span>Accept the mentor terms and conditions</span>
+                        </li>
+                      )}
+                    </ul>
+                  </div>
+                )}
             </motion.div>
-
-            {submitStatus === "success" && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-center p-4 bg-green-500/20 border border-green-500/30 cyber-success-message"
-              >
-                <p
-                  className="text-green-300 font-medium"
-                  style={{ fontFamily: "Poppins, sans-serif" }}
-                >
-                  🎉 Application submitted successfully! We'll review your
-                  profile and get back to you soon.
-                </p>
-              </motion.div>
-            )}
-
-            {submitStatus === "error" && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-center p-4 bg-red-500/20 border border-red-500/30 cyber-error-message"
-              >
-                <p
-                  className="text-red-300 font-medium"
-                  style={{ fontFamily: "Poppins, sans-serif" }}
-                >
-                  ❌ Failed to submit application. Please try again or contact
-                  us through Discord.
-                </p>
-              </motion.div>
-            )}
           </form>
         </div>
 
@@ -1006,43 +1143,460 @@ function MentorsForm() {
             Join our community of mentors and inspire the next generation
           </p>
           <div className="inline-block">
-            <a
-              href="https://hackspire.tech"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-yellow-400 hover:text-yellow-300 transition-colors duration-300 font-mokoto text-lg"
-            >
-              <span>Visit our podium</span>
-              <Globe className="w-5 h-5" />
-            </a>
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+              <a
+                href="https://hackspire.tech"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-yellow-400 hover:text-yellow-300 transition-colors duration-300 font-mokoto text-lg"
+              >
+                <span>Visit our podium</span>
+                <Globe className="w-5 h-5" />
+              </a>
+
+              <span className="text-gray-400 hidden sm:block">•</span>
+
+              <a
+                href="mailto:acmfiem@gmail.com"
+                className="inline-flex items-center gap-2 text-yellow-400 hover:text-yellow-300 transition-colors duration-300 font-mokoto text-lg"
+              >
+                <span>Contact us</span>
+                <Mail className="w-5 h-5" />
+              </a>
+            </div>
           </div>
         </div>
       </motion.div>
 
-      {/* CSS for cyberpunk styling */}
-      <style jsx>{`
-        .cyber-success-message {
-          clip-path: polygon(
-            10px 0%,
-            100% 0%,
-            100% calc(100% - 10px),
-            calc(100% - 10px) 100%,
-            0% 100%,
-            0% 10px
-          );
-        }
+      {/* Image Modal */}
+      {isImageModalOpen && profileImageUrl && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+          onClick={() => setIsImageModalOpen(false)}
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.3 }}
+            className="relative w-full max-w-4xl max-h-[90vh] mx-4 sm:mx-8 md:mx-auto p-2 sm:p-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Cyberpunk Modal Container */}
+            <div
+              className="relative bg-black/90 border-2 border-yellow-400 p-3 sm:p-6 overflow-hidden"
+              style={{
+                clipPath:
+                  "polygon(10px 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 10px)",
+              }}
+            >
+              {/* Cyberpunk Circuit Overlay */}
+              <div className="absolute inset-0 opacity-30">
+                <div className="absolute top-2 left-2 w-8 h-px bg-yellow-400 opacity-60"></div>
+                <div className="absolute top-2 left-2 w-px h-8 bg-yellow-400 opacity-60"></div>
+                <div className="absolute bottom-2 right-2 w-8 h-px bg-yellow-400 opacity-60"></div>
+                <div className="absolute bottom-2 right-2 w-px h-8 bg-yellow-400 opacity-60"></div>
+                <div className="absolute top-1/2 left-1 w-4 h-px bg-yellow-400/40"></div>
+                <div className="absolute top-1/3 right-1 w-4 h-px bg-yellow-400/40"></div>
+              </div>
 
-        .cyber-error-message {
-          clip-path: polygon(
-            10px 0%,
-            100% 0%,
-            100% calc(100% - 10px),
-            calc(100% - 10px) 100%,
-            0% 100%,
-            0% 10px
-          );
-        }
-      `}</style>
+              {/* Close Button */}
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setIsImageModalOpen(false);
+                }}
+                className="absolute top-2 right-2 sm:top-4 sm:right-4 z-50 w-8 h-8 sm:w-10 sm:h-10 bg-red-500 hover:bg-red-600 text-white font-bold text-lg sm:text-xl flex items-center justify-center transition-colors duration-200 cursor-pointer"
+                style={{
+                  clipPath:
+                    "polygon(20% 0%, 100% 0%, 100% 80%, 80% 100%, 0% 100%, 0% 20%)",
+                }}
+              >
+                ×
+              </button>
+
+              {/* Modal Header */}
+              <div className="relative z-10 mb-3 sm:mb-4">
+                <h3
+                  className="text-lg sm:text-2xl font-bold text-yellow-400 font-mokoto"
+                  style={{ fontFamily: "'Mokoto Demo', monospace" }}
+                >
+                  Profile Image Preview
+                </h3>
+                <div className="w-full h-px bg-yellow-400/30 mt-2"></div>
+              </div>
+
+              {/* Image Container */}
+              <div className="relative z-10 flex justify-center items-center min-h-[200px]">
+                {isImageLoading && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-lg">
+                    <div className="flex flex-col items-center gap-3">
+                      <div className="w-8 h-8 border-2 border-yellow-400 border-t-transparent rounded-full animate-spin"></div>
+                      <span className="text-yellow-400 text-sm font-mokoto">
+                        Loading image...
+                      </span>
+                    </div>
+                  </div>
+                )}
+                <img
+                  src={profileImageUrl}
+                  alt="Profile Preview"
+                  className={`max-w-full max-h-[60vh] sm:max-h-[70vh] object-contain border-2 border-yellow-400/50 rounded-lg shadow-2xl transition-opacity duration-300 ${
+                    isImageLoading ? "opacity-0" : "opacity-100"
+                  }`}
+                  style={{
+                    filter: "drop-shadow(0 0 20px rgba(255, 212, 63, 0.3))",
+                  }}
+                  onLoad={() => setIsImageLoading(false)}
+                  onLoadStart={() => setIsImageLoading(true)}
+                />
+              </div>
+
+              {/* Modal Footer */}
+              <div className="relative z-10 mt-3 sm:mt-4 flex justify-center">
+                <a
+                  href={profileImageUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-2 font-mokoto font-bold transition-colors duration-200"
+                  style={{
+                    clipPath:
+                      "polygon(10px 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 10px)",
+                  }}
+                >
+                  Open in New Tab
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      )}
+
+      {/* Terms and Conditions Modal */}
+      {isTermsModalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+          onClick={() => setIsTermsModalOpen(false)}
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.3 }}
+            className="relative w-full max-w-4xl max-h-[90vh] mx-2 sm:mx-8 md:mx-auto p-1 sm:p-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Cyberpunk Modal Container */}
+            <div
+              className="relative bg-black/90 border-2 border-yellow-400 p-2 sm:p-6 max-h-[90vh] overflow-y-auto"
+              style={{
+                clipPath:
+                  "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
+                scrollBehavior: "smooth",
+              }}
+            >
+              {/* Close Button */}
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setIsTermsModalOpen(false);
+                }}
+                className="absolute top-2 right-2 sm:top-4 sm:right-4 z-50 w-8 h-8 sm:w-10 sm:h-10 bg-red-500 hover:bg-red-600 text-white font-bold text-lg sm:text-xl flex items-center justify-center transition-colors duration-200 cursor-pointer"
+                style={{
+                  clipPath:
+                    "polygon(20% 0%, 100% 0%, 100% 80%, 80% 100%, 0% 100%, 0% 20%)",
+                }}
+              >
+                ×
+              </button>
+
+              {/* Cyberpunk Circuit Overlay */}
+              <div className="absolute inset-0 opacity-30">
+                <div className="absolute top-2 left-2 w-8 h-px bg-yellow-400 opacity-60"></div>
+                <div className="absolute top-2 left-2 w-px h-8 bg-yellow-400 opacity-60"></div>
+                <div className="absolute bottom-2 right-2 w-8 h-px bg-yellow-400 opacity-60"></div>
+                <div className="absolute bottom-2 right-2 w-px h-8 bg-yellow-400 opacity-60"></div>
+                <div className="absolute top-1/2 left-1 w-4 h-px bg-yellow-400/40"></div>
+                <div className="absolute top-1/3 right-1 w-4 h-px bg-yellow-400/40"></div>
+              </div>
+
+              <div className="relative z-10 p-2 sm:p-8">
+                <h2
+                  className="text-3xl md:text-4xl font-bold text-yellow-400 mb-6 text-center font-mokoto"
+                  style={{ fontFamily: "'Mokoto Demo', monospace" }}
+                >
+                  🤝 MENTOR TERMS & CONDITIONS
+                </h2>
+
+                <div
+                  className="space-y-6 text-white"
+                  style={{ fontFamily: "Poppins, sans-serif" }}
+                >
+                  <div className="bg-yellow-400/10 border border-yellow-400/30 p-3 sm:p-6 rounded-lg">
+                    <h3 className="text-xl font-bold text-yellow-400 mb-4">
+                      🎯 MENTOR ROLE & RESPONSIBILITIES
+                    </h3>
+                    <ul className="space-y-3 text-gray-300">
+                      <li className="flex items-start gap-3">
+                        <span className="text-yellow-400 mt-1">•</span>
+                        <span>
+                          <strong className="text-white">
+                            Guidance & Support:
+                          </strong>{" "}
+                          Provide technical guidance, career advice, and moral
+                          support to participants throughout the hackathon.
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="text-yellow-400 mt-1">•</span>
+                        <span>
+                          <strong className="text-white">
+                            Knowledge Sharing:
+                          </strong>{" "}
+                          Share your expertise in your domain and help teams
+                          overcome technical challenges.
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="text-yellow-400 mt-1">•</span>
+                        <span>
+                          <strong className="text-white">Motivation:</strong>{" "}
+                          Encourage participants, help them stay motivated, and
+                          foster a positive learning environment.
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="text-yellow-400 mt-1">•</span>
+                        <span>
+                          <strong className="text-white">Availability:</strong>{" "}
+                          Be available during designated mentoring hours and
+                          respond to participant queries in a timely manner.
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-red-400/10 border border-red-400/30 p-3 sm:p-6 rounded-lg">
+                    <h3 className="text-xl font-bold text-red-400 mb-4">
+                      ⚖️ IMPORTANT: MENTORS ARE NOT JUDGES
+                    </h3>
+                    <ul className="space-y-3 text-gray-300">
+                      <li className="flex items-start gap-3">
+                        <span className="text-red-400 mt-1">•</span>
+                        <span>
+                          <strong className="text-white">
+                            No Judging Role:
+                          </strong>{" "}
+                          Mentors do not participate in the official judging
+                          process or scoring of projects.
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="text-red-400 mt-1">•</span>
+                        <span>
+                          <strong className="text-white">
+                            Neutral Support:
+                          </strong>{" "}
+                          Provide equal support to all teams without favoritism
+                          or bias.
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="text-red-400 mt-1">•</span>
+                        <span>
+                          <strong className="text-white">
+                            Internal Discussions:
+                          </strong>{" "}
+                          You may discuss projects internally with judges for
+                          technical insights, but final decisions rest with the
+                          official judging panel.
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="text-red-400 mt-1">•</span>
+                        <span>
+                          <strong className="text-white">
+                            Confidentiality:
+                          </strong>{" "}
+                          Maintain confidentiality about project details and
+                          judging discussions.
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-blue-400/10 border border-blue-400/30 p-3 sm:p-6 rounded-lg">
+                    <h3 className="text-xl font-bold text-blue-400 mb-4">
+                      🤝 COLLABORATION WITH JUDGES
+                    </h3>
+                    <ul className="space-y-3 text-gray-300">
+                      <li className="flex items-start gap-3">
+                        <span className="text-blue-400 mt-1">•</span>
+                        <span>
+                          <strong className="text-white">
+                            Technical Insights:
+                          </strong>{" "}
+                          Share technical observations about projects with
+                          judges when requested.
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="text-blue-400 mt-1">•</span>
+                        <span>
+                          <strong className="text-white">Advisory Role:</strong>{" "}
+                          Provide advisory input on technical feasibility and
+                          innovation aspects.
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="text-blue-400 mt-1">•</span>
+                        <span>
+                          <strong className="text-white">
+                            No Scoring Authority:
+                          </strong>{" "}
+                          You cannot assign scores or make final judging
+                          decisions.
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-green-400/10 border border-green-400/30 p-3 sm:p-6 rounded-lg">
+                    <h3 className="text-xl font-bold text-green-400 mb-4">
+                      📋 CODE OF CONDUCT
+                    </h3>
+                    <ul className="space-y-3 text-gray-300">
+                      <li className="flex items-start gap-3">
+                        <span className="text-green-400 mt-1">•</span>
+                        <span>
+                          <strong className="text-white">
+                            Professional Behavior:
+                          </strong>{" "}
+                          Maintain professional conduct and respect towards all
+                          participants.
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="text-green-400 mt-1">•</span>
+                        <span>
+                          <strong className="text-white">
+                            Inclusive Environment:
+                          </strong>{" "}
+                          Foster an inclusive and welcoming environment for all
+                          participants.
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="text-green-400 mt-1">•</span>
+                        <span>
+                          <strong className="text-white">
+                            No Discrimination:
+                          </strong>{" "}
+                          Do not discriminate based on gender, race, religion,
+                          or any other personal characteristics.
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="text-green-400 mt-1">•</span>
+                        <span>
+                          <strong className="text-white">
+                            Constructive Feedback:
+                          </strong>{" "}
+                          Provide constructive and helpful feedback to encourage
+                          learning and growth.
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-purple-400/10 border border-purple-400/30 p-3 sm:p-6 rounded-lg">
+                    <h3 className="text-xl font-bold text-purple-400 mb-4">
+                      📞 COMMITMENT & COMMUNICATION
+                    </h3>
+                    <ul className="space-y-3 text-gray-300">
+                      <li className="flex items-start gap-3">
+                        <span className="text-purple-400 mt-1">•</span>
+                        <span>
+                          <strong className="text-white">
+                            Time Commitment:
+                          </strong>{" "}
+                          Dedicate the agreed-upon time for mentoring activities
+                          during the event.
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="text-purple-400 mt-1">•</span>
+                        <span>
+                          <strong className="text-white">Communication:</strong>{" "}
+                          Maintain clear and timely communication with both
+                          participants and organizers.
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="text-purple-400 mt-1">•</span>
+                        <span>
+                          <strong className="text-white">
+                            Availability Notice:
+                          </strong>{" "}
+                          Inform organizers in advance if you cannot fulfill
+                          your mentoring duties.
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="text-center mt-8 p-3 sm:p-6 bg-yellow-400/10 border border-yellow-400/30 rounded-lg">
+                    <p className="text-lg text-yellow-400 font-semibold mb-4">
+                      By accepting these terms, you agree to uphold the values
+                      of HackSpire 2025 and contribute to creating an amazing
+                      experience for all participants.
+                    </p>
+                    <p className="text-sm text-gray-400">
+                      For any questions or clarifications, contact us at{" "}
+                      <a
+                        href="mailto:acmfiem@gmail.com"
+                        className="text-yellow-400 hover:text-yellow-300"
+                      >
+                        acmfiem@gmail.com
+                      </a>
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-4 items-center justify-center mt-8">
+                  <button
+                    onClick={() => {
+                      setTermsAccepted(true);
+                      setIsTermsModalOpen(false);
+                    }}
+                    className="bg-yellow-400 hover:bg-yellow-500 text-black px-8 py-3 font-bold transition-colors duration-200"
+                    style={{
+                      clipPath:
+                        "polygon(10px 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 10px)",
+                    }}
+                  >
+                    ✅ Accept Terms & Continue
+                  </button>
+                  <button
+                    onClick={() => setIsTermsModalOpen(false)}
+                    className="bg-gray-600 hover:bg-gray-700 text-white px-8 py-3 font-bold transition-colors duration-200"
+                    style={{
+                      clipPath:
+                        "polygon(10px 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 10px)",
+                    }}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      )}
     </div>
   );
 }
