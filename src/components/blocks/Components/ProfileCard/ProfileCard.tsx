@@ -1,7 +1,3 @@
-/*
-	Installed from https://reactbits.dev/ts/default/
-*/
-
 import React, { useEffect, useRef, useCallback, useMemo } from "react";
 import "./ProfileCard.css";
 
@@ -58,6 +54,11 @@ const adjust = (
 const easeInOutCubic = (x: number): number =>
   x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
 
+// Helper function to detect small mobile devices (sm breakpoint = 640px)
+const isSmallMobileDevice = (): boolean => {
+  return window.innerWidth < 640;
+};
+
 const ProfileCardComponent: React.FC<ProfileCardProps> = ({
   avatarUrl = "",
   iconUrl = "/icons/codeicon.png",
@@ -81,8 +82,17 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
   const wrapRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
 
+  // Check if tilt should be enabled (disabled on small mobile devices unless explicitly enabled)
+  const shouldEnableTilt = useMemo(() => {
+    const isSmallMobile = isSmallMobileDevice();
+    if (isSmallMobile && !enableMobileTilt) {
+      return false;
+    }
+    return enableTilt;
+  }, [enableTilt, enableMobileTilt]);
+
   const animationHandlers = useMemo(() => {
-    if (!enableTilt) return null;
+    if (!shouldEnableTilt) return null;
 
     let rafId: number | null = null;
 
@@ -161,7 +171,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
         }
       },
     };
-  }, [enableTilt]);
+  }, [shouldEnableTilt]);
 
   const handlePointerMove = useCallback(
     (event: PointerEvent) => {
@@ -234,7 +244,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
   );
 
   useEffect(() => {
-    if (!enableTilt || !animationHandlers) return;
+    if (!shouldEnableTilt || !animationHandlers) return;
 
     const card = cardRef.current;
     const wrap = wrapRef.current;
@@ -294,7 +304,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
       animationHandlers.cancelAnimation();
     };
   }, [
-    enableTilt,
+    shouldEnableTilt,
     enableMobileTilt,
     animationHandlers,
     handlePointerMove,

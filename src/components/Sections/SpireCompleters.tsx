@@ -311,7 +311,7 @@ function SpireCompleters() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-            className="flex justify-center items-center gap-4 md:gap-8 lg:gap-12 flex-wrap md:flex-nowrap mt-44 sm:mt-20 md:mt-48 lg:mt-40"
+            className="flex items-center justify-center gap-8 md:gap-12 lg:gap-16 flex-wrap flex-col sm:flex-row sm:flex-nowrap mt-44 sm:mt-20 md:mt-48 lg:mt-40"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -323,7 +323,7 @@ function SpireCompleters() {
               <img
                 src="https://res.cloudinary.com/dislegzga/image/upload/v1755067912/new_fiem_logo_iq0bn8.jpg"
                 alt="Future"
-                className="w-full h-auto scale-150 -translate-x-8"
+                className="w-full h-auto scale-150"
               />
             </motion.div>
             <motion.div
@@ -336,7 +336,7 @@ function SpireCompleters() {
               <img
                 src="/icons/starcyber.png"
                 alt="Logo Icon"
-                className="w-full h-auto"
+                className="sm:translate-x-3 md:translate-x-6 md:scale-150 mt-3 sm:mt-0 scale-120 lg:translate-x-10 h-auto"
               />
             </motion.div>
             <motion.div
