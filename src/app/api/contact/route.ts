@@ -81,10 +81,6 @@ export async function POST(request: NextRequest) {
       to: GMAIL_USER, // Where to send contact form submissions
       replyTo: email, // Reply-to will be the sender's email
       subject: `Contact Form: ${subject}`,
-      headers: {
-        "X-NextAuth-URL": NEXTAUTH_URL,
-        "X-NextAuth-URL-Local": NEXTAUTH_URL_LOCAL,
-      },
       html: `
         <div style="font-family: 'Poppins', Arial, sans-serif; max-width: 700px; margin: 0 auto; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%); color: #ffffff; padding: 0; border-radius: 15px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
           
