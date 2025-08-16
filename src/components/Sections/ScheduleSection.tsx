@@ -10,13 +10,15 @@ export default function ScheduleSection() {
       id="schedule"
     >
       {/* Yellow Trapezium Background with Clip-Path */}
-      <div className="absolute top-0 left-0 right-0 h-96 z-0">
+      <div className="absolute top-0 left-0 right-0 h-64 sm:h-80 md:h-96 z-0">
         {/* Main trapezium with clip-path */}
         <div
           className="w-full h-full bg-yellow-400 relative"
           style={{
             clipPath:
-              "polygon(3% 0, 97% 0, 100% 11%, 80% 91%, 72% 100%, 24% 100%, 16% 90%, 0 12%)",
+              "polygon(5% 0, 95% 0, 100% 15%, 85% 90%, 75% 100%, 25% 100%, 15% 90%, 0 15%)",
+            WebkitClipPath:
+              "polygon(5% 0, 95% 0, 100% 15%, 85% 90%, 75% 100%, 25% 100%, 15% 90%, 0 15%)",
           }}
         >
           {/* PCB-like lines */}
@@ -146,7 +148,7 @@ export default function ScheduleSection() {
           </motion.p>
         </motion.div>
 
-        <TracingBeam className="px-6 relative z-10 mt-56 sm:mt-28">
+        <TracingBeam className="px-6 relative z-10 mt-16 sm:mt-20 md:mt-28">
           <div className="max-w-2xl mx-auto antialiased pt-4 relative">
             {hackathonContent.map((item, index) => (
               <motion.div

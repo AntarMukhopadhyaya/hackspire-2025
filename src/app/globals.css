@@ -1757,15 +1757,31 @@ html {
 /* Large Decorative Trapezium for SpireCompleters Mission Text */
 .large-trapezium-decorative {
   clip-path: polygon(
-    12% 0%,
-    88% 0%,
-    100% 20%,
-    100% 80%,
-    88% 100%,
-    12% 100%,
-    0% 80%,
-    0% 20%
+    8% 0%,
+    92% 0%,
+    100% 15%,
+    100% 85%,
+    92% 100%,
+    8% 100%,
+    0% 85%,
+    0% 15%
   );
+}
+
+/* Mobile responsive trapezium - wider for better text fit */
+@media (max-width: 768px) {
+  .large-trapezium-decorative {
+    clip-path: polygon(
+      5% 0%,
+      95% 0%,
+      100% 12%,
+      100% 88%,
+      95% 100%,
+      5% 100%,
+      0% 88%,
+      0% 12%
+    );
+  }
 }
 
 /* Glitch Hover Effects for SpireCompleters Cards */
@@ -1846,4 +1862,67 @@ html {
 /* Hide navbar for specific pages */
 .hide-navbar nav {
   display: none !important;
+}
+
+/* Mobile Touch Fixes for Cyberpunk Frames */
+@media (max-width: 768px) {
+  /* Mobile-active state for cyberpunk frames */
+  .group.mobile-active .group-hover\:opacity-0 {
+    opacity: 0 !important;
+  }
+
+  .group.mobile-active .group-hover\:pointer-events-none {
+    pointer-events: none !important;
+  }
+
+  .group.mobile-active .group-hover\:animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite !important;
+  }
+
+  .group.mobile-active .group-hover\:bg-orange-500 {
+    background-color: rgb(249 115 22) !important;
+  }
+
+  .group.mobile-active .group-hover\:opacity-30 {
+    opacity: 0.3 !important;
+  }
+
+  .group.mobile-active .group-hover\:scale-\[1\.02\] {
+    transform: scale(1.02) !important;
+  }
+
+  /* Make cyberpunk frames bigger on mobile */
+  .cyberpunk-frame-container {
+    max-width: 85vw !important;
+  }
+
+  /* Ensure touch targets are large enough */
+  .cyberpunk-touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Cyberpunk frame animations */
+@keyframes cyberpunk-glitch {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-2px);
+  }
+  40% {
+    transform: translateX(2px);
+  }
+  60% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(1px);
+  }
+}
+
+.cyberpunk-glitch-active {
+  animation: cyberpunk-glitch 0.3s ease-in-out;
 }

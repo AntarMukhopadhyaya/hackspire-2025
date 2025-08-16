@@ -14,7 +14,9 @@ function SpireCompleters() {
           className="w-full h-full bg-yellow-400 relative"
           style={{
             clipPath:
-              "polygon(3% 0, 97% 0, 100% 11%, 80% 91%, 72% 100%, 24% 100%, 16% 90%, 0 12%)",
+              "polygon(5% 0, 95% 0, 100% 15%, 85% 90%, 75% 100%, 25% 100%, 15% 90%, 0 15%)",
+            WebkitClipPath:
+              "polygon(5% 0, 95% 0, 100% 15%, 85% 90%, 75% 100%, 25% 100%, 15% 90%, 0 15%)",
           }}
         >
           {/* PCB-like lines */}

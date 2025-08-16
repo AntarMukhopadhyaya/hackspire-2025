@@ -29,7 +29,7 @@ export default function Home() {
         <ScheduleSection />
         <GlorySection />
         <SponsorsSection />
-        <CollaborationsSection />
+        {/* <CollaborationsSection /> */}
         <FAQSection />
       </div>
     </main>

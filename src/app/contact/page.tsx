@@ -16,6 +16,18 @@ function ContactUs() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Mobile touch handler for cyberpunk frames
+  const handleMobileTouch = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (window.innerWidth <= 768) {
+      const target = e.currentTarget;
+      target.classList.toggle("mobile-active");
+      // Remove active state after 2.5 seconds for better UX
+      setTimeout(() => {
+        target.classList.remove("mobile-active");
+      }, 2500);
+    }
+  };
+
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -114,7 +126,9 @@ function ContactUs() {
           className="w-full h-full bg-yellow-400 relative"
           style={{
             clipPath:
-              "polygon(3% 0, 97% 0, 100% 11%, 80% 91%, 72% 100%, 24% 100%, 16% 90%, 0 12%)",
+              "polygon(5% 0, 95% 0, 100% 15%, 85% 90%, 75% 100%, 25% 100%, 15% 90%, 0 15%)",
+            WebkitClipPath:
+              "polygon(5% 0, 95% 0, 100% 15%, 85% 90%, 75% 100%, 25% 100%, 15% 90%, 0 15%)",
           }}
         >
           {/* PCB-like lines */}
@@ -304,7 +318,10 @@ function ContactUs() {
             className="text-center"
           >
             {/* Cyberpunk Yellow Container with Clip-Path Cut Edges */}
-            <div className="relative p-6 group cursor-pointer transition-all duration-300 hover:scale-105">
+            <div
+              className="relative p-6 group cursor-pointer transition-all duration-300 hover:scale-105"
+              onClick={handleMobileTouch}
+            >
               {/* Background with clip-path cuts */}
               <div
                 className="absolute inset-0 bg-yellow-400 transition-all duration-300 group-hover:animate-pulse"
@@ -373,7 +390,10 @@ function ContactUs() {
             className="text-center"
           >
             {/* Cyberpunk Yellow Container with Clip-Path Cut Edges */}
-            <div className="relative p-6 group cursor-pointer transition-all duration-300 hover:scale-105">
+            <div
+              className="relative p-6 group cursor-pointer transition-all duration-300 hover:scale-105"
+              onClick={handleMobileTouch}
+            >
               {/* Background with clip-path cuts */}
               <div
                 className="absolute inset-0 bg-yellow-400 transition-all duration-300 group-hover:animate-pulse"
@@ -443,7 +463,10 @@ function ContactUs() {
             className="text-center"
           >
             {/* Cyberpunk Yellow Container with Clip-Path Cut Edges */}
-            <div className="relative p-6 group cursor-pointer transition-all duration-300 hover:scale-105">
+            <div
+              className="relative p-6 group cursor-pointer transition-all duration-300 hover:scale-105"
+              onClick={handleMobileTouch}
+            >
               {/* Background with clip-path cuts */}
               <div
                 className="absolute inset-0 bg-yellow-400 transition-all duration-300 group-hover:animate-pulse"
@@ -715,7 +738,7 @@ function ContactUs() {
         transition={{ duration: 1, delay: 0.9 }}
         className="flex justify-center mt-20 relative z-10 px-4"
       >
-        <div className="relative w-full max-w-md sm:max-w-2xl md:max-w-4xl lg:max-w-6xl">
+        <div className="relative w-full max-w-lg sm:max-w-3xl md:max-w-4xl lg:max-w-6xl">
           {/* 16:9 wrapper */}
           <div className="relative w-full" style={{ aspectRatio: "16 / 9" }}>
             {/* Upward Light Effect */}
@@ -748,6 +771,17 @@ function ContactUs() {
                 clipPath:
                   "polygon(2% 42%, 0 42%, 3% 0, 97% 0, 100% 42%, 98% 42%, 98% 55%, 100% 55%, 97% 100%, 3% 100%, 0 56%, 2% 56%)",
               }}
+              onClick={(e) => {
+                // On mobile, toggle the overlays when tapped
+                if (window.innerWidth <= 768) {
+                  const target = e.currentTarget;
+                  target.classList.toggle("mobile-active");
+                  // Remove active state after 3 seconds for better UX
+                  setTimeout(() => {
+                    target.classList.remove("mobile-active");
+                  }, 3000);
+                }
+              }}
             >
               {/* Google Maps iframe container with same clip-path */}
               <div
@@ -770,10 +804,10 @@ function ContactUs() {
               </div>
 
               {/* Dark overlay for text readability - disappears and lets clicks through on hover */}
-              <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px] group-hover:opacity-0 group-hover:pointer-events-none transition-all duration-500 ease-in-out"></div>
+              <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px] group-hover:opacity-0 group-hover:pointer-events-none group-[.mobile-active]:opacity-0 group-[.mobile-active]:pointer-events-none transition-all duration-500 ease-in-out"></div>
 
               {/* Content overlay - disappears and lets clicks through on hover */}
-              <div className="absolute inset-0 flex items-center justify-center group-hover:opacity-0 group-hover:pointer-events-none transition-all duration-500 ease-in-out">
+              <div className="absolute inset-0 flex items-center justify-center group-hover:opacity-0 group-hover:pointer-events-none group-[.mobile-active]:opacity-0 group-[.mobile-active]:pointer-events-none transition-all duration-500 ease-in-out">
                 <div className="text-center space-y-4">
                   <motion.h2
                     initial={{ opacity: 0, y: 20 }}

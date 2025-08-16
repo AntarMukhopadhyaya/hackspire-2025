@@ -149,7 +149,7 @@ const FAQSection: React.FC = () => {
       </div>
 
       {/* FAQ Items */}
-      <div className="max-w-6xl mx-auto space-y-6 relative z-10">
+      <div className="max-w-6xl mx-auto space-y-3 md:space-y-6 relative z-10">
         {faqData.map((item, index) => {
           return (
             <motion.div
@@ -158,7 +158,7 @@ const FAQSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="relative overflow-hidden bg-gradient-to-br from-yellow-400/10 px-8 py-6 to-orange-500/10 backdrop-blur-sm border border-yellow-400/30 group hover:border-yellow-400/60 transition-all duration-300 z-20"
+              className="relative overflow-hidden bg-gradient-to-br from-yellow-400/10 px-4 py-4 md:px-8 md:py-6 to-orange-500/10 backdrop-blur-sm border border-yellow-400/30 group hover:border-yellow-400/60 transition-all duration-300 z-20 faq-card"
               style={{
                 clipPath:
                   "polygon(15px 0%, 100% 0%, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0% 100%, 0% 15px)",
@@ -178,19 +178,19 @@ const FAQSection: React.FC = () => {
               <div style={{ position: "relative", zIndex: 9999 }}>
                 <button
                   onClick={() => toggleExpanded(item.id)}
-                  className="w-full px-8 text-left flex items-center justify-between group focus:outline-none hover:cursor-pointer"
+                  className="w-full px-4 md:px-8 text-left flex items-center justify-between group focus:outline-none hover:cursor-pointer faq-button"
                 >
                   <h3
-                    className="text-xl lg:text-2xl font-bold text-white group-hover:text-yellow-400 transition-colors duration-300"
+                    className="text-sm sm:text-base md:text-xl lg:text-2xl font-bold text-white group-hover:text-yellow-400 transition-colors duration-300 whitespace-nowrap overflow-hidden text-ellipsis md:whitespace-normal faq-question"
                     style={{ fontFamily: "'Mokoto Demo', monospace" }}
                   >
                     {item.question}
                   </h3>
-                  <div className="ml-6">
+                  <div className="ml-2 md:ml-6 flex-shrink-0">
                     {isExpanded(item.id) ? (
-                      <ChevronUp className="w-8 h-8 text-yellow-400" />
+                      <ChevronUp className="w-5 h-5 md:w-8 md:h-8 text-yellow-400" />
                     ) : (
-                      <ChevronDown className="w-8 h-8 text-gray-400 group-hover:text-yellow-400" />
+                      <ChevronDown className="w-5 h-5 md:w-8 md:h-8 text-gray-400 group-hover:text-yellow-400" />
                     )}
                   </div>
                 </button>
@@ -203,10 +203,10 @@ const FAQSection: React.FC = () => {
                     : "max-h-0 opacity-0"
                 }`}
               >
-                <div className="px-8 pb-6">
-                  <div className="border-t border-yellow-400/30 pt-6">
+                <div className="px-4 md:px-8 pb-4 md:pb-6">
+                  <div className="border-t border-yellow-400/30 pt-4 md:pt-6">
                     <p
-                      className="text-gray-300 leading-relaxed text-base lg:text-lg"
+                      className="text-gray-300 leading-relaxed text-sm md:text-base lg:text-lg faq-answer"
                       style={{ fontFamily: "'Mokoto Demo', monospace" }}
                     >
                       {item.answer}
@@ -302,6 +302,53 @@ const FAQSection: React.FC = () => {
         .cyber-button-small {
           position: relative;
           overflow: hidden;
+        }
+
+        /* Mobile-specific FAQ optimizations */
+        @media (max-width: 768px) {
+          .faq-question {
+            font-size: 0.875rem !important;
+            line-height: 1.1 !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            font-weight: 600 !important;
+            letter-spacing: -0.025em !important;
+          }
+
+          .faq-card {
+            min-height: 56px !important;
+            padding: 10px 16px !important;
+            margin-bottom: 8px !important;
+          }
+
+          .faq-button {
+            padding: 6px 16px !important;
+            min-height: 40px !important;
+          }
+
+          .faq-answer {
+            font-size: 0.8rem !important;
+            line-height: 1.4 !important;
+          }
+        }
+
+        /* Extra small mobile screens */
+        @media (max-width: 480px) {
+          .faq-question {
+            font-size: 0.8rem !important;
+            max-width: calc(100vw - 120px) !important;
+          }
+
+          .faq-card {
+            padding: 8px 12px !important;
+            min-height: 48px !important;
+          }
+
+          .faq-button {
+            padding: 4px 12px !important;
+            min-height: 36px !important;
+          }
         }
       `}</style>
     </div>

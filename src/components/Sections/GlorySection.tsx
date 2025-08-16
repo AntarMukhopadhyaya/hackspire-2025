@@ -147,7 +147,7 @@ export default function GlorySection() {
             transition={{ duration: 0.8 }}
             className="flex justify-center px-4"
           >
-            <div className="relative w-full max-w-md sm:max-w-2xl md:max-w-4xl lg:max-w-6xl">
+            <div className="relative w-full max-w-lg sm:max-w-3xl md:max-w-4xl lg:max-w-6xl">
               {/* 16:9 wrapper */}
               <div
                 className="relative w-full"
@@ -183,6 +183,13 @@ export default function GlorySection() {
                     clipPath:
                       "polygon(2% 42%, 0 42%, 3% 0, 97% 0, 100% 42%, 98% 42%, 98% 55%, 100% 55%, 97% 100%, 3% 100%, 0 56%, 2% 56%)",
                   }}
+                  onClick={(e) => {
+                    // On mobile, toggle the overlays when tapped
+                    if (window.innerWidth <= 768) {
+                      const target = e.currentTarget;
+                      target.classList.toggle("mobile-active");
+                    }
+                  }}
                 >
                   {/* Crossfading slide using img; avoid yellow flash while loading */}
                   <motion.img
@@ -197,10 +204,10 @@ export default function GlorySection() {
                     draggable={false}
                     style={{ userSelect: "none" }}
                   />
-                  <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px] transition-opacity duration-300 group-hover:opacity-0"></div>
+                  <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px] transition-opacity duration-300 group-hover:opacity-0 group-[.mobile-active]:opacity-0"></div>
 
                   {/* Content overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 group-hover:opacity-0">
+                  <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 group-hover:opacity-0 group-[.mobile-active]:opacity-0">
                     <div className="text-center space-y-3">
                       <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -225,7 +232,7 @@ export default function GlorySection() {
                   </div>
 
                   {/* Circuit patterns overlay */}
-                  <div className="absolute inset-0 opacity-30 pointer-events-none transition-opacity duration-300 group-hover:opacity-0">
+                  <div className="absolute inset-0 opacity-30 pointer-events-none transition-opacity duration-300 group-hover:opacity-0 group-[.mobile-active]:opacity-0">
                     <div className="absolute top-4 left-8 right-8 h-px bg-yellow-300 opacity-80"></div>
                     <div className="absolute top-8 left-12 right-12 h-px bg-yellow-300 opacity-60"></div>
                     <div className="absolute top-12 left-8 right-8 h-px bg-yellow-300 opacity-70"></div>

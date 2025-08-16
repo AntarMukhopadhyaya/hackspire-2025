@@ -421,7 +421,7 @@ function MentorsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-            className="text-5xl sm:text-7xl md:text-[5rem] lg:text-[6rem] xl:text-8xl 2xl:text-[8rem] font-bold text-black font-sddystopiandemo"
+            className="text-6xl sm:text-7xl md:text-[5rem] lg:text-[6rem] xl:text-8xl 2xl:text-[8rem] font-bold text-black font-sddystopiandemo"
           >
             EXPERTS
           </motion.h2>
@@ -431,15 +431,20 @@ function MentorsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-            className="text-black mx-auto mb-4 md:mb-8 font-medium text-sm md:text-lg lg:text-xl whitespace-nowrap"
+            className="text-black mx-auto mb-4 md:mb-8 font-medium text-sm sm:text-base md:text-lg lg:text-xl px-4 sm:px-8 md:px-0 text-center max-w-[95%] sm:max-w-[85%] md:max-w-none leading-tight sm:leading-normal"
             style={{ fontFamily: "Mokoto Demo" }}
           >
-            Connect with industry experts ready to guide your journey.
+            <span className="block sm:inline">
+              Connect with seasoned industry experts and mentors
+            </span>
+            <span className="block sm:inline sm:ml-1">
+              ready to guide your coding journey to success.
+            </span>
           </motion.p>
         </motion.div>
 
         {/* Profile Cards Sections */}
-        <div className="mt-32 md:mt-40 space-y-16 md:space-y-20">
+        <div className="mt-40 sm:mt-44 md:mt-40 space-y-16 md:space-y-20">
           {/* Judges Section */}
           <motion.div
             initial={{ opacity: 0, y: 60 }}
