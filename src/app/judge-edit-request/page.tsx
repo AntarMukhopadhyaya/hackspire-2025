@@ -6,9 +6,9 @@ import { toast } from "sonner";
 import CyberButton from "@/components/ui/CyberButton";
 import { useSearchParams } from "next/navigation";
 
-export default function MentorEditRequest() {
+export default function JudgeEditRequest() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [mentorData, setMentorData] = useState<{
+  const [judgeData, setJudgeData] = useState<{
     email: string;
     name: string;
   } | null>(null);
@@ -32,7 +32,7 @@ export default function MentorEditRequest() {
         return;
       }
 
-      setMentorData({
+      setJudgeData({
         email: decodeURIComponent(email),
         name: decodeURIComponent(name),
       });
@@ -51,19 +51,19 @@ export default function MentorEditRequest() {
   const handleEditRequest = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (isSubmitting || !mentorData || !editMessage.trim()) return;
+    if (isSubmitting || !judgeData || !editMessage.trim()) return;
 
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/mentor-edit-request", {
+      const response = await fetch("/api/judge-edit-request", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          mentorEmail: mentorData?.email,
-          mentorName: mentorData?.name,
+          judgeEmail: judgeData?.email,
+          judgeName: judgeData?.name,
           editMessage: editMessage.trim(),
         }),
       });
@@ -71,7 +71,7 @@ export default function MentorEditRequest() {
       const result = await response.json();
 
       if (response.ok) {
-        toast.success("🚀 Edit Request Sent!", {
+        toast.success("⚖️ Edit Request Sent!", {
           description:
             "Our team will contact you soon to help with your changes.",
           duration: 5000,
@@ -217,17 +217,17 @@ export default function MentorEditRequest() {
                 className="text-4xl md:text-5xl font-bold text-yellow-400 mb-6 font-mokoto"
                 style={{ fontFamily: "'Mokoto Demo', monospace" }}
               >
-                Edit Request
+                Judge Edit Request
               </h1>
 
               <div className="space-y-6">
                 <div className="bg-yellow-400/10 border border-yellow-400/30 p-6 rounded-lg">
                   <h2 className="text-xl font-bold text-white mb-4">
-                    Hello, {mentorData?.name}!
+                    Hello, {judgeData?.name}!
                   </h2>
                   <p className="text-gray-300 mb-4">
                     Please describe what changes you'd like to make to your
-                    mentor application.
+                    judge application.
                   </p>
                 </div>
 
@@ -248,7 +248,7 @@ export default function MentorEditRequest() {
                       required
                       rows={6}
                       className="w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300 resize-none"
-                      placeholder="Please describe the changes you'd like to make to your application (e.g., update contact information, change expertise areas, modify bio, etc.)"
+                      placeholder="Please describe the changes you'd like to make to your judge application (e.g., update contact information, change technical domains, modify qualifications, update experience, etc.)"
                       style={{
                         fontFamily: "Poppins, sans-serif",
                         clipPath:
@@ -297,7 +297,7 @@ export default function MentorEditRequest() {
                     </li>
                     <li>• We'll contact you within 24 hours via email</li>
                     <li>
-                      • We'll help you make the requested changes to your
+                      • We'll help you make the requested changes to your judge
                       application
                     </li>
                   </ul>

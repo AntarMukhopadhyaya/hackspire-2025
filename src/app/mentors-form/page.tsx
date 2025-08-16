@@ -26,6 +26,7 @@ function MentorsForm() {
     company: "",
     website: "",
     linkedin: "",
+    hackathonProof: "",
     expertise: [] as string[],
     experience: "",
     bio: "",
@@ -133,6 +134,7 @@ function MentorsForm() {
         company: formData.company,
         website: formData.website,
         linkedin: formData.linkedin,
+        hackathonProof: formData.hackathonProof,
         expertise: formData.expertise,
         experience: formData.experience,
         bio: formData.bio,
@@ -168,6 +170,7 @@ function MentorsForm() {
           company: "",
           website: "",
           linkedin: "",
+          hackathonProof: "",
           expertise: [],
           experience: "",
           bio: "",
@@ -562,7 +565,48 @@ function MentorsForm() {
                   }}
                 />
               </motion.div>
+            </div>
 
+            {/* Hackathon Proof Field */}
+            <div className="grid md:grid-cols-1 gap-6">
+              <motion.div
+                whileFocus={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <label
+                  htmlFor="hackathonProof"
+                  className="block text-sm font-medium text-white mb-2"
+                  style={{ fontFamily: "Poppins, sans-serif" }}
+                >
+                  Proof of Last Hackathon Participation as Mentor
+                </label>
+                <input
+                  type="url"
+                  id="hackathonProof"
+                  name="hackathonProof"
+                  value={formData.hackathonProof}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 bg-black/60 border-2 border-yellow-400/50 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-all duration-300"
+                  placeholder="https://linkedin.com/posts/your-hackathon-post or social media link"
+                  style={{
+                    fontFamily: "Poppins, sans-serif",
+                    clipPath:
+                      "polygon(0 1%, 100% 1%, 100% 30%, 96% 79%, 68% 80%, 14% 81%, 11% 100%, 0 100%)",
+                  }}
+                />
+                <p
+                  className="text-xs text-gray-400 mt-2"
+                  style={{ fontFamily: "Poppins, sans-serif" }}
+                >
+                  Share a link to your social media post, LinkedIn update, or
+                  any proof showing your participation as a mentor in a previous
+                  hackathon
+                </p>
+              </motion.div>
+            </div>
+
+            {/* Expertise Section */}
+            <div className="grid md:grid-cols-1 gap-6">
               <motion.div
                 whileFocus={{ scale: 1.02 }}
                 transition={{ duration: 0.2 }}

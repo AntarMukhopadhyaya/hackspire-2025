@@ -12,6 +12,12 @@ export function Navbar() {
   if (pathname === "/mentor-edit-request") {
     return null;
   }
+  if (pathname === "/judges-form") {
+    return null;
+  }
+  if (pathname === "/judges-edit-request") {
+    return null;
+  }
 
   return <CyberpunkNavbar />;
 }

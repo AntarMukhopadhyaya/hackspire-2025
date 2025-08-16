@@ -15,12 +15,12 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { mentorEmail, mentorName, editMessage } = await request.json();
+    const { judgeEmail, judgeName, editMessage } = await request.json();
 
     // Validate required fields
-    if (!mentorEmail || !mentorName || !editMessage) {
+    if (!judgeEmail || !judgeName || !editMessage) {
       return NextResponse.json(
-        { error: "Mentor email, name, and edit message are required" },
+        { error: "Judge email, name, and edit message are required" },
         { status: 400 }
       );
     }
@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
     // Admin notifications removed - no approval system needed
     // Just log the edit request for now
     console.log(
-      `Mentor edit request received from ${mentorName} (${mentorEmail}): ${editMessage}`
+      `Judge edit request received from ${judgeName} (${judgeEmail}): ${editMessage}`
     );
 
     return NextResponse.json({

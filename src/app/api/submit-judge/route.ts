@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { getCurrentUrl } from "@/lib/urlUtils";
 
 // Environment variables for email configuration
 const GMAIL_USER = process.env.GMAIL_USER;
@@ -18,24 +19,27 @@ export async function POST(request: NextRequest) {
     const data = await request.json();
 
     // Submit to Google Apps Script
-    const response = await fetch(process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL!, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_GOOGLE_JUDGE_SCRIPT_URL!,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
 
     const result = await response.json();
 
     if (result.success) {
-      // Send confirmation email to mentor
+      // Send confirmation email to judge
       await sendConfirmationEmail(data);
 
       return NextResponse.json({
         success: true,
         message:
-          "Application submitted successfully! Check your email for confirmation.",
+          "Judge application submitted successfully! Check your email for confirmation.",
       });
     } else {
       throw new Error(result.error || "Submission failed");
@@ -43,14 +47,17 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error("API Error:", error);
     return NextResponse.json(
-      { success: false, error: "Failed to submit application" },
+      { success: false, error: "Failed to submit judge application" },
       { status: 500 }
     );
   }
 }
 
-async function sendConfirmationEmail(mentorData: any) {
+async function sendConfirmationEmail(judgeData: any) {
   try {
+    // Get current website URL
+    const websiteUrl = await getCurrentUrl();
+
     // Create transporter
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -60,11 +67,11 @@ async function sendConfirmationEmail(mentorData: any) {
       },
     });
 
-    // Cyberpunk-themed confirmation email
+    // Cyberpunk-themed confirmation email for judges
     const confirmationMailOptions = {
       from: GMAIL_USER,
-      to: mentorData.email,
-      subject: "🚀 Welcome to HackSpire 2025 Mentor Network!",
+      to: judgeData.email,
+      subject: "⚖️ Welcome to HackSpire 2025 Judging Panel!",
       html: `
         <div style="font-family: 'Courier New', monospace; max-width: 100%; width: 100%; margin: 0 auto; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%); color: #ffffff; padding: 0; border-radius: 15px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
           
@@ -96,7 +103,7 @@ async function sendConfirmationEmail(mentorData: any) {
             <div style="position: absolute; bottom: 10px; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, #000 0%, transparent 20%, #000 40%, transparent 60%, #000 80%, transparent 100%); opacity: 0.2;"></div>
             
             <h1 class="mobile-title" style="color: #0a0a0a; margin: 0; font-size: 32px; font-weight: 900; text-align: center; text-transform: uppercase; letter-spacing: 3px; position: relative; z-index: 2; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
-              🚀 MENTOR ACTIVATED
+              ⚖️ JUDGE ACTIVATED
             </h1>
             <p class="mobile-subtitle" style="color: #0a0a0a; margin: 10px 0 0 0; text-align: center; font-size: 18px; font-weight: 700; position: relative; z-index: 2; letter-spacing: 1px;">
               HACKSPIRE 2025 • CYBERPUNK EDITION
@@ -118,14 +125,14 @@ async function sendConfirmationEmail(mentorData: any) {
             <div style="text-align: center; margin-bottom: 40px; position: relative; z-index: 2;">
               <div style="display: inline-block; background: linear-gradient(135deg, #ffd23f 0%, #f7931e 100%); padding: 15px 30px; clip-path: polygon(10px 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 10px); margin-bottom: 20px;">
                 <h2 style="color: #0a0a0a; margin: 0; font-size: 24px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px;">
-                  WELCOME TO THE MATRIX, ${mentorData.name.toUpperCase()}
+                  WELCOME TO THE JUDGING MATRIX, ${judgeData.name.toUpperCase()}
                 </h2>
               </div>
               <p style="color: #00d4ff; font-size: 18px; font-weight: 600; margin: 0 0 15px 0; text-transform: uppercase; letter-spacing: 1px;">
-                >> MENTOR APPLICATION RECEIVED <<
+                >> JUDGE APPLICATION RECEIVED <<
               </p>
               <p class="mobile-text" style="color: #ffffff; font-size: 16px; line-height: 1.8; margin: 0;">
-                Your application to join the <strong style="color: #ffd23f;">HackSpire 2025 Mentor Network</strong> has been successfully processed and uploaded to our quantum database. Our cybernetic review system is now analyzing your profile.
+                Your application to join the <strong style="color: #ffd23f;">HackSpire 2025 Judging Panel</strong> has been successfully processed and uploaded to our quantum database. Our cybernetic review system is now analyzing your credentials.
               </p>
             </div>
             
@@ -137,7 +144,7 @@ async function sendConfirmationEmail(mentorData: any) {
               <div style="position: absolute; bottom: 0; left: 0; width: 0; height: 0; border-right: 20px solid transparent; border-bottom: 20px solid #ff6b35; opacity: 0.7;"></div>
               
               <h3 style="color: #ffd23f; margin: 0 0 25px 0; font-size: 20px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; text-align: center;">
-                📊 APPLICATION DATA MATRIX
+                📊 JUDGE DATA MATRIX
               </h3>
               
               <div class="mobile-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
@@ -145,41 +152,59 @@ async function sendConfirmationEmail(mentorData: any) {
                   <div style="position: absolute; top: 5px; right: 5px; width: 8px; height: 8px; background: #00d4ff; clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></div>
                   <p style="margin: 0; color: #00d4ff; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">IDENTITY</p>
                   <p class="mobile-text" style="margin: 5px 0 0 0; color: #ffffff; font-size: 16px; font-weight: 600;">${
-                    mentorData.name
+                    judgeData.name
                   }</p>
                 </div>
                 <div class="mobile-grid-item" style="background: rgba(0, 0, 0, 0.3); padding: 15px; border-left: 4px solid #ffd23f; position: relative;">
                   <div style="position: absolute; top: 5px; right: 5px; width: 8px; height: 8px; background: #ffd23f; clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></div>
                   <p style="margin: 0; color: #ffd23f; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">ORGANIZATION</p>
                   <p class="mobile-text" style="margin: 5px 0 0 0; color: #ffffff; font-size: 16px; font-weight: 600;">${
-                    mentorData.company || "Independent"
+                    judgeData.company || "Independent"
                   }</p>
                 </div>
               </div>
               
+              <div class="mobile-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                <div class="mobile-grid-item" style="background: rgba(0, 0, 0, 0.3); padding: 15px; border-left: 4px solid #ff6b35; position: relative;">
+                  <div style="position: absolute; top: 5px; right: 5px; width: 8px; height: 8px; background: #ff6b35; clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></div>
+                  <p style="margin: 0; color: #ff6b35; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">EXPERIENCE</p>
+                  <p class="mobile-text" style="margin: 5px 0 0 0; color: #ffffff; font-size: 16px; font-weight: 600;">${
+                    judgeData.experience || "Experienced"
+                  }</p>
+                </div>
+                <div class="mobile-grid-item" style="background: rgba(0, 0, 0, 0.3); padding: 15px; border-left: 4px solid #00ff88; position: relative;">
+                  <div style="position: absolute; top: 5px; right: 5px; width: 8px; height: 8px; background: #00ff88; clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></div>
+                  <p style="margin: 0; color: #00ff88; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">AVAILABILITY</p>
+                  <p class="mobile-text" style="margin: 5px 0 0 0; color: #ffffff; font-size: 16px; font-weight: 600;">${
+                    judgeData.availability || "Flexible"
+                  }</p>
+                </div>
+              </div>
+              
+              <div style="background: rgba(0, 0, 0, 0.3); padding: 15px; border-left: 4px solid #ff6b35; position: relative;">
+                <div style="position: absolute; top: 5px; right: 5px; width: 8px; height: 8px; background: #ff6b35; clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></div>
+                <p style="margin: 0; color: #ff6b35; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">EXPERTISE DOMAINS</p>
+                <p style="margin: 5px 0 0 0; color: #ffffff; font-size: 16px; font-weight: 600;">${
+                  Array.isArray(judgeData.primaryDomains)
+                    ? judgeData.primaryDomains.join(" • ")
+                    : judgeData.primaryDomains || "Technology Expert"
+                }</p>
+              </div>
+              
               ${
-                mentorData.hackathonProof
+                judgeData.researchPaperLink &&
+                judgeData.hasResearchPaper === "Yes"
                   ? `
-              <div style="background: rgba(0, 0, 0, 0.3); padding: 15px; border-left: 4px solid #00d4ff; position: relative; margin-bottom: 20px;">
-                <div style="position: absolute; top: 5px; right: 5px; width: 8px; height: 8px; background: #00d4ff; clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></div>
-                <p style="margin: 0; color: #00d4ff; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">HACKATHON PROOF</p>
+              <div style="background: rgba(0, 0, 0, 0.3); padding: 15px; border-left: 4px solid #00ff88; position: relative; margin-top: 20px;">
+                <div style="position: absolute; top: 5px; right: 5px; width: 8px; height: 8px; background: #00ff88; clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></div>
+                <p style="margin: 0; color: #00ff88; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">RESEARCH PAPER</p>
                 <p class="mobile-text" style="margin: 5px 0 0 0; color: #ffffff; font-size: 16px; font-weight: 600;">
-                  <a href="${mentorData.hackathonProof}" style="color: #ffd23f; text-decoration: none;" target="_blank">View Proof Link</a>
+                  <a href="${judgeData.researchPaperLink}" style="color: #ffd23f; text-decoration: none;" target="_blank">View Research Paper Link</a>
                 </p>
               </div>
               `
                   : ""
               }
-              
-              <div style="background: rgba(0, 0, 0, 0.3); padding: 15px; border-left: 4px solid #ff6b35; position: relative;">
-                <div style="position: absolute; top: 5px; right: 5px; width: 8px; height: 8px; background: #ff6b35; clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></div>
-                <p style="margin: 0; color: #ff6b35; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">EXPERTISE MATRIX</p>
-                <p style="margin: 5px 0 0 0; color: #ffffff; font-size: 16px; font-weight: 600;">${
-                  Array.isArray(mentorData.expertise)
-                    ? mentorData.expertise.join(" • ")
-                    : mentorData.expertise
-                }</p>
-              </div>
             </div>
             
             <!-- Next Steps -->
@@ -197,14 +222,14 @@ async function sendConfirmationEmail(mentorData: any) {
               
               <div style="background: rgba(0, 0, 0, 0.4); padding: 20px; border-radius: 10px; margin: 20px 0;">
                 <p style="color: #ffffff; font-size: 16px; line-height: 1.8; margin: 0;">
-                  <strong style="color: #00d4ff;">PHASE 1:</strong> Application received and stored in quantum database<br>
-                  <strong style="color: #ffd23f;">PHASE 2:</strong> Profile analysis by our cybernetic review team<br>
-                  <strong style="color: #ff6b35;">PHASE 3:</strong> Mentor network integration and activation
+                  <strong style="color: #00d4ff;">PHASE 1:</strong> Judge application received and stored<br>
+                  <strong style="color: #ffd23f;">PHASE 2:</strong> Credentials verification and background check<br>
+                  <strong style="color: #ff6b35;">PHASE 3:</strong> Judging panel integration and briefing
                 </p>
               </div>
               
               <p class="mobile-text" style="color: #ffffff; font-size: 16px; line-height: 1.6; margin: 20px 0;">
-                Our team will review your application within <strong style="color: #ffd23f;">48-72 hours</strong>. You'll receive further instructions via encrypted transmission to this neural link.
+                Our team will review your application within <strong style="color: #ffd23f;">48-72 hours</strong>. You'll receive judging guidelines and event details via encrypted transmission.
               </p>
             </div>
             
@@ -215,15 +240,13 @@ async function sendConfirmationEmail(mentorData: any) {
               </h3>
               
               <p class="mobile-text" style="color: #ffffff; font-size: 16px; line-height: 1.6; margin: 0 0 25px 0;">
-                If you need to edit your application, click the button below and our team will contact you to assist with the changes.
+                If you need to edit your judge application, click the button below and our team will contact you to assist with the changes.
               </p>
               
               <div style="margin: 20px 0;">
-                <a href="${
-                  process.env.NEXTAUTH_URL || "https://hackspire.tech"
-                }/mentor-edit-request?email=${encodeURIComponent(
-        mentorData.email
-      )}&name=${encodeURIComponent(mentorData.name)}"
+                <a href="${await getCurrentUrl()}/judge-edit-request?email=${encodeURIComponent(
+        judgeData.email
+      )}&name=${encodeURIComponent(judgeData.name)}"
                    class="mobile-button" style="display: inline-block; background: linear-gradient(135deg, #ffd23f 0%, #f7931e 100%); color: #0a0a0a; text-decoration: none; font-weight: 900; font-size: 16px; padding: 15px 30px; clip-path: polygon(10px 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 10px); text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 8px 20px rgba(255, 210, 63, 0.3); margin: 10px;">
                   ✏️ REQUEST EDIT
                 </a>
@@ -235,7 +258,7 @@ async function sendConfirmationEmail(mentorData: any) {
                 </h4>
                 
                 <p style="color: #ffffff; font-size: 14px; line-height: 1.6; margin: 0 0 20px 0;">
-                  Connect with fellow hackers and mentors in our digital underground.
+                  Connect with fellow judges and organizers in our digital underground.
                 </p>
                 
                 <a href="https://discord.gg/8qpHgECDH3" class="mobile-button" style="display: inline-block; background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); color: #0a0a0a; text-decoration: none; font-weight: 900; font-size: 14px; padding: 12px 25px; clip-path: polygon(10px 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 10px); text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);">
@@ -254,7 +277,7 @@ async function sendConfirmationEmail(mentorData: any) {
             </div>
             
             <p style="margin: 0; color: #00d4ff; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
-              HACKSPIRE 2025 MENTOR NETWORK
+              HACKSPIRE 2025 JUDGING PANEL
             </p>
             <p style="margin: 5px 0 0 0; color: #888; font-size: 12px;">
               Timestamp: ${new Date().toLocaleString()} | Status: ENCRYPTED
@@ -263,34 +286,37 @@ async function sendConfirmationEmail(mentorData: any) {
         </div>
       `,
       text: `
-🚀 WELCOME TO HACKSPIRE 2025 MENTOR NETWORK!
+⚖️ WELCOME TO HACKSPIRE 2025 JUDGING PANEL!
 
-Dear ${mentorData.name},
+Dear ${judgeData.name},
 
-Your mentor application has been successfully received and processed!
+Your judge application has been successfully received and processed!
 
 APPLICATION SUMMARY:
-- Name: ${mentorData.name}
-- Email: ${mentorData.email}
-- Company: ${mentorData.company || "Independent"}
-- Expertise: ${
-        Array.isArray(mentorData.expertise)
-          ? mentorData.expertise.join(", ")
-          : mentorData.expertise
-      }${
-        mentorData.hackathonProof
+- Name: ${judgeData.name}
+- Email: ${judgeData.email}
+- Company: ${judgeData.company || "Independent"}
+- Experience: ${judgeData.experience || "Experienced"}
+- Availability: ${judgeData.availability || "Flexible"}
+- Primary Domains: ${
+        Array.isArray(judgeData.primaryDomains)
+          ? judgeData.primaryDomains.join(", ")
+          : judgeData.primaryDomains || "Technology Expert"
+      }
+- Previous Judging: ${judgeData.previousJudging || "Not specified"}${
+        judgeData.researchPaperLink && judgeData.hasResearchPaper === "Yes"
           ? `
-- Hackathon Proof: ${mentorData.hackathonProof}`
+- Research Paper: ${judgeData.researchPaperLink}`
           : ""
       }
 
 NEXT STEPS:
-Our team will review your application within 48-72 hours. You'll receive further instructions via email.
+Our team will review your application within 48-72 hours. You'll receive judging guidelines and event details via email.
 
 JOIN OUR COMMUNITY:
 Discord: https://discord.gg/8qpHgECDH3
 
-Thank you for joining the HackSpire 2025 revolution!
+Thank you for joining the HackSpire 2025 judging panel!
 
 ---
 HackSpire 2025 Team
@@ -300,7 +326,7 @@ Timestamp: ${new Date().toLocaleString()}
 
     // Send confirmation email
     await transporter.sendMail(confirmationMailOptions);
-    console.log("Confirmation email sent to:", mentorData.email);
+    console.log("Confirmation email sent to:", judgeData.email);
   } catch (error) {
     console.error("Error sending confirmation email:", error);
     // Don't throw error - we don't want to fail the whole submission if email fails

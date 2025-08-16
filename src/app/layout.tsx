@@ -5,11 +5,11 @@ import "./globals.css";
 import { Navbar } from "@/components/ui/Navbar";
 import Footer from "@/components/Footer";
 // import { AudioProvider } from "@/components/ui/AudioContext"; // Commented out for now
-import AppLoader from "@/components/ui/AppLoader";
 import LenisProvider from "@/components/ui/LenisProvider";
 import PageTransition from "@/lib/PageTransition";
 import RouteChangeAnimation from "@/lib/RouteChangeAnimation";
 import { Toaster } from "@/components/ui/sonner";
+import ConditionalAppLoader from "@/components/ui/ConditionalAppLoader";
 // import CustomCursor from "@/components/ui/CustomCursor";
 
 const geistSans = Geist({
@@ -57,6 +57,7 @@ export default function RootLayout({
       >
         {/* Font loading script */}
         <script
+          suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: `
               // Immediate font loading to prevent FOUT
@@ -78,7 +79,7 @@ export default function RootLayout({
 
         {/* Navbar */}
         {/* <AudioProvider> */}
-        <AppLoader>
+        <ConditionalAppLoader>
           <LenisProvider>
             <RouteChangeAnimation />
             <Navbar />
@@ -110,7 +111,7 @@ export default function RootLayout({
             <Footer />
             <Toaster />
           </LenisProvider>
-        </AppLoader>
+        </ConditionalAppLoader>
         {/* </AudioProvider> */}
       </body>
     </html>
