@@ -403,7 +403,7 @@ function Tracks() {
 
       {/* Track Cards */}
       <div className="max-w-7xl mx-auto mt-32 sm:mt-40 md:mt-20 mb-4 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8 xl:gap-4 2xl:gap-20">
           {tracks.map((track, index) => {
             const IconComponent = track.icon;
 
@@ -417,7 +417,7 @@ function Tracks() {
                 className="relative"
               >
                 {/* Cyberpunk Yellow Container with Clip-Path Cut Edges - Sleek Size */}
-                <div className="relative p-4 md:p-6 group cursor-pointer transition-all duration-300 hover:scale-105 h-full min-h-[280px] md:min-h-[200px] track-card-mobile">
+                <div className="relative p-4 md:p-6 group cursor-pointer transition-all xl:scale-75 2xl:scale-90 2xl:hover:scale-95 xl:w-[480px] xl:h-[480px] xl:-translate-x-12 2xl:-translate-x-14 md:w-[450px] md:mx-auto duration-300  hover:scale-105 xl:hover:scale-90 h-full min-h-[280px] md:min-h-[200px] track-card-mobile">
                   {/* Background with clip-path cuts */}
                   <div
                     className="absolute inset-0 bg-yellow-400 transition-all duration-300 group-hover:animate-pulse"
@@ -461,9 +461,9 @@ function Tracks() {
                   ></div>
 
                   {/* Content */}
-                  <div className="relative z-10 h-full flex flex-col md:flex-row md:items-start">
+                  <div className="relative z-10 h-full flex flex-col">
                     {/* Left Side - Icon and Title */}
-                    <div className="md:w-1/3 mb-4 md:mb-0 md:pr-6">
+                    <div className="mb-4 md:mb-0 md:pr-6">
                       {/* Track Header with Icon and Visit Link */}
                       <div className="flex items-start justify-between mb-3 md:mb-4">
                         <div className="p-2 md:p-3 bg-black/20 rounded-lg">
@@ -495,7 +495,7 @@ function Tracks() {
 
                       {/* Track Subtitle */}
                       <p
-                        className="text-sm md:text-base text-black font-medium mb-3 md:mb-3 track-subtitle"
+                        className="text-sm md:text-base text-black font-medium mb-3 track-subtitle"
                         style={{ fontFamily: "'Mokoto Demo', monospace" }}
                       >
                         {track.subtitle}
@@ -503,10 +503,10 @@ function Tracks() {
                     </div>
 
                     {/* Right Side - Description and Challenges */}
-                    <div className="md:w-2/3 flex flex-col h-full">
+                    <div className="flex flex-col h-full">
                       {/* Track Description */}
                       <p
-                        className="text-xs md:text-sm text-black leading-relaxed mb-4 flex-grow track-description"
+                        className="text-xs md:text-sm text-black leading-relaxed mb-4 lg:flex-grow track-description"
                         style={{ fontFamily: "'Mokoto Demo', monospace" }}
                       >
                         {track.description}
