@@ -3,56 +3,18 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import React from "react";
+import sponsorsData from "@/data/sponsors.json";
 
 type SponsorTier = {
-  tier: "Platinum" | "Diamond" | "Gold" | "Silver" | "Bronze";
-  logos: { src: string; alt: string }[];
+  tier: string;
+  sponsors: {
+    name: string;
+    logo: string;
+    alt: string;
+  }[];
 };
 
-const sponsorTiers: SponsorTier[] = [
-  {
-    tier: "Diamond",
-    logos: [
-      { src: "placeholder", alt: "Diamond Sponsor Placeholder 1" },
-      { src: "placeholder", alt: "Diamond Sponsor Placeholder 2" },
-      { src: "placeholder", alt: "Diamond Sponsor Placeholder 3" },
-    ],
-  },
-  {
-    tier: "Platinum",
-    logos: [
-      { src: "placeholder", alt: "Platinum Sponsor Placeholder 1" },
-      { src: "placeholder", alt: "Platinum Sponsor Placeholder 2" },
-      { src: "placeholder", alt: "Platinum Sponsor Placeholder 3" },
-    ],
-  },
-  {
-    tier: "Gold",
-    logos: [
-      { src: "/images/devfolio.png", alt: "DEVFOLIO LOGO" },
-      { src: "placeholder", alt: "Gold Sponsor Placeholder 1" },
-      { src: "placeholder", alt: "Gold Sponsor Placeholder 2" },
-    ],
-  },
-  {
-    tier: "Silver",
-    logos: [
-      { src: "/images/ETHIndia.png", alt: "ETHINDIA LOGO" },
-      { src: "placeholder", alt: "Silver Sponsor Placeholder 1" },
-      { src: "placeholder", alt: "Silver Sponsor Placeholder 2" },
-    ],
-  },
-  {
-    tier: "Bronze",
-    logos: [
-      { src: "placeholder", alt: "Bronze Sponsor Placeholder 1" },
-      { src: "placeholder", alt: "Bronze Sponsor Placeholder 2" },
-      { src: "placeholder", alt: "Bronze Sponsor Placeholder 3" },
-      { src: "placeholder", alt: "Bronze Sponsor Placeholder 4" },
-      { src: "placeholder", alt: "Bronze Sponsor Placeholder 5" },
-    ],
-  },
-];
+const sponsorTiers: SponsorTier[] = sponsorsData;
 
 function TierTitle({ label }: { label: SponsorTier["tier"] }) {
   return (
@@ -84,10 +46,12 @@ function SponsorCard({
   src,
   alt,
   tier,
+  sponsorName,
 }: {
   src: string;
   alt: string;
-  tier: SponsorTier["tier"];
+  tier: string;
+  sponsorName: string;
 }) {
   const isDiamond = tier === "Diamond";
   const isPlatinum = tier === "Platinum";
@@ -186,7 +150,7 @@ function SponsorCard({
       ></div>
 
       {/* Content */}
-      <div className="relative z-10 flex items-center justify-center py-4 md:py-6">
+      <div className="relative z-10 flex flex-col items-center justify-center py-4 md:py-6">
         {src.includes("placeholder") ? (
           <div className="text-center">
             <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-600 mb-3 font-mokoto">
@@ -197,13 +161,20 @@ function SponsorCard({
             </div>
           </div>
         ) : (
-          <Image
-            src={src}
-            alt={alt}
-            width={400}
-            height={200}
-            className="h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 w-auto object-contain"
-          />
+          <>
+            <Image
+              src={src}
+              alt={alt}
+              width={400}
+              height={200}
+              className="h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 w-auto object-contain mb-2"
+            />
+            <div className="text-center">
+              <div className="text-sm sm:text-base md:text-lg text-gray-700 font-medium font-mokoto">
+                {sponsorName}
+              </div>
+            </div>
+          </>
         )}
       </div>
 
@@ -446,12 +417,13 @@ export default function SponsorsSection() {
                     : "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6 lg:gap-8"
                 }
               >
-                {group.logos.map((logo, index) => (
+                {group.sponsors.map((sponsor, index) => (
                   <SponsorCard
                     key={`${group.tier}-${index}`}
-                    src={logo.src}
-                    alt={logo.alt}
+                    src={sponsor.logo}
+                    alt={sponsor.alt}
                     tier={group.tier}
+                    sponsorName={sponsor.name}
                   />
                 ))}
               </div>

@@ -126,10 +126,7 @@ export function CyberpunkNavbar() {
       name: "Tracks",
       link: "/tracks",
     },
-    {
-      name: "Sponsors",
-      link: "#sponsors",
-    },
+
     {
       name: "Schedule",
       link: "#schedule",
@@ -139,13 +136,19 @@ export function CyberpunkNavbar() {
       link: "#glory",
     },
     {
-      name: "Crews",
-      link: "/crews",
+      name: "Sponsors",
+      link: "#sponsors",
     },
     {
       name: "Experts",
       link: "#experts",
     },
+
+    {
+      name: "Crews",
+      link: "/crews",
+    },
+
     // {
     //   name: "Collaborations",
     //   link: "/collabs",
@@ -164,7 +167,7 @@ export function CyberpunkNavbar() {
             {/* Logo - Outside the cyberpunk container */}
             <Link href="/" className="flex items-center space-x-2">
               <Image
-                src="/icons/logomain.png"
+                src="https://res.cloudinary.com/dislegzga/image/upload/v1755362696/logomain_g62cor.png"
                 alt="Hackspire Logo"
                 width={600}
                 height={150}

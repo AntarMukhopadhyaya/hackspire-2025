@@ -1,5 +1,5 @@
-import React from 'react';
-import { Twitter, Instagram, Linkedin, Github } from 'lucide-react';
+import React from "react";
+import { Twitter, Instagram, Linkedin, Github } from "lucide-react";
 
 const Check = () => {
   return (
@@ -126,10 +126,16 @@ const Check = () => {
         <div className="flex flex-col lg:flex-row justify-between items-center gap-6 sm:gap-8 lg:gap-12 mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-24">
           {/* Left Section - Main Branding */}
           <div className="text-center lg:text-left">
-            <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-black tracking-wider mb-2 sm:mb-3 lg:mb-4 font-mono" style={{ fontFamily: "'Sddystopiandemo-GO7xa', monospace" }}>
+            <h3
+              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-black tracking-wider mb-2 sm:mb-3 lg:mb-4 font-mono"
+              style={{ fontFamily: "'Sddystopiandemo-GO7xa', monospace" }}
+            >
               HACKSPIRE 2025
             </h3>
-            <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-black font-medium max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl leading-relaxed font-mono" style={{ fontFamily: "'Mokoto Demo', monospace" }}>
+            <p
+              className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-black font-medium max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl leading-relaxed font-mono"
+              style={{ fontFamily: "'Mokoto Demo', monospace" }}
+            >
               Neural Network Protocols • Quantum Code Architecture • Digital
               Supremacy Engine
             </p>
@@ -167,7 +173,7 @@ const Check = () => {
 
             {/* Copyright */}
             <div className="text-xs sm:text-sm lg:text-base text-black font-medium text-center lg:text-right font-mono">
-              © 2025 HACKSPIRE • DIGITAL SUPREMACY PROTOCOL
+              © 2025 HACKSPIRE • FIEM ACM STUDENT CHAPTER
             </div>
           </div>
         </div>

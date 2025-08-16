@@ -1,4 +1,10 @@
-import React, { useEffect, useRef, useCallback, useMemo } from "react";
+import React, {
+  useEffect,
+  useRef,
+  useCallback,
+  useMemo,
+  useState,
+} from "react";
 import "./ProfileCard.css";
 
 interface ProfileCardProps {
@@ -29,18 +35,19 @@ const DEFAULT_INNER_GRADIENT =
   "linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)";
 
 const ANIMATION_CONFIG = {
-  SMOOTH_DURATION: 600,
-  INITIAL_DURATION: 1500,
+  SMOOTH_DURATION: 400, // Reduced from 600ms
+  INITIAL_DURATION: 800, // Reduced from 1500ms
   INITIAL_X_OFFSET: 70,
   INITIAL_Y_OFFSET: 60,
   DEVICE_BETA_OFFSET: 20,
 } as const;
 
+// Performance-optimized utility functions
 const clamp = (value: number, min = 0, max = 100): number =>
   Math.min(Math.max(value, min), max);
 
-const round = (value: number, precision = 3): number =>
-  parseFloat(value.toFixed(precision));
+const round = (value: number, precision = 2): number =>
+  parseFloat(value.toFixed(precision)); // Reduced precision
 
 const adjust = (
   value: number,
@@ -54,14 +61,26 @@ const adjust = (
 const easeInOutCubic = (x: number): number =>
   x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
 
-// Helper function to detect small mobile devices (sm breakpoint = 640px)
+// Optimized device detection
 const isSmallMobileDevice = (): boolean => {
   return window.innerWidth < 640;
 };
 
+// Throttle function for performance
+const throttle = (func: Function, limit: number) => {
+  let inThrottle: boolean;
+  return function (this: any, ...args: any[]) {
+    if (!inThrottle) {
+      func.apply(this, args);
+      inThrottle = true;
+      setTimeout(() => (inThrottle = false), limit);
+    }
+  };
+};
+
 const ProfileCardComponent: React.FC<ProfileCardProps> = ({
   avatarUrl = "",
-  iconUrl = "/icons/codeicon.png",
+  iconUrl = "https://res.cloudinary.com/dislegzga/image/upload/v1755362336/codeicon_wetmk9.png",
   grainUrl = "",
   behindGradient,
   innerGradient,
@@ -84,17 +103,18 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
 
   // Check if tilt should be enabled (disabled on small mobile devices unless explicitly enabled)
   const shouldEnableTilt = useMemo(() => {
+    if (!enableTilt) return false;
     const isSmallMobile = isSmallMobileDevice();
-    if (isSmallMobile && !enableMobileTilt) {
-      return false;
-    }
-    return enableTilt;
+    return !isSmallMobile || enableMobileTilt;
   }, [enableTilt, enableMobileTilt]);
 
+  // Optimized animation handlers with reduced calculations
   const animationHandlers = useMemo(() => {
     if (!shouldEnableTilt) return null;
 
     let rafId: number | null = null;
+    let lastUpdate = 0;
+    const THROTTLE_MS = 16; // ~60fps
 
     const updateCardTransform = (
       offsetX: number,
@@ -102,6 +122,10 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
       card: HTMLElement,
       wrap: HTMLElement
     ) => {
+      const now = performance.now();
+      if (now - lastUpdate < THROTTLE_MS) return;
+      lastUpdate = now;
+
       const width = card.clientWidth;
       const height = card.clientHeight;
 
@@ -111,20 +135,12 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
       const centerX = percentX - 50;
       const centerY = percentY - 50;
 
+      // Simplified properties for better performance
       const properties = {
         "--pointer-x": `${percentX}%`,
         "--pointer-y": `${percentY}%`,
-        "--background-x": `${adjust(percentX, 0, 100, 35, 65)}%`,
-        "--background-y": `${adjust(percentY, 0, 100, 35, 65)}%`,
-        "--pointer-from-center": `${clamp(
-          Math.hypot(percentY - 50, percentX - 50) / 50,
-          0,
-          1
-        )}`,
-        "--pointer-from-top": `${percentY / 100}`,
-        "--pointer-from-left": `${percentX / 100}`,
-        "--rotate-x": `${round(-(centerX / 5))}deg`,
-        "--rotate-y": `${round(centerY / 4)}deg`,
+        "--rotate-x": `${round(-(centerX / 6))}deg`, // Reduced rotation intensity
+        "--rotate-y": `${round(centerY / 5)}deg`, // Reduced rotation intensity
       };
 
       Object.entries(properties).forEach(([property, value]) => {
@@ -173,8 +189,9 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
     };
   }, [shouldEnableTilt]);
 
+  // Throttled pointer move handler
   const handlePointerMove = useCallback(
-    (event: PointerEvent) => {
+    throttle((event: PointerEvent) => {
       const card = cardRef.current;
       const wrap = wrapRef.current;
 
@@ -187,7 +204,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
         card,
         wrap
       );
-    },
+    }, 16), // 60fps throttle
     [animationHandlers]
   );
 
@@ -222,8 +239,9 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
     [animationHandlers]
   );
 
+  // Simplified device orientation handler
   const handleDeviceOrientation = useCallback(
-    (event: DeviceOrientationEvent) => {
+    throttle((event: DeviceOrientationEvent) => {
       const card = cardRef.current;
       const wrap = wrapRef.current;
 
@@ -239,7 +257,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
         card,
         wrap
       );
-    },
+    }, 32), // 30fps throttle for device orientation
     [animationHandlers, mobileTiltSensitivity]
   );
 
@@ -283,6 +301,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
     card.addEventListener("pointerleave", pointerLeaveHandler);
     card.addEventListener("click", handleClick);
 
+    // Simplified initial animation
     const initialX = wrap.clientWidth - ANIMATION_CONFIG.INITIAL_X_OFFSET;
     const initialY = ANIMATION_CONFIG.INITIAL_Y_OFFSET;
 

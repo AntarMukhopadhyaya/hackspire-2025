@@ -23,9 +23,16 @@ const LoadingScreen = () => (
 function AppLoaderContent({ children }: AppLoaderProps) {
   const [showOpener, setShowOpener] = useState(false);
   const [openerComplete, setOpenerComplete] = useState(true);
+  const [isClient, setIsClient] = useState(false);
   const { isLoading, fontsLoaded } = useAppLoading();
 
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
+
     // Check if user wants to skip the opener for performance
     const skipOpener = sessionStorage.getItem("hackspire-skip-opener");
     const hasSeenOpener = sessionStorage.getItem("hackspire-opener-seen");
@@ -36,11 +43,14 @@ function AppLoaderContent({ children }: AppLoaderProps) {
       setOpenerComplete(false);
       setShowOpener(true);
     }
-  }, []);
+  }, [isClient]);
 
   const handleOpenerComplete = () => {
     setOpenerComplete(true);
-    sessionStorage.setItem("hackspire-opener-seen", "true");
+
+    if (isClient) {
+      sessionStorage.setItem("hackspire-opener-seen", "true");
+    }
 
     // Small delay to allow for smooth transition
     setTimeout(() => {

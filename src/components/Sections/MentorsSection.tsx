@@ -1,6 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import ProfileCard from "../blocks/Components/ProfileCard/ProfileCard";
+import judgesData from "@/data/judges.json";
+import mentorsData from "@/data/mentors.json";
 
 function CategoryBadge({ label }: { label: string }) {
   return (
@@ -18,7 +21,7 @@ function CategoryBadge({ label }: { label: string }) {
           style={{
             fontFamily: "'Mokoto Demo', monospace",
             clipPath:
-              "polygon(16px 0%, 100% 0%, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0% 100%, 0% 16px)",
+              "polygon(16px 0%, 100% 0%, 100% calc(100% - 16px), calc(100% - 18px) 100%, 0% 100%, 0% 16px)",
           }}
         >
           {label.toUpperCase()}
@@ -29,107 +32,103 @@ function CategoryBadge({ label }: { label: string }) {
 }
 
 function MentorsSection() {
-  const judges = [
-    {
-      name: "Sarah Chen",
-      title: "Senior Full Stack Developer",
-      handle: "sarahcodes",
-      status: "Online",
-      avatarUrl:
-        "https://res.cloudinary.com/dislegzga/image/upload/b_rgb:333B4C/v1754574925/Indrajit_Ari-removebg-preview_kdozsw.png",
-    },
-    {
-      name: "Marcus Rodriguez",
-      title: "DevOps Engineer",
-      handle: "marcusdev",
-      status: "Online",
-      avatarUrl:
-        "https://res.cloudinary.com/dislegzga/image/upload/b_rgb:333B4C/v1754574925/Indrajit_Ari-removebg-preview_kdozsw.png",
-    },
-    {
-      name: "Priya Sharma",
-      title: "AI/ML Specialist",
-      handle: "priyaai",
-      status: "Away",
-      avatarUrl:
-        "https://res.cloudinary.com/dislegzga/image/upload/b_rgb:333B4C/v1754574925/Indrajit_Ari-removebg-preview_kdozsw.png",
-    },
-    {
-      name: "Alex Thompson",
-      title: "Cybersecurity Expert",
-      handle: "alexsec",
-      status: "Online",
-      avatarUrl:
-        "https://res.cloudinary.com/dislegzga/image/upload/v1755066065/Indrajit_Ari-removebg-preview_vwed7h.png",
-    },
-    {
-      name: "Zara Ahmed",
-      title: "Mobile App Developer",
-      handle: "zaramobile",
-      status: "Online",
-      avatarUrl:
-        "https://res.cloudinary.com/dislegzga/image/upload/b_rgb:333B4C/v1754574925/Indrajit_Ari-removebg-preview_kdozsw.png",
-    },
-    {
-      name: "David Kim",
-      title: "Blockchain Developer",
-      handle: "davidchain",
-      status: "Busy",
-      avatarUrl:
-        "https://res.cloudinary.com/dislegzga/image/upload/b_rgb:333B4C/v1754574925/Indrajit_Ari-removebg-preview_kdozsw.png",
-    },
-  ];
+  // Import data from separate JSON files
+  const judges = judgesData;
+  const mentors = mentorsData;
 
-  const mentors = [
-    {
-      name: "Emma Wilson",
-      title: "Frontend Architect",
-      handle: "emmaweb",
-      status: "Online",
-      avatarUrl:
-        "https://res.cloudinary.com/dislegzga/image/upload/b_rgb:333B4C/v1754574925/Indrajit_Ari-removebg-preview_kdozsw.png",
-    },
-    {
-      name: "James Rodriguez",
-      title: "Backend Engineer",
-      handle: "jamesback",
-      status: "Online",
-      avatarUrl:
-        "https://res.cloudinary.com/dislegzga/image/upload/b_rgb:333B4C/v1754574925/Indrajit_Ari-removebg-preview_kdozsw.png",
-    },
-    {
-      name: "Lisa Park",
-      title: "Data Scientist",
-      handle: "lisadata",
-      status: "Away",
-      avatarUrl:
-        "https://res.cloudinary.com/dislegzga/image/upload/b_rgb:333B4C/v1754574925/Indrajit_Ari-removebg-preview_kdozsw.png",
-    },
-    {
-      name: "Michael Chen",
-      title: "Cloud Architect",
-      handle: "mikecloud",
-      status: "Online",
-      avatarUrl:
-        "https://res.cloudinary.com/dislegzga/image/upload/b_rgb:333B4C/v1754574925/Indrajit_Ari-removebg-preview_kdozsw.png",
-    },
-    {
-      name: "Sofia Martinez",
-      title: "UX Designer",
-      handle: "sofiaux",
-      status: "Online",
-      avatarUrl:
-        "https://res.cloudinary.com/dislegzga/image/upload/b_rgb:333B4C/v1754574925/Indrajit_Ari-removebg-preview_kdozsw.png",
-    },
-    {
-      name: "Ryan Taylor",
-      title: "Security Engineer",
-      handle: "ryansec",
-      status: "Busy",
-      avatarUrl:
-        "https://res.cloudinary.com/dislegzga/image/upload/b_rgb:333B4C/v1754574925/Indrajit_Ari-removebg-preview_kdozsw.png",
-    },
-  ];
+  // Performance optimization: Memoize contact handler
+  const handleContactClick = useCallback((name: string) => {
+    console.log(`Contact ${name} clicked`);
+  }, []);
+
+  // Performance optimization: Reduce initial render load
+  const [visibleJudges, setVisibleJudges] = useState<typeof judges>([]);
+  const [visibleMentors, setVisibleMentors] = useState<typeof mentors>([]);
+
+  useEffect(() => {
+    // Load judges first (smaller set)
+    setVisibleJudges(judges);
+
+    // Load mentors with a slight delay to improve initial page load
+    const timer = setTimeout(() => {
+      setVisibleMentors(mentors);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [judges, mentors]);
+
+  // Performance optimization: Memoize grid layouts
+  const judgesGrid = useMemo(
+    () => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-20 lg:gap-36">
+        {visibleJudges.map((judge, index) => (
+          <motion.div
+            key={`${judge.handle}-${index}`}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.5,
+              delay: 0.1 + index * 0.05,
+              ease: "easeOut",
+            }}
+            className="flex justify-center"
+          >
+            <ProfileCard
+              name={judge.name}
+              title={judge.title}
+              handle={judge.handle}
+              status={judge.status}
+              contactText="Contact Me"
+              avatarUrl={judge.avatarUrl}
+              showUserInfo={true}
+              enableTilt={true}
+              enableMobileTilt={false}
+              onContactClick={() => handleContactClick(judge.name)}
+            />
+          </motion.div>
+        ))}
+      </div>
+    ),
+    [visibleJudges, handleContactClick]
+  );
+
+  const mentorsGrid = useMemo(
+    () => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {visibleMentors.map((mentor, index) => (
+          <motion.div
+            key={`${mentor.handle}-${index}`}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.5,
+              delay: 0.1 + index * 0.05,
+              ease: "easeOut",
+            }}
+            className="flex justify-center"
+          >
+            <ProfileCard
+              name={mentor.name}
+              title={mentor.title}
+              handle={mentor.handle}
+              status={mentor.status}
+              contactText="Contact Me"
+              avatarUrl={mentor.avatarUrl}
+              iconUrl="https://res.cloudinary.com/dislegzga/image/upload/v1755362336/codeicon_wetmk9.png"
+              grainUrl="https://res.cloudinary.com/dislegzga/image/upload/v1755362435/grain_ck2vv1.jpg"
+              showUserInfo={true}
+              enableTilt={true}
+              enableMobileTilt={false}
+              onContactClick={() => handleContactClick(mentor.name)}
+            />
+          </motion.div>
+        ))}
+      </div>
+    ),
+    [visibleMentors, handleContactClick]
+  );
 
   return (
     <section
@@ -453,37 +452,7 @@ function MentorsSection() {
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
           >
             <CategoryBadge label="JUDGES" />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-20 lg:gap-36">
-              {judges.map((judge, index) => (
-                <motion.div
-                  key={judge.handle}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 0.4 + index * 0.1,
-                    ease: "easeOut",
-                  }}
-                  className="flex justify-center"
-                >
-                  <ProfileCard
-                    name={judge.name}
-                    title={judge.title}
-                    handle={judge.handle}
-                    status={judge.status}
-                    contactText="Contact Me"
-                    avatarUrl={judge.avatarUrl}
-                    showUserInfo={true}
-                    enableTilt={true}
-                    enableMobileTilt={false}
-                    onContactClick={() =>
-                      console.log(`Contact ${judge.name} clicked`)
-                    }
-                  />
-                </motion.div>
-              ))}
-            </div>
+            {judgesGrid}
           </motion.div>
 
           {/* Glowing Yellow Underline */}
@@ -547,39 +516,7 @@ function MentorsSection() {
             transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
           >
             <CategoryBadge label="MENTORS" />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {mentors.map((mentor, index) => (
-                <motion.div
-                  key={mentor.handle}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 0.6 + index * 0.1,
-                    ease: "easeOut",
-                  }}
-                  className="flex justify-center"
-                >
-                  <ProfileCard
-                    name={mentor.name}
-                    title={mentor.title}
-                    handle={mentor.handle}
-                    status={mentor.status}
-                    contactText="Contact Me"
-                    avatarUrl={mentor.avatarUrl}
-                    iconUrl="/icons/codeicon.png"
-                    grainUrl="/images/grain.png"
-                    showUserInfo={true}
-                    enableTilt={true}
-                    enableMobileTilt={false}
-                    onContactClick={() =>
-                      console.log(`Contact ${mentor.name} clicked`)
-                    }
-                  />
-                </motion.div>
-              ))}
-            </div>
+            {mentorsGrid}
           </motion.div>
         </div>
       </div>

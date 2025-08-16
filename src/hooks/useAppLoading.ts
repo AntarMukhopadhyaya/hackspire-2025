@@ -6,8 +6,15 @@ import { FontLoader } from "@/lib/fontLoader";
 export function useAppLoading() {
   const [isLoading, setIsLoading] = useState(true);
   const [fontsLoaded, setFontsLoaded] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
+
     let mounted = true;
 
     const loadResources = async () => {
@@ -47,7 +54,12 @@ export function useAppLoading() {
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [isClient]);
+
+  // Return safe defaults during SSR
+  if (!isClient) {
+    return { isLoading: false, fontsLoaded: true };
+  }
 
   return { isLoading, fontsLoaded };
 }

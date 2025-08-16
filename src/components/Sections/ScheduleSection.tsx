@@ -232,18 +232,12 @@ export default function ScheduleSection() {
                     </motion.div>
                   </div>
 
-                  {/* Futuristic corner accents */}
-                  <div className="absolute top-0 left-0 w-8 h-8">
-                    <div className="w-full h-full border-l-2 border-t-2 border-black opacity-60"></div>
-                  </div>
+                  {/* Futuristic corner accents - only top-right and bottom-left */}
                   <div className="absolute top-0 right-0 w-8 h-8">
                     <div className="w-full h-full border-r-2 border-t-2 border-black opacity-60"></div>
                   </div>
                   <div className="absolute bottom-0 left-0 w-8 h-8">
                     <div className="w-full h-full border-l-2 border-b-2 border-black opacity-60"></div>
-                  </div>
-                  <div className="absolute bottom-0 right-0 w-8 h-8">
-                    <div className="w-full h-full border-r-2 border-b-2 border-black opacity-60"></div>
                   </div>
                 </motion.div>
               </motion.div>

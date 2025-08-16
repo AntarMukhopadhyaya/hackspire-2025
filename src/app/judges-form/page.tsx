@@ -1454,6 +1454,8 @@ function JudgesForm() {
             <button
               onClick={() => setIsImageModalOpen(false)}
               className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center transition-colors"
+              aria-label="Close image preview"
+              title="Close image preview"
             >
               <X className="w-6 h-6 text-white" />
             </button>
@@ -1495,7 +1497,6 @@ function JudgesForm() {
               height="100%"
               style={{ border: 0 }}
               allowFullScreen
-              loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="Google Maps showing Future Institute of Engineering and Management location"
             ></iframe>
@@ -1568,6 +1569,8 @@ function JudgesForm() {
               <button
                 onClick={() => setIsTermsModalOpen(false)}
                 className="w-8 h-8 bg-red-500/20 hover:bg-red-500/30 rounded-full flex items-center justify-center transition-colors"
+                aria-label="Close terms and conditions"
+                title="Close terms and conditions"
               >
                 <X className="w-5 h-5 text-white" />
               </button>

@@ -1,0 +1,112 @@
+[
+  {
+    "tier": "Diamond",
+    "sponsors": [
+      {
+        "name": "Coming Soon",
+        "logo": "placeholder",
+        "alt": "Diamond Sponsor Placeholder 1"
+      },
+      {
+        "name": "Coming Soon",
+        "logo": "placeholder",
+        "alt": "Diamond Sponsor Placeholder 2"
+      },
+      {
+        "name": "Coming Soon",
+        "logo": "placeholder",
+        "alt": "Diamond Sponsor Placeholder 3"
+      }
+    ]
+  },
+  {
+    "tier": "Platinum",
+    "sponsors": [
+      {
+        "name": "Coming Soon",
+        "logo": "placeholder",
+        "alt": "Platinum Sponsor Placeholder 1"
+      },
+      {
+        "name": "Coming Soon",
+        "logo": "placeholder",
+        "alt": "Platinum Sponsor Placeholder 2"
+      },
+      {
+        "name": "Coming Soon",
+        "logo": "placeholder",
+        "alt": "Platinum Sponsor Placeholder 3"
+      }
+    ]
+  },
+  {
+    "tier": "Gold",
+    "sponsors": [
+      {
+        "name": "Devfolio",
+        "logo": "https://res.cloudinary.com/dislegzga/image/upload/v1755355737/_Colored_gowtku.png",
+        "alt": "Devfolio Logo - Gold Tier Sponsor"
+      },
+      {
+        "name": "Coming Soon",
+        "logo": "placeholder",
+        "alt": "Gold Sponsor Placeholder 1"
+      },
+      {
+        "name": "Coming Soon",
+        "logo": "placeholder",
+        "alt": "Gold Sponsor Placeholder 2"
+      }
+    ]
+  },
+  {
+    "tier": "Silver",
+    "sponsors": [
+      {
+        "name": "ETHIndia",
+        "logo": "https://res.cloudinary.com/dislegzga/image/upload/v1755356529/Untitled_1_wez0bk.png",
+        "alt": "ETHIndia Logo - Silver Tier Sponsor"
+      },
+      {
+        "name": "Coming Soon",
+        "logo": "placeholder",
+        "alt": "Silver Sponsor Placeholder 1"
+      },
+      {
+        "name": "Coming Soon",
+        "logo": "placeholder",
+        "alt": "Silver Sponsor Placeholder 2"
+      }
+    ]
+  },
+  {
+    "tier": "Bronze",
+    "sponsors": [
+      {
+        "name": "Coming Soon",
+        "logo": "placeholder",
+        "alt": "Bronze Sponsor Placeholder 1"
+      },
+      {
+        "name": "Coming Soon",
+        "logo": "placeholder",
+        "alt": "Bronze Sponsor Placeholder 2"
+      },
+      {
+        "name": "Coming Soon",
+        "logo": "placeholder",
+        "alt": "Bronze Sponsor Placeholder 3"
+      },
+      {
+        "name": "Coming Soon",
+        "logo": "placeholder",
+        "alt": "Bronze Sponsor Placeholder 4"
+      },
+      {
+        "name": "Coming Soon",
+        "logo": "placeholder",
+        "alt": "Bronze Sponsor Placeholder 5"
+      }
+    ]
+  }
+]

@@ -6,24 +6,81 @@ import GloryAnimatedText from "../ui/GloryAnimatedText";
 
 export default function GlorySection() {
   const galleryImages: string[] = [
-    "https://picsum.photos/id/1018/1280/720",
-    "https://picsum.photos/id/1025/1280/720",
-    "https://picsum.photos/id/1039/1280/720",
-    "https://picsum.photos/id/1043/1280/720",
+    "https://res.cloudinary.com/dislegzga/image/upload/v1755364153/image_4_jaz4td.png",
+    "https://res.cloudinary.com/dislegzga/image/upload/v1755364567/IMG_9309_cdh2b4.jpg",
+    "https://res.cloudinary.com/dislegzga/image/upload/v1755364155/image_3_o9uvuh.png",
+    "https://res.cloudinary.com/dislegzga/image/upload/v1755364157/image_bgxxll.png",
+    "https://res.cloudinary.com/dislegzga/image/upload/v1755364155/image_1_i7dozz.png",
+    "https://res.cloudinary.com/dislegzga/image/upload/v1755364153/image_5_vg2ukf.png",
+    "https://res.cloudinary.com/dislegzga/image/upload/v1755364556/image_10_l8ihja.png",
+    "https://res.cloudinary.com/dislegzga/image/upload/v1755364555/image_9_kb0u5t.png",
+    "https://res.cloudinary.com/dislegzga/image/upload/v1755364554/image_12_yxhmnm.png",
   ];
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isImageLoaded, setIsImageLoaded] = useState<boolean>(true);
+  const [isAutoplayActive, setIsAutoplayActive] = useState<boolean>(true);
+  const [autoplayInterval, setAutoplayInterval] =
+    useState<NodeJS.Timeout | null>(null);
 
   const handlePrev = () => {
     setIsImageLoaded(false);
     setCurrentIndex(
       (prev) => (prev - 1 + galleryImages.length) % galleryImages.length
     );
+    // Pause autoplay temporarily when manually navigating
+    pauseAutoplay();
   };
 
   const handleNext = () => {
     setIsImageLoaded(false);
     setCurrentIndex((prev) => (prev + 1) % galleryImages.length);
+    // Pause autoplay temporarily when manually navigating
+    pauseAutoplay();
+  };
+
+  const pauseAutoplay = () => {
+    if (autoplayInterval) {
+      clearInterval(autoplayInterval);
+      setAutoplayInterval(null);
+    }
+    // Resume autoplay after 3 seconds of inactivity (same as image duration)
+    setTimeout(() => {
+      if (isAutoplayActive) {
+        startAutoplay();
+      }
+    }, 3000);
+  };
+
+  const startAutoplay = () => {
+    // Clear any existing interval first
+    if (autoplayInterval) {
+      clearInterval(autoplayInterval);
+      setAutoplayInterval(null);
+    }
+
+    // Small delay to ensure clean state
+    setTimeout(() => {
+      if (isAutoplayActive) {
+        const interval = setInterval(() => {
+          setCurrentIndex((prev) => (prev + 1) % galleryImages.length);
+          setIsImageLoaded(false);
+        }, 3000); // Change image every 3 seconds
+        setAutoplayInterval(interval);
+      }
+    }, 100);
+  };
+
+  const toggleAutoplay = () => {
+    if (isAutoplayActive) {
+      setIsAutoplayActive(false);
+      if (autoplayInterval) {
+        clearInterval(autoplayInterval);
+        setAutoplayInterval(null);
+      }
+    } else {
+      setIsAutoplayActive(true);
+      startAutoplay();
+    }
   };
 
   // Preload all images once
@@ -33,6 +90,26 @@ export default function GlorySection() {
       img.src = src;
     });
   }, []);
+
+  // Start autoplay when component mounts
+  useEffect(() => {
+    // Clear any existing interval first
+    if (autoplayInterval) {
+      clearInterval(autoplayInterval);
+      setAutoplayInterval(null);
+    }
+
+    if (isAutoplayActive) {
+      startAutoplay();
+    }
+
+    // Cleanup function to clear interval when component unmounts
+    return () => {
+      if (autoplayInterval) {
+        clearInterval(autoplayInterval);
+      }
+    };
+  }, [isAutoplayActive]); // Only restart when autoplay state changes
   return (
     <section
       id="glory"
@@ -191,19 +268,39 @@ export default function GlorySection() {
                     }
                   }}
                 >
-                  {/* Crossfading slide using img; avoid yellow flash while loading */}
-                  <motion.img
-                    key={currentIndex}
-                    src={galleryImages[currentIndex]}
-                    alt="glory"
-                    className="absolute inset-0 w-full h-full object-cover"
-                    onLoad={() => setIsImageLoaded(true)}
-                    initial={{ opacity: 0.2 }}
-                    animate={{ opacity: isImageLoaded ? 1 : 0.2 }}
-                    transition={{ duration: 0.35, ease: "easeOut" }}
-                    draggable={false}
-                    style={{ userSelect: "none" }}
-                  />
+                  {/* Image container to ensure proper framing */}
+                  <div
+                    className="absolute inset-0 overflow-hidden"
+                    style={{
+                      clipPath:
+                        "polygon(2% 42%, 0 42%, 3% 0, 97% 0, 100% 42%, 98% 42%, 98% 55%, 100% 55%, 97% 100%, 3% 100%, 0 56%, 2% 56%)",
+                    }}
+                  >
+                    {/* Crossfading slide using img; avoid yellow flash while loading */}
+                    <motion.img
+                      key={currentIndex}
+                      src={galleryImages[currentIndex]}
+                      alt="glory"
+                      className="w-full h-full object-cover object-center"
+                      onLoad={() => setIsImageLoaded(true)}
+                      initial={{ opacity: 0.2, scale: 1.05 }}
+                      animate={{
+                        opacity: isImageLoaded ? 1 : 0.2,
+                        scale: isImageLoaded ? 1 : 1.05,
+                      }}
+                      transition={{
+                        duration: 0.5,
+                        ease: "easeOut",
+                        scale: { duration: 0.6, ease: "easeOut" },
+                      }}
+                      draggable={false}
+                      style={{
+                        userSelect: "none",
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    />
+                  </div>
                   <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px] transition-opacity duration-300 group-hover:opacity-0 group-[.mobile-active]:opacity-0"></div>
 
                   {/* Content overlay */}

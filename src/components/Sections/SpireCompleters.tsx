@@ -336,7 +336,7 @@ function SpireCompleters() {
               className="w-20 md:w-24 lg:w-32"
             >
               <img
-                src="/icons/starcyber.png"
+                src="https://res.cloudinary.com/dislegzga/image/upload/v1755362334/starcyber_q6jkev.png"
                 alt="Logo Icon"
                 className="sm:translate-x-3 md:translate-x-6 md:scale-150 mt-3 sm:mt-0 scale-120 lg:translate-x-10 h-auto"
               />

@@ -80,18 +80,20 @@ export function CrewCard({ member }: CrewCardProps) {
       >
         {/* Combined Card Container - This will act as single component for animations */}
         <div className="relative w-80 h-96 crew-card-tilt-content">
-          {/* Black rounded background box */}
+          {/* Black background with subtle corner cuts */}
           <div
-            className="absolute inset-0 bg-black rounded-lg"
+            className="absolute inset-0 bg-black"
             style={{
               width: "320px",
               height: "387px",
+              clipPath:
+                "polygon(5% 0%, 95% 0%, 100% 5%, 100% 95%, 95% 100%, 5% 100%, 0% 95%, 0% 5%)",
             }}
           />
 
           {/* SVG card overlay */}
           <img
-            src="/images/crewcard2.png"
+            src="https://res.cloudinary.com/dislegzga/image/upload/v1755361827/crewcard4_bzzzbf.png"
             alt="Crew Card"
             className="absolute inset-0 w-80 h-auto z-15"
             style={{ width: "320px", height: "387px" }}
@@ -190,7 +192,7 @@ export function CrewCard({ member }: CrewCardProps) {
         </div>
         {/* SVG card overlay - now guaranteed to stay above the image */}
         <img
-          src="/images/crewcard2.png"
+          src="https://res.cloudinary.com/dislegzga/image/upload/v1755361827/crewcard4_bzzzbf.png"
           alt="Crew Card"
           className="absolute inset-0 w-80 h-auto z-[15] pointer-events-none"
           style={{ width: "320px", height: "387px" }}

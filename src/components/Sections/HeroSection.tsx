@@ -86,7 +86,7 @@ export default function HeroSection() {
               className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
             >
               <Image
-                src="/worldmap.svg"
+                src="https://res.cloudinary.com/dislegzga/image/upload/v1755362204/worldmap_ozh3jv.svg"
                 alt="World Map Background"
                 width={900}
                 height={225}
@@ -106,7 +106,7 @@ export default function HeroSection() {
               }}
             >
               <Image
-                src="/gif/Mainlogo.gif"
+                src="https://res.cloudinary.com/dislegzga/image/upload/v1755362737/Mainlogo_tqdyno.gif"
                 alt="Hackspire Logo Main"
                 width={1200}
                 height={300}

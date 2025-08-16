@@ -9,37 +9,37 @@ import CyberButton from "@/components/ui/CyberButton";
 const colleges = [
   {
     name: "Future Institute of Engineering & Management",
-    logo: "/images/collab/iitd.png",
+    logo: "https://res.cloudinary.com/dislegzga/image/upload/v1755362814/iitd_vdk5qf.png",
     role: "Host College",
     location: "Sonarpur, Kolkata",
   },
   {
     name: "Jadavpur University",
-    logo: "/images/collab/iitd.png",
+    logo: "https://res.cloudinary.com/dislegzga/image/upload/v1755362814/iitd_vdk5qf.png",
     role: "Academic Partner",
     location: "Kolkata",
   },
   {
     name: "Techno India University",
-    logo: "/images/collab/iitd.png",
+    logo: "https://res.cloudinary.com/dislegzga/image/upload/v1755362814/iitd_vdk5qf.png",
     role: "Technical Partner",
     location: "Kolkata",
   },
   {
     name: "University of Engineering & Management",
-    logo: "/images/collab/iitd.png",
+    logo: "https://res.cloudinary.com/dislegzga/image/upload/v1755362814/iitd_vdk5qf.png",
     role: "Knowledge Partner",
     location: "Kolkata",
   },
   {
     name: "Institute of Engineering & Management",
-    logo: "/images/collab/iitd.png",
+    logo: "https://res.cloudinary.com/dislegzga/image/upload/v1755362814/iitd_vdk5qf.png",
     role: "Innovation Partner",
     location: "Kolkata",
   },
   {
     name: "Heritage Institute of Technology",
-    logo: "/images/collab/iitd.png",
+    logo: "https://res.cloudinary.com/dislegzga/image/upload/v1755362814/iitd_vdk5qf.png",
     role: "Research Partner",
     location: "Kolkata",
   },
@@ -177,7 +177,7 @@ export default function CollaborationsSection() {
                 <div className="relative z-10 flex flex-col md:flex-row items-center">
                   <div className="w-32 h-32 relative mb-6 md:mb-0 md:mr-8">
                     <Image
-                      src="/images/collab/iitd.png"
+                      src="https://res.cloudinary.com/dislegzga/image/upload/v1755362814/iitd_vdk5qf.png"
                       alt="FIEM Logo"
                       fill
                       className="object-contain"
