@@ -113,6 +113,9 @@ export default function RootLayout({
           </LenisProvider>
         </ConditionalAppLoader>
         {/* </AudioProvider> */}
+
+        {/* Devfolio SDK Script */}
+        <script defer async src="https://apply.devfolio.co/v2/sdk.js"></script>
       </body>
     </html>
   );

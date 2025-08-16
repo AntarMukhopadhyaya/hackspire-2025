@@ -11,46 +11,45 @@ type SponsorTier = {
 
 const sponsorTiers: SponsorTier[] = [
   {
-    tier: "Platinum",
+    tier: "Diamond",
     logos: [
-      { src: "/vercel.svg", alt: "Platinum Sponsor Placeholder 1" },
-      { src: "/next.svg", alt: "Platinum Sponsor Placeholder 2" },
-      { src: "/globe.svg", alt: "Platinum Sponsor Placeholder 3" },
+      { src: "placeholder", alt: "Diamond Sponsor Placeholder 1" },
+      { src: "placeholder", alt: "Diamond Sponsor Placeholder 2" },
+      { src: "placeholder", alt: "Diamond Sponsor Placeholder 3" },
     ],
   },
   {
-    tier: "Diamond",
+    tier: "Platinum",
     logos: [
-      { src: "/icons/logomain.png", alt: "Diamond Sponsor Placeholder 1" },
-      { src: "/icons/logoicon.svg", alt: "Diamond Sponsor Placeholder 2" },
-      { src: "/icons/starcyber.png", alt: "Diamond Sponsor Placeholder 3" },
+      { src: "placeholder", alt: "Platinum Sponsor Placeholder 1" },
+      { src: "placeholder", alt: "Platinum Sponsor Placeholder 2" },
+      { src: "placeholder", alt: "Platinum Sponsor Placeholder 3" },
     ],
   },
   {
     tier: "Gold",
     logos: [
-      { src: "/icons/discord.svg", alt: "Gold Sponsor Placeholder 1" },
-      { src: "/window.svg", alt: "Gold Sponsor Placeholder 2" },
-      { src: "/file.svg", alt: "Gold Sponsor Placeholder 3" },
-      { src: "/icons/future.png", alt: "Gold Sponsor Placeholder 4" },
+      { src: "/images/devfolio.png", alt: "DEVFOLIO LOGO" },
+      { src: "placeholder", alt: "Gold Sponsor Placeholder 1" },
+      { src: "placeholder", alt: "Gold Sponsor Placeholder 2" },
     ],
   },
   {
     tier: "Silver",
     logos: [
-      { src: "/images/collab/iitd.png", alt: "Silver Sponsor Placeholder 1" },
-      { src: "/images/crewcard2.png", alt: "Silver Sponsor Placeholder 2" },
-      { src: "/icons/Acm.png", alt: "Silver Sponsor Placeholder 3" },
+      { src: "/images/ETHIndia.png", alt: "ETHINDIA LOGO" },
+      { src: "placeholder", alt: "Silver Sponsor Placeholder 1" },
+      { src: "placeholder", alt: "Silver Sponsor Placeholder 2" },
     ],
   },
   {
     tier: "Bronze",
     logos: [
-      { src: "/icons/discord.svg", alt: "Bronze Sponsor Placeholder 1" },
-      { src: "/vercel.svg", alt: "Bronze Sponsor Placeholder 2" },
-      { src: "/next.svg", alt: "Bronze Sponsor Placeholder 3" },
-      { src: "/globe.svg", alt: "Bronze Sponsor Placeholder 4" },
-      { src: "/file.svg", alt: "Bronze Sponsor Placeholder 5" },
+      { src: "placeholder", alt: "Bronze Sponsor Placeholder 1" },
+      { src: "placeholder", alt: "Bronze Sponsor Placeholder 2" },
+      { src: "placeholder", alt: "Bronze Sponsor Placeholder 3" },
+      { src: "placeholder", alt: "Bronze Sponsor Placeholder 4" },
+      { src: "placeholder", alt: "Bronze Sponsor Placeholder 5" },
     ],
   },
 ];
@@ -188,13 +187,24 @@ function SponsorCard({
 
       {/* Content */}
       <div className="relative z-10 flex items-center justify-center py-4 md:py-6">
-        <Image
-          src={src}
-          alt={alt}
-          width={260}
-          height={120}
-          className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain"
-        />
+        {src.includes("placeholder") ? (
+          <div className="text-center">
+            <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-600 mb-3 font-mokoto">
+              Coming Soon
+            </div>
+            <div className="text-sm sm:text-base md:text-lg text-gray-500 font-mokoto">
+              {tier} Sponsor
+            </div>
+          </div>
+        ) : (
+          <Image
+            src={src}
+            alt={alt}
+            width={400}
+            height={200}
+            className="h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 w-auto object-contain"
+          />
+        )}
       </div>
 
       {/* Diamond Patterns for Diamond Tier */}
@@ -430,9 +440,9 @@ export default function SponsorsSection() {
                     : group.tier === "Diamond"
                     ? "grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
                     : group.tier === "Gold"
-                    ? "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8"
+                    ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
                     : group.tier === "Silver"
-                    ? "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8"
+                    ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
                     : "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6 lg:gap-8"
                 }
               >

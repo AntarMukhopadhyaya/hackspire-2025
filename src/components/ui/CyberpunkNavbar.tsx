@@ -127,6 +127,10 @@ export function CyberpunkNavbar() {
       link: "/tracks",
     },
     {
+      name: "Sponsors",
+      link: "#sponsors",
+    },
+    {
       name: "Schedule",
       link: "#schedule",
     },

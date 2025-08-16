@@ -142,20 +142,46 @@ export default function HeroSection() {
       </motion.div>
 
       <div className="sm:mt-8 md:mt-42 lg:mt-32">
-        {/* Register Now Button - Better mobile positioning */}
+        {/* Apply with Devfolio Button - Dummy for UI verification */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.8, duration: 0.8, ease: "easeOut" }}
-          className="absolute bottom-32 sm:bottom-32 md:bottom-32 left-0 right-0 z-50 flex items-center justify-center px-4"
+          className="absolute bottom-40 sm:bottom-44 md:bottom-44 left-0 right-0 z-50 flex items-center justify-center px-4"
+        >
+          {/* Dummy button for UI verification */}
+          {/* <div
+            className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold text-lg flex items-center gap-2"
+            style={{ height: "44px", width: "312px" }}
+          >
+            <div className="w-6 h-6 bg-white rounded"></div>
+            Apply with Devfolio
+          </div> */}
+
+          {/* Real Devfolio button - commented out for now */}
+
+          <div
+            className="apply-button"
+            data-hackathon-slug="hackspire-2025"
+            data-button-theme="light"
+            style={{ height: "44px", width: "312px" }}
+          ></div>
+        </motion.div>
+
+        {/* Join Discord Button - Better mobile positioning */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2.0, duration: 0.8, ease: "easeOut" }}
+          className="absolute bottom-26 sm:bottom-26 md:bottom-26 left-0 right-0 z-50 flex items-center justify-center px-4"
         >
           <CyberButton
             onClick={() => {
-              console.log("Register Now clicked!");
+              console.log("Join Discord clicked!");
             }}
             className="text-sm sm:text-lg"
           >
-            Register Now
+            Join Discord
           </CyberButton>
         </motion.div>
 
