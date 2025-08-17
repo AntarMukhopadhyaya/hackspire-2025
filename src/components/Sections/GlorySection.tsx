@@ -133,49 +133,25 @@ export default function GlorySection() {
     }
   }, [isAutoplayActive, autoplayInterval, startAutoplay]);
 
-  // Preload all images once
   useEffect(() => {
+    // Preload all images once
     galleryImages.forEach((src) => {
       const img = new Image();
       img.src = src;
     });
-  }, []);
 
-  // Start autoplay when component mounts
-  useEffect(() => {
-    // Clear any existing interval first
-    if (autoplayInterval) {
-      clearInterval(autoplayInterval);
-      setAutoplayInterval(null);
-    }
-
+    // Start autoplay when component mounts
+    let interval: NodeJS.Timeout | null = null;
     if (isAutoplayActive) {
-      // Add a small delay before starting autoplay to ensure proper initialization
-      const startDelay = setTimeout(() => {
-        startAutoplay();
-      }, 1000); // 1 second delay before starting autoplay
-
-      return () => {
-        clearTimeout(startDelay);
-        if (autoplayInterval) {
-          clearInterval(autoplayInterval);
-        }
-        if (interactionTimeoutRef.current) {
-          clearTimeout(interactionTimeoutRef.current);
-        }
-      };
+      interval = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % galleryImages.length);
+        setIsImageLoaded(false);
+      }, 3000); // 3 seconds interval
     }
-
-    // Cleanup function to clear interval when component unmounts
     return () => {
-      if (autoplayInterval) {
-        clearInterval(autoplayInterval);
-      }
-      if (interactionTimeoutRef.current) {
-        clearTimeout(interactionTimeoutRef.current);
-      }
+      if (interval) clearInterval(interval);
     };
-  }, [isAutoplayActive, startAutoplay]); // Added startAutoplay to dependencies
+  }, [isAutoplayActive, galleryImages.length]);
 
   // Reset interaction state when autoplay is toggled
   useEffect(() => {

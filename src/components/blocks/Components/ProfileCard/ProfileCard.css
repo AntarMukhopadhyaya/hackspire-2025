@@ -335,6 +335,7 @@
     0% 100%,
     0% 8px
   );
+  border-radius: 0px !important;
 }
 
 /* Cut edge effect for user info - top left */
@@ -577,6 +578,15 @@
     left: 15px;
     right: 15px;
     padding: 10px 12px;
+    clip-path: polygon(
+      8px 0%,
+      100% 0%,
+      100% calc(100% - 8px),
+      calc(100% - 8px) 100%,
+      0% 100%,
+      0% 8px
+    );
+    border-radius: 0px !important;
   }
 
   .pc-mini-avatar {
@@ -626,7 +636,15 @@
     left: 12px;
     right: 12px;
     padding: 8px 10px;
-    border-radius: 50px;
+    clip-path: polygon(
+      8px 0%,
+      100% 0%,
+      100% calc(100% - 8px),
+      calc(100% - 8px) 100%,
+      0% 100%,
+      0% 8px
+    );
+    border-radius: 0px !important;
   }
 
   .pc-mini-avatar {
@@ -669,7 +687,15 @@
 
   .pc-user-info {
     padding: 6px 8px;
-    border-radius: 50px;
+    clip-path: polygon(
+      8px 0%,
+      100% 0%,
+      100% calc(100% - 8px),
+      calc(100% - 8px) 100%,
+      0% 100%,
+      0% 8px
+    );
+    border-radius: 0px !important;
   }
 
   .pc-mini-avatar {
