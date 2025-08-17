@@ -14,11 +14,14 @@ export function CyberpunkNavbar() {
   const router = useRouter();
   const pathname = usePathname();
 
-  // Smooth scroll to section or navigate to home page first
-  const handleSectionClick = (
+  // Handle all navigation clicks and close mobile menu
+  const handleNavigationClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
+    // Always close mobile menu first
+    setIsMobileMenuOpen(false);
+
     if (href.startsWith("#")) {
       e.preventDefault();
       const targetId = href.substring(1);
@@ -33,15 +36,13 @@ export function CyberpunkNavbar() {
             block: "start",
           });
         }
-        // Close mobile menu if open
-        setIsMobileMenuOpen(false);
       } else {
         // We're on another page, navigate to home page with section hash
         router.push(`/${href}`);
-        // Close mobile menu if open
-        setIsMobileMenuOpen(false);
       }
     }
+    // For regular links (like /tracks, /crews, /contact), let them navigate normally
+    // The mobile menu is already closed above
   };
 
   // Close mobile menu when clicking outside
@@ -75,6 +76,26 @@ export function CyberpunkNavbar() {
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Close mobile menu when pathname changes (navigating to different pages)
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
+
+  // Add state for current hash to trigger re-renders when hash changes
+  const [currentHash, setCurrentHash] = useState("");
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setCurrentHash(window.location.hash);
+    };
+
+    // Set initial hash
+    setCurrentHash(window.location.hash);
+
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
   }, []);
 
   // Handle scrolling to section when navigating from another page
@@ -159,13 +180,30 @@ export function CyberpunkNavbar() {
     },
   ];
 
+  // Function to check if a nav item is active
+  const isNavItemActive = (itemLink: string) => {
+    if (itemLink.startsWith("#")) {
+      // For hash links, check if we're on home page and hash matches
+      if (pathname === "/") {
+        return currentHash === itemLink;
+      }
+      return false;
+    } else {
+      // For page links, check if pathname matches
+      return pathname === itemLink;
+    }
+  };
+
   return (
     <>
       <nav className="fixed top-0 left-0 right-0 z-50 px-4 md:px-8 pt-1">
         <div className="relative w-full">
           <div className="flex items-center justify-between">
             {/* Logo - Outside the cyberpunk container */}
-            <Link href="/" className="flex items-center space-x-2">
+            <Link
+              href="/"
+              className="flex items-center space-x-2 -ml-4 md:ml-0"
+            >
               <Image
                 src="https://res.cloudinary.com/dislegzga/image/upload/v1755362696/logomain_g62cor.png"
                 alt="Hackspire Logo"
@@ -177,16 +215,20 @@ export function CyberpunkNavbar() {
             </Link>
 
             {/* Main navbar with corner cuts - Positioned to the right */}
-            <div className="cyberpunk-navbar relative bg-black/90 backdrop-blur-sm ml-auto">
-              <div className="flex items-center px-4 py-2">
+            <div className="cyberpunk-navbar relative bg-black/90 backdrop-blur-sm ml-auto pointer-events-auto">
+              <div className="flex items-center px-3 py-1.5 md:px-4 md:py-2">
                 {/* Navigation Items - Desktop */}
                 <div className="hidden md:flex items-center">
                   {navItems.map((item, index) => (
                     <div key={item.name} className="flex items-center">
                       <Link
                         href={item.link}
-                        onClick={(e) => handleSectionClick(e, item.link)}
-                        className="text-white/80 hover:text-yellow-400 transition-colors duration-200 text-sm font-medium tracking-wide uppercase px-3 py-1"
+                        onClick={(e) => handleNavigationClick(e, item.link)}
+                        className={`transition-colors duration-200 text-sm font-medium tracking-wide uppercase px-3 py-1 ${
+                          isNavItemActive(item.link)
+                            ? "text-yellow-400"
+                            : "text-white/80 hover:text-yellow-400"
+                        }`}
                       >
                         {item.name}
                       </Link>
@@ -201,13 +243,13 @@ export function CyberpunkNavbar() {
                 <div className="md:hidden flex items-center">
                   <button
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    className="text-white/80 hover:text-yellow-400 transition-colors duration-200 p-1.5"
+                    className="text-white/80 hover:text-yellow-400 transition-colors duration-200 p-1"
                     aria-label="Toggle mobile menu"
                   >
                     {isMobileMenuOpen ? (
-                      <X className="w-5 h-5" />
+                      <X className="w-4 h-4" />
                     ) : (
-                      <Menu className="w-5 h-5" />
+                      <Menu className="w-4 h-4" />
                     )}
                   </button>
                 </div>
@@ -240,8 +282,12 @@ export function CyberpunkNavbar() {
                   >
                     <Link
                       href={item.link}
-                      onClick={(e) => handleSectionClick(e, item.link)}
-                      className="block text-white/80 hover:text-yellow-400 transition-colors duration-200 text-base font-medium tracking-wide uppercase py-3 px-4 border-l-2 border-transparent hover:border-yellow-400"
+                      onClick={(e) => handleNavigationClick(e, item.link)}
+                      className={`block transition-colors duration-200 text-base font-medium tracking-wide uppercase py-3 px-4 border-l-2 ${
+                        isNavItemActive(item.link)
+                          ? "text-yellow-400 border-yellow-400"
+                          : "text-white/80 hover:text-yellow-400 border-transparent hover:border-yellow-400"
+                      }`}
                       style={{ fontFamily: "Mokoto Demo" }}
                     >
                       <span className="flex items-center">

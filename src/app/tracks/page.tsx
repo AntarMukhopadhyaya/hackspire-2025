@@ -1,6 +1,6 @@
 "use client";
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import {
   FaShieldAlt,
   FaBrain,
@@ -9,6 +9,7 @@ import {
   FaRobot,
   FaGamepad,
   FaHeartbeat,
+  FaLightbulb,
   FaExternalLinkAlt,
 } from "react-icons/fa";
 import CyberButton from "@/components/ui/CyberButton";
@@ -27,8 +28,6 @@ const tracks = [
       "Predictive Analytics",
       "Deep Learning Models",
     ],
-    hoverImage:
-      "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 2,
@@ -43,8 +42,6 @@ const tracks = [
       "NFT Platforms",
       "DAO Governance",
     ],
-    hoverImage:
-      "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 3,
@@ -59,8 +56,6 @@ const tracks = [
       "Network Security",
       "Vulnerability Assessment",
     ],
-    hoverImage:
-      "https://images.unsplash.com/photo-1563206767-5b18f218e8de?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 4,
@@ -75,8 +70,6 @@ const tracks = [
       "Yield Prediction",
       "Soil Analysis",
     ],
-    hoverImage:
-      "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 5,
@@ -91,8 +84,6 @@ const tracks = [
       "Industrial Automation",
       "Sensor Integration",
     ],
-    hoverImage:
-      "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 6,
@@ -107,8 +98,6 @@ const tracks = [
       "Multiplayer Systems",
       "Game AI",
     ],
-    hoverImage:
-      "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 7,
@@ -123,8 +112,20 @@ const tracks = [
       "Health Monitoring",
       "Drug Discovery",
     ],
-    hoverImage:
-      "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=2031&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    id: 8,
+    title: "Open Innovation",
+    subtitle: "Creative Solutions & Novel Approaches",
+    description:
+      "Think outside the box and create innovative solutions that don't fit traditional categories. This track encourages creativity and novel problem-solving approaches.",
+    icon: FaLightbulb,
+    challenges: [
+      "Creative Problem Solving",
+      "Cross-Disciplinary Solutions",
+      "Novel Technologies",
+      "Innovation in Any Field",
+    ],
   },
 ];
 
@@ -410,10 +411,9 @@ function Tracks() {
             return (
               <motion.div
                 key={track.id}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
                 className="relative"
               >
                 {/* Cyberpunk Yellow Container with Clip-Path Cut Edges - Sleek Size */}

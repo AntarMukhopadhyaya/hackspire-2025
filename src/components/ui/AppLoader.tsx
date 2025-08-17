@@ -10,7 +10,11 @@ interface AppLoaderProps {
 
 // Loading component that's safe for SSR
 const LoadingScreen = () => (
-  <div className="fixed inset-0 z-50 bg-black flex items-center justify-center">
+  <div
+    key="loading-screen"
+    className="fixed inset-0 z-50 bg-black flex items-center justify-center"
+    suppressHydrationWarning
+  >
     <div className="text-center">
       <div className="w-32 h-32 border-4 border-cyber-yellow border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
       <p className="text-cyber-yellow font-mono text-xl">
@@ -25,6 +29,10 @@ function AppLoaderContent({ children }: AppLoaderProps) {
   const [openerComplete, setOpenerComplete] = useState(true);
   const [isClient, setIsClient] = useState(false);
   const { isLoading, fontsLoaded } = useAppLoading();
+
+  // Ensure consistent initial state to prevent hydration mismatch
+  const safeIsLoading = isClient ? isLoading : false;
+  const safeFontsLoaded = isClient ? fontsLoaded : true;
 
   useEffect(() => {
     setIsClient(true);
@@ -64,7 +72,7 @@ function AppLoaderContent({ children }: AppLoaderProps) {
   }
 
   // Show loading state if resources are still loading AND opener is complete
-  if ((isLoading || !fontsLoaded) && openerComplete) {
+  if ((safeIsLoading || !safeFontsLoaded) && openerComplete) {
     return <LoadingScreen />;
   }
 
@@ -74,7 +82,10 @@ function AppLoaderContent({ children }: AppLoaderProps) {
 
 export default function AppLoader({ children }: AppLoaderProps) {
   return (
-    <ClientOnly fallback={<LoadingScreen />}>
+    <ClientOnly
+      fallback={<LoadingScreen key="fallback-loading" />}
+      key="app-loader"
+    >
       <AppLoaderContent>{children}</AppLoaderContent>
     </ClientOnly>
   );

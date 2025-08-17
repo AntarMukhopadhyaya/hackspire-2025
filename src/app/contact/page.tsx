@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Send } from "lucide-react";
 import CyberButton from "@/components/ui/CyberButton";
@@ -15,6 +15,19 @@ function ContactUs() {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if device is mobile and handle mobile-specific behavior
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // Mobile touch handler for cyberpunk frames
   const handleMobileTouch = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -84,7 +97,7 @@ function ContactUs() {
   };
 
   return (
-    <div className="min-h-screen text-white py-20 px-4 relative bg-transparent">
+    <div className="min-h-screen text-white pt-20 sm:pt-24 md:pt-28 pb-8 sm:pb-12 md:pb-20 px-4 relative bg-transparent">
       {/* Matrix Rain Background */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute inset-0 opacity-20">
@@ -98,6 +111,13 @@ function ContactUs() {
                 left: ${i * 2}%;
                 animation-delay: ${delay}s;
                 animation-duration: ${duration}s;
+                position: absolute;
+                top: 0;
+                z-index: 1;
+                animation-name: matrixRain !important;
+                animation-timing-function: linear !important;
+                animation-iteration-count: infinite !important;
+                animation-fill-mode: both !important;
               }`;
               })
               .join("\n")}
@@ -108,6 +128,16 @@ function ContactUs() {
             <div
               key={i}
               className={`absolute top-0 text-green-400 font-mono text-xs leading-none matrix-column-animated matrix-column-${i}`}
+              style={{
+                left: `${i * 2}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${3 + Math.random() * 4}s`,
+                zIndex: 1,
+                animationName: "matrixRain",
+                animationTimingFunction: "linear",
+                animationIterationCount: "infinite",
+                animationFillMode: "both",
+              }}
             >
               {Array.from({ length: 20 }).map((_, j) => (
                 <div key={j} className="opacity-70">
@@ -285,11 +315,11 @@ function ContactUs() {
       </div>
 
       {/* Centered Contact Title */}
-      <div className="text-center mb-16 relative z-10">
+      <div className="text-center mb-8 sm:mb-12 md:mb-16 relative z-10">
         <motion.h1
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: isMobile ? 0.5 : 0.8 }}
           className="text-7xl sm:text-8xl md:text-[8rem] lg:text-[10rem] xl:text-8xl 2xl:text-[8rem] font-bold text-black font-sddystopiandemo"
         >
           Contact Us
@@ -297,7 +327,10 @@ function ContactUs() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{
+            duration: isMobile ? 0.5 : 0.8,
+            delay: isMobile ? 0.1 : 0.3,
+          }}
           className="text-center max-w-4xl mx-auto -mt-4 pb-8 text-sm sm:text-sm md:text-xl text-black leading-relaxed font-mokoto px-12 md:px-30"
         >
           Have questions about HackSpire 2025? Want to partner with us?
@@ -308,13 +341,16 @@ function ContactUs() {
       </div>
 
       {/* Contact Information Cards */}
-      <div className="max-w-6xl mx-auto mt-36 sm:mt-0 mb-16 relative z-10">
-        <div className="grid md:grid-cols-3 gap-8">
+      <div className="max-w-6xl mx-auto mt-16 sm:mt-10 md:mt-14 mb-16 relative z-10">
+        <div className="grid md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: isMobile ? 0.3 : 0.5,
+              delay: isMobile ? 0 : 0.8,
+              ease: "easeOut",
+            }}
             className="text-center"
           >
             {/* Cyberpunk Yellow Container with Clip-Path Cut Edges */}
@@ -367,13 +403,13 @@ function ContactUs() {
               {/* Content */}
               <div className="relative z-10">
                 <h3
-                  className="text-4xl md:text-5xl font-bold text-black mb-2"
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-2"
                   style={{ fontFamily: "'Mokoto Demo', monospace" }}
                 >
                   Location
                 </h3>
                 <p
-                  className="text-black text-lg font-medium whitespace-nowrap"
+                  className="text-black text-sm sm:text-base md:text-lg font-medium whitespace-nowrap"
                   style={{ fontFamily: "'Mokoto Demo', monospace" }}
                 >
                   Sonarpur, Kolkata, West Bengal
@@ -384,14 +420,17 @@ function ContactUs() {
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: isMobile ? 0.3 : 0.5,
+              delay: isMobile ? 0.1 : 0.9,
+              ease: "easeOut",
+            }}
             className="text-center"
           >
             {/* Cyberpunk Yellow Container with Clip-Path Cut Edges */}
             <div
-              className="relative p-6 group cursor-pointer transition-all duration-300 hover:scale-105"
+              className="relative p-4 sm:p-5 md:p-6 group cursor-pointer transition-all duration-300 hover:scale-105"
               onClick={handleMobileTouch}
             >
               {/* Background with clip-path cuts */}
@@ -439,14 +478,14 @@ function ContactUs() {
               {/* Content */}
               <div className="relative z-10">
                 <h3
-                  className="text-4xl md:text-5xl font-bold text-black mb-2"
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-2"
                   style={{ fontFamily: "'Mokoto Demo', monospace" }}
                 >
                   Email
                 </h3>
                 <a
                   href="mailto:fiemacm@gmail.com"
-                  className="text-black text-lg font-medium hover:text-blue-600 transition-colors cursor-pointer"
+                  className="text-black text-sm sm:text-base md:text-lg font-medium hover:text-blue-600 transition-colors cursor-pointer"
                   style={{ fontFamily: "'Mokoto Demo', monospace" }}
                 >
                   fiemacm@gmail.com
@@ -457,14 +496,17 @@ function ContactUs() {
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 1.0, ease: "easeOut" }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: isMobile ? 0.3 : 0.5,
+              delay: isMobile ? 0.2 : 1.0,
+              ease: "easeOut",
+            }}
             className="text-center"
           >
             {/* Cyberpunk Yellow Container with Clip-Path Cut Edges */}
             <div
-              className="relative p-6 group cursor-pointer transition-all duration-300 hover:scale-105"
+              className="relative p-4 sm:p-5 md:p-6 group cursor-pointer transition-all duration-300 hover:scale-105"
               onClick={handleMobileTouch}
             >
               {/* Background with clip-path cuts */}
@@ -512,13 +554,13 @@ function ContactUs() {
               {/* Content */}
               <div className="relative z-10">
                 <h3
-                  className="text-4xl md:text-5xl font-bold text-black mb-2"
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-2"
                   style={{ fontFamily: "'Mokoto Demo', monospace" }}
                 >
                   Phone
                 </h3>
                 <p
-                  className="text-black text-lg font-medium"
+                  className="text-black text-sm sm:text-base md:text-lg font-medium"
                   style={{ fontFamily: "'Mokoto Demo', monospace" }}
                 >
                   +91 7074757878
@@ -532,7 +574,7 @@ function ContactUs() {
       {/* Contact Form Section */}
 
       <div
-        className={`relative overflow-hidden from-yellow-400/20 max-w-4xl mx-auto mb-20 z-10 to-orange-500/20 backdrop-blur-sm border border-yellow-400/40 group cursor-pointer bg-gradient-to-br flex flex-col justify-end p-4 ${5}`}
+        className={`relative overflow-hidden from-yellow-400/20 max-w-4xl mx-auto mb-12 sm:mb-16 md:mb-20 z-10 to-orange-500/20 backdrop-blur-sm border border-yellow-400/40 group cursor-pointer bg-gradient-to-br flex flex-col justify-end p-4 ${5}`}
         style={{
           animationDelay: `2ms`,
           clipPath:
@@ -736,7 +778,7 @@ function ContactUs() {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1, delay: 0.9 }}
-        className="flex justify-center mt-20 relative z-10 px-4"
+        className="flex justify-center mt-12 sm:mt-16 md:mt-20 relative z-10 px-4"
       >
         <div className="relative w-full max-w-lg sm:max-w-3xl md:max-w-4xl lg:max-w-6xl">
           {/* 16:9 wrapper */}

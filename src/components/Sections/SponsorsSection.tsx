@@ -409,7 +409,7 @@ export default function SponsorsSection() {
                   group.tier === "Platinum"
                     ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
                     : group.tier === "Diamond"
-                    ? "grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+                    ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
                     : group.tier === "Gold"
                     ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
                     : group.tier === "Silver"

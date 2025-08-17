@@ -60,6 +60,13 @@ function Crews() {
                 left: ${i * 2}%;
                 animation-delay: ${delay}s;
                 animation-duration: ${duration}s;
+                position: absolute;
+                top: 0;
+                z-index: 1;
+                animation-name: matrixRain !important;
+                animation-timing-function: linear !important;
+                animation-iteration-count: infinite !important;
+                animation-fill-mode: both !important;
               }`;
               })
               .join("\n")}
@@ -70,6 +77,16 @@ function Crews() {
             <div
               key={i}
               className={`absolute top-0 text-green-400 font-mono text-xs leading-none matrix-column-animated matrix-column-${i}`}
+              style={{
+                left: `${i * 2}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${3 + Math.random() * 4}s`,
+                zIndex: 1,
+                animationName: "matrixRain",
+                animationTimingFunction: "linear",
+                animationIterationCount: "infinite",
+                animationFillMode: "both",
+              }}
             >
               {Array.from({ length: 20 }).map((_, j) => (
                 <div key={j} className="opacity-70">
@@ -82,7 +99,7 @@ function Crews() {
       </div>
 
       {/* Yellow Trapezium Background with Clip-Path */}
-      <div className="absolute top-0 left-0 right-0 h-96 z-0">
+      <div className="absolute top-0 left-0 right-0 h-64 sm:h-80 md:h-96 z-0">
         {/* Main trapezium with clip-path */}
         <div
           className="w-full h-full bg-yellow-400 relative"
@@ -345,7 +362,7 @@ function Crews() {
         transition={{ duration: 0.8, delay: 0.6 }}
         className="max-w-4xl mx-auto"
       >
-        <div className="flex flex-wrap justify-center gap-4 mt-48 sm:mt-40 md:mt-28">
+        <div className="flex flex-wrap justify-center gap-4 mt-16 sm:mt-28 md:mt-28">
           {filterOptions.map((option) => {
             const IconComponent = option.icon;
             const isActive = activeFilter === option.id;

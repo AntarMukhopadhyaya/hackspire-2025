@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { FontLoader } from "@/lib/fontLoader";
 
 export function useAppLoading() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [fontsLoaded, setFontsLoaded] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // Start with false for SSR
+  const [fontsLoaded, setFontsLoaded] = useState(true); // Start with true for SSR
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -14,6 +14,10 @@ export function useAppLoading() {
 
   useEffect(() => {
     if (!isClient) return;
+
+    // Set initial loading state only on client
+    setIsLoading(true);
+    setFontsLoaded(false);
 
     let mounted = true;
 
@@ -56,7 +60,7 @@ export function useAppLoading() {
     };
   }, [isClient]);
 
-  // Return safe defaults during SSR
+  // Return safe defaults during SSR and ensure consistent initial state
   if (!isClient) {
     return { isLoading: false, fontsLoaded: true };
   }

@@ -1543,10 +1543,10 @@ html {
     transform: translateY(-100vh);
     opacity: 0;
   }
-  10% {
+  5% {
     opacity: 1;
   }
-  90% {
+  95% {
     opacity: 1;
   }
   100% {
@@ -1559,6 +1559,10 @@ html {
   animation-name: matrixRain;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+  animation-fill-mode: both;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 /* Main Background Trapezium */

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import GloryAnimatedText from "../ui/GloryAnimatedText";
 
@@ -11,7 +11,7 @@ export default function GlorySection() {
     "https://res.cloudinary.com/dislegzga/image/upload/v1755364155/image_3_o9uvuh.png",
     "https://res.cloudinary.com/dislegzga/image/upload/v1755364157/image_bgxxll.png",
     "https://res.cloudinary.com/dislegzga/image/upload/v1755364155/image_1_i7dozz.png",
-    "https://res.cloudinary.com/dislegzga/image/upload/v1755364153/image_5_vg2ukf.png",
+    "https://res.cloudinary.com/dislegzga/image/upload/v1755364153/image_5_vg2ukuk.png",
     "https://res.cloudinary.com/dislegzga/image/upload/v1755364556/image_10_l8ihja.png",
     "https://res.cloudinary.com/dislegzga/image/upload/v1755364555/image_9_kb0u5t.png",
     "https://res.cloudinary.com/dislegzga/image/upload/v1755364554/image_12_yxhmnm.png",
@@ -21,37 +21,73 @@ export default function GlorySection() {
   const [isAutoplayActive, setIsAutoplayActive] = useState<boolean>(true);
   const [autoplayInterval, setAutoplayInterval] =
     useState<NodeJS.Timeout | null>(null);
+  
+  // Add refs to track interaction state and prevent rapid changes
+  const interactionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const isInteractingRef = useRef<boolean>(false);
+  const lastInteractionTimeRef = useRef<number>(0);
 
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
+    // Prevent rapid successive calls
+    const now = Date.now();
+    if (now - lastInteractionTimeRef.current < 500) {
+      return;
+    }
+    lastInteractionTimeRef.current = now;
+    
     setIsImageLoaded(false);
     setCurrentIndex(
       (prev) => (prev - 1 + galleryImages.length) % galleryImages.length
     );
     // Pause autoplay temporarily when manually navigating
     pauseAutoplay();
-  };
+  }, [galleryImages.length]);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
+    // Prevent rapid successive calls
+    const now = Date.now();
+    if (now - lastInteractionTimeRef.current < 500) {
+      return;
+    }
+    lastInteractionTimeRef.current = now;
+    
     setIsImageLoaded(false);
     setCurrentIndex((prev) => (prev + 1) % galleryImages.length);
     // Pause autoplay temporarily when manually navigating
     pauseAutoplay();
-  };
+  }, [galleryImages.length]);
 
-  const pauseAutoplay = () => {
+  const pauseAutoplay = useCallback(() => {
+    // Clear any existing interaction timeout
+    if (interactionTimeoutRef.current) {
+      clearTimeout(interactionTimeoutRef.current);
+      interactionTimeoutRef.current = null;
+    }
+    
+    // Clear autoplay interval
     if (autoplayInterval) {
       clearInterval(autoplayInterval);
       setAutoplayInterval(null);
     }
-    // Resume autoplay after 3 seconds of inactivity (same as image duration)
-    setTimeout(() => {
-      if (isAutoplayActive) {
+    
+    // Set interaction flag
+    isInteractingRef.current = true;
+    
+    // Resume autoplay after 5 seconds of inactivity (increased from 3 seconds)
+    interactionTimeoutRef.current = setTimeout(() => {
+      if (isAutoplayActive && !isInteractingRef.current) {
+        isInteractingRef.current = false;
         startAutoplay();
       }
-    }, 3000);
-  };
+    }, 5000);
+  }, [autoplayInterval, isAutoplayActive]);
 
-  const startAutoplay = () => {
+  const startAutoplay = useCallback(() => {
+    // Don't start autoplay if user is actively interacting
+    if (isInteractingRef.current) {
+      return;
+    }
+    
     // Clear any existing interval first
     if (autoplayInterval) {
       clearInterval(autoplayInterval);
@@ -60,28 +96,37 @@ export default function GlorySection() {
 
     // Small delay to ensure clean state
     setTimeout(() => {
-      if (isAutoplayActive) {
+      if (isAutoplayActive && !isInteractingRef.current) {
         const interval = setInterval(() => {
-          setCurrentIndex((prev) => (prev + 1) % galleryImages.length);
-          setIsImageLoaded(false);
-        }, 3000); // Change image every 3 seconds
+          // Only change image if not interacting
+          if (!isInteractingRef.current) {
+            setCurrentIndex((prev) => (prev + 1) % galleryImages.length);
+            setIsImageLoaded(false);
+          }
+        }, 4000); // Increased from 3 to 4 seconds for better user experience
         setAutoplayInterval(interval);
       }
     }, 100);
-  };
+  }, [autoplayInterval, isAutoplayActive, galleryImages.length]);
 
-  const toggleAutoplay = () => {
+  const toggleAutoplay = useCallback(() => {
     if (isAutoplayActive) {
       setIsAutoplayActive(false);
       if (autoplayInterval) {
         clearInterval(autoplayInterval);
         setAutoplayInterval(null);
       }
+      if (interactionTimeoutRef.current) {
+        clearTimeout(interactionTimeoutRef.current);
+        interactionTimeoutRef.current = null;
+      }
+      isInteractingRef.current = false;
     } else {
       setIsAutoplayActive(true);
+      isInteractingRef.current = false;
       startAutoplay();
     }
-  };
+  }, [isAutoplayActive, autoplayInterval, startAutoplay]);
 
   // Preload all images once
   useEffect(() => {
@@ -108,8 +153,22 @@ export default function GlorySection() {
       if (autoplayInterval) {
         clearInterval(autoplayInterval);
       }
+      if (interactionTimeoutRef.current) {
+        clearTimeout(interactionTimeoutRef.current);
+      }
     };
-  }, [isAutoplayActive]); // Only restart when autoplay state changes
+  }, [isAutoplayActive, startAutoplay]); // Added startAutoplay to dependencies
+
+  // Reset interaction state when autoplay is toggled
+  useEffect(() => {
+    if (!isAutoplayActive) {
+      isInteractingRef.current = false;
+      if (interactionTimeoutRef.current) {
+        clearTimeout(interactionTimeoutRef.current);
+        interactionTimeoutRef.current = null;
+      }
+    }
+  }, [isAutoplayActive]);
   return (
     <section
       id="glory"
@@ -265,6 +324,30 @@ export default function GlorySection() {
                     if (window.innerWidth <= 768) {
                       const target = e.currentTarget;
                       target.classList.toggle("mobile-active");
+                      
+                      // Track interaction to pause autoplay
+                      const now = Date.now();
+                      if (now - lastInteractionTimeRef.current < 500) {
+                        return; // Prevent rapid successive calls
+                      }
+                      lastInteractionTimeRef.current = now;
+                      
+                      // Pause autoplay when frame is touched
+                      pauseAutoplay();
+                    }
+                  }}
+                  onTouchStart={(e) => {
+                    // Handle touch events on mobile to prevent rapid changes
+                    if (window.innerWidth <= 768) {
+                      const now = Date.now();
+                      if (now - lastInteractionTimeRef.current < 300) {
+                        e.preventDefault(); // Prevent rapid successive touches
+                        return;
+                      }
+                      lastInteractionTimeRef.current = now;
+                      
+                      // Pause autoplay on touch
+                      pauseAutoplay();
                     }
                   }}
                 >
@@ -370,6 +453,13 @@ export default function GlorySection() {
                   >
                     <span className="sr-only">Previous</span>
                   </button>
+                  
+                  {/* Interaction status indicator */}
+                  {isInteractingRef.current && (
+                    <div className="absolute top-2 right-2 z-30 bg-yellow-500/90 text-black text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      Autoplay Paused
+                    </div>
+                  )}
                   <button
                     aria-label="Next"
                     onClick={handleNext}
