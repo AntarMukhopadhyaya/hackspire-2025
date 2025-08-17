@@ -1,0 +1,6 @@
+Contact: mailto:security@hackspire.tech
+Expires: 2026-12-31T23:59:59.000Z
+Preferred-Languages: en
+Canonical: https://hackspire.tech/.well-known/security.txt
+Policy: https://hackspire.tech/security-policy
+Hiring: https://hackspire.tech/careers

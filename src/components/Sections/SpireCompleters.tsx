@@ -314,7 +314,7 @@ function SpireCompleters() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-30px" }}
             transition={{ duration: 0.6, delay: 0.7, ease: "easeOut" }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-8 md:mt-12"
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-24 md:mt-32"
           >
             <motion.div
               initial={{ opacity: 0, x: -50 }}

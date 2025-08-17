@@ -197,15 +197,18 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
 
       if (!card || !wrap || !animationHandlers) return;
 
-      const rect = card.getBoundingClientRect();
-      animationHandlers.updateCardTransform(
-        event.clientX - rect.left,
-        event.clientY - rect.top,
-        card,
-        wrap
-      );
+      // Only apply tilt effects on desktop or when explicitly enabled on mobile
+      if (window.innerWidth > 768 || enableMobileTilt) {
+        const rect = card.getBoundingClientRect();
+        animationHandlers.updateCardTransform(
+          event.clientX - rect.left,
+          event.clientY - rect.top,
+          card,
+          wrap
+        );
+      }
     }, 16), // 60fps throttle
-    [animationHandlers]
+    [animationHandlers, enableMobileTilt]
   );
 
   const handlePointerEnter = useCallback(() => {
@@ -301,6 +304,13 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
     card.addEventListener("pointerleave", pointerLeaveHandler);
     card.addEventListener("click", handleClick);
 
+    // Add touch event handlers for mobile scrolling
+    if (window.innerWidth <= 768) {
+      card.addEventListener("touchstart", () => {}, { passive: true });
+      card.addEventListener("touchmove", () => {}, { passive: true });
+      card.addEventListener("touchend", () => {}, { passive: true });
+    }
+
     // Simplified initial animation
     const initialX = wrap.clientWidth - ANIMATION_CONFIG.INITIAL_X_OFFSET;
     const initialY = ANIMATION_CONFIG.INITIAL_Y_OFFSET;
@@ -321,6 +331,13 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
       card.removeEventListener("click", handleClick);
       window.removeEventListener("deviceorientation", deviceOrientationHandler);
       animationHandlers.cancelAnimation();
+
+      // Remove touch event listeners if they were added
+      if (window.innerWidth <= 768) {
+        card.removeEventListener("touchstart", () => {});
+        card.removeEventListener("touchmove", () => {});
+        card.removeEventListener("touchend", () => {});
+      }
     };
   }, [
     shouldEnableTilt,

@@ -348,10 +348,10 @@ export default function HackingOpener({ onComplete }: HackingOpenerProps) {
                     transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }} // Reduced duration
                     className="terminal-window absolute"
                     style={{
-                      top: isMobile ? "20px" : "10px",
+                      top: isMobile ? "5px" : "5px",
                       left: isMobile ? "20px" : "40px",
                       right: isMobile ? "30px" : "40px",
-                      bottom: isMobile ? "40px" : "40px",
+                      bottom: isMobile ? "80px" : "80px",
                       zIndex: 2,
                     }}
                   >
@@ -373,7 +373,7 @@ export default function HackingOpener({ onComplete }: HackingOpenerProps) {
                         initial={{ opacity: 0, scale: 0.5 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.6, ease: "easeOut" }} // Reduced duration
-                        className="absolute inset-0 flex items-center justify-center bg-black/95 z-10"
+                        className="absolute inset-0 flex items-center justify-center bg-transparent z-10"
                       >
                         <div className="text-center">
                           <h1

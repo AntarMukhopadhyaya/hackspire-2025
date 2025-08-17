@@ -30,7 +30,7 @@ const FooterContent = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-2xl font-bold text-black mb-4 tracking-wide"
+              className="text-3xl font-bold text-black mb-4 tracking-wide"
               style={{ fontFamily: "'Sddystopiandemo-GO7xa', monospace" }}
             >
               HACKSPIRE 2025
@@ -114,12 +114,12 @@ const FooterContent = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-xs text-black font-medium"
+              className="text-xs text-black font-medium px-2"
               style={{ fontFamily: "'Mokoto Demo', monospace" }}
             >
-              © 2025 HACKSPIRE
+              <span>© 2025 HACKSPIRE •</span>
               <br />
-              FIEM ACM STUDENT CHAPTER
+              <span>FIEM ACM STUDENT CHAPTER</span>
             </motion.div>
           </div>
         </div>

@@ -21,11 +21,12 @@ export default function GlorySection() {
   const [isAutoplayActive, setIsAutoplayActive] = useState<boolean>(true);
   const [autoplayInterval, setAutoplayInterval] =
     useState<NodeJS.Timeout | null>(null);
-  
+
   // Add refs to track interaction state and prevent rapid changes
   const interactionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const isInteractingRef = useRef<boolean>(false);
   const lastInteractionTimeRef = useRef<number>(0);
+  const autoplayStartedRef = useRef<boolean>(false);
 
   const handlePrev = useCallback(() => {
     // Prevent rapid successive calls
@@ -34,13 +35,12 @@ export default function GlorySection() {
       return;
     }
     lastInteractionTimeRef.current = now;
-    
+
     setIsImageLoaded(false);
     setCurrentIndex(
       (prev) => (prev - 1 + galleryImages.length) % galleryImages.length
     );
-    // Pause autoplay temporarily when manually navigating
-    pauseAutoplay();
+    // Don't pause autoplay when manually navigating
   }, [galleryImages.length]);
 
   const handleNext = useCallback(() => {
@@ -50,11 +50,10 @@ export default function GlorySection() {
       return;
     }
     lastInteractionTimeRef.current = now;
-    
+
     setIsImageLoaded(false);
     setCurrentIndex((prev) => (prev + 1) % galleryImages.length);
-    // Pause autoplay temporarily when manually navigating
-    pauseAutoplay();
+    // Don't pause autoplay when manually navigating
   }, [galleryImages.length]);
 
   const pauseAutoplay = useCallback(() => {
@@ -63,50 +62,54 @@ export default function GlorySection() {
       clearTimeout(interactionTimeoutRef.current);
       interactionTimeoutRef.current = null;
     }
-    
+
     // Clear autoplay interval
     if (autoplayInterval) {
       clearInterval(autoplayInterval);
       setAutoplayInterval(null);
     }
-    
+
+    // Reset autoplay started flag
+    autoplayStartedRef.current = false;
+
     // Set interaction flag
     isInteractingRef.current = true;
-    
-    // Resume autoplay after 5 seconds of inactivity (increased from 3 seconds)
+
+    // Resume autoplay after 8 seconds of inactivity (increased from 5 seconds)
     interactionTimeoutRef.current = setTimeout(() => {
       if (isAutoplayActive && !isInteractingRef.current) {
         isInteractingRef.current = false;
         startAutoplay();
       }
-    }, 5000);
+    }, 8000);
   }, [autoplayInterval, isAutoplayActive]);
 
   const startAutoplay = useCallback(() => {
-    // Don't start autoplay if user is actively interacting
-    if (isInteractingRef.current) {
+    // Don't start autoplay if user is actively interacting or if already started
+    if (isInteractingRef.current || autoplayStartedRef.current) {
       return;
     }
-    
+
     // Clear any existing interval first
     if (autoplayInterval) {
       clearInterval(autoplayInterval);
       setAutoplayInterval(null);
     }
 
-    // Small delay to ensure clean state
-    setTimeout(() => {
-      if (isAutoplayActive && !isInteractingRef.current) {
-        const interval = setInterval(() => {
-          // Only change image if not interacting
-          if (!isInteractingRef.current) {
-            setCurrentIndex((prev) => (prev + 1) % galleryImages.length);
-            setIsImageLoaded(false);
-          }
-        }, 4000); // Increased from 3 to 4 seconds for better user experience
-        setAutoplayInterval(interval);
-      }
-    }, 100);
+    // Start autoplay immediately without the setTimeout delay
+    if (isAutoplayActive && !isInteractingRef.current) {
+      console.log("Starting autoplay with 3 second interval");
+      autoplayStartedRef.current = true;
+      const interval = setInterval(() => {
+        // Only change image if not interacting
+        if (!isInteractingRef.current) {
+          console.log("Autoplay changing image, current index:", currentIndex);
+          setCurrentIndex((prev) => (prev + 1) % galleryImages.length);
+          setIsImageLoaded(false);
+        }
+      }, 3000); // 3 seconds interval
+      setAutoplayInterval(interval);
+    }
   }, [autoplayInterval, isAutoplayActive, galleryImages.length]);
 
   const toggleAutoplay = useCallback(() => {
@@ -121,9 +124,11 @@ export default function GlorySection() {
         interactionTimeoutRef.current = null;
       }
       isInteractingRef.current = false;
+      autoplayStartedRef.current = false;
     } else {
       setIsAutoplayActive(true);
       isInteractingRef.current = false;
+      autoplayStartedRef.current = false;
       startAutoplay();
     }
   }, [isAutoplayActive, autoplayInterval, startAutoplay]);
@@ -145,7 +150,20 @@ export default function GlorySection() {
     }
 
     if (isAutoplayActive) {
-      startAutoplay();
+      // Add a small delay before starting autoplay to ensure proper initialization
+      const startDelay = setTimeout(() => {
+        startAutoplay();
+      }, 1000); // 1 second delay before starting autoplay
+
+      return () => {
+        clearTimeout(startDelay);
+        if (autoplayInterval) {
+          clearInterval(autoplayInterval);
+        }
+        if (interactionTimeoutRef.current) {
+          clearTimeout(interactionTimeoutRef.current);
+        }
+      };
     }
 
     // Cleanup function to clear interval when component unmounts
@@ -324,14 +342,14 @@ export default function GlorySection() {
                     if (window.innerWidth <= 768) {
                       const target = e.currentTarget;
                       target.classList.toggle("mobile-active");
-                      
+
                       // Track interaction to pause autoplay
                       const now = Date.now();
                       if (now - lastInteractionTimeRef.current < 500) {
                         return; // Prevent rapid successive calls
                       }
                       lastInteractionTimeRef.current = now;
-                      
+
                       // Pause autoplay when frame is touched
                       pauseAutoplay();
                     }
@@ -345,7 +363,7 @@ export default function GlorySection() {
                         return;
                       }
                       lastInteractionTimeRef.current = now;
-                      
+
                       // Pause autoplay on touch
                       pauseAutoplay();
                     }
@@ -365,7 +383,13 @@ export default function GlorySection() {
                       src={galleryImages[currentIndex]}
                       alt="glory"
                       className="w-full h-full object-cover object-center"
-                      onLoad={() => setIsImageLoaded(true)}
+                      onLoad={() => {
+                        console.log("Image loaded for index:", currentIndex);
+                        // Add a small delay to prevent rapid image changes
+                        setTimeout(() => {
+                          setIsImageLoaded(true);
+                        }, 200);
+                      }}
                       initial={{ opacity: 0.2, scale: 1.05 }}
                       animate={{
                         opacity: isImageLoaded ? 1 : 0.2,
@@ -440,8 +464,7 @@ export default function GlorySection() {
                     className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 rounded-none appearance-none focus:outline-none outline-none"
                     style={{
                       clipPath: "polygon(100% 0, 0 50%, 100% 100%)",
-                      background:
-                        "linear-gradient(135deg, rgba(234,179,8,0.95), rgba(249,115,22,0.9))",
+                      background: "rgba(234,179,8,1)",
                       width: "48px",
                       height: "48px",
                       color: "black",
@@ -449,11 +472,12 @@ export default function GlorySection() {
                       WebkitAppearance: "none",
                       MozAppearance: "none",
                       appearance: "none",
+                      border: "2px solid black",
                     }}
                   >
-                    <span className="sr-only">Previous</span>
+                    <span className="text-black font-bold text-xl">‹</span>
                   </button>
-                  
+
                   {/* Interaction status indicator */}
                   {isInteractingRef.current && (
                     <div className="absolute top-2 right-2 z-30 bg-yellow-500/90 text-black text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -466,8 +490,7 @@ export default function GlorySection() {
                     className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 rounded-none appearance-none focus:outline-none outline-none"
                     style={{
                       clipPath: "polygon(0 0, 100% 50%, 0 100%)",
-                      background:
-                        "linear-gradient(225deg, rgba(234,179,8,0.95), rgba(249,115,22,0.9))",
+                      background: "rgba(234,179,8,1)",
                       width: "48px",
                       height: "48px",
                       color: "black",
@@ -475,9 +498,10 @@ export default function GlorySection() {
                       WebkitAppearance: "none",
                       MozAppearance: "none",
                       appearance: "none",
+                      border: "2px solid black",
                     }}
                   >
-                    <span className="sr-only">Next</span>
+                    <span className="text-black font-bold text-xl">›</span>
                   </button>
                 </div>
 

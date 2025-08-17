@@ -148,7 +148,7 @@ export default function ScheduleSection() {
           </motion.p>
         </motion.div>
 
-        <TracingBeam className="px-6 relative z-10 mt-16 sm:mt-20 md:mt-28">
+        <TracingBeam className="px-6 relative z-10 mt-8 sm:mt-20 md:mt-28">
           <div className="max-w-2xl mx-auto antialiased pt-4 relative">
             {hackathonContent.map((item, index) => (
               <motion.div

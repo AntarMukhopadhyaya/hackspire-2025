@@ -1,0 +1,13 @@
+/* TEAM */
+    Developer: FIEM ACM Student Chapter
+    Contact: hackspire@fiem.ac.in
+    From: Kolkata, West Bengal, India
+
+/* SITE */
+    Last update: 2025/01/01
+    Language: English
+    Doctype: HTML5
+    IDE: Visual Studio Code
+    Standards: HTML5, CSS3, JavaScript ES6+, TypeScript
+    Components: Next.js 15, React 19, Tailwind CSS, Framer Motion
+    Software: Node.js, npm
