@@ -1,4 +1,5 @@
 "use client";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import MatrixRain from "../ui/MatrixRain";
@@ -9,6 +10,29 @@ import NeonXElements from "../ui/NeonXElements";
 import CellTerminal from "../ui/CellTerminal";
 
 export default function HeroSection() {
+  const [text, setText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [glitchActive, setGlitchActive] = useState(false);
+  const fullText = "Inspire to Innovate";
+
+  useEffect(() => {
+    if (currentIndex < fullText.length) {
+      const timeout = setTimeout(() => {
+        setText(fullText.slice(0, currentIndex + 1));
+        setCurrentIndex(currentIndex + 1);
+      }, 150);
+      return () => clearTimeout(timeout);
+    }
+  }, [currentIndex, fullText]);
+
+  useEffect(() => {
+    const glitchInterval = setInterval(() => {
+      setGlitchActive(true);
+      setTimeout(() => setGlitchActive(false), 200);
+    }, 3000);
+    return () => clearInterval(glitchInterval);
+  }, []);
+
   return (
     <motion.section
       initial={{ opacity: 0, scale: 0.95 }}
@@ -105,6 +129,38 @@ export default function HeroSection() {
                 ease: "easeOut",
               }}
             >
+              <div className="text-center -mb-8 sm:-mb-12 md:-mb-16 lg:-mb-18 xl:-mb-18">
+                <motion.h1
+                  className="text-[20px] sm:text-[28px] md:text-[32px] lg:text-[36px] xl:text-[40px] font-mokoto text-white leading-tight relative"
+                  style={{ fontFamily: "Mokoto Demo, sans-serif" }}
+                  animate={{
+                    x: glitchActive ? [0, -2, 2, -1, 1, 0] : 0,
+                    y: glitchActive ? [0, 1, -1, 0] : 0,
+                  }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <span className="relative">
+                    {text}
+                    <span className="inline-block w-1 h-full bg-white ml-1 animate-pulse"></span>
+                  </span>
+                  {glitchActive && (
+                    <>
+                      <span
+                        className="absolute inset-0 text-cyan-400 opacity-70 animate-pulse"
+                        style={{ transform: "translate(2px, 1px)" }}
+                      >
+                        {fullText}
+                      </span>
+                      <span
+                        className="absolute inset-0 text-red-400 opacity-70 animate-pulse"
+                        style={{ transform: "translate(-1px, -1px)" }}
+                      >
+                        {fullText}
+                      </span>
+                    </>
+                  )}
+                </motion.h1>
+              </div>
               <Image
                 src="https://res.cloudinary.com/dislegzga/image/upload/v1755362737/Mainlogo_tqdyno.gif"
                 alt="Hackspire Logo Main"

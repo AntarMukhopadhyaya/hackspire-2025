@@ -107,11 +107,11 @@ const NeonX = ({ size, initialX, initialY, id }: NeonXProps) => {
 export default function NeonXElements() {
   // Generate random positions and sizes for 5 X elements (avoiding center logo area)
   const xElements = [
-    { id: "x1", size: 60, x: "5%", y: "15%" },
-    { id: "x2", size: 45, x: "90%", y: "25%" },
-    { id: "x3", size: 80, x: "15%", y: "80%" },
-    { id: "x4", size: 35, x: "85%", y: "75%" },
-    { id: "x5", size: 55, x: "8%", y: "50%" },
+    { id: "x1", size: 60, x: "5%", y: "10%" },
+    { id: "x2", size: 45, x: "90%", y: "15%" },
+    { id: "x3", size: 80, x: "15%", y: "85%" },
+    { id: "x4", size: 35, x: "85%", y: "80%" },
+    { id: "x5", size: 55, x: "8%", y: "70%" },
   ];
 
   return (
