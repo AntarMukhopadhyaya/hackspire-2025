@@ -237,7 +237,7 @@ export default function HeroSection() {
             }}
             className="text-sm sm:text-lg"
           >
-            Join Discord
+            Pre-Register Now
           </CyberButton>
         </motion.div>
 
