@@ -62,7 +62,10 @@ export function CrewCard({ member }: CrewCardProps) {
   };
 
   return (
-    <div className="w-72 md:w-72 lg:w-80 h-[22rem] md:h-[22rem] lg:h-96 flex items-center justify-center">
+    <div
+      className="w-72 md:w-72 lg:w-80 h-[22rem] md:h-[22rem] lg:h-96 flex items-center justify-center"
+      style={{ background: "rgba(0,0,0,0.01)", borderRadius: 0 }}
+    >
       <div
         ref={cardRef}
         className="relative w-80 h-96 crew-card-tilt md:scale-90 lg:scale-100 transform-gpu"
@@ -88,6 +91,10 @@ export function CrewCard({ member }: CrewCardProps) {
               height: "387px",
               clipPath:
                 "polygon(5% 0%, 95% 0%, 100% 5%, 100% 95%, 95% 100%, 5% 100%, 0% 95%, 0% 5%)",
+              WebkitClipPath:
+                "polygon(5% 0%, 95% 0%, 100% 5%, 100% 95%, 95% 100%, 5% 100%, 0% 95%, 0% 5%)",
+              borderRadius: 0,
+              transition: "clip-path 0s, border-radius 0s",
             }}
           />
 
