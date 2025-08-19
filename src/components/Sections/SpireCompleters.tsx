@@ -307,7 +307,14 @@ function SpireCompleters() {
           >
             Recognizing those who conquered the ultimate challenge.
           </motion.p>
-
+            <motion.h1
+                      initial={{ opacity: 0, y: -30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8 }}
+                      className="text-5xl mt-48 sm:mb-1 md:-mb-40 -mb-40 lg:-mb-32 sm:text-7xl md:text-[5rem] lg:text-[6rem] xl:text-8xl 2xl:text-[7rem] font-bold text-white font-sddystopiandemo"
+                    >
+                      HOSTS
+                    </motion.h1>
           <motion.div
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -350,6 +357,61 @@ function SpireCompleters() {
             >
               <img
                 src="https://res.cloudinary.com/dislegzga/image/upload/v1755068141/fiemacm_mx8uox.jpg"
+                alt="ACM"
+                className="w-full h-auto"
+              />
+            </motion.div>
+          </motion.div>
+            <motion.h1
+                      initial={{ opacity: 0, y: -30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8 }}
+                      className="text-5xl mt-10 sm:mt-20 md:mt-10 sm:mb-1 md:-mb-40 lg:-mb-32 -mb-40 sm:text-7xl md:text-[5rem] lg:text-[6rem] xl:text-8xl 2xl:text-[7rem] font-bold text-white font-sddystopiandemo"
+                    >
+                      PARTNERS
+                    </motion.h1>
+          <motion.div
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+            className="flex items-center justify-center gap-8 sm:gap-16 flex-wrap flex-col sm:flex-row sm:flex-nowrap mt-44 sm:mt-20 md:mt-48 lg:mt-40"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
+              className="w-24 md:w-32 lg:w-40"
+            >
+              <img
+                src="https://res.cloudinary.com/dislegzga/image/upload/v1755616154/AICTE_lqh1yw.jpg"
+                alt="Future"
+                className="w-40 h-auto"
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.5, ease: "easeOut" }}
+              className="w-20 md:w-24 lg:w-32"
+            >
+              <img
+                src="https://res.cloudinary.com/dislegzga/image/upload/v1755616152/Council_eyi2wu.jpg"
+                alt="Logo Icon"
+                className="scale-120 md:scale-133 lg:scale-125 h-auto"
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.6, ease: "easeOut" }}
+              className="w-24 md:w-32 lg:w-40"
+            >
+              <img
+                src="https://res.cloudinary.com/dislegzga/image/upload/v1755616152/moe_-_Copy_jlr5fv.jpg"
                 alt="ACM"
                 className="w-full h-auto"
               />

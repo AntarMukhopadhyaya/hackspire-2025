@@ -14,6 +14,15 @@ export function CyberpunkNavbar() {
   const router = useRouter();
   const pathname = usePathname();
 
+  const scrollWhenReady = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      requestAnimationFrame(() => scrollWhenReady(id));
+    }
+  };
+
   // Handle all navigation clicks and close mobile menu
   const handleNavigationClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -38,7 +47,17 @@ export function CyberpunkNavbar() {
         }
       } else {
         // We're on another page, navigate to home page with section hash
-        router.push(`/${href}`);
+        router.push(`/`);
+        setTimeout(()=>
+        {
+          const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+        },1500)
       }
     }
     // For regular links (like /tracks, /crews, /contact), let them navigate normally
@@ -224,11 +243,10 @@ export function CyberpunkNavbar() {
                       <Link
                         href={item.link}
                         onClick={(e) => handleNavigationClick(e, item.link)}
-                        className={`transition-colors duration-200 text-sm font-medium tracking-wide uppercase px-3 py-1 ${
-                          isNavItemActive(item.link)
-                            ? "text-yellow-400"
-                            : "text-white/80 hover:text-yellow-400"
-                        }`}
+                        className={`transition-colors duration-200 text-sm font-medium tracking-wide uppercase px-3 py-1 ${isNavItemActive(item.link)
+                          ? "text-yellow-400"
+                          : "text-white/80 hover:text-yellow-400"
+                          }`}
                       >
                         {item.name}
                       </Link>
@@ -283,11 +301,10 @@ export function CyberpunkNavbar() {
                     <Link
                       href={item.link}
                       onClick={(e) => handleNavigationClick(e, item.link)}
-                      className={`block transition-colors duration-200 text-base font-medium tracking-wide uppercase py-3 px-4 border-l-2 ${
-                        isNavItemActive(item.link)
-                          ? "text-yellow-400 border-yellow-400"
-                          : "text-white/80 hover:text-yellow-400 border-transparent hover:border-yellow-400"
-                      }`}
+                      className={`block transition-colors duration-200 text-base font-medium tracking-wide uppercase py-3 px-4 border-l-2 ${isNavItemActive(item.link)
+                        ? "text-yellow-400 border-yellow-400"
+                        : "text-white/80 hover:text-yellow-400 border-transparent hover:border-yellow-400"
+                        }`}
                       style={{ fontFamily: "Mokoto Demo" }}
                     >
                       <span className="flex items-center">
