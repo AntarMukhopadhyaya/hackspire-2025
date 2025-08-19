@@ -2,23 +2,32 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import {
-  Send,
-  User,
-  Mail,
-  Phone,
-  Briefcase,
-  Globe,
-  Award,
-  Upload,
-  Image as ImageIcon,
-  X,
-} from "lucide-react";
+import { Send, Mail, Globe, Image as ImageIcon } from "lucide-react";
 import CyberButton from "@/components/ui/CyberButton";
 import { UploadButton } from "@/utils/uploadthing";
 import { toast } from "sonner";
 
 function MentorsForm() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Mobile touch handler for map frame
+  const handleMobileMapTouch = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (window.innerWidth <= 768) {
+      const target = e.currentTarget;
+      target.classList.toggle("mobile-active");
+      setTimeout(() => {
+        target.classList.remove("mobile-active");
+      }, 3000);
+    }
+  };
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -1075,6 +1084,7 @@ function MentorsForm() {
                 clipPath:
                   "polygon(2% 42%, 0 42%, 3% 0, 97% 0, 100% 42%, 98% 42%, 98% 55%, 100% 55%, 97% 100%, 3% 100%, 0 56%, 2% 56%)",
               }}
+              onClick={handleMobileMapTouch}
             >
               {/* Google Maps iframe container with same clip-path */}
               <div
@@ -1096,11 +1106,11 @@ function MentorsForm() {
                 />
               </div>
 
-              {/* Dark overlay for text readability - disappears and lets clicks through on hover */}
-              <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px] group-hover:opacity-0 group-hover:pointer-events-none transition-all duration-500 ease-in-out"></div>
+              {/* Dark overlay for text readability - disappears and lets clicks through on hover or mobile tap */}
+              <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px] group-hover:opacity-0 group-hover:pointer-events-none group-[.mobile-active]:opacity-0 group-[.mobile-active]:pointer-events-none transition-all duration-500 ease-in-out"></div>
 
-              {/* Content overlay - disappears and lets clicks through on hover */}
-              <div className="absolute inset-0 flex items-center justify-center group-hover:opacity-0 group-hover:pointer-events-none transition-all duration-500 ease-in-out">
+              {/* Content overlay - disappears and lets clicks through on hover or mobile tap */}
+              <div className="absolute inset-0 flex items-center justify-center group-hover:opacity-0 group-hover:pointer-events-none group-[.mobile-active]:opacity-0 group-[.mobile-active]:pointer-events-none transition-all duration-500 ease-in-out">
                 <div className="text-center space-y-4">
                   <motion.h2
                     initial={{ opacity: 0, y: 20 }}
