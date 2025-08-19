@@ -10,6 +10,7 @@ import FAQSection from "@/components/Sections/FAQSection";
 import SponsorsSection from "@/components/Sections/SponsorsSection";
 import CollaborationsSection from "@/components/Sections/CollaborationsSection";
 import GlorySection from "@/components/Sections/GlorySection";
+
 export default function Home() {
   const mainRef = useRef<HTMLElement>(null);
 
@@ -24,6 +25,7 @@ export default function Home() {
       {/* Content Wrapper */}
       <div className="relative z-10">
         <HeroSection />
+
         <SpireCompleters />
         <MentorsSection />
         <ScheduleSection />
