@@ -1,5 +1,150 @@
 "use client";
 import React, { useState, useEffect } from "react";
+// ...existing code...
+// Registration modal component
+interface PreRegisterModalProps {
+  open: boolean;
+  onClose: () => void;
+  accepted: boolean;
+  onAccept: (checked: boolean) => void;
+  onRegister: () => void;
+}
+
+function PreRegisterModal({
+  open,
+  onClose,
+  accepted,
+  onAccept,
+  onRegister,
+}: PreRegisterModalProps) {
+  if (!open) return null;
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.9 }}
+        transition={{ duration: 0.3 }}
+        className="relative w-full max-w-2xl max-h-[90vh] mx-2 sm:mx-8 md:mx-auto p-1 sm:p-4"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Cyberpunk Modal Container */}
+        <div
+          className="relative bg-black/90 border-2 border-yellow-400 p-2 sm:p-6 max-h-[90vh] overflow-y-auto"
+          style={{
+            clipPath:
+              "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
+            scrollBehavior: "smooth",
+          }}
+        >
+          {/* Close Button */}
+          <button
+            type="button"
+            onClick={onClose}
+            className="absolute top-2 right-2 sm:top-4 sm:right-4 z-50 w-8 h-8 sm:w-10 sm:h-10 bg-red-500 hover:bg-red-600 text-white font-bold text-lg sm:text-xl flex items-center justify-center transition-colors duration-200 cursor-pointer"
+            style={{
+              clipPath:
+                "polygon(20% 0%, 100% 0%, 100% 80%, 80% 100%, 0% 100%, 0% 20%)",
+            }}
+            aria-label="Close"
+          >
+            ×
+          </button>
+
+          {/* Cyberpunk Circuit Overlay */}
+          <div className="absolute inset-0 opacity-30 pointer-events-none">
+            <div className="absolute top-2 left-2 w-8 h-px bg-yellow-400 opacity-60"></div>
+            <div className="absolute top-2 left-2 w-px h-8 bg-yellow-400 opacity-60"></div>
+            <div className="absolute bottom-2 right-2 w-8 h-px bg-yellow-400 opacity-60"></div>
+            <div className="absolute bottom-2 right-2 w-px h-8 bg-yellow-400 opacity-60"></div>
+            <div className="absolute top-1/2 left-1 w-4 h-px bg-yellow-400/40"></div>
+            <div className="absolute top-1/3 right-1 w-4 h-px bg-yellow-400/40"></div>
+          </div>
+
+          <div className="relative z-10 p-2 sm:p-8">
+            <h2
+              className="text-2xl md:text-3xl font-bold text-yellow-400 mb-6 text-center font-mokoto"
+              style={{ fontFamily: "'Mokoto Demo', monospace" }}
+            >
+              📝 PRE-REGISTRATION TERMS & CONDITIONS
+            </h2>
+            <div
+              className="space-y-6 text-white"
+              style={{ fontFamily: "Poppins, sans-serif" }}
+            >
+              <div className="bg-yellow-400/10 border border-yellow-400/30 p-3 sm:p-6 rounded-lg">
+                <h3 className="text-lg font-bold text-yellow-400 mb-4">
+                  Instructions
+                </h3>
+                <ul className="space-y-3 text-gray-300 list-disc pl-5">
+                  <li>
+                    Use your{" "}
+                    <span className="font-semibold">real full name</span> for
+                    registration.
+                  </li>
+                  <li>
+                    <span className="font-semibold">Do not use meme names</span>{" "}
+                    or fake names.
+                  </li>
+                  <li>
+                    Names like{" "}
+                    <span className="font-semibold">
+                      Abdul, Maqsad, 9/11, Al-Qaeda
+                    </span>{" "}
+                    and similar are strictly prohibited.
+                  </li>
+                  <li>
+                    Any offensive, inappropriate, or misleading names will
+                    result in disqualification.
+                  </li>
+                  <li>Registration is only valid if you accept these terms.</li>
+                </ul>
+              </div>
+              <div className="flex items-center mt-4">
+                <input
+                  id="termsCheck"
+                  type="checkbox"
+                  className="mr-2"
+                  checked={accepted}
+                  onChange={(e) => onAccept(e.target.checked)}
+                />
+                <label htmlFor="termsCheck" className="text-sm">
+                  I have read and accept the terms & conditions above.
+                </label>
+              </div>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 items-center justify-center mt-8">
+              <button
+                onClick={onRegister}
+                disabled={!accepted}
+                className="bg-yellow-400 hover:bg-yellow-500 text-black px-8 py-3 font-bold transition-colors duration-200 disabled:opacity-50"
+                style={{
+                  clipPath:
+                    "polygon(10px 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 10px)",
+                }}
+              >
+                ✅ Accept & Register
+              </button>
+              <button
+                onClick={onClose}
+                className="bg-gray-600 hover:bg-gray-700 text-white px-8 py-3 font-bold transition-colors duration-200"
+                style={{
+                  clipPath:
+                    "polygon(10px 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 10px)",
+                }}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
 import Image from "next/image";
 import { motion } from "framer-motion";
 import MatrixRain from "../ui/MatrixRain";
@@ -14,6 +159,17 @@ export default function HeroSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [glitchActive, setGlitchActive] = useState(false);
   const fullText = "Inspire to Innovate";
+  // Modal state
+  const [modalOpen, setModalOpen] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(false);
+
+  const handleRegister = () => {
+    if (termsAccepted) {
+      window.open("https://lu.ma/8eyyypdr", "_blank");
+      setModalOpen(false);
+      setTermsAccepted(false);
+    }
+  };
 
   useEffect(() => {
     if (currentIndex < fullText.length) {
@@ -232,14 +388,24 @@ export default function HeroSection() {
           className="absolute bottom-26 sm:bottom-26 md:bottom-26 left-0 right-0 z-50 flex items-center justify-center px-4"
         >
           <CyberButton
-            onClick={() => {
-              console.log("Join Discord clicked!");
-            }}
+            onClick={() => setModalOpen(true)}
             className="text-sm sm:text-lg"
           >
             Pre-Register Now
           </CyberButton>
         </motion.div>
+
+        {/* Pre-Register Modal */}
+        <PreRegisterModal
+          open={modalOpen}
+          onClose={() => {
+            setModalOpen(false);
+            setTermsAccepted(false);
+          }}
+          accepted={termsAccepted}
+          onAccept={(checked) => setTermsAccepted(checked)}
+          onRegister={handleRegister}
+        />
 
         {/* Cyberpunk Social Section - Adjusted for mobile */}
         <motion.div
