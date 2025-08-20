@@ -307,14 +307,15 @@ function SpireCompleters() {
           >
             Recognizing those who conquered the ultimate challenge.
           </motion.p>
-            <motion.h1
-                      initial={{ opacity: 0, y: -30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8 }}
-                      className="text-5xl mt-48 sm:mb-1 md:-mb-40 -mb-40 lg:-mb-32 sm:text-7xl md:text-[5rem] lg:text-[6rem] xl:text-8xl 2xl:text-[7rem] font-bold text-white font-sddystopiandemo"
-                    >
-                      HOSTS
-                    </motion.h1>
+          <motion.h1
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-5xl mt-48 sm:mb-1 md:-mb-40 -mb-40 lg:-mb-32 sm:text-7xl md:text-[5rem] lg:text-[6rem] xl:text-8xl 2xl:text-[7rem] font-bold text-white"
+            style={{ fontFamily: "'Mokoto Demo', monospace" }}
+          >
+            HOSTS
+          </motion.h1>
           <motion.div
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -362,14 +363,15 @@ function SpireCompleters() {
               />
             </motion.div>
           </motion.div>
-            <motion.h1
-                      initial={{ opacity: 0, y: -30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8 }}
-                      className="text-5xl mt-10 sm:mt-20 md:mt-10 sm:mb-1 md:-mb-40 lg:-mb-32 -mb-40 sm:text-7xl md:text-[5rem] lg:text-[6rem] xl:text-8xl 2xl:text-[7rem] font-bold text-white font-sddystopiandemo"
-                    >
-                      PARTNERS
-                    </motion.h1>
+          <motion.h1
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-5xl mt-10 sm:mt-20 md:mt-10 sm:mb-1 md:-mb-40 lg:-mb-32 -mb-40 sm:text-7xl md:text-[5rem] lg:text-[6rem] xl:text-8xl 2xl:text-[7rem] font-bold text-white"
+            style={{ fontFamily: "'Mokoto Demo', monospace" }}
+          >
+            PARTNERS
+          </motion.h1>
           <motion.div
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
