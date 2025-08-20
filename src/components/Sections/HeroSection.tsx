@@ -158,7 +158,7 @@ export default function HeroSection() {
   const [text, setText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [glitchActive, setGlitchActive] = useState(false);
-  const fullText = "Inspire to Innovate";
+  const fullText = "Innovate to Inspire ";
   // Modal state
   const [modalOpen, setModalOpen] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
@@ -318,7 +318,7 @@ export default function HeroSection() {
                 </motion.h1>
               </div>
               <Image
-                src="https://res.cloudinary.com/dislegzga/image/upload/v1755362737/Mainlogo_tqdyno.gif"
+                src="https://res.cloudinary.com/dislegzga/image/upload/v1755677197/logo_bara_djtcnk.gif"
                 alt="Hackspire Logo Main"
                 width={1200}
                 height={300}
