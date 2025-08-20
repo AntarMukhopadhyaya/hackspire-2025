@@ -92,7 +92,7 @@ function PreRegisterModal({
                   <li>
                     Names like{" "}
                     <span className="font-semibold">
-                      Abdul, Maqsad, 9/11, Al-Qaeda
+                      Abdul(Without surname), Maqsad, 9/11, Al-Qaeda
                     </span>{" "}
                     and similar are strictly prohibited.
                   </li>
