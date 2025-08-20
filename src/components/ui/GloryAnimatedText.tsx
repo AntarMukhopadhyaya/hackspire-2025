@@ -126,13 +126,13 @@ function GloryAnimatedText() {
                     className="text-4xl md:text-5xl font-bold text-black mb-2"
                     style={{ fontFamily: "'Mokoto Demo', monospace" }}
                   >
-                    500+
+                    2000+
                   </h3>
                   <p
                     className="text-black text-lg font-medium"
                     style={{ fontFamily: "'Mokoto Demo', monospace" }}
                   >
-                    Participants
+                    Registrations
                   </p>
                 </div>
               </div>
@@ -264,7 +264,7 @@ function GloryAnimatedText() {
                     className="text-4xl md:text-5xl font-bold text-black mb-2"
                     style={{ fontFamily: "'Mokoto Demo', monospace" }}
                   >
-                    24hrs
+                    10hrs
                   </h3>
                   <p
                     className="text-black text-lg font-medium"
@@ -358,9 +358,9 @@ function GloryAnimatedText() {
                       style={{ fontFamily: "'Mokoto Demo', monospace" }}
                     >
                       <span className="hidden md:inline">
-                        💡 $50K+ in Prizes
+                        💡 ₹70K+ in Prizes
                       </span>
-                      <span className="md:hidden">💡 $50K+ Prizes</span>
+                      <span className="md:hidden">💡 ₹70K+ Prizes</span>
                     </p>
                   </div>
                   <div className="text-center">
