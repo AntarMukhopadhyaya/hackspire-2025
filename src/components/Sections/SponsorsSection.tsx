@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import React from "react";
-import sponsorsData from "@/data/sponsors.json";
+
+import SponsorCard from "../ui/SponsorCard";
 
 type SponsorTier = {
   tier: string;
@@ -14,7 +14,118 @@ type SponsorTier = {
   }[];
 };
 
-const sponsorTiers: SponsorTier[] = sponsorsData;
+const sponsorTiers = [
+  {
+    tier: "Diamond",
+    sponsors: [
+      {
+        name: "Coming Soon",
+        logo: "placeholder",
+        alt: "Diamond Sponsor Placeholder 1",
+      },
+      {
+        name: "Coming Soon",
+        logo: "placeholder",
+        alt: "Diamond Sponsor Placeholder 2",
+      },
+      {
+        name: "Coming Soon",
+        logo: "placeholder",
+        alt: "Diamond Sponsor Placeholder 3",
+      },
+    ],
+  },
+  {
+    tier: "Platinum",
+    sponsors: [
+      {
+        name: "Coming Soon",
+        logo: "placeholder",
+        alt: "Platinum Sponsor Placeholder 1",
+      },
+      {
+        name: "Coming Soon",
+        logo: "placeholder",
+        alt: "Platinum Sponsor Placeholder 2",
+      },
+      {
+        name: "Coming Soon",
+        logo: "placeholder",
+        alt: "Platinum Sponsor Placeholder 3",
+      },
+    ],
+  },
+  {
+    tier: "Gold",
+    sponsors: [
+      {
+        name: "Devfolio",
+        logo: "/images/DevFolio.png",
+        alt: "DEVFOLIO LOGO",
+      },
+      {
+        name: "Coming Soon",
+        logo: "placeholder",
+        alt: "Gold Sponsor Placeholder 1",
+      },
+      {
+        name: "Coming Soon",
+        logo: "placeholder",
+        alt: "Gold Sponsor Placeholder 2",
+      },
+    ],
+  },
+  {
+    tier: "Silver",
+    sponsors: [
+      {
+        name: "ETHIndia",
+        logo: "/images/ETHIndia.png",
+        alt: "ETHINDIA LOGO",
+      },
+      {
+        name: "Coming Soon",
+        logo: "placeholder",
+        alt: "Silver Sponsor Placeholder 1",
+      },
+      {
+        name: "Coming Soon",
+        logo: "placeholder",
+        alt: "Silver Sponsor Placeholder 2",
+      },
+    ],
+  },
+  {
+    tier: "Bronze",
+    sponsors: [
+      {
+        name: "Coming Soon",
+        logo: "placeholder",
+        alt: "Bronze Sponsor Placeholder 1",
+      },
+      {
+        name: "Coming Soon",
+        logo: "placeholder",
+        alt: "Bronze Sponsor Placeholder 2",
+      },
+      {
+        name: "Coming Soon",
+        logo: "placeholder",
+        alt: "Bronze Sponsor Placeholder 3",
+      },
+      {
+        name: "Coming Soon",
+        logo: "placeholder",
+        alt: "Bronze Sponsor Placeholder 4",
+      },
+      {
+        name: "Coming Soon",
+        logo: "placeholder",
+        alt: "Bronze Sponsor Placeholder 5",
+      },
+    ],
+  },
+];
 
 function TierTitle({ label }: { label: SponsorTier["tier"] }) {
   return (
@@ -39,234 +150,6 @@ function TierTitle({ label }: { label: SponsorTier["tier"] }) {
         </div>
       </div>
     </div>
-  );
-}
-
-function SponsorCard({
-  src,
-  alt,
-  tier,
-  sponsorName,
-}: {
-  src: string;
-  alt: string;
-  tier: string;
-  sponsorName: string;
-}) {
-  const isDiamond = tier === "Diamond";
-  const isPlatinum = tier === "Platinum";
-
-  const clipPathRect =
-    "polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)";
-
-  // Background and border styles per tier
-  const backgroundStyle: React.CSSProperties | undefined =
-    tier === "Platinum"
-      ? {
-          background:
-            "linear-gradient(135deg, #E6E6E6 0%, #CFCFCF 50%, #BFC2C7 100%)",
-        }
-      : tier === "Silver"
-      ? {
-          background:
-            "linear-gradient(135deg, #E0E0E0 0%, #C0C0C0 50%, #D5D5D5 100%)",
-        }
-      : tier === "Bronze"
-      ? {
-          background:
-            "linear-gradient(135deg, #CD7F32 0%, #B06A2B 50%, #8C5A28 100%)",
-        }
-      : tier === "Diamond"
-      ? {
-          background:
-            "linear-gradient(135deg, #B3ECFF 0%, #33D4FF 50%, #00B0FF 100%)",
-        }
-      : undefined; // Gold uses existing classes
-
-  const borderStyle: React.CSSProperties | undefined =
-    tier === "Platinum"
-      ? { background: "linear-gradient(135deg, #DCDCDC 0%, #C9CCD3 100%)" }
-      : tier === "Silver"
-      ? { background: "linear-gradient(135deg, #C9C9C9 0%, #BFBFBF 100%)" }
-      : tier === "Bronze"
-      ? { background: "linear-gradient(135deg, #B06A2B 0%, #7A4A1E 100%)" }
-      : tier === "Diamond"
-      ? { background: "linear-gradient(135deg, #7FE8FF 0%, #19C7FF 100%)" }
-      : undefined; // Gold uses existing classes
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-      className="relative p-4 md:p-6 group cursor-pointer transition-all duration-300 hover:scale-105"
-    >
-      {/* Background with clip-path cuts */}
-      <div
-        className={
-          tier === "Gold"
-            ? "absolute inset-0 bg-yellow-400 transition-all duration-300 group-hover:animate-pulse"
-            : "absolute inset-0 transition-all duration-300 group-hover:animate-pulse"
-        }
-        style={{
-          clipPath: clipPathRect,
-          ...(tier === "Gold" ? {} : backgroundStyle),
-        }}
-      ></div>
-
-      {/* Border with clip-path cuts */}
-      <div
-        className={
-          tier === "Gold"
-            ? "absolute -inset-0.5 md:-inset-1 bg-yellow-500 transition-all duration-300 group-hover:bg-orange-500"
-            : "absolute -inset-0.5 md:-inset-1 transition-all duration-300"
-        }
-        style={{
-          clipPath: clipPathRect,
-          zIndex: -1,
-          ...(tier === "Gold" ? {} : borderStyle),
-        }}
-      ></div>
-
-      {/* Glitch overlays for hover effect */}
-      <div
-        className="absolute inset-0 bg-red-500 opacity-0 group-hover:opacity-20 transition-opacity duration-150"
-        style={{
-          clipPath: clipPathRect,
-          mixBlendMode: "screen",
-          transform: "translateX(-2px)",
-          zIndex: 1,
-        }}
-      ></div>
-      <div
-        className="absolute inset-0 bg-cyan-500 opacity-0 group-hover:opacity-20 transition-opacity duration-150"
-        style={{
-          clipPath: clipPathRect,
-          mixBlendMode: "screen",
-          transform: "translateX(2px)",
-          zIndex: 2,
-        }}
-      ></div>
-
-      {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center py-4 md:py-6">
-        {src.includes("placeholder") ? (
-          <div className="text-center">
-            <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-600 mb-3 font-mokoto">
-              Coming Soon
-            </div>
-            <div className="text-sm sm:text-base md:text-lg text-gray-500 font-mokoto">
-              {tier} Sponsor
-            </div>
-          </div>
-        ) : (
-          <>
-            <img
-              src={src}
-              alt={alt}
-              width={400}
-              height={200}
-              className="h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 w-auto object-contain mb-2"
-            />
-            <div className="text-center">
-              <div className="text-sm sm:text-base md:text-lg text-gray-700 font-medium font-mokoto">
-                {sponsorName}
-              </div>
-            </div>
-          </>
-        )}
-      </div>
-
-      {/* Diamond Patterns for Diamond Tier */}
-      {isDiamond && (
-        <>
-          {/* Diamond corner accents only */}
-          <div className="absolute top-3 left-3 w-3 h-3 bg-cyan-300 opacity-70 transform rotate-45"></div>
-          <div className="absolute top-3 right-3 w-3 h-3 bg-cyan-300 opacity-70 transform rotate-45"></div>
-          <div className="absolute bottom-3 left-3 w-3 h-3 bg-cyan-300 opacity-70 transform rotate-45"></div>
-          <div className="absolute bottom-3 right-3 w-3 h-3 bg-cyan-300 opacity-70 transform rotate-45"></div>
-        </>
-      )}
-
-      {/* Shine Effect for Platinum Tier */}
-      {isPlatinum && (
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Shine line */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
-
-          {/* Star sparkles - positioned around the card */}
-          <div className="absolute top-4 left-1/4 w-3 h-3 animate-pulse shadow-lg">
-            <div
-              className="w-full h-full bg-white/80 transform rotate-45"
-              style={{
-                clipPath:
-                  "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
-              }}
-            ></div>
-          </div>
-          <div
-            className="absolute top-8 right-1/3 w-3 h-3 animate-pulse shadow-lg"
-            style={{ animationDelay: "0.5s" }}
-          >
-            <div
-              className="w-full h-full bg-white/70 transform rotate-45"
-              style={{
-                clipPath:
-                  "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
-              }}
-            ></div>
-          </div>
-          <div
-            className="absolute bottom-6 left-1/3 w-3 h-3 animate-pulse shadow-lg"
-            style={{ animationDelay: "1s" }}
-          >
-            <div
-              className="w-full h-full bg-white/90 transform rotate-45"
-              style={{
-                clipPath:
-                  "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
-              }}
-            ></div>
-          </div>
-          <div
-            className="absolute bottom-8 right-1/4 w-3 h-3 animate-pulse shadow-lg"
-            style={{ animationDelay: "1.5s" }}
-          >
-            <div
-              className="w-full h-full bg-white/60 transform rotate-45"
-              style={{
-                clipPath:
-                  "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
-              }}
-            ></div>
-          </div>
-
-          {/* Additional larger star sparkles */}
-          <div className="absolute top-1/2 left-1/2 w-4 h-4 animate-pulse shadow-lg transform -translate-x-1/2 -translate-y-1/2">
-            <div
-              className="w-full h-full bg-white/90 transform rotate-45"
-              style={{
-                clipPath:
-                  "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
-              }}
-            ></div>
-          </div>
-          <div
-            className="absolute top-1/3 right-1/4 w-3.5 h-3.5 animate-pulse shadow-lg"
-            style={{ animationDelay: "0.3s" }}
-          >
-            <div
-              className="w-full h-full bg-white/80 transform rotate-45"
-              style={{
-                clipPath:
-                  "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
-              }}
-            ></div>
-          </div>
-        </div>
-      )}
-    </motion.div>
   );
 }
 
@@ -394,99 +277,40 @@ export default function SponsorsSection() {
 
         {/* Sponsors grid wrapper separated from header; pushed below trapezium */}
         <div className="relative z-10 mt-44 sm:mt-20 md:mt-48 lg:mt-40 space-y-10 md:space-y-14">
-          {sponsorTiers.map((group, groupIndex) => {
-            // Get Devfolio and ETHIndia from JSON
-            const devfolio = sponsorTiers
-              .find((t) => t.tier === "Gold")
-              ?.sponsors.find((s) => s.name === "Devfolio");
-            const ethIndia = sponsorTiers
-              .find((t) => t.tier === "Silver")
-              ?.sponsors.find((s) => s.name === "ETHIndia");
-
-            // Remove Devfolio from Gold, ETHIndia from Silver
-            let sponsors = group.sponsors;
-            if (group.tier === "Gold") {
-              sponsors = sponsors.filter((s) => s.name !== "Devfolio");
-              // If less than 3, add a Coming Soon placeholder from JSON
-              if (sponsors.length < 3) {
-                const goldPlaceholder = sponsorTiers
-                  .find((t) => t.tier === "Gold")
-                  ?.sponsors.find((s) => s.name === "Coming Soon");
-                if (goldPlaceholder) {
-                  sponsors.push({ ...goldPlaceholder });
+          {sponsorTiers.map((group, groupIndex) => (
+            <motion.div
+              key={group.tier}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6, delay: groupIndex * 0.05 }}
+            >
+              <TierTitle label={group.tier} />
+              <div
+                className={
+                  group.tier === "Platinum"
+                    ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+                    : group.tier === "Diamond"
+                    ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+                    : group.tier === "Gold"
+                    ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+                    : group.tier === "Silver"
+                    ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+                    : "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6 lg:gap-8"
                 }
-              }
-            }
-            if (group.tier === "Silver") {
-              sponsors = sponsors.filter((s) => s.name !== "ETHIndia");
-              // If less than 3, add a Coming Soon placeholder from JSON
-              if (sponsors.length < 3) {
-                const silverPlaceholder = sponsorTiers
-                  .find((t) => t.tier === "Silver")
-                  ?.sponsors.find((s) => s.name === "Coming Soon");
-                if (silverPlaceholder) {
-                  sponsors.push({ ...silverPlaceholder });
-                }
-              }
-            }
-
-            // For Diamond and Platinum, hardcode Devfolio/ETHIndia as first card
-            if (group.tier === "Diamond") {
-              sponsors = [
-                {
-                  name: "Devfolio",
-                  logo: "https://res.cloudinary.com/dislegzga/image/upload/v1755355737/_Colored_gowtku.png",
-                  alt: "DEVFOLIO LOGO",
-                },
-                ...sponsors.slice(0, sponsors.length - 1),
-              ];
-            }
-            if (group.tier === "Platinum") {
-              sponsors = [
-                {
-                  name: "ETHIndia",
-                  logo: "https://res.cloudinary.com/dislegzga/image/upload/v1755356529/Untitled_1_wez0bk.png",
-                  alt: "ETHINDIA LOGO",
-                },
-                ...sponsors.slice(0, sponsors.length - 1),
-              ];
-            }
-
-            return (
-              <motion.div
-                key={group.tier}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.6, delay: groupIndex * 0.05 }}
               >
-                <TierTitle label={group.tier} />
-                <div
-                  className={
-                    group.tier === "Platinum"
-                      ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
-                      : group.tier === "Diamond"
-                      ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
-                      : group.tier === "Gold"
-                      ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
-                      : group.tier === "Silver"
-                      ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
-                      : "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6 lg:gap-8"
-                  }
-                >
-                  {sponsors.map((sponsor, index) => (
-                    <SponsorCard
-                      key={`${group.tier}-${index}`}
-                      src={sponsor.logo}
-                      alt={sponsor.alt}
-                      tier={group.tier}
-                      sponsorName={sponsor.name}
-                    />
-                  ))}
-                </div>
-              </motion.div>
-            );
-          })}
+                {group.sponsors.map((sponsor, index) => (
+                  <SponsorCard
+                    key={`${group.tier}-${index}`}
+                    src={sponsor.logo}
+                    alt={sponsor.alt}
+                    tier={group.tier}
+                    sponsorName={sponsor.name}
+                  />
+                ))}
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
