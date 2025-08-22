@@ -14,119 +14,6 @@ type SponsorTier = {
   }[];
 };
 
-const sponsorTiers = [
-  {
-    tier: "Diamond",
-    sponsors: [
-      {
-        name: "Coming Soon",
-        logo: "placeholder",
-        alt: "Diamond Sponsor Placeholder 1",
-      },
-      {
-        name: "Coming Soon",
-        logo: "placeholder",
-        alt: "Diamond Sponsor Placeholder 2",
-      },
-      {
-        name: "Coming Soon",
-        logo: "placeholder",
-        alt: "Diamond Sponsor Placeholder 3",
-      },
-    ],
-  },
-  {
-    tier: "Platinum",
-    sponsors: [
-      {
-        name: "Coming Soon",
-        logo: "placeholder",
-        alt: "Platinum Sponsor Placeholder 1",
-      },
-      {
-        name: "Coming Soon",
-        logo: "placeholder",
-        alt: "Platinum Sponsor Placeholder 2",
-      },
-      {
-        name: "Coming Soon",
-        logo: "placeholder",
-        alt: "Platinum Sponsor Placeholder 3",
-      },
-    ],
-  },
-  {
-    tier: "Gold",
-    sponsors: [
-      {
-        name: "Devfolio",
-        logo: "/images/DevFolio.png",
-        alt: "DEVFOLIO LOGO",
-      },
-      {
-        name: "Coming Soon",
-        logo: "placeholder",
-        alt: "Gold Sponsor Placeholder 1",
-      },
-      {
-        name: "Coming Soon",
-        logo: "placeholder",
-        alt: "Gold Sponsor Placeholder 2",
-      },
-    ],
-  },
-  {
-    tier: "Silver",
-    sponsors: [
-      {
-        name: "ETHIndia",
-        logo: "/images/ETHIndia.png",
-        alt: "ETHINDIA LOGO",
-      },
-      {
-        name: "Coming Soon",
-        logo: "placeholder",
-        alt: "Silver Sponsor Placeholder 1",
-      },
-      {
-        name: "Coming Soon",
-        logo: "placeholder",
-        alt: "Silver Sponsor Placeholder 2",
-      },
-    ],
-  },
-  {
-    tier: "Bronze",
-    sponsors: [
-      {
-        name: "Coming Soon",
-        logo: "placeholder",
-        alt: "Bronze Sponsor Placeholder 1",
-      },
-      {
-        name: "Coming Soon",
-        logo: "placeholder",
-        alt: "Bronze Sponsor Placeholder 2",
-      },
-      {
-        name: "Coming Soon",
-        logo: "placeholder",
-        alt: "Bronze Sponsor Placeholder 3",
-      },
-      {
-        name: "Coming Soon",
-        logo: "placeholder",
-        alt: "Bronze Sponsor Placeholder 4",
-      },
-      {
-        name: "Coming Soon",
-        logo: "placeholder",
-        alt: "Bronze Sponsor Placeholder 5",
-      },
-    ],
-  },
-];
-
 function TierTitle({ label }: { label: SponsorTier["tier"] }) {
   return (
     <div className="flex items-center justify-center mb-6">
@@ -246,71 +133,177 @@ export default function SponsorsSection() {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-center mb-10 md:mb-14"
-        >
-          <motion.h2
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-            className="text-5xl sm:text-7xl md:text-[5rem] lg:text-[6rem] xl:text-8xl 2xl:text-[8rem] font-bold text-black font-sddystopiandemo"
-          >
+        <div className="text-center mb-10 md:mb-14">
+          <h2 className="text-5xl sm:text-7xl md:text-[5rem] lg:text-[6rem] xl:text-8xl 2xl:text-[8rem] font-bold text-black font-sddystopiandemo">
             SPONSORS
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+          </h2>
+          <p
             className="text-center max-w-4xl mx-auto -mt-2 text-sm sm:text-base md:text-xl text-black leading-relaxed"
             style={{ fontFamily: "Mokoto Demo" }}
           >
             Powered by our allies in innovation — Platinum, Diamond, Gold,
             Silver and Bronze tiers.
-          </motion.p>
-        </motion.div>
-
-        {/* Sponsors grid wrapper separated from header; pushed below trapezium */}
+          </p>
+        </div>
+        {/* Restore original card grid UI, but use hard-coded sponsor data */}
         <div className="relative z-10 mt-44 sm:mt-20 md:mt-48 lg:mt-40 space-y-10 md:space-y-14">
-          {sponsorTiers.map((group, groupIndex) => (
-            <motion.div
-              key={group.tier}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, delay: groupIndex * 0.05 }}
-            >
-              <TierTitle label={group.tier} />
-              <div
-                className={
-                  group.tier === "Platinum"
-                    ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
-                    : group.tier === "Diamond"
-                    ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
-                    : group.tier === "Gold"
-                    ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
-                    : group.tier === "Silver"
-                    ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
-                    : "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6 lg:gap-8"
-                }
-              >
-                {group.sponsors.map((sponsor, index) => (
-                  <SponsorCard
-                    key={`${group.tier}-${index}`}
-                    src={sponsor.logo}
-                    alt={sponsor.alt}
-                    tier={group.tier}
-                    sponsorName={sponsor.name}
-                  />
-                ))}
-              </div>
-            </motion.div>
-          ))}
+          {/* Diamond Tier */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6 }}
+          >
+            <TierTitle label="Diamond" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+              <SponsorCard
+                src="placeholder"
+                alt="Diamond Sponsor Placeholder 1"
+                tier="Diamond"
+                sponsorName="Coming Soon"
+              />
+              <SponsorCard
+                src="placeholder"
+                alt="Diamond Sponsor Placeholder 2"
+                tier="Diamond"
+                sponsorName="Coming Soon"
+              />
+              <SponsorCard
+                src="placeholder"
+                alt="Diamond Sponsor Placeholder 3"
+                tier="Diamond"
+                sponsorName="Coming Soon"
+              />
+            </div>
+          </motion.div>
+          {/* Platinum Tier */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, delay: 0.05 }}
+          >
+            <TierTitle label="Platinum" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+              <SponsorCard
+                src="placeholder"
+                alt="Platinum Sponsor Placeholder 1"
+                tier="Platinum"
+                sponsorName="Coming Soon"
+              />
+              <SponsorCard
+                src="placeholder"
+                alt="Platinum Sponsor Placeholder 2"
+                tier="Platinum"
+                sponsorName="Coming Soon"
+              />
+              <SponsorCard
+                src="placeholder"
+                alt="Platinum Sponsor Placeholder 3"
+                tier="Platinum"
+                sponsorName="Coming Soon"
+              />
+            </div>
+          </motion.div>
+          {/* Gold Tier */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <TierTitle label="Gold" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+              <SponsorCard
+                src="/images/DevFolio.png"
+                alt="DEVFOLIO LOGO"
+                tier="Gold"
+                sponsorName="Devfolio"
+              />
+              <SponsorCard
+                src="placeholder"
+                alt="Gold Sponsor Placeholder 1"
+                tier="Gold"
+                sponsorName="Coming Soon"
+              />
+              <SponsorCard
+                src="placeholder"
+                alt="Gold Sponsor Placeholder 2"
+                tier="Gold"
+                sponsorName="Coming Soon"
+              />
+            </div>
+          </motion.div>
+          {/* Silver Tier */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+          >
+            <TierTitle label="Silver" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+              <SponsorCard
+                src="/images/ETHIndia.png"
+                alt="ETHINDIA LOGO"
+                tier="Silver"
+                sponsorName="ETHIndia"
+              />
+              <SponsorCard
+                src="placeholder"
+                alt="Silver Sponsor Placeholder 1"
+                tier="Silver"
+                sponsorName="Coming Soon"
+              />
+              <SponsorCard
+                src="placeholder"
+                alt="Silver Sponsor Placeholder 2"
+                tier="Silver"
+                sponsorName="Coming Soon"
+              />
+            </div>
+          </motion.div>
+          {/* Bronze Tier */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <TierTitle label="Bronze" />
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6 lg:gap-8">
+              <SponsorCard
+                src="placeholder"
+                alt="Bronze Sponsor Placeholder 1"
+                tier="Bronze"
+                sponsorName="Coming Soon"
+              />
+              <SponsorCard
+                src="placeholder"
+                alt="Bronze Sponsor Placeholder 2"
+                tier="Bronze"
+                sponsorName="Coming Soon"
+              />
+              <SponsorCard
+                src="placeholder"
+                alt="Bronze Sponsor Placeholder 3"
+                tier="Bronze"
+                sponsorName="Coming Soon"
+              />
+              <SponsorCard
+                src="placeholder"
+                alt="Bronze Sponsor Placeholder 4"
+                tier="Bronze"
+                sponsorName="Coming Soon"
+              />
+              <SponsorCard
+                src="placeholder"
+                alt="Bronze Sponsor Placeholder 5"
+                tier="Bronze"
+                sponsorName="Coming Soon"
+              />
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

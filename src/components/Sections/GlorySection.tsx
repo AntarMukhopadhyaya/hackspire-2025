@@ -11,7 +11,7 @@ export default function GlorySection() {
     "https://res.cloudinary.com/dislegzga/image/upload/v1755364155/image_3_o9uvuh.png",
     "https://res.cloudinary.com/dislegzga/image/upload/v1755364157/image_bgxxll.png",
     "https://res.cloudinary.com/dislegzga/image/upload/v1755364155/image_1_i7dozz.png",
-    "https://res.cloudinary.com/dislegzga/image/upload/v1755364153/image_5_vg2ukuk.png",
+    "https://res.cloudinary.com/dislegzga/image/upload/v1755364564/image_11_q4f5tg.png",
     "https://res.cloudinary.com/dislegzga/image/upload/v1755364556/image_10_l8ihja.png",
     "https://res.cloudinary.com/dislegzga/image/upload/v1755364555/image_9_kb0u5t.png",
     "https://res.cloudinary.com/dislegzga/image/upload/v1755364554/image_12_yxhmnm.png",
