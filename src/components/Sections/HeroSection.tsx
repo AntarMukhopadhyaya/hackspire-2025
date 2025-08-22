@@ -81,7 +81,7 @@ function PreRegisterModal({
                 className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-2 px-4 rounded shadow transition-colors duration-200 border border-yellow-600 cursor-pointer"
                 onClick={() =>
                   window.open(
-                    "https://befitting-lens-774.notion.site/ebd/257c78e1cf63800abdd7ed1d7ac97406",
+                    "https://fancy-brass-700.notion.site/HackSpire-2025-Participant-Guide-13c111e6784280f8bfd0e74faca3a592?source=copy_link",
                     "_blank",
                     "noopener,noreferrer"
                   )
@@ -111,7 +111,7 @@ function PreRegisterModal({
                   <li>
                     Names like{" "}
                     <span className="font-semibold">
-                      Abdul(Without surname), Maqsad, 9/11, Al-Qaeda
+                      Abdul(Without surname), Maqsad, 9/11, Al-Qaeda{" "}
                     </span>
                     and similar are strictly prohibited.
                   </li>
