@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import CyberButton from "@/components/ui/CyberButton";
 import { useSearchParams } from "next/navigation";
 
-export default function JudgeEditRequest() {
+function JudgeEditRequestInner() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [judgeData, setJudgeData] = useState<{
     email: string;
@@ -308,5 +308,13 @@ export default function JudgeEditRequest() {
         </motion.div>
       </div>
     </div>
+  );
+}
+
+export default function JudgeEditRequest() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <JudgeEditRequestInner />
+    </Suspense>
   );
 }

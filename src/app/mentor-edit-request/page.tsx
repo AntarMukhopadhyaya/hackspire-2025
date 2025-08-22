@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import CyberButton from "@/components/ui/CyberButton";
 import { useSearchParams } from "next/navigation";
 
-export default function MentorEditRequest() {
+function MentorEditRequestInner() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [mentorData, setMentorData] = useState<{
     email: string;
@@ -308,5 +308,13 @@ export default function MentorEditRequest() {
         </motion.div>
       </div>
     </div>
+  );
+}
+
+export default function MentorEditRequest() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <MentorEditRequestInner />
+    </Suspense>
   );
 }
