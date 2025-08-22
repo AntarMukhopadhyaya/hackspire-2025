@@ -162,7 +162,7 @@ function SponsorCard({
           </div>
         ) : (
           <>
-            <Image
+            <img
               src={src}
               alt={alt}
               width={400}
