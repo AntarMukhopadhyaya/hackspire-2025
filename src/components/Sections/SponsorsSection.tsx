@@ -394,41 +394,99 @@ export default function SponsorsSection() {
 
         {/* Sponsors grid wrapper separated from header; pushed below trapezium */}
         <div className="relative z-10 mt-44 sm:mt-20 md:mt-48 lg:mt-40 space-y-10 md:space-y-14">
-          {sponsorTiers.map((group, groupIndex) => (
-            <motion.div
-              key={group.tier}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, delay: groupIndex * 0.05 }}
-            >
-              <TierTitle label={group.tier} />
+          {sponsorTiers.map((group, groupIndex) => {
+            // Get Devfolio and ETHIndia from JSON
+            const devfolio = sponsorTiers
+              .find((t) => t.tier === "Gold")
+              ?.sponsors.find((s) => s.name === "Devfolio");
+            const ethIndia = sponsorTiers
+              .find((t) => t.tier === "Silver")
+              ?.sponsors.find((s) => s.name === "ETHIndia");
 
-              <div
-                className={
-                  group.tier === "Platinum"
-                    ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
-                    : group.tier === "Diamond"
-                    ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
-                    : group.tier === "Gold"
-                    ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
-                    : group.tier === "Silver"
-                    ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
-                    : "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6 lg:gap-8"
+            // Remove Devfolio from Gold, ETHIndia from Silver
+            let sponsors = group.sponsors;
+            if (group.tier === "Gold") {
+              sponsors = sponsors.filter((s) => s.name !== "Devfolio");
+              // If less than 3, add a Coming Soon placeholder from JSON
+              if (sponsors.length < 3) {
+                const goldPlaceholder = sponsorTiers
+                  .find((t) => t.tier === "Gold")
+                  ?.sponsors.find((s) => s.name === "Coming Soon");
+                if (goldPlaceholder) {
+                  sponsors.push({ ...goldPlaceholder });
                 }
+              }
+            }
+            if (group.tier === "Silver") {
+              sponsors = sponsors.filter((s) => s.name !== "ETHIndia");
+              // If less than 3, add a Coming Soon placeholder from JSON
+              if (sponsors.length < 3) {
+                const silverPlaceholder = sponsorTiers
+                  .find((t) => t.tier === "Silver")
+                  ?.sponsors.find((s) => s.name === "Coming Soon");
+                if (silverPlaceholder) {
+                  sponsors.push({ ...silverPlaceholder });
+                }
+              }
+            }
+
+            // For Diamond and Platinum, hardcode Devfolio/ETHIndia as first card
+            if (group.tier === "Diamond") {
+              sponsors = [
+                {
+                  name: "Devfolio",
+                  logo: "https://res.cloudinary.com/dislegzga/image/upload/v1755355737/_Colored_gowtku.png",
+                  alt: "DEVFOLIO LOGO",
+                },
+                ...sponsors.slice(0, sponsors.length - 1),
+              ];
+            }
+            if (group.tier === "Platinum") {
+              sponsors = [
+                {
+                  name: "ETHIndia",
+                  logo: "https://res.cloudinary.com/dislegzga/image/upload/v1755356529/Untitled_1_wez0bk.png",
+                  alt: "ETHINDIA LOGO",
+                },
+                ...sponsors.slice(0, sponsors.length - 1),
+              ];
+            }
+
+            return (
+              <motion.div
+                key={group.tier}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.6, delay: groupIndex * 0.05 }}
               >
-                {group.sponsors.map((sponsor, index) => (
-                  <SponsorCard
-                    key={`${group.tier}-${index}`}
-                    src={sponsor.logo}
-                    alt={sponsor.alt}
-                    tier={group.tier}
-                    sponsorName={sponsor.name}
-                  />
-                ))}
-              </div>
-            </motion.div>
-          ))}
+                <TierTitle label={group.tier} />
+                <div
+                  className={
+                    group.tier === "Platinum"
+                      ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+                      : group.tier === "Diamond"
+                      ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+                      : group.tier === "Gold"
+                      ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+                      : group.tier === "Silver"
+                      ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+                      : "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6 lg:gap-8"
+                  }
+                >
+                  {sponsors.map((sponsor, index) => (
+                    <SponsorCard
+                      key={`${group.tier}-${index}`}
+                      src={sponsor.logo}
+                      alt={sponsor.alt}
+                      tier={group.tier}
+                      sponsorName={sponsor.name}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

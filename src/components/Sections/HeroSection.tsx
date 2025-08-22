@@ -71,6 +71,20 @@ function PreRegisterModal({
             >
               📝 PRE-REGISTRATION TERMS & CONDITIONS
             </h2>
+            <div className="flex justify-center mb-6">
+              <button
+                className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-2 px-4 rounded shadow transition-colors duration-200 border border-yellow-600 cursor-pointer"
+                onClick={() =>
+                  window.open(
+                    "https://befitting-lens-774.notion.site/ebd/257c78e1cf63800abdd7ed1d7ac97406",
+                    "_blank",
+                    "noopener,noreferrer"
+                  )
+                }
+              >
+                Click to see Registration guidelines
+              </button>
+            </div>
             <div
               className="space-y-6 text-white"
               style={{ fontFamily: "Poppins, sans-serif" }}
@@ -93,7 +107,7 @@ function PreRegisterModal({
                     Names like{" "}
                     <span className="font-semibold">
                       Abdul(Without surname), Maqsad, 9/11, Al-Qaeda
-                    </span>{" "}
+                    </span>
                     and similar are strictly prohibited.
                   </li>
                   <li>
