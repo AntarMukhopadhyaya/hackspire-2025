@@ -132,6 +132,24 @@ export default function SponsorsSection() {
         </div>
       </div>
 
+      {/* Devfolio and ETHIndia logos above the fold for bot verification */}
+      <div className="flex flex-row justify-center items-center gap-8 pt-8 pb-4 z-10 relative">
+        <img
+          src="/images/DevFolio.png"
+          alt="DEVFOLIO LOGO"
+          width={200}
+          height={60}
+          style={{ height: "60px", width: "auto", display: "block" }}
+        />
+        <img
+          src="/images/ETHIndia.png"
+          alt="ETHINDIA LOGO"
+          width={200}
+          height={60}
+          style={{ height: "60px", width: "auto", display: "block" }}
+        />
+      </div>
+
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-10 md:mb-14">
           <h2 className="text-5xl sm:text-7xl md:text-[5rem] lg:text-[6rem] xl:text-8xl 2xl:text-[8rem] font-bold text-black font-sddystopiandemo">
