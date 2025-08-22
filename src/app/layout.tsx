@@ -285,29 +285,29 @@ export default function RootLayout({
           }}
         />
 
-        <ConditionalAppLoader>
-          <LenisProvider>
-            <RouteChangeAnimation />
-            <Navbar />
+        {/* <ConditionalAppLoader> */}
+        <LenisProvider>
+          <RouteChangeAnimation />
+          <Navbar />
 
-            {/* Global Cyberpunk Yellow Spotlight */}
-            <div className="fixed top-0 left-0 w-full h-full z-0 pointer-events-none">
-              <div
-                className="w-full h-full"
-                style={{
-                  background:
-                    "radial-gradient(ellipse 60% 40% at 20% 10%, rgba(234, 179, 8, 0.25) 0%, rgba(161, 98, 7, 0.15) 40%, rgba(120, 53, 15, 0.08) 70%, transparent 100%)",
-                }}
-              ></div>
-            </div>
+          {/* Global Cyberpunk Yellow Spotlight */}
+          <div className="fixed top-0 left-0 w-full h-full z-0 pointer-events-none">
+            <div
+              className="w-full h-full"
+              style={{
+                background:
+                  "radial-gradient(ellipse 60% 40% at 20% 10%, rgba(234, 179, 8, 0.25) 0%, rgba(161, 98, 7, 0.15) 40%, rgba(120, 53, 15, 0.08) 70%, transparent 100%)",
+              }}
+            ></div>
+          </div>
 
-            <div className="relative z-10">
-              <PageTransition>{children}</PageTransition>
-            </div>
-            <Footer />
-            <Toaster />
-          </LenisProvider>
-        </ConditionalAppLoader>
+          <div className="relative z-10">
+            <PageTransition>{children}</PageTransition>
+          </div>
+          <Footer />
+          <Toaster />
+        </LenisProvider>
+        {/* </ConditionalAppLoader> */}
 
         {/* Devfolio SDK Script */}
         <script defer async src="https://apply.devfolio.co/v2/sdk.js"></script>

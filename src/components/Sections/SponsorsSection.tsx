@@ -46,7 +46,8 @@ export default function SponsorsSection() {
       id="sponsors"
       className="relative py-12 md:py-16 text-white overflow-hidden"
     >
-      {/* Yellow Trapezium Background with Clip-Path (from About polygon) */}
+      {/* Polygon header/background commented out for sponsor logo visibility */}
+      {/*
       <div className="absolute top-0 left-0 right-0 h-64 md:h-80 z-0">
         <div
           className="w-full h-full bg-yellow-400 relative"
@@ -57,15 +58,11 @@ export default function SponsorsSection() {
               "polygon(5% 0, 95% 0, 100% 15%, 85% 90%, 75% 100%, 25% 100%, 15% 90%, 0 15%)",
           }}
         >
-          {/* PCB-like lines (matching SpireCompleters) */}
           <div className="absolute inset-0">
-            {/* Horizontal lines */}
             <div className="absolute top-4 md:top-8 left-0 right-0 h-px bg-black opacity-60"></div>
             <div className="absolute top-8 md:top-16 left-0 right-0 h-px bg-black opacity-40"></div>
             <div className="absolute top-12 md:top-24 left-0 right-0 h-px bg-black opacity-30"></div>
             <div className="absolute top-16 md:top-32 left-0 right-0 h-px bg-black opacity-20"></div>
-
-            {/* Vertical lines */}
             <div className="absolute top-0 bottom-0 left-4 md:left-8 w-px bg-black opacity-60"></div>
             <div className="absolute top-0 bottom-0 left-8 md:left-16 w-px bg-black opacity-40"></div>
             <div className="absolute top-0 bottom-0 left-12 md:left-24 w-px bg-black opacity-30"></div>
@@ -74,8 +71,6 @@ export default function SponsorsSection() {
             <div className="absolute top-0 bottom-0 right-8 md:right-16 w-px bg-black opacity-40"></div>
             <div className="absolute top-0 bottom-0 right-12 md:right-24 w-px bg-black opacity-30"></div>
             <div className="absolute top-0 bottom-0 right-16 md:right-32 w-px bg-black opacity-20"></div>
-
-            {/* Diagonal corners */}
             <div className="absolute top-0 left-0 w-16 md:w-32 h-16 md:h-32 border-l-2 border-t-2 border-black opacity-40"></div>
             <div className="absolute top-0 right-0 w-16 md:w-32 h-16 md:h-32 border-r-2 border-t-2 border-black opacity-40"></div>
             <div className="absolute bottom-0 left-0 w-16 md:w-32 h-16 md:h-32 border-l-2 border-b-2 border-black opacity-40"></div>
@@ -83,6 +78,7 @@ export default function SponsorsSection() {
           </div>
         </div>
       </div>
+      */}
 
       {/* Multiple Left Side Vertical Trapezium Shapes - match SpireCompleters */}
       <div className="absolute left-0 top-1/4 w-12 md:w-20 h-48 md:h-64 z-0">
@@ -132,31 +128,15 @@ export default function SponsorsSection() {
         </div>
       </div>
 
-      {/* Devfolio and ETHIndia logos above the fold for bot verification */}
-      <div className="flex flex-row justify-center items-center gap-8 pt-8 pb-4 z-10 relative">
-        <img
-          src="/images/DevFolio.png"
-          alt="DEVFOLIO LOGO"
-          width={200}
-          height={60}
-          style={{ height: "60px", width: "auto", display: "block" }}
-        />
-        <img
-          src="/images/ETHIndia.png"
-          alt="ETHINDIA LOGO"
-          width={200}
-          height={60}
-          style={{ height: "60px", width: "auto", display: "block" }}
-        />
-      </div>
+      {/* Logos are now only on their respective sponsor cards below. Removed from header polygon. */}
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-10 md:mb-14">
-          <h2 className="text-5xl sm:text-7xl md:text-[5rem] lg:text-[6rem] xl:text-8xl 2xl:text-[8rem] font-bold text-black font-sddystopiandemo">
+          <h2 className="text-5xl sm:text-7xl md:text-[5rem] lg:text-[6rem] xl:text-8xl 2xl:text-[8rem] font-bold text-white font-sddystopiandemo">
             SPONSORS
           </h2>
           <p
-            className="text-center max-w-4xl mx-auto -mt-2 text-sm sm:text-base md:text-xl text-black leading-relaxed"
+            className="text-center max-w-4xl mx-auto -mt-2 text-sm sm:text-base md:text-xl text-white leading-relaxed"
             style={{ fontFamily: "Mokoto Demo" }}
           >
             Powered by our allies in innovation — Platinum, Diamond, Gold,
@@ -164,7 +144,7 @@ export default function SponsorsSection() {
           </p>
         </div>
         {/* Restore original card grid UI, but use hard-coded sponsor data */}
-        <div className="relative z-10 mt-44 sm:mt-20 md:mt-48 lg:mt-40 space-y-10 md:space-y-14">
+        <div className="relative z-10 mt-8 sm:mt-8 md:mt-12 lg:mt-12 space-y-10 md:space-y-14">
           {/* Diamond Tier */}
           <motion.div
             initial={{ opacity: 0 }}

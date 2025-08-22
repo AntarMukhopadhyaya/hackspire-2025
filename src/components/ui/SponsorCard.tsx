@@ -14,6 +14,16 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
   tier,
   sponsorName,
 }) => {
+  const borderStyle: React.CSSProperties | undefined =
+    tier === "Platinum"
+      ? { background: "linear-gradient(135deg, #DCDCDC 0%, #C9CCD3 100%)" }
+      : tier === "Silver"
+      ? { background: "linear-gradient(135deg, #C9C9C9 0%, #BFBFBF 100%)" }
+      : tier === "Bronze"
+      ? { background: "linear-gradient(135deg, #B06A2B 0%, #7A4A1E 100%)" }
+      : tier === "Diamond"
+      ? { background: "linear-gradient(135deg, #7FE8FF 0%, #19C7FF 100%)" }
+      : undefined;
   const isDiamond = tier === "Diamond";
   const isPlatinum = tier === "Platinum";
 
@@ -37,22 +47,14 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
             "linear-gradient(135deg, #CD7F32 0%, #B06A2B 50%, #8C5A28 100%)",
         }
       : tier === "Diamond"
-      ? {
-          background:
-            "linear-gradient(135deg, #B3ECFF 0%, #33D4FF 50%, #00B0FF 100%)",
-        }
-      : undefined;
-
-  const borderStyle: React.CSSProperties | undefined =
-    tier === "Platinum"
-      ? { background: "linear-gradient(135deg, #DCDCDC 0%, #C9CCD3 100%)" }
-      : tier === "Silver"
-      ? { background: "linear-gradient(135deg, #C9C9C9 0%, #BFBFBF 100%)" }
-      : tier === "Bronze"
-      ? { background: "linear-gradient(135deg, #B06A2B 0%, #7A4A1E 100%)" }
-      : tier === "Diamond"
       ? { background: "linear-gradient(135deg, #7FE8FF 0%, #19C7FF 100%)" }
       : undefined;
+
+  // Card size classes
+  const cardPadding = "p-4 md:p-6";
+  const logoHeight = 64;
+  const sponsorFont = "text-sm sm:text-base md:text-lg";
+  const comingSoonFont = "text-xl sm:text-2xl md:text-3xl lg:text-4xl";
 
   return (
     <motion.div
@@ -60,7 +62,7 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="relative p-4 md:p-6 group cursor-pointer transition-all duration-300 hover:scale-105"
+      className={`relative ${cardPadding} group cursor-pointer transition-all duration-300 hover:scale-105`}
     >
       <div
         className={
@@ -103,13 +105,17 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
           zIndex: 2,
         }}
       ></div>
-      <div className="relative z-10 flex flex-col items-center justify-center py-4 md:py-6">
+      <div
+        className={`relative z-10 flex flex-col items-center justify-center py-2 md:py-3`}
+      >
         {src.includes("placeholder") ? (
           <div className="text-center">
-            <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-600 mb-3 font-mokoto">
+            <div
+              className={`${comingSoonFont} font-bold text-gray-600 mb-2 font-mokoto`}
+            >
               Coming Soon
             </div>
-            <div className="text-sm sm:text-base md:text-lg text-gray-500 font-mokoto">
+            <div className={`${sponsorFont} text-gray-500 font-mokoto`}>
               {tier} Sponsor
             </div>
           </div>
@@ -123,7 +129,9 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
               className="h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 w-auto object-contain mb-2"
             />
             <div className="text-center">
-              <div className="text-sm sm:text-base md:text-lg text-gray-700 font-medium font-mokoto">
+              <div
+                className={`${sponsorFont} text-gray-700 font-medium font-mokoto`}
+              >
                 {sponsorName}
               </div>
             </div>
