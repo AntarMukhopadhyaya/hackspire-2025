@@ -145,7 +145,8 @@ export default function SponsorsSection() {
         </div>
         {/* Restore original card grid UI, but use hard-coded sponsor data */}
         <div className="relative z-10 mt-8 sm:mt-8 md:mt-12 lg:mt-12 space-y-10 md:space-y-14">
-          {/* Diamond Tier */}
+          {/* Diamond Tier commented out for now */}
+          {/*
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -174,6 +175,7 @@ export default function SponsorsSection() {
               />
             </div>
           </motion.div>
+          */}
           {/* Platinum Tier */}
           <motion.div
             initial={{ opacity: 0 }}

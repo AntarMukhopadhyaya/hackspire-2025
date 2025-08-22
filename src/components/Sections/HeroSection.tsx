@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-// ...existing code...
-// Registration modal component
+
 interface PreRegisterModalProps {
   open: boolean;
   onClose: () => void;
@@ -349,18 +348,9 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: 50, scale: 0.8 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             transition={{ delay: 1.8, duration: 0.8, ease: "easeOut" }}
-            className="
-                    flex justify-center w-full
-                    -mt-4 mr-18 sm:-mt-25 sm:ml-46  md:-mt-28 md:ml-54      /* push it down on sm/md to avoid overlap */
-                    lg:-mt-34 lg:mr-40 xl:-mt-40         /* keep original overlap on large+ */
-
-                  "
+            className="flex justify-center w-full -mt-4 mr-18 sm:-mt-25 sm:ml-46 md:-mt-28 md:ml-54 lg:-mt-34 lg:mr-40 xl:-mt-40"
           >
-            <div
-              className="transform
-      translate-x-10 sm:translate-x-16 md:translate-x-20 lg:translate-x-44 xl:translate-x-56
-  "
-            >
+            <div className="transform translate-x-10 sm:translate-x-16 md:translate-x-20 lg:translate-x-44 xl:translate-x-56">
               <CountdownTimer />
             </div>
           </motion.div>

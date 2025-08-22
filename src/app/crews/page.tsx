@@ -7,7 +7,7 @@ import crewMembersData from "../../data/crew-members.json";
 
 const filterOptions = [
   { id: "all", label: "All Crews", icon: Filter },
-  { id: "spireorgs", label: "SpireOrgs", icon: Users },
+  // { id: "spireorgs", label: "SpireOrgs", icon: Users }, // commented out for now
   { id: "hackbuilders", label: "HackBuilders", icon: Code },
   { id: "spiregineers", label: "Spiregineers", icon: Wrench },
   { id: "spireteers", label: "Spireteers", icon: Star },
@@ -20,8 +20,8 @@ function Crews() {
 
   useEffect(() => {
     setCrewMembers(crewMembersData);
-
-    // Load SpireOrgs data dynamically
+    // SpireOrgs loading commented out for now
+    /*
     const loadSpireOrgs = async () => {
       try {
         const spireOrgsModule = await import("../../data/spire-orgs.json");
@@ -31,15 +31,16 @@ function Crews() {
         setSpireOrgs([]);
       }
     };
-
     loadSpireOrgs();
+    */
   }, []);
 
   const filteredMembers = (() => {
     if (activeFilter === "all") {
       return crewMembers;
     } else if (activeFilter === "spireorgs") {
-      return spireOrgs;
+      // SpireOrgs commented out for now
+      return [];
     } else {
       return crewMembers.filter((member) => member.crew === activeFilter);
     }
