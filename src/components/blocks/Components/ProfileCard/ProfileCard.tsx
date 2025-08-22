@@ -35,19 +35,18 @@ const DEFAULT_INNER_GRADIENT =
   "linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)";
 
 const ANIMATION_CONFIG = {
-  SMOOTH_DURATION: 400, // Reduced from 600ms
-  INITIAL_DURATION: 800, // Reduced from 1500ms
-  INITIAL_X_OFFSET: 70,
-  INITIAL_Y_OFFSET: 60,
-  DEVICE_BETA_OFFSET: 20,
+  SMOOTH_DURATION: 300, // Reduced from 400ms
+  INITIAL_DURATION: 600, // Reduced from 800ms
+  INITIAL_X_OFFSET: 50, // Reduced from 70
+  INITIAL_Y_OFFSET: 40, // Reduced from 60
+  DEVICE_BETA_OFFSET: 15, // Reduced from 20
 } as const;
 
 // Performance-optimized utility functions
 const clamp = (value: number, min = 0, max = 100): number =>
   Math.min(Math.max(value, min), max);
 
-const round = (value: number, precision = 2): number =>
-  parseFloat(value.toFixed(precision)); // Reduced precision
+const round = (value: number): number => Math.round(value); // Simplified precision
 
 const adjust = (
   value: number,
@@ -61,12 +60,12 @@ const adjust = (
 const easeInOutCubic = (x: number): number =>
   x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
 
-// Optimized device detection
+// Optimized device detection with memoization
 const isSmallMobileDevice = (): boolean => {
   return window.innerWidth < 640;
 };
 
-// Throttle function for performance
+// More aggressive throttle for performance
 const throttle = (func: Function, limit: number) => {
   let inThrottle: boolean;
   return function (this: any, ...args: any[]) {
@@ -189,7 +188,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
     };
   }, [shouldEnableTilt]);
 
-  // Throttled pointer move handler
+  // Throttled pointer move handler with increased throttle
   const handlePointerMove = useCallback(
     throttle((event: PointerEvent) => {
       const card = cardRef.current;
@@ -207,7 +206,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
           wrap
         );
       }
-    }, 16), // 60fps throttle
+    }, 32), // Increased throttle to 32ms (~30fps) for better performance
     [animationHandlers, enableMobileTilt]
   );
 

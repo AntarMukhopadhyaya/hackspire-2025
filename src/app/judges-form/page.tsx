@@ -15,6 +15,7 @@ import {
   X,
 } from "lucide-react";
 import CyberButton from "@/components/ui/CyberButton";
+import TurnstileWrapper from "@/components/ui/TurnstileWrapper";
 import { UploadButton } from "@/utils/uploadthing";
 import { toast } from "sonner";
 
@@ -62,6 +63,7 @@ function JudgesForm() {
   const [isImageLoading, setIsImageLoading] = useState(false);
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showValidationWarning, setShowValidationWarning] = useState(false);
 
@@ -145,6 +147,15 @@ function JudgesForm() {
 
     setShowValidationWarning(true);
 
+    // Check if Turnstile verification is complete
+    if (!turnstileToken) {
+      toast.error("❌ Bot Verification Required", {
+        description: "Please complete the verification challenge.",
+        duration: 5000,
+      });
+      return;
+    }
+
     if (!profileImageUrl) {
       toast.error("❌ Profile Image Required", {
         description: "Please upload a profile image before submitting.",
@@ -168,6 +179,7 @@ function JudgesForm() {
       const submissionData = {
         ...formData,
         profileImageUrl: profileImageUrl,
+        turnstileToken: turnstileToken,
       };
 
       const response = await fetch("/api/submit-judge", {
@@ -1343,7 +1355,7 @@ function JudgesForm() {
               <div className="flex flex-col items-start gap-4">
                 <UploadButton
                   endpoint="profileImageUploader"
-                  onClientUploadComplete={(res) => {
+                  onClientUploadComplete={(res: any) => {
                     if (res && res[0]) {
                       setProfileImageUrl(res[0].ufsUrl);
                       console.log("Upload Completed:", res[0].ufsUrl);
@@ -1421,6 +1433,28 @@ function JudgesForm() {
                   projects.
                 </label>
               </div>
+            </motion.div>
+
+            {/* Turnstile Bot Protection */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="flex justify-center my-6"
+            >
+              <TurnstileWrapper
+                onVerify={(token) => setTurnstileToken(token)}
+                onError={() => {
+                  setTurnstileToken("");
+                  toast.error("Verification failed. Please try again.");
+                }}
+                onExpire={() => {
+                  setTurnstileToken("");
+                  toast.warning("Verification expired. Please verify again.");
+                }}
+                theme="dark"
+                className="my-4"
+              />
             </motion.div>
 
             {/* Submit Button */}

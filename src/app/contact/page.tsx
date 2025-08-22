@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Send } from "lucide-react";
 import CyberButton from "@/components/ui/CyberButton";
+import TurnstileWrapper from "@/components/ui/TurnstileWrapper";
 import { toast } from "sonner";
 
 function ContactUs() {
@@ -16,6 +17,7 @@ function ContactUs() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string>("");
 
   // Check if device is mobile and handle mobile-specific behavior
   useEffect(() => {
@@ -57,6 +59,12 @@ function ContactUs() {
     // Prevent double submission
     if (isSubmitting) return;
 
+    // Check if Turnstile verification is complete
+    if (!turnstileToken) {
+      toast.error("Please complete the verification challenge");
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -65,7 +73,10 @@ function ContactUs() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          turnstileToken,
+        }),
       });
 
       const result = await response.json();
@@ -723,6 +734,28 @@ function ContactUs() {
                   clipPath:
                     "polygon(0 1%, 100% 1%, 100% 30%, 96% 79%, 68% 80%, 14% 81%, 11% 100%, 0 100%)",
                 }}
+              />
+            </motion.div>
+
+            {/* Turnstile Bot Protection */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="flex justify-center"
+            >
+              <TurnstileWrapper
+                onVerify={(token) => setTurnstileToken(token)}
+                onError={() => {
+                  setTurnstileToken("");
+                  toast.error("Verification failed. Please try again.");
+                }}
+                onExpire={() => {
+                  setTurnstileToken("");
+                  toast.warning("Verification expired. Please verify again.");
+                }}
+                theme="dark"
+                className="my-4"
               />
             </motion.div>
 

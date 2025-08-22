@@ -4,12 +4,14 @@ import "./globals.css";
 
 import { Navbar } from "@/components/ui/Navbar";
 import Footer from "@/components/Footer";
+import { Analytics } from "@vercel/analytics/next";
 
 import LenisProvider from "@/components/ui/LenisProvider";
 import PageTransition from "@/lib/PageTransition";
 import RouteChangeAnimation from "@/lib/RouteChangeAnimation";
 import { Toaster } from "@/components/ui/sonner";
 import ConditionalAppLoader from "@/components/ui/ConditionalAppLoader";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -311,6 +313,8 @@ export default function RootLayout({
 
         {/* Devfolio SDK Script */}
         <script defer async src="https://apply.devfolio.co/v2/sdk.js"></script>
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
