@@ -388,7 +388,7 @@ export default function HeroSection() {
 
           <div
             className="apply-button"
-            data-hackathon-slug="hackspire-2025"
+            data-hackathon-slug="HackSpire'25"
             data-button-theme="light"
             style={{ height: "44px", width: "312px" }}
           ></div>
