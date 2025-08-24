@@ -415,11 +415,39 @@ function Crews() {
         transition={{ duration: 0.8, delay: 0.9 }}
         className="max-w-7xl mx-auto mt-16"
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 justify-items-center">
-          {filteredMembers.map((member) => (
-            <CrewCard key={member.id} member={member} />
-          ))}
-        </div>
+        {/* Custom layout for 'All Crew' filter: center last row of CC Members, Volunteers in new row */}
+        {activeFilter === "all" ? (
+          <>
+            {/* All except Volunteers */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 justify-items-center">
+              {filteredMembers
+                .filter((m) => {
+                  const pos = m.position ? m.position.toLowerCase() : "";
+                  return !pos.includes("volunteer");
+                })
+                .map((member) => (
+                  <CrewCard key={member.id} member={member} />
+                ))}
+            </div>
+            {/* Volunteers in new row */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 justify-items-center mt-8">
+              {filteredMembers
+                .filter(
+                  (m) =>
+                    m.position && m.position.toLowerCase().includes("volunteer")
+                )
+                .map((member) => (
+                  <CrewCard key={member.id} member={member} />
+                ))}
+            </div>
+          </>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 justify-items-center">
+            {filteredMembers.map((member) => (
+              <CrewCard key={member.id} member={member} />
+            ))}
+          </div>
+        )}
 
         {filteredMembers.length === 0 && (
           <div className="text-center mt-16">
