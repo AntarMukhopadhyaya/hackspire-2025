@@ -56,7 +56,7 @@ const FooterContent = () => {
             >
               {/* Twitter Icon */}
               <motion.a
-                href="https://x.com/FiemAcm?t=8KMerJECwU9fseHsvt7ryQ&s=09"
+                href="https://x.com/acmfiem?t=4YZZAKbQK13Rby_InX5v9A&s=09"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-black hover:text-gray-800 transition-colors duration-300"
@@ -373,7 +373,7 @@ const FooterContent = () => {
                 </motion.a>
                 {/* LinkedIn */}
                 <motion.a
-                  href="https://www.linkedin.com/in/fiem-acm-student-chapter-537786351"
+                  href="https://www.linkedin.com/in/acmfiem/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-black hover:text-gray-800 transition-colors duration-300"

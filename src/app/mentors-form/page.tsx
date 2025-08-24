@@ -366,6 +366,9 @@ function MentorsForm() {
           <br />
           <span className="text-yellow-300">FIEM ACM Student Chapter</span> -
           Empowering minds, building futures.
+          <br />
+          <span className="text-yellow-300">HackSpire 2025:</span>{" "}
+          <span className="text-white">31st Oct to 1st Nov 2025</span>
         </motion.p>
       </div>
 

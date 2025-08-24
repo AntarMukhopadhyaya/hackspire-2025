@@ -283,6 +283,9 @@ function JudgesForm() {
           <br />
           <span className="text-yellow-300">FIEM ACM Student Chapter</span> -
           Evaluating excellence, recognizing innovation.
+          <br />
+          <span className="text-yellow-300">HackSpire 2025:</span>{" "}
+          <span className="text-white">31st Oct to 1st Nov 2025</span>
         </motion.p>
       </div>
 
