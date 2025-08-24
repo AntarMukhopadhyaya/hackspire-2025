@@ -89,7 +89,7 @@ const FooterContent = () => {
                 </svg>
               </motion.a>
               <motion.a
-                href="https://www.linkedin.com/in/fiem-acm-student-chapter-537786351"
+                href="https://www.linkedin.com/company/acmfiem/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-black hover:text-gray-800 transition-colors duration-300"
@@ -373,7 +373,7 @@ const FooterContent = () => {
                 </motion.a>
                 {/* LinkedIn */}
                 <motion.a
-                  href="https://www.linkedin.com/in/acmfiem/"
+                  href="https://www.linkedin.com/company/acmfiem/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-black hover:text-gray-800 transition-colors duration-300"

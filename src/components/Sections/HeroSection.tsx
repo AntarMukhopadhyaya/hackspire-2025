@@ -465,7 +465,7 @@ export default function HeroSection() {
 
                   {/* LinkedIn */}
                   <Link
-                    href="https://www.linkedin.com/in/acmfiem/"
+                    href="https://www.linkedin.com/company/acmfiem/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-black hover:text-gray-700 transition-colors"
