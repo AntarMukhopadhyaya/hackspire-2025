@@ -131,9 +131,20 @@
     "crew": "hackbuilders",
     "crewfilter": "HACKBUILDERS"
   },
-
   {
     "id": 12,
+    "name": "Arnab Das",
+    "position": "CC member",
+    "image": "https://res.cloudinary.com/dislegzga/image/upload/v1756059421/12345_sqmifr.jpg",
+    "instagram": "https://www.instagram.com/arnab_the_dev?igsh=MTBocXVsMWI2NjlubQ== ",
+    "github": "https://github.com/mrBinaryMonk375",
+    "linkedin": "https://www.linkedin.com/in/arnab-das-33080a300",
+    "twitter": " https://x.com/ARNAB_DAS_tech?t=14mclDASM4bG4fKftGFoVQ&s=09",
+    "crew": "hackbuilders",
+    "crewfilter": "HACKBUILDERS"
+  },
+  {
+    "id": 13,
     "name": "Abhishek Das",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699357/IMG_20250701_235629_-_ABHISHEK_DAS_j5cxyc.jpg",
@@ -145,7 +156,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 13,
+    "id": 14,
     "name": "Sourav Saha",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699357/IMG_20250225_224101_-_Sourav_Saha_dgelyd.jpg",
@@ -158,7 +169,7 @@
   },
 
   {
-    "id": 14,
+    "id": 15,
     "name": "Rohan Sharma",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699356/WhatsApp_Image_2025-07-02_at_12.43.02_AM_-_Rohan_Sharma_uxrkab.jpg",
@@ -170,7 +181,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 15,
+    "id": 16,
     "name": "Shuvam Dutta",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699353/IMG-20250403-WA0022_1_-_SHUVAM_DUTTA_j49zx4.jpg",
@@ -182,7 +193,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 16,
+    "id": 17,
     "name": "Sounak Bhattacharya",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699355/20250701_235214_905_-_Sounak_Bhattacharya_ayh5jk.jpg",
@@ -194,7 +205,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 17,
+    "id": 18,
     "name": "Most Soha Sabnam",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699354/1726759560669_-_Soha_Sabnam_wpcwbu.jpg",
@@ -207,7 +218,7 @@
   },
 
   {
-    "id": 18,
+    "id": 19,
     "name": "Sankhadip Maity",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699355/IMG20250618165256_-_SANKHADIP_MAITY_pk0op5.jpg",
@@ -219,7 +230,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 19,
+    "id": 20,
     "name": "Sanchita Sardar",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699354/IMG_20250702_161410_-_SANCHITA_SARDAR_rpkcj6.jpg",
@@ -231,7 +242,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 20,
+    "id": 21,
     "name": "Shobha Bhutra",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699353/IMG_20250702_151114_-_SHOBHA_BHUTRA_e9n3as.jpg",
@@ -243,7 +254,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 21,
+    "id": 22,
     "name": "Shreya Das",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699354/InCollage_20240206_002229277_-_Shreya_Das_y3fwjp.jpg",
@@ -255,7 +266,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 22,
+    "id": 23,
     "name": "Akash Ghosh",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dislegzga/image/upload/v1756055095/WhatsApp_Image_2025-08-24_at_22.08.45_132d778f_dvfgyr.jpg",
@@ -267,7 +278,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 23,
+    "id": 24,
     "name": "Tanish Kar",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dislegzga/image/upload/v1756055856/WhatsApp_Image_2025-08-24_at_22.46.07_16d69220_cai6hg.jpg",
@@ -279,7 +290,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 24,
+    "id": 25,
     "name": "Suman Parui",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dislegzga/image/upload/v1756055557/WhatsApp_Image_2025-08-24_at_22.35.46_940deb35_ln8toa.jpg",
