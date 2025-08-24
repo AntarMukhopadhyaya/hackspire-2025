@@ -55,8 +55,9 @@ function Crews() {
           <style>
             {Array.from({ length: 50 })
               .map((_, i) => {
-                const delay = Math.random() * 5;
-                const duration = 3 + Math.random() * 4;
+                // Use static values for SSR
+                const delay = 2;
+                const duration = 5;
                 return `.matrix-column-${i} {
                 left: ${i * 2}%;
                 animation-delay: ${delay}s;
@@ -80,8 +81,8 @@ function Crews() {
               className={`absolute top-0 text-green-400 font-mono text-xs leading-none matrix-column-animated matrix-column-${i}`}
               style={{
                 left: `${i * 2}%`,
-                animationDelay: `${Math.random() * 5}s`,
-                animationDuration: `${3 + Math.random() * 4}s`,
+                animationDelay: `2s`,
+                animationDuration: `5s`,
                 zIndex: 1,
                 animationName: "matrixRain",
                 animationTimingFunction: "linear",
@@ -91,7 +92,7 @@ function Crews() {
             >
               {Array.from({ length: 20 }).map((_, j) => (
                 <div key={j} className="opacity-70">
-                  {String.fromCharCode(33 + Math.floor(Math.random() * 94))}
+                  {"#"}
                 </div>
               ))}
             </div>
@@ -429,8 +430,8 @@ function Crews() {
                   <CrewCard key={member.id} member={member} />
                 ))}
             </div>
-            {/* Volunteers in new row */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 justify-items-center mt-8">
+            {/* Volunteers in new row with consistent vertical gap */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 justify-items-center mt-12 sm:mt-12 md:mt-12">
               {filteredMembers
                 .filter(
                   (m) =>
