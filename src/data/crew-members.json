@@ -131,32 +131,9 @@
     "crew": "hackbuilders",
     "crewfilter": "HACKBUILDERS"
   },
+
   {
     "id": 12,
-    "name": "Mainak Kahali",
-    "position": "Volunteer",
-    "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699357/Picsart_25-06-27_21-59-34-017_-_Mainak_Kahali_njdtl7.jpg",
-    "instagram": "",
-    "github": "https://github.com/mainak890",
-    "linkedin": "https://www.linkedin.com/in/mainak-kahali-393b0a2ba?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    "twitter": "",
-    "crew": "spireteers",
-    "crewfilter": "SPIRETEERS"
-  },
-  {
-    "id": 13,
-    "name": "Deboshreya Ganguly",
-    "position": "Volunteer",
-    "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699357/WhatsApp_Image_2025-07-01_at_23.44.01_7a03902d_-_Deboshreya_Ganguly_lsmpqh.jpg",
-    "instagram": "",
-    "github": "https://github.com/Deboshreya0603",
-    "linkedin": "https://www.linkedin.com/in/deboshreya-ganguly-73b813224",
-    "twitter": "https://x.com/deboshreya0603",
-    "crew": "spireteers",
-    "crewfilter": "SPIRETEERS"
-  },
-  {
-    "id": 14,
     "name": "Abhishek Das",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699357/IMG_20250701_235629_-_ABHISHEK_DAS_j5cxyc.jpg",
@@ -168,7 +145,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 15,
+    "id": 13,
     "name": "Sourav Saha",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699357/IMG_20250225_224101_-_Sourav_Saha_dgelyd.jpg",
@@ -181,7 +158,7 @@
   },
 
   {
-    "id": 16,
+    "id": 14,
     "name": "Rohan Sharma",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699356/WhatsApp_Image_2025-07-02_at_12.43.02_AM_-_Rohan_Sharma_uxrkab.jpg",
@@ -193,7 +170,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 17,
+    "id": 15,
     "name": "Shuvam Dutta",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699353/IMG-20250403-WA0022_1_-_SHUVAM_DUTTA_j49zx4.jpg",
@@ -205,7 +182,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 18,
+    "id": 16,
     "name": "Sounak Bhattacharya",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699355/20250701_235214_905_-_Sounak_Bhattacharya_ayh5jk.jpg",
@@ -217,9 +194,9 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 19,
+    "id": 17,
     "name": "Most Soha Sabnam",
-    "position": "Volenteer",
+    "position": "Volunteer",
     "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699354/1726759560669_-_Soha_Sabnam_wpcwbu.jpg",
     "instagram": "https://www.instagram.com/sohasabnam5?igsh=MTVma3JtYWQ0Mmx0NQ==",
     "github": "https://github.com/sohasabnam786",
@@ -228,20 +205,9 @@
     "crew": "spireteers",
     "crewfilter": "SPIRETEERS"
   },
+
   {
-    "id": 20,
-    "name": "Diganta Nath",
-    "position": "Volunteer",
-    "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699354/IMG-20250322-WA0010_-_Arctic_Phonix_Gaming_rjefas.jpg",
-    "instagram": "https://www.instagram.com/lavender_soulxx?igsh=MWE1emE0b3ZicDRuNg==",
-    "github": "https://github.com/DynoAlex123",
-    "linkedin": "https://www.linkedin.com/in/diganta-nath-4bb4382b1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    "twitter": "https://x.com/Diganta269?t=V-csTUkThCQmvbGWfBugng&s=09",
-    "crew": "spireteers",
-    "crewfilter": "SPIRETEERS"
-  },
-  {
-    "id": 21,
+    "id": 18,
     "name": "Sankhadip Maity",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699355/IMG20250618165256_-_SANKHADIP_MAITY_pk0op5.jpg",
@@ -253,7 +219,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 22,
+    "id": 19,
     "name": "Sanchita Sardar",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699354/IMG_20250702_161410_-_SANCHITA_SARDAR_rpkcj6.jpg",
@@ -265,7 +231,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 23,
+    "id": 20,
     "name": "Shobha Bhutra",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699353/IMG_20250702_151114_-_SHOBHA_BHUTRA_e9n3as.jpg",
@@ -277,7 +243,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 24,
+    "id": 21,
     "name": "Shreya Das",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699354/InCollage_20240206_002229277_-_Shreya_Das_y3fwjp.jpg",

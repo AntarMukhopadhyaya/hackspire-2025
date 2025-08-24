@@ -1334,13 +1334,13 @@ function JudgesForm() {
               transition={{ duration: 0.2 }}
               className="w-full mb-8"
             >
-              <label
-                className="block text-sm font-medium text-white mb-3"
-                style={{ fontFamily: "Poppins, sans-serif" }}
-              >
-                Profile Image *
-              </label>
-              <div className="flex flex-col items-start gap-4">
+              <div className="flex flex-col items-center gap-4 w-full">
+                <label
+                  className="block text-sm font-medium text-white mb-3 text-center"
+                  style={{ fontFamily: "Poppins, sans-serif" }}
+                >
+                  Profile Image *
+                </label>
                 <UploadButton
                   endpoint="profileImageUploader"
                   onClientUploadComplete={(res) => {
@@ -1357,7 +1357,7 @@ function JudgesForm() {
                   appearance={{
                     button:
                       "bg-yellow-400 text-black hover:bg-yellow-500 px-6 py-3 font-mokoto transition-colors duration-300",
-                    container: "w-full",
+                    container: "max-w-xs w-full sm:max-w-xs sm:w-auto mx-auto",
                     allowedContent: "text-gray-400 text-xs font-mokoto mt-2",
                   }}
                 />
@@ -1384,10 +1384,10 @@ function JudgesForm() {
                     </div>
                   </div>
                 )}
+                <p className="text-xs text-gray-400 mt-3 font-mokoto text-center">
+                  Upload a professional photo (JPG, PNG, GIF - Max 4MB)
+                </p>
               </div>
-              <p className="text-xs text-gray-400 mt-3 font-mokoto">
-                Upload a professional photo (JPG, PNG, GIF - Max 4MB)
-              </p>
             </motion.div>
 
             {/* Terms and Conditions */}

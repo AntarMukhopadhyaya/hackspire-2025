@@ -903,7 +903,7 @@ function MentorsForm() {
                   appearance={{
                     button:
                       "bg-yellow-400 text-black hover:bg-yellow-500 px-6 py-3 font-mokoto transition-colors duration-300",
-                    container: "w-full",
+                    container: "max-w-xs w-full sm:max-w-xs sm:w-auto",
                     allowedContent: "text-gray-400 text-xs font-mokoto mt-2",
                   }}
                 />
