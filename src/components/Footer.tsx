@@ -339,7 +339,7 @@ const FooterContent = () => {
               <div className="flex items-center gap-4 sm:gap-5 lg:gap-6">
                 {/* Twitter */}
                 <motion.a
-                  href="https://x.com/FiemAcm?t=8KMerJECwU9fseHsvt7ryQ&s=09"
+                  href="https://x.com/acmfiem?t=4YZZAKbQK13Rby_InX5v9A&s=09"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-black hover:text-gray-800 transition-colors duration-300"
