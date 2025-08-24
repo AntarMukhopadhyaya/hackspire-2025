@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Send, Mail, Globe, Image as ImageIcon } from "lucide-react";
 import CyberButton from "@/components/ui/CyberButton";
+import TurnstileWrapper from "@/components/ui/TurnstileWrapper";
 import { UploadButton } from "@/utils/uploadthing";
 import { toast } from "sonner";
 
@@ -49,6 +50,7 @@ function MentorsForm() {
   const [isImageLoading, setIsImageLoading] = useState(false);
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string>("");
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<
@@ -110,6 +112,15 @@ function MentorsForm() {
     // Show validation warning and check requirements
     setShowValidationWarning(true);
 
+    // Check if Turnstile verification is complete
+    if (!turnstileToken) {
+      toast.error("❌ Bot Verification Required", {
+        description: "Please complete the verification challenge.",
+        duration: 5000,
+      });
+      return;
+    }
+
     // Validate profile image
     if (!profileImageUrl) {
       toast.error("❌ Profile Image Required", {
@@ -150,6 +161,7 @@ function MentorsForm() {
         availability: formData.availability,
         motivation: formData.motivation,
         profileImageUrl: profileImageUrl,
+        turnstileToken: turnstileToken,
       };
 
       // Submit to Google Sheets via API route
@@ -890,7 +902,7 @@ function MentorsForm() {
               <div className="flex flex-col items-start gap-4">
                 <UploadButton
                   endpoint="profileImageUploader"
-                  onClientUploadComplete={(res) => {
+                  onClientUploadComplete={(res: any) => {
                     if (res && res[0]) {
                       setProfileImageUrl(res[0].ufsUrl);
                       console.log("Upload Completed:", res[0].ufsUrl);
@@ -968,13 +980,39 @@ function MentorsForm() {
               </div>
             </motion.div>
 
+            {/* Turnstile Bot Protection */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="flex justify-center my-6"
+            >
+              <TurnstileWrapper
+                onVerify={(token) => setTurnstileToken(token)}
+                onError={() => {
+                  setTurnstileToken("");
+                  toast.error("Verification failed. Please try again.");
+                }}
+                onExpire={() => {
+                  setTurnstileToken("");
+                  toast.warning("Verification expired. Please verify again.");
+                }}
+                theme="dark"
+                className="my-4"
+              />
+            </motion.div>
+
             <motion.div
               className="text-center"
               whileHover={
-                !termsAccepted || !profileImageUrl ? {} : { scale: 1.05 }
+                !termsAccepted || !profileImageUrl || !turnstileToken
+                  ? {}
+                  : { scale: 1.05 }
               }
               whileTap={
-                !termsAccepted || !profileImageUrl ? {} : { scale: 0.95 }
+                !termsAccepted || !profileImageUrl || !turnstileToken
+                  ? {}
+                  : { scale: 0.95 }
               }
             >
               <CyberButton

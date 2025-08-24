@@ -41,35 +41,57 @@ function MentorsSection() {
     console.log(`Contact ${name} clicked`);
   }, []);
 
-  // Performance optimization: Reduce initial render load
+  // Performance optimization: Use progressive loading
   const [visibleJudges, setVisibleJudges] = useState<typeof judges>([]);
   const [visibleMentors, setVisibleMentors] = useState<typeof mentors>([]);
+  const [loadingState, setLoadingState] = useState<
+    "judges" | "mentors" | "complete"
+  >("judges");
 
   useEffect(() => {
     // Load judges first (smaller set)
     setVisibleJudges(judges);
 
-    // Load mentors with a slight delay to improve initial page load
+    // Load mentors progressively to prevent hanging
     const timer = setTimeout(() => {
-      setVisibleMentors(mentors);
-    }, 500);
+      setLoadingState("mentors");
+      // Load mentors in batches to prevent UI blocking
+      const batchSize = 2;
+      let currentIndex = 0;
+
+      const loadBatch = () => {
+        const nextBatch = mentors.slice(currentIndex, currentIndex + batchSize);
+        if (nextBatch.length > 0) {
+          setVisibleMentors((prev) => [...prev, ...nextBatch]);
+          currentIndex += batchSize;
+
+          if (currentIndex < mentors.length) {
+            setTimeout(loadBatch, 100); // Small delay between batches
+          } else {
+            setLoadingState("complete");
+          }
+        }
+      };
+
+      loadBatch();
+    }, 300);
 
     return () => clearTimeout(timer);
   }, [judges, mentors]);
 
-  // Performance optimization: Memoize grid layouts
+  // Performance optimization: Memoize grid layouts with reduced animations
   const judgesGrid = useMemo(
     () => (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-20 lg:gap-36">
         {visibleJudges.map((judge, index) => (
           <motion.div
             key={`${judge.handle}-${index}`}
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{
-              duration: 0.5,
-              delay: 0.1 + index * 0.05,
+              duration: 0.4,
+              delay: index * 0.1,
               ease: "easeOut",
             }}
             className="flex justify-center"
@@ -82,7 +104,7 @@ function MentorsSection() {
               contactText="Contact Me"
               avatarUrl={judge.avatarUrl}
               showUserInfo={true}
-              enableTilt={true}
+              enableTilt={false} // Disabled tilt for performance
               enableMobileTilt={false}
               onContactClick={() => handleContactClick(judge.name)}
             />
@@ -99,12 +121,12 @@ function MentorsSection() {
         {visibleMentors.map((mentor, index) => (
           <motion.div
             key={`${mentor.handle}-${index}`}
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{
-              duration: 0.5,
-              delay: 0.1 + index * 0.05,
+              duration: 0.4,
+              delay: index * 0.1,
               ease: "easeOut",
             }}
             className="flex justify-center"
@@ -119,7 +141,7 @@ function MentorsSection() {
               iconUrl="https://res.cloudinary.com/dislegzga/image/upload/v1755362336/codeicon_wetmk9.png"
               grainUrl="https://res.cloudinary.com/dislegzga/image/upload/v1755362435/grain_ck2vv1.jpg"
               showUserInfo={true}
-              enableTilt={true}
+              enableTilt={false} // Disabled tilt for performance
               enableMobileTilt={false}
               onContactClick={() => handleContactClick(mentor.name)}
             />
@@ -452,7 +474,15 @@ function MentorsSection() {
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
           >
             <CategoryBadge label="JUDGES" />
-            {judgesGrid}
+            {visibleJudges.length > 0 ? (
+              judgesGrid
+            ) : (
+              <div className="flex justify-center items-center min-h-[300px]">
+                <div className="text-yellow-400 font-mono text-lg animate-pulse">
+                  Loading judges...
+                </div>
+              </div>
+            )}
           </motion.div>
 
           {/* Glowing Yellow Underline */}
@@ -516,7 +546,49 @@ function MentorsSection() {
             transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
           >
             <CategoryBadge label="MENTORS" />
-            {mentorsGrid}
+            {loadingState === "complete" ? (
+              mentorsGrid
+            ) : (
+              <div className="flex flex-col justify-center items-center min-h-[300px] space-y-4">
+                <div className="text-yellow-400 font-mono text-lg animate-pulse">
+                  {loadingState === "judges"
+                    ? "Preparing mentors..."
+                    : `Loading mentors... (${visibleMentors.length}/6)`}
+                </div>
+                {visibleMentors.length > 0 && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                    {visibleMentors.map((mentor, index) => (
+                      <motion.div
+                        key={`${mentor.handle}-${index}`}
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          duration: 0.4,
+                          delay: index * 0.1,
+                          ease: "easeOut",
+                        }}
+                        className="flex justify-center"
+                      >
+                        <ProfileCard
+                          name={mentor.name}
+                          title={mentor.title}
+                          handle={mentor.handle}
+                          status={mentor.status}
+                          contactText="Contact Me"
+                          avatarUrl={mentor.avatarUrl}
+                          iconUrl="https://res.cloudinary.com/dislegzga/image/upload/v1755362336/codeicon_wetmk9.png"
+                          grainUrl="https://res.cloudinary.com/dislegzga/image/upload/v1755362435/grain_ck2vv1.jpg"
+                          showUserInfo={true}
+                          enableTilt={false}
+                          enableMobileTilt={false}
+                          onContactClick={() => handleContactClick(mentor.name)}
+                        />
+                      </motion.div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
           </motion.div>
         </div>
       </div>
