@@ -115,19 +115,34 @@ export function CrewCard({ member }: CrewCardProps) {
             transform: `translateZ(5px)`,
           }}
         >
-          {member.instagram && (
-            <a
-              href={member.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="cursor-pointer"
-            >
-              <Instagram
-                size={24}
-                className="text-black hover:text-gray-700 transition-colors"
-              />
-            </a>
-          )}
+          <a
+            href={
+              member.instagram && member.instagram.trim() !== ""
+                ? member.instagram
+                : "#"
+            }
+            target={
+              member.instagram && member.instagram.trim() !== ""
+                ? "_blank"
+                : undefined
+            }
+            rel={
+              member.instagram && member.instagram.trim() !== ""
+                ? "noopener noreferrer"
+                : undefined
+            }
+            className={`cursor-pointer ${
+              !member.instagram || member.instagram.trim() === ""
+                ? "opacity-50 pointer-events-none"
+                : ""
+            }`}
+            aria-disabled={!member.instagram || member.instagram.trim() === ""}
+          >
+            <Instagram
+              size={24}
+              className="text-black hover:text-gray-700 transition-colors"
+            />
+          </a>
         </div>
 
         {/* HACKSPIRE 2025 text horizontally next to Instagram icon */}
