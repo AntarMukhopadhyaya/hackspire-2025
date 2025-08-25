@@ -56,8 +56,8 @@
     "github": "https://github.com/AntarMukhopadhyaya",
     "linkedin": "https://www.linkedin.com/in/antar-mukhopadhyaya-04b026261?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     "twitter": "https://x.com/antarmukherjee?t=93IIgWt88QdaPcy0bmGQVg&s=08",
-    "crew": "spiregineers",
-    "crewfilter": "SPIREGINEER"
+    "crew": "spirengineers",
+    "crewfilter": "SPIRENGINEER"
   },
   {
     "id": 6,
@@ -68,8 +68,8 @@
     "github": "https://github.com/ankandalui",
     "linkedin": "https://www.linkedin.com/in/ankan-dalui-21156b273/",
     "twitter": "https://x.com/kaliavtar?t=ih-LbaPjljnkBV18HAVYEQ&s=09",
-    "crew": "spiregineers",
-    "crewfilter": "SPIREGINEER"
+    "crew": "spirengineers",
+    "crewfilter": "SPIRENGINEER"
   },
   {
     "id": 7,
@@ -80,8 +80,8 @@
     "github": "",
     "linkedin": "https://www.linkedin.com/in/rajdip-ghosh-70154a282?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     "twitter": "",
-    "crew": "spiregineers",
-    "crewfilter": "SPIREGINEER"
+    "crew": "spirengineers",
+    "crewfilter": "SPIRENGINEER"
   },
   {
     "id": 8,
@@ -92,8 +92,8 @@
     "github": "https://github.com/sutapakanthal12?tab=repositories",
     "linkedin": "https://www.linkedin.com/in/sutapa-kanthal-218a272a9",
     "twitter": "",
-    "crew": "hackbuilders",
-    "crewfilter": "HACKBUILDERS"
+    "crew": "spirengineers",
+    "crewfilter": "SPIRENGINEER"
   },
   {
     "id": 9,
@@ -180,6 +180,18 @@
     "crewfilter": "HACKBUILDERS"
   },
   {
+    "id": 15,
+    "name": "Rikita Roy",
+    "position": "CC member",
+    "image": "https://res.cloudinary.com/dislegzga/image/upload/v1756128349/WhatsApp_Image_2025-08-25_at_13.45.18_15638845_vyu2wt.jpg",
+    "instagram": "",
+    "github": "",
+    "linkedin": "",
+    "twitter": "",
+    "crew": "hackbuilders",
+    "crewfilter": "HACKBUILDERS"
+  },
+  {
     "id": 16,
     "name": "Abhishek Das",
     "position": "Volunteer",
@@ -203,7 +215,6 @@
     "crew": "spireteers",
     "crewfilter": "SPIRETEERS"
   },
-
   {
     "id": 18,
     "name": "Rohan Sharma",
@@ -305,7 +316,7 @@
     "id": 26,
     "name": "Akash Ghosh",
     "position": "Volunteer",
-    "image": "https://res.cloudinary.com/dislegzga/image/upload/v1756055095/WhatsApp_Image_2025-08-24_at_22.08.45_132d778f_dvfgyr.jpg",
+    "image": "https://res.cloudinary.com/dislegzga/image/upload/v1756128368/WhatsApp_Image_2025-08-25_at_06.59.46_e3db1a31_bdhzdi.jpg",
     "instagram": "https://www.instagram.com/akashghosh8922?igsh=ajlndGFraXFsNzJm",
     "github": "https://github.com/skyghosh2006-wq",
     "linkedin": "https://www.linkedin.com/in/akash-ghosh-11395937b",
@@ -332,7 +343,7 @@
     "image": "https://res.cloudinary.com/dislegzga/image/upload/v1756055557/WhatsApp_Image_2025-08-24_at_22.35.46_940deb35_ln8toa.jpg",
     "instagram": "https://www.instagram.com/s___u___m___a___n___65?utm_source=ig_web_button_share_sheet&igsh=eTA3bnZuYnY5Z2dx",
     "github": "",
-    "linkedin": "",
+    "linkedin": "https://www.linkedin.com/in/suman-parui-b04465380?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     "twitter": "",
     "crew": "spireteers",
     "crewfilter": "SPIRETEERS"
