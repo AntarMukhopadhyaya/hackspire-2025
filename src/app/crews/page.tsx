@@ -9,7 +9,7 @@ const filterOptions = [
   { id: "all", label: "All Crews", icon: Filter },
   // { id: "spireorgs", label: "SpireOrgs", icon: Users }, // commented out for now
   { id: "hackbuilders", label: "HackBuilders", icon: Code },
-  { id: "spiregineers", label: "Spiregineers", icon: Wrench },
+  { id: "spirengineers", label: "Spirengineers", icon: Wrench },
   { id: "spireteers", label: "Spireteers", icon: Star },
 ];
 
