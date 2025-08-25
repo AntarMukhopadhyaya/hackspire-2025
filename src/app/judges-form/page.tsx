@@ -59,6 +59,7 @@ function JudgesForm() {
   });
 
   const [profileImageUrl, setProfileImageUrl] = useState<string>("");
+  const [selectedFileName, setSelectedFileName] = useState<string>("");
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [isImageLoading, setIsImageLoading] = useState(false);
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
@@ -287,6 +288,16 @@ function JudgesForm() {
           <span className="text-yellow-300">HackSpire 2025:</span>{" "}
           <span className="text-white">31st Oct to 1st Nov 2025</span>
         </motion.p>
+        <div className="flex justify-center mb-6">
+          <a
+            href="https://befitting-lens-774.notion.site/HackSpire-25-Event-Judging-Timeline-25ac78e1cf638000a419e7c2052d13e7?source=copy_link"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-6 py-3 bg-yellow-400 text-black font-bold rounded-lg shadow hover:bg-yellow-500 transition-colors font-mokoto text-lg"
+          >
+            Click the judges & Mentors guidelines
+          </a>
+        </div>
       </div>
 
       {/* Form Container */}
@@ -1343,7 +1354,7 @@ function JudgesForm() {
               </motion.div>
             </div>
 
-            {/* Profile Image Upload - Exactly like mentors form */}
+            {/* Profile Image Upload - Improved UX */}
             <motion.div
               whileFocus={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
@@ -1356,52 +1367,40 @@ function JudgesForm() {
                 >
                   Profile Image *
                 </label>
-                <UploadButton
-                  endpoint="profileImageUploader"
-                  onClientUploadComplete={(res: any) => {
-                    if (res && res[0]) {
-                      setProfileImageUrl(res[0].ufsUrl);
-                      console.log("Upload Completed:", res[0].ufsUrl);
-                      toast.success("✅ Image uploaded successfully!");
-                    }
-                  }}
-                  onUploadError={(error: Error) => {
-                    console.error("Upload Error:", error);
-                    toast.error(`❌ Upload failed: ${error.message}`);
-                  }}
-                  appearance={{
-                    button:
-                      "bg-yellow-400 text-black hover:bg-yellow-500 px-6 py-3 font-mokoto transition-colors duration-300",
-                    container: "max-w-xs w-full sm:max-w-xs sm:w-auto mx-auto",
-                    allowedContent: "text-gray-400 text-xs font-mokoto mt-2",
-                  }}
-                />
-
-                {profileImageUrl && (
-                  <div className="flex items-center gap-3 p-3 bg-black/40 border border-yellow-400/30 rounded-sm relative z-10">
-                    <ImageIcon className="w-5 h-5 text-yellow-400" />
-                    <div className="flex flex-col">
-                      <span className="text-sm text-yellow-300 font-medium">
-                        Image uploaded successfully
-                      </span>
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          setIsImageLoading(true);
-                          setIsImageModalOpen(true);
-                        }}
-                        className="text-xs text-blue-400 hover:text-blue-300 underline cursor-pointer bg-transparent border-none relative z-30 p-1 hover:bg-blue-400/10 rounded transition-colors duration-200"
-                      >
-                        View uploaded image
-                      </button>
-                    </div>
-                  </div>
-                )}
-                <p className="text-xs text-gray-400 mt-3 font-mokoto text-center">
-                  Upload a professional photo (JPG, PNG, GIF - Max 4MB)
-                </p>
+                <div className="profile-image-upload w-full flex flex-col items-center">
+                  <label
+                    htmlFor="profileImage"
+                    className="custom-upload-btn bg-yellow-400 text-black hover:bg-yellow-500 px-6 py-3 font-mokoto transition-colors duration-300 rounded cursor-pointer text-center"
+                  >
+                    {selectedFileName || "Choose File"}
+                  </label>
+                  <input
+                    id="profileImage"
+                    type="file"
+                    accept="image/*"
+                    style={{ display: "none" }}
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file) {
+                        setSelectedFileName(file.name);
+                        setProfileImageUrl(""); // Reset previous upload
+                        // You can add upload logic here if needed
+                      } else {
+                        setSelectedFileName("");
+                      }
+                    }}
+                  />
+                  <span className="file-info text-yellow-400 mt-2 text-sm">
+                    {selectedFileName ? selectedFileName : "No file chosen"}
+                  </span>
+                  <p className="text-xs text-gray-400 mt-3 font-mokoto text-center">
+                    Upload a professional photo (JPG, PNG, GIF - Max 4MB)
+                  </p>
+                </div>
+                {/* If you want to keep the UploadButton for actual upload, you can add it below: */}
+                {/*
+                <UploadButton ...existing props... />
+                */}
               </div>
             </motion.div>
 
