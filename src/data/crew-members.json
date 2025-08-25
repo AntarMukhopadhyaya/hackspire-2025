@@ -85,24 +85,24 @@
   },
   {
     "id": 8,
-    "name": "Sutapa Kanthal",
-    "position": "CC member (Web)",
-    "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699358/IMG-20250701-WA0039_-_SUTAPA_KANTHAL_icw6pu.jpg",
-    "instagram": "https://www.instagram.com/kanthalsutapa_07?igsh=eDViaW04dnBrZXVx",
-    "github": "https://github.com/sutapakanthal12?tab=repositories",
-    "linkedin": "https://www.linkedin.com/in/sutapa-kanthal-218a272a9",
-    "twitter": "",
-    "crew": "hackbuilders",
-    "crewfilter": "HACKBUILDERS"
-  },
-  {
-    "id": 9,
     "name": "Soumaydeep Bagchi",
     "position": "CC member",
     "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699358/Polish_20241223_195848777_-_Soumyadeep_Bagchi_p4vhf4.jpg",
     "instagram": "https://www.instagram.com/soumyad_bagchi/profilecard/?igsh=MXc3MDFwamxoZ2Iwbw==",
     "github": "",
     "linkedin": "https://www.linkedin.com/in/soumyadeep-bagchi-dewan?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    "twitter": "",
+    "crew": "hackbuilders",
+    "crewfilter": "HACKBUILDERS"
+  },
+  {
+    "id": 9,
+    "name": "Sutapa Kanthal",
+    "position": "CC member (Web)",
+    "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699358/IMG-20250701-WA0039_-_SUTAPA_KANTHAL_icw6pu.jpg",
+    "instagram": "https://www.instagram.com/kanthalsutapa_07?igsh=eDViaW04dnBrZXVx",
+    "github": "https://github.com/sutapakanthal12?tab=repositories",
+    "linkedin": "https://www.linkedin.com/in/sutapa-kanthal-218a272a9",
     "twitter": "",
     "crew": "hackbuilders",
     "crewfilter": "HACKBUILDERS"
