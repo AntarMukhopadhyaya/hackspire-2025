@@ -16,7 +16,7 @@ interface SEOHeadProps {
 
 export default function SEOHead({
   title = "HackSpire 2025 - Biggest Hackathon by FIEM ACM Student Chapter",
-  description = "Join HackSpire 2025, the largest 24-hour hackathon organized by FIEM ACM Student Chapter. Build innovative solutions in AI, Blockchain, Cybersecurity, Agriculture, Robotics, Gaming, Healthcare, and Open Innovation.",
+  description = "Join HackSpire 2025, the largest 25-hour hackathon organized by FIEM ACM Student Chapter. Build innovative solutions in AI, Blockchain, Cybersecurity, Agriculture, Robotics, Gaming, Healthcare, and Open Innovation.",
   keywords = [],
   image = "/og-image.jpg",
   url = "https://hackspire.tech",

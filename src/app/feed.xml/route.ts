@@ -5,7 +5,7 @@ export async function GET() {
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>HackSpire 2025 - Biggest Hackathon by FIEM ACM Student Chapter</title>
-    <description>Latest updates and announcements about HackSpire 2025, the largest 24-hour hackathon organized by FIEM ACM Student Chapter.</description>
+    <description>Latest updates and announcements about HackSpire 2025, the largest 25-hour hackathon organized by FIEM ACM Student Chapter.</description>
     <link>https://hackspire.tech</link>
     <atom:link href="https://hackspire.tech/feed.xml" rel="self" type="application/rss+xml" />
     <language>en-US</language>

@@ -30,7 +30,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "HackSpire 2025 - Biggest Hackathon by FIEM ACM Student Chapter",
   description:
-    "Join HackSpire 2025, the largest 24-hour hackathon organized by FIEM ACM Student Chapter. Build innovative solutions in AI, Blockchain, Cybersecurity, Agriculture, Robotics, Gaming, Healthcare, and Open Innovation. Future Institute of Engineering's premier hackathon event.",
+    "Join HackSpire 2025, the largest 25-hour hackathon organized by FIEM ACM Student Chapter. Build innovative solutions in AI, Blockchain, Cybersecurity, Agriculture, Robotics, Gaming, Healthcare, and Open Innovation. Future Institute of Engineering's premier hackathon event.",
   keywords: [
     "Hackspire",
     "Hackspire2025",
@@ -96,7 +96,7 @@ export const metadata: Metadata = {
     siteName: "HackSpire 2025",
     title: "HackSpire 2025 - Biggest Hackathon by FIEM ACM Student Chapter",
     description:
-      "Join HackSpire 2025, the largest 24-hour hackathon organized by FIEM ACM Student Chapter. Build innovative solutions in AI, Blockchain, Cybersecurity, Agriculture, Robotics, Gaming, Healthcare, and Open Innovation.",
+      "Join HackSpire 2025, the largest 25-hour hackathon organized by FIEM ACM Student Chapter. Build innovative solutions in AI, Blockchain, Cybersecurity, Agriculture, Robotics, Gaming, Healthcare, and Open Innovation.",
     images: [
       {
         url: "/og-image.jpg",
@@ -110,7 +110,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "HackSpire 2025 - Biggest Hackathon by FIEM ACM Student Chapter",
     description:
-      "Join HackSpire 2025, the largest 24-hour hackathon organized by FIEM ACM Student Chapter. Build innovative solutions in AI, Blockchain, Cybersecurity, Agriculture, Robotics, Gaming, Healthcare, and Open Innovation.",
+      "Join HackSpire 2025, the largest 25-hour hackathon organized by FIEM ACM Student Chapter. Build innovative solutions in AI, Blockchain, Cybersecurity, Agriculture, Robotics, Gaming, Healthcare, and Open Innovation.",
     images: ["/og-image.jpg"],
     creator: "@hackspire2025",
     site: "@hackspire2025",
@@ -196,7 +196,7 @@ export default function RootLayout({
               "@type": "Event",
               name: "HackSpire 2025",
               description:
-                "Join HackSpire 2025, the largest 24-hour hackathon organized by FIEM ACM Student Chapter. Build innovative solutions in AI, Blockchain, Cybersecurity, Agriculture, Robotics, Gaming, Healthcare, and Open Innovation.",
+                "Join HackSpire 2025, the largest 25-hour hackathon organized by FIEM ACM Student Chapter. Build innovative solutions in AI, Blockchain, Cybersecurity, Agriculture, Robotics, Gaming, Healthcare, and Open Innovation.",
               startDate: "2025-01-01T00:00:00+05:30",
               endDate: "2025-01-02T00:00:00+05:30",
               location: {
