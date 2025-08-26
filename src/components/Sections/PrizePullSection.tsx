@@ -2,7 +2,6 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import GloryAnimatedText from "../ui/GloryAnimatedText";
 
 export default function PrizePullSection() {
   return (
@@ -88,7 +87,7 @@ export default function PrizePullSection() {
                     lineHeight: "1.1",
                   }}
                 >
-                  70k+
+                  ₹70k+
                 </h3>
                 <p
                   className="text-white text-base md:text-lg leading-tight md:leading-relaxed transition-all duration-300 glory-card-text text-center mt-4"
