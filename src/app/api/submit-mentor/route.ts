@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
 
     const data = await request.json();
 
-    // Verify Turnstile token first
+    // Verify Turnstile token
     const { turnstileToken, ...mentorData } = data;
 
     if (!turnstileToken) {
@@ -70,14 +70,28 @@ export async function POST(request: NextRequest) {
     const result = await response.json();
 
     if (result.success) {
-      // Send confirmation email to mentor
-      await sendConfirmationEmail(data);
-
-      return NextResponse.json({
-        success: true,
-        message:
-          "Application submitted successfully! Check your email for confirmation.",
-      });
+      // Send confirmation email to mentor and surface any errors without dropping submission
+      try {
+        await sendConfirmationEmail(mentorData);
+        return NextResponse.json({
+          success: true,
+          emailSent: true,
+          message:
+            "Application submitted successfully! Check your email for confirmation.",
+        });
+      } catch (emailErr: any) {
+        console.error("Confirmation email failed:", emailErr);
+        return NextResponse.json(
+          {
+            success: true,
+            emailSent: false,
+            message:
+              "Application submitted, but confirmation email failed to send.",
+            emailError: emailErr?.message || String(emailErr),
+          },
+          { status: 200 }
+        );
+      }
     } else {
       throw new Error(result.error || "Submission failed");
     }
@@ -92,14 +106,25 @@ export async function POST(request: NextRequest) {
 
 async function sendConfirmationEmail(mentorData: any) {
   try {
-    // Create transporter
+    // Create transporter with explicit SMTP settings for Gmail
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true, // use TLS
       auth: {
         user: GMAIL_USER,
         pass: GMAIL_APP_PASSWORD,
       },
     });
+
+    // Verify transporter configuration early to catch auth/config errors
+    try {
+      await transporter.verify();
+      console.log("Email transporter verified");
+    } catch (verifyError) {
+      console.error("Transporter verification failed:", verifyError);
+      throw verifyError;
+    }
 
     // Cyberpunk-themed confirmation email
     const confirmationMailOptions = {
@@ -339,11 +364,20 @@ Timestamp: ${new Date().toLocaleString()}
       `,
     };
 
-    // Send confirmation email
-    await transporter.sendMail(confirmationMailOptions);
-    console.log("Confirmation email sent to:", mentorData.email);
+    // Try sending confirmation email, retry once on failure
+    try {
+      await transporter.sendMail(confirmationMailOptions);
+      console.log("Confirmation email sent to:", mentorData.email);
+    } catch (sendErr) {
+      console.error("First send attempt failed:", sendErr);
+      // small delay then retry once
+      await new Promise((r) => setTimeout(r, 1000));
+      await transporter.sendMail(confirmationMailOptions);
+      console.log("Confirmation email sent on retry to:", mentorData.email);
+    }
   } catch (error) {
     console.error("Error sending confirmation email:", error);
-    // Don't throw error - we don't want to fail the whole submission if email fails
+    // Throw error so the caller (API route) can surface the failure for debugging
+    throw error;
   }
 }

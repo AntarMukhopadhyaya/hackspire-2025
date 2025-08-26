@@ -755,7 +755,7 @@ function ContactUs() {
                   toast.warning("Verification expired. Please verify again.");
                 }}
                 theme="dark"
-                className="my-4"
+                className="my-4 z-50"
               />
             </motion.div>
 

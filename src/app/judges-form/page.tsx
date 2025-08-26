@@ -16,7 +16,8 @@ import {
 } from "lucide-react";
 import CyberButton from "@/components/ui/CyberButton";
 import TurnstileWrapper from "@/components/ui/TurnstileWrapper";
-// using native file input + server upload endpoint instead of UploadButton
+import { UploadButton } from "@/utils/uploadthing";
+// using UploadThing generated UploadButton via hidden wrapper + custom trigger
 import { toast } from "sonner";
 
 function JudgesForm() {
@@ -64,6 +65,10 @@ function JudgesForm() {
   const [isImageLoading, setIsImageLoading] = useState(false);
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [uploadSuccess, setUploadSuccess] = useState(false);
+  const uploadBtnWrapperRef = React.useRef<HTMLDivElement | null>(null);
   const [turnstileToken, setTurnstileToken] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showValidationWarning, setShowValidationWarning] = useState(false);
@@ -1354,7 +1359,7 @@ function JudgesForm() {
               </motion.div>
             </div>
 
-            {/* Profile Image Upload - Improved UX */}
+            {/* Profile Image Upload - Improved UX using UploadThing */}
             <motion.div
               whileFocus={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
@@ -1368,68 +1373,90 @@ function JudgesForm() {
                   Profile Image *
                 </label>
                 <div className="profile-image-upload w-full flex flex-col items-center">
-                  <label
-                    htmlFor="profileImage"
-                    className="custom-upload-btn bg-yellow-400 text-black hover:bg-yellow-500 px-6 py-3 font-mokoto transition-colors duration-300 rounded cursor-pointer text-center"
-                  >
-                    {selectedFileName || "Choose File"}
-                  </label>
-                  <input
-                    id="profileImage"
-                    type="file"
-                    accept="image/*"
-                    style={{ display: "none" }}
-                    onChange={async (e) => {
-                      const file = e.target.files?.[0];
-                      if (!file) {
-                        setSelectedFileName("");
-                        return;
-                      }
+                  <div className="w-full max-w-3xl">
+                    <div className="flex items-center justify-center w-full">
+                      <div className="flex-shrink-0 flex items-center gap-2">
+                        {/* Hidden UploadButton - hidden via inline style to ensure no extra visible button */}
+                        <div
+                          ref={uploadBtnWrapperRef}
+                          style={{ display: "none" }}
+                        >
+                          <UploadButton
+                            endpoint="profileImageUploader"
+                            onUploadProgress={(progress: number) => {
+                              setIsUploading(true);
+                              setUploadProgress(Math.round(progress));
+                            }}
+                            onClientUploadComplete={(res: any) => {
+                              if (res && res[0]) {
+                                const url =
+                                  res[0].ufsUrl || res[0].url || res[0].appUrl;
+                                setProfileImageUrl(url);
+                                setSelectedFileName(
+                                  res[0].name || "image_uploaded"
+                                );
+                                setIsUploading(false);
+                                setUploadProgress(100);
+                                setUploadSuccess(true);
+                                toast.success("Image uploaded");
+                              } else {
+                                setIsUploading(false);
+                                setUploadProgress(0);
+                                setUploadSuccess(false);
+                              }
+                            }}
+                            onUploadError={(error: Error) => {
+                              console.error("Upload Error:", error);
+                              toast.error(`Upload failed: ${error.message}`);
+                              setProfileImageUrl("");
+                              setSelectedFileName("");
+                              setIsUploading(false);
+                              setUploadProgress(0);
+                              setUploadSuccess(false);
+                            }}
+                            appearance={{
+                              button:
+                                "bg-yellow-600 hover:bg-yellow-700 text-black px-6 py-3 font-mokoto transition-colors duration-200 rounded-none",
+                              container: "p-0 h-full",
+                            }}
+                          />
+                        </div>
 
-                      if (file.size > 4 * 1024 * 1024) {
-                        toast.error("File too large (max 4MB)");
-                        setSelectedFileName("");
-                        return;
-                      }
+                        {/* Visible custom label button that triggers the hidden UploadButton */}
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setUploadSuccess(false);
+                            setUploadProgress(0);
+                            setIsUploading(true);
 
-                      setSelectedFileName(file.name);
-                      setProfileImageUrl("");
-
-                      try {
-                        const formData = new FormData();
-                        formData.append("file", file);
-
-                        const res = await fetch("/api/uploadthing", {
-                          method: "POST",
-                          body: formData,
-                        });
-
-                        const data = await res.json();
-                        if (data && data.url) {
-                          setProfileImageUrl(data.url);
-                          toast.success("Image uploaded");
-                        } else {
-                          throw new Error("No URL returned from upload");
-                        }
-                      } catch (err) {
-                        console.error("Upload error:", err);
-                        toast.error("Image upload failed");
-                        setProfileImageUrl("");
-                        setSelectedFileName("");
-                      }
-                    }}
-                  />
-                  <span className="file-info text-yellow-400 mt-2 text-sm">
-                    {selectedFileName ? selectedFileName : "No file chosen"}
-                  </span>
-                  <p className="text-xs text-gray-400 mt-3 font-mokoto text-center">
-                    Upload a professional photo (JPG, PNG, GIF - Max 4MB)
-                  </p>
+                            const wrapper = uploadBtnWrapperRef.current;
+                            if (wrapper) {
+                              const btn = wrapper.querySelector("button");
+                              const input =
+                                wrapper.querySelector("input[type=file]");
+                              if (btn) (btn as HTMLButtonElement).click();
+                              else if (input)
+                                (input as HTMLInputElement).click();
+                            }
+                          }}
+                          className="bg-yellow-400 text-black px-6 py-3 font-mokoto transition-colors duration-200 rounded relative z-50 hover:bg-yellow-500"
+                        >
+                          <span className="uppercase font-mokoto text-sm">
+                            {isUploading
+                              ? `Uploading ${uploadProgress}%`
+                              : uploadSuccess
+                              ? "Image uploaded"
+                              : "Upload image"}
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                    <p className="text-xs text-gray-400 mt-3 font-mokoto text-center">
+                      Upload a professional photo (JPG, PNG, GIF - Max 4MB)
+                    </p>
+                  </div>
                 </div>
-                {/* If you want to keep the UploadButton for actual upload, you can add it below: */}
-                {/*
-                <UploadButton ...existing props... />
-                */}
               </div>
             </motion.div>
 

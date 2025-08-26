@@ -7,8 +7,12 @@ import CyberButton from "@/components/ui/CyberButton";
 import TurnstileWrapper from "@/components/ui/TurnstileWrapper";
 // using native file input + server upload endpoint instead of UploadButton
 import { toast } from "sonner";
+import { UploadButton } from "@/utils/uploadthing";
 
 function MentorsForm() {
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [uploadSuccess, setUploadSuccess] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     const checkMobile = () => {
@@ -51,6 +55,7 @@ function MentorsForm() {
   const [isImageLoading, setIsImageLoading] = useState(false);
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
+  // Cloudflare Turnstile
   const [turnstileToken, setTurnstileToken] = useState<string>("");
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -58,6 +63,7 @@ function MentorsForm() {
     "idle" | "success" | "error"
   >("idle");
   const [showValidationWarning, setShowValidationWarning] = useState(false);
+  const uploadBtnWrapperRef = React.useRef<HTMLDivElement | null>(null);
 
   const handleInputChange = (
     e: React.ChangeEvent<
@@ -914,70 +920,96 @@ function MentorsForm() {
                 Profile Image
               </label>
               <div className="profile-image-upload w-full flex flex-col items-center gap-4">
-                <label
-                  htmlFor="profileImage"
-                  className="custom-upload-btn bg-yellow-400 text-black hover:bg-yellow-500 px-6 py-3 font-mokoto transition-colors duration-300 rounded cursor-pointer text-center"
-                  style={{ zIndex: 10, position: "relative" }}
-                >
-                  {selectedFileName || "Choose File"}
-                </label>
-                <input
-                  id="profileImage"
-                  type="file"
-                  accept="image/*"
-                  style={{ display: "none" }}
-                  onChange={async (e) => {
-                    const file = e.target.files?.[0];
-                    if (!file) {
-                      setSelectedFileName("");
-                      return;
-                    }
+                {/* Styled upload bar: filename on the left, UploadButton on the right */}
+                <div className="w-full max-w-3xl">
+                  <div className="flex items-center justify-center w-full">
+                    {/* Right-aligned UploadButton (keeps original callbacks) */}
+                    <div className="flex-shrink-0 flex items-center gap-2">
+                      {/* Hidden UploadButton - hidden via inline style to ensure no extra visible button */}
+                      <div
+                        ref={uploadBtnWrapperRef}
+                        style={{ display: "none" }}
+                      >
+                        <UploadButton
+                          endpoint="profileImageUploader"
+                          // optional progress callback (if supported by UploadThing)
+                          onUploadProgress={(progress: number) => {
+                            setIsUploading(true);
+                            setUploadProgress(Math.round(progress));
+                          }}
+                          onClientUploadComplete={(res: any) => {
+                            // res is an array of uploaded files; take first
+                            if (res && res[0]) {
+                              const url =
+                                res[0].ufsUrl || res[0].url || res[0].appUrl;
+                              setProfileImageUrl(url);
+                              // try to set a readable filename if available
+                              setSelectedFileName(
+                                res[0].name || "image_uploaded"
+                              );
+                              setIsUploading(false);
+                              setUploadProgress(100);
+                              setUploadSuccess(true);
+                              toast.success("Image uploaded");
+                            } else {
+                              setIsUploading(false);
+                              setUploadProgress(0);
+                              setUploadSuccess(false);
+                            }
+                          }}
+                          onUploadError={(error: Error) => {
+                            console.error("Upload Error:", error);
+                            toast.error(`Upload failed: ${error.message}`);
+                            setProfileImageUrl("");
+                            setSelectedFileName("");
+                            setIsUploading(false);
+                            setUploadProgress(0);
+                            setUploadSuccess(false);
+                          }}
+                          appearance={{
+                            // keep the default button visually hidden — we trigger it programmatically
+                            button:
+                              "bg-yellow-600 hover:bg-yellow-700 text-black px-6 py-3 font-mokoto transition-colors duration-200 rounded-none",
+                            container: "p-0 h-full",
+                          }}
+                        />
+                      </div>
 
-                    // quick client-side file size/type guard (max 4MB)
-                    if (file.size > 4 * 1024 * 1024) {
-                      toast.error("File too large (max 4MB)");
-                      setSelectedFileName("");
-                      return;
-                    }
+                      {/* Visible custom label button that triggers the hidden UploadButton */}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          // reset success/progress and start uploading state
+                          setUploadSuccess(false);
+                          setUploadProgress(0);
+                          setIsUploading(true);
 
-                    setSelectedFileName(file.name);
-                    setProfileImageUrl("");
-
-                    try {
-                      const formData = new FormData();
-                      formData.append("file", file);
-
-                      const res = await fetch("/api/uploadthing", {
-                        method: "POST",
-                        body: formData,
-                      });
-
-                      const data = await res.json();
-                      // Expecting upload endpoint to return { url: string }
-                      if (data && data.url) {
-                        setProfileImageUrl(data.url);
-                        toast.success("Image uploaded");
-                      } else {
-                        throw new Error("No URL returned from upload");
-                      }
-                    } catch (err) {
-                      console.error("Upload error:", err);
-                      toast.error("Image upload failed");
-                      setProfileImageUrl("");
-                      setSelectedFileName("");
-                    }
-                  }}
-                />
-                <span className="file-info text-yellow-400 mt-2 text-sm">
-                  {selectedFileName ? selectedFileName : "No file chosen"}
-                </span>
-                <p className="text-xs text-gray-400 mt-3 font-mokoto text-center">
-                  Upload a professional photo (JPG, PNG, GIF - Max 4MB)
-                </p>
-                {/* If you want to keep the UploadButton for actual upload, you can add it below: */}
-                {/*
-                <UploadButton ...existing props... />
-                */}
+                          // find the first button inside the UploadButton wrapper and click it
+                          const wrapper = uploadBtnWrapperRef.current;
+                          if (wrapper) {
+                            const btn = wrapper.querySelector("button");
+                            const input =
+                              wrapper.querySelector("input[type=file]");
+                            if (btn) (btn as HTMLButtonElement).click();
+                            else if (input) (input as HTMLInputElement).click();
+                          }
+                        }}
+                        className="bg-yellow-600 hover:bg-yellow-700 text-black px-6 py-3 font-mokoto transition-colors duration-200 rounded relative z-50"
+                      >
+                        <span className="uppercase font-mokoto text-sm">
+                          {isUploading
+                            ? `Uploading ${uploadProgress}%`
+                            : uploadSuccess
+                            ? "Image uploaded"
+                            : "Upload image"}
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                  <p className="text-xs text-gray-400 mt-3 font-mokoto text-center">
+                    Upload a professional photo (JPG, PNG, GIF - Max 4MB)
+                  </p>
+                </div>
               </div>
             </motion.div>
 
@@ -1014,38 +1046,19 @@ function MentorsForm() {
             </motion.div>
 
             {/* Turnstile Bot Protection */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="flex justify-center my-6"
-            >
-              <TurnstileWrapper
-                onVerify={(token) => setTurnstileToken(token)}
-                onError={() => {
-                  setTurnstileToken("");
-                  toast.error("Verification failed. Please try again.");
-                }}
-                onExpire={() => {
-                  setTurnstileToken("");
-                  toast.warning("Verification expired. Please verify again.");
-                }}
-                theme="dark"
-                className="my-4"
-              />
-            </motion.div>
+            <TurnstileWrapper
+              onVerify={(token) => setTurnstileToken(token)}
+              onExpire={() => setTurnstileToken("")}
+              className="mx-auto w-fit z-50"
+            />
 
             <motion.div
               className="text-center"
               whileHover={
-                !termsAccepted || !profileImageUrl || !turnstileToken
-                  ? {}
-                  : { scale: 1.05 }
+                !termsAccepted || !profileImageUrl ? {} : { scale: 1.05 }
               }
               whileTap={
-                !termsAccepted || !profileImageUrl || !turnstileToken
-                  ? {}
-                  : { scale: 0.95 }
+                !termsAccepted || !profileImageUrl ? {} : { scale: 0.95 }
               }
             >
               <CyberButton
