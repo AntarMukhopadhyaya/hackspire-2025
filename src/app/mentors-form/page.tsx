@@ -1039,18 +1039,33 @@ function MentorsForm() {
                     className="text-yellow-400 hover:text-yellow-300 underline font-semibold relative z-30"
                   >
                     Mentor Terms & Conditions
-                  </button>{" "}
+                  </button>
                   and understand my role and responsibilities *
                 </label>
               </div>
             </motion.div>
 
             {/* Turnstile Bot Protection */}
-            <TurnstileWrapper
-              onVerify={(token) => setTurnstileToken(token)}
-              onExpire={() => setTurnstileToken("")}
-              className="mx-auto w-fit z-50"
-            />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="flex justify-center my-6"
+            >
+              <TurnstileWrapper
+                onVerify={(token) => setTurnstileToken(token)}
+                onError={() => {
+                  setTurnstileToken("");
+                  toast.error("Verification failed. Please try again.");
+                }}
+                onExpire={() => {
+                  setTurnstileToken("");
+                  toast.warning("Verification expired. Please verify again.");
+                }}
+                theme="dark"
+                className="my-4"
+              />
+            </motion.div>
 
             <motion.div
               className="text-center"
