@@ -107,7 +107,7 @@ async function sendConfirmationEmail(mentorData: any) {
       to: mentorData.email,
       subject: "🚀 Welcome to HackSpire 2025 Mentor Network!",
       html: `
-        <div style="font-family: 'Courier New', monospace; max-width: 100%; width: 100%; margin: 0 auto; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%); color: #ffffff; padding: 0; border-radius: 15px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
+        <div style="font-family: 'Courier New', monospace; max-width: 700px; margin: 0 auto; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%); color: #ffffff; padding: 0; border-radius: 15px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
 
           <!-- Mobile Responsive Styles -->
           <style>

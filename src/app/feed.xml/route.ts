@@ -22,10 +22,10 @@ export async function GET() {
     </item>
     
     <item>
-      <title>Explore Innovation Tracks at HackSpire 2025</title>
-      <description>Discover the exciting innovation tracks including AI, Blockchain, Cybersecurity, Agriculture, Robotics, Gaming, Healthcare, and Open Innovation.</description>
-      <link>https://hackspire.tech/tracks</link>
-      <guid>https://hackspire.tech/tracks</guid>
+  <title>Explore Innovation Themes at HackSpire 2025</title>
+  <description>Discover the exciting innovation themes including AI, Blockchain, Cybersecurity, Agriculture, Robotics, Gaming, Healthcare, and Open Innovation.</description>
+  <link>https://hackspire.tech/themes</link>
+  <guid>https://hackspire.tech/themes</guid>
       <pubDate>${new Date().toUTCString()}</pubDate>
       <category>Information</category>
     </item>

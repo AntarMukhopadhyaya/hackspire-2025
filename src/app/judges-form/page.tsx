@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import CyberButton from "@/components/ui/CyberButton";
 import TurnstileWrapper from "@/components/ui/TurnstileWrapper";
-import { UploadButton } from "@/utils/uploadthing";
+// using native file input + server upload endpoint instead of UploadButton
 import { toast } from "sonner";
 
 function JudgesForm() {
@@ -1379,13 +1379,42 @@ function JudgesForm() {
                     type="file"
                     accept="image/*"
                     style={{ display: "none" }}
-                    onChange={(e) => {
+                    onChange={async (e) => {
                       const file = e.target.files?.[0];
-                      if (file) {
-                        setSelectedFileName(file.name);
-                        setProfileImageUrl(""); // Reset previous upload
-                        // You can add upload logic here if needed
-                      } else {
+                      if (!file) {
+                        setSelectedFileName("");
+                        return;
+                      }
+
+                      if (file.size > 4 * 1024 * 1024) {
+                        toast.error("File too large (max 4MB)");
+                        setSelectedFileName("");
+                        return;
+                      }
+
+                      setSelectedFileName(file.name);
+                      setProfileImageUrl("");
+
+                      try {
+                        const formData = new FormData();
+                        formData.append("file", file);
+
+                        const res = await fetch("/api/uploadthing", {
+                          method: "POST",
+                          body: formData,
+                        });
+
+                        const data = await res.json();
+                        if (data && data.url) {
+                          setProfileImageUrl(data.url);
+                          toast.success("Image uploaded");
+                        } else {
+                          throw new Error("No URL returned from upload");
+                        }
+                      } catch (err) {
+                        console.error("Upload error:", err);
+                        toast.error("Image upload failed");
+                        setProfileImageUrl("");
                         setSelectedFileName("");
                       }
                     }}

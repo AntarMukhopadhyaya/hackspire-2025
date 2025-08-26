@@ -44,21 +44,21 @@ const faqData: FAQItem[] = [
     id: 5,
     question: "What are the participation fees and prizes?",
     answer:
-      "Registration is completely free! We offer over ₹5 lakhs in prizes including cash rewards, internship opportunities, startup funding, and cutting-edge tech gadgets. Special category prizes are available for AI/ML, blockchain, and sustainability tracks.",
+      "Registration is completely free! We offer over ₹5 lakhs in prizes including cash rewards, internship opportunities, startup funding, and cutting-edge tech gadgets. Special category prizes are available for AI/ML, blockchain, and sustainability themes.",
     category: "Prizes",
   },
   {
     id: 6,
     question: "Can I participate remotely or is it in-person only?",
     answer:
-      "HackSpire 2025 is primarily an in-person event in Kolkata, but we also offer a hybrid track for remote participants. Remote teams get access to virtual mentorship, online workshops, and can present their projects via video calls.",
+      "HackSpire 2025 is primarily an in-person event in Kolkata, but we also offer a hybrid theme for remote participants. Remote teams get access to virtual mentorship, online workshops, and can present their projects via video calls.",
     category: "Participation",
   },
   {
     id: 7,
     question: "What kind of mentorship and support is available?",
     answer:
-      "We have 50+ industry experts, startup founders, and tech leaders as mentors. Mentorship sessions are available 24/7 during the hackathon. We also provide technical workshops, API documentation, and dedicated support channels for each track.",
+      "We have 50+ industry experts, startup founders, and tech leaders as mentors. Mentorship sessions are available 24/7 during the hackathon. We also provide technical workshops, API documentation, and dedicated support channels for each theme.",
     category: "Support",
   },
   {

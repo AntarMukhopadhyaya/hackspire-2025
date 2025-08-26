@@ -10,7 +10,7 @@ Disallow: /api/
 
 # Allow important pages
 Allow: /about
-Allow: /tracks
+Allow: /themes
 Allow: /crews
 Allow: /collabs
 Allow: /glory

@@ -14,7 +14,7 @@ import {
 } from "react-icons/fa";
 import CyberButton from "@/components/ui/CyberButton";
 
-const tracks = [
+const themes = [
   {
     id: 1,
     title: "AI",
@@ -129,7 +129,7 @@ const tracks = [
   },
 ];
 
-function Tracks() {
+function Themes() {
   return (
     <div className="min-h-screen text-white py-20 px-4 relative overflow-hidden">
       {/* Mobile-specific styles for sleek cards */}
@@ -374,7 +374,7 @@ function Tracks() {
         </div>
       </div>
 
-      {/* Centered Tracks Title */}
+      {/* Centered Themes Title */}
       <div className="text-center mb-16 relative z-10">
         <motion.h1
           initial={{ opacity: 0, y: -30 }}
@@ -382,7 +382,7 @@ function Tracks() {
           transition={{ duration: 0.8 }}
           className="text-6xl sm:text-7xl md:text-[6rem] lg:text-[8rem] xl:text-[10rem] font-bold text-black font-sddystopiandemo"
         >
-          TRACKS
+          THEMES
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -396,28 +396,28 @@ function Tracks() {
             system-breaking potential.
           </span>
           <span className="md:hidden">
-            Choose your innovation track and build the future with cutting-edge
+            Choose your innovation theme and build the future with cutting-edge
             technology.
           </span>
         </motion.p>
       </div>
 
-      {/* Track Cards */}
+      {/* Theme Cards */}
       <div className="max-w-7xl mx-auto mt-32 sm:mt-40 md:mt-20 mb-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8 xl:gap-4 2xl:gap-20">
-          {tracks.map((track, index) => {
-            const IconComponent = track.icon;
+          {themes.map((theme, index) => {
+            const IconComponent = theme.icon;
 
             return (
               <motion.div
-                key={track.id}
+                key={theme.id}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="relative"
               >
                 {/* Cyberpunk Yellow Container with Clip-Path Cut Edges - Sleek Size */}
-                <div className="relative p-4 md:p-6 group cursor-pointer transition-all xl:scale-75 2xl:scale-90 2xl:hover:scale-95 xl:w-[480px] xl:h-[480px] xl:-translate-x-12 2xl:-translate-x-14 md:w-[450px] md:mx-auto duration-300  hover:scale-105 xl:hover:scale-90 h-full min-h-[280px] md:min-h-[200px] track-card-mobile">
+                <div className="relative p-4 md:p-6 group cursor-pointer transition-all xl:scale-75 2xl:scale-90 2xl:hover:scale-95 xl:w-[480px] xl:h-[480px] xl:-translate-x-12 2xl:-translate-x-14 md:w-[450px] md:mx-auto duration-300  hover:scale-105 xl:hover:scale-90 h-full min-h-[280px] md:min-h-[200px] theme-card-mobile">
                   {/* Background with clip-path cuts */}
                   <div
                     className="absolute inset-0 bg-yellow-400 transition-all duration-300 group-hover:animate-pulse"
@@ -464,7 +464,7 @@ function Tracks() {
                   <div className="relative z-10 h-full flex flex-col">
                     {/* Left Side - Icon and Title */}
                     <div className="mb-4 md:mb-0 md:pr-6">
-                      {/* Track Header with Icon and Visit Link */}
+                      {/* Theme Header with Icon and Visit Link */}
                       <div className="flex items-start justify-between mb-3 md:mb-4">
                         <div className="p-2 md:p-3 bg-black/20 rounded-lg">
                           <IconComponent className="w-6 h-6 md:w-8 md:h-8 text-black" />
@@ -472,47 +472,47 @@ function Tracks() {
 
                         {/* Visit Link Icon - Top Right Corner */}
                         <a
-                          href={`https://en.wikipedia.org/wiki/${track.title.replace(
+                          href={`https://en.wikipedia.org/wiki/${theme.title.replace(
                             " ",
                             "_"
                           )}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-black/20 text-black hover:bg-black/30 transition-all duration-200 hover:scale-110"
-                          title={`Learn more about ${track.title}`}
+                          title={`Learn more about ${theme.title}`}
                         >
                           <FaExternalLinkAlt className="w-4 h-4" />
                         </a>
                       </div>
 
-                      {/* Track Title */}
+                      {/* Theme Title */}
                       <h3
                         className="text-2xl md:text-3xl lg:text-4xl font-bold text-black mb-2 md:mb-3 track-title"
                         style={{ fontFamily: "'Mokoto Demo', monospace" }}
                       >
-                        {track.title}
+                        {theme.title}
                       </h3>
 
-                      {/* Track Subtitle */}
+                      {/* Theme Subtitle */}
                       <p
                         className="text-sm md:text-base text-black font-medium mb-3 track-subtitle"
                         style={{ fontFamily: "'Mokoto Demo', monospace" }}
                       >
-                        {track.subtitle}
+                        {theme.subtitle}
                       </p>
                     </div>
 
                     {/* Right Side - Description and Challenges */}
                     <div className="flex flex-col h-full">
-                      {/* Track Description */}
+                      {/* Theme Description */}
                       <p
                         className="text-xs md:text-sm text-black leading-relaxed mb-4 lg:flex-grow track-description"
                         style={{ fontFamily: "'Mokoto Demo', monospace" }}
                       >
-                        {track.description}
+                        {theme.description}
                       </p>
 
-                      {/* Challenges */}
+                      {/* Key Areas */}
                       <div>
                         <h4
                           className="text-xs md:text-sm font-bold text-black mb-2 track-challenges"
@@ -521,10 +521,10 @@ function Tracks() {
                           Key Areas:
                         </h4>
                         <div className="grid grid-cols-2 gap-1 md:gap-2">
-                          {track.challenges.map((challenge, idx) => (
+                          {theme.challenges.map((challenge, idx) => (
                             <div
                               key={idx}
-                              className="text-xs md:text-sm text-black bg-black/10 px-2 py-1 rounded track-challenges"
+                              className="text-xs md:text-sm text-black bg-black/10 px-2 py-1 rounded theme-challenges"
                               style={{ fontFamily: "'Mokoto Demo', monospace" }}
                             >
                               {challenge}
@@ -568,7 +568,7 @@ function Tracks() {
             className="text-yellow-300 mb-8 max-w-2xl mx-auto text-sm md:text-lg"
             style={{ fontFamily: "'Mokoto Demo', monospace" }}
           >
-            Choose your track and start building innovative solutions that will
+            Choose your theme and start building innovative solutions that will
             shape tomorrow's technology landscape.
           </p>
           <CyberButton href="/register">
@@ -580,4 +580,4 @@ function Tracks() {
   );
 }
 
-export default Tracks;
+export default Themes;

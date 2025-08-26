@@ -54,7 +54,7 @@ export const usePageTransition = () => {
     if (path.includes("/about")) return "slide";
     if (path.includes("/contact")) return "fade";
     if (path.includes("/crews")) return "scale";
-    if (path.includes("/tracks")) return "slide";
+    if (path.includes("/themes")) return "slide";
     if (path.includes("/collabs")) return "fade";
     if (path.includes("/glory")) return "hero";
     return "default";
