@@ -19,6 +19,7 @@ export async function POST(request: NextRequest) {
   try {
     // Validate environment variables
     if (!GMAIL_USER || !GMAIL_APP_PASSWORD) {
+      console.error("Email configuration not found");
       return NextResponse.json(
         { error: "Email configuration not found" },
         { status: 500 }
@@ -30,6 +31,7 @@ export async function POST(request: NextRequest) {
 
     // Verify Turnstile token first
     if (!turnstileToken) {
+      console.error("Bot verification required");
       return NextResponse.json(
         { error: "Bot verification required" },
         { status: 400 }
@@ -50,6 +52,7 @@ export async function POST(request: NextRequest) {
         const errorMessage = getTurnstileErrorMessage(
           turnstileResult["error-codes"]
         );
+        console.error("Turnstile verification failed:", errorMessage);
         return NextResponse.json(
           { error: `Verification failed: ${errorMessage}` },
           { status: 400 }
@@ -70,6 +73,7 @@ export async function POST(request: NextRequest) {
     // Check for duplicate submissions within the last 30 seconds
     const recentSubmission = recentSubmissions.get(`${email}-${subject}`);
     if (recentSubmission && now - recentSubmission < 30000) {
+      console.error("Duplicate submission detected");
       return NextResponse.json(
         {
           error:
@@ -91,6 +95,7 @@ export async function POST(request: NextRequest) {
 
     // Validate required fields
     if (!name || !email || !subject || !message) {
+      console.error("All fields are required");
       return NextResponse.json(
         { error: "All fields are required" },
         { status: 400 }
@@ -100,6 +105,7 @@ export async function POST(request: NextRequest) {
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
+      console.error("Invalid email format");
       return NextResponse.json(
         { error: "Invalid email format" },
         { status: 400 }
