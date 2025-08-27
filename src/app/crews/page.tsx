@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Filter, Users, Code, Wrench, Star } from "lucide-react";
 import { CrewCard, type CrewMember } from "../../components/ui/CrewCard";
 import crewMembersData from "../../data/crew-members.json";
+import MatrixRain from "@/components/ui/MatrixRain";
 
 const filterOptions = [
   { id: "all", label: "All Crews", icon: Filter },
@@ -49,57 +50,11 @@ function Crews() {
   return (
     <div className="min-h-screen text-white py-20 px-4 relative">
       {/* Matrix Rain Background */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          {/* Dynamic CSS for matrix columns */}
-          <style>
-            {Array.from({ length: 50 })
-              .map((_, i) => {
-                // Use static values for SSR
-                const delay = 2;
-                const duration = 5;
-                return `.matrix-column-${i} {
-                left: ${i * 2}%;
-                animation-delay: ${delay}s;
-                animation-duration: ${duration}s;
-                position: absolute;
-                top: 0;
-                z-index: 1;
-                animation-name: matrixRain !important;
-                animation-timing-function: linear !important;
-                animation-iteration-count: infinite !important;
-                animation-fill-mode: both !important;
-              }`;
-              })
-              .join("\n")}
-          </style>
 
-          {/* Matrix columns */}
-          {Array.from({ length: 50 }).map((_, i) => (
-            <div
-              key={i}
-              className={`absolute top-0 text-green-400 font-mono text-xs leading-none matrix-column-animated matrix-column-${i}`}
-              style={{
-                left: `${i * 2}%`,
-                animationDelay: `2s`,
-                animationDuration: `5s`,
-                zIndex: 1,
-                animationName: "matrixRain",
-                animationTimingFunction: "linear",
-                animationIterationCount: "infinite",
-                animationFillMode: "both",
-              }}
-            >
-              {Array.from({ length: 20 }).map((_, j) => (
-                <div key={j} className="opacity-70">
-                  {"#"}
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
-
+      <MatrixRain
+        className="!fixed !inset-0 !z-0 !pointer-events-none opacity-20"
+        isFullScreen={true}
+      />
       {/* Yellow Trapezium Background with Clip-Path */}
       <div className="absolute top-0 left-0 right-0 h-64 sm:h-80 md:h-96 z-0">
         {/* Main trapezium with clip-path */}

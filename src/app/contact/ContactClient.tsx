@@ -110,7 +110,6 @@ export default function ContactClient() {
 
   return (
     <div className="min-h-screen text-white pt-20 sm:pt-24 md:pt-28 pb-8 sm:pb-12 md:pb-20 px-4 relative bg-transparent">
-      {/* Matrix Rain Background */}
       {/* Matrix Rain Background - Optimized Canvas Version */}
       <MatrixRain
         className="!fixed !inset-0 !z-0 !pointer-events-none"
