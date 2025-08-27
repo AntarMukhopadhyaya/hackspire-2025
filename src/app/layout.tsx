@@ -10,7 +10,6 @@ import LenisProvider from "@/components/ui/LenisProvider";
 import PageTransition from "@/lib/PageTransition";
 import RouteChangeAnimation from "@/lib/RouteChangeAnimation";
 import { Toaster } from "@/components/ui/sonner";
-import ConditionalAppLoader from "@/components/ui/ConditionalAppLoader";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import StructuredData from "@/components/SEO/StructuredData";
 
@@ -273,7 +272,7 @@ export default function RootLayout({
         {/* </ConditionalAppLoader> */}
 
         {/* Devfolio SDK Script */}
-        <script defer async src="https://apply.devfolio.co/v2/sdk.js"></script>
+        {/* <script defer async src="https://apply.devfolio.co/v2/sdk.js"></script> */}
         <SpeedInsights />
         <Analytics />
       </body>

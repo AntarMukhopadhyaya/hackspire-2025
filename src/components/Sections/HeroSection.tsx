@@ -360,10 +360,6 @@ export default function HeroSection() {
       </motion.div>
 
       <div className="sm:mt-8 md:mt-42 lg:mt-32">
-        <div className="z-30 my-5">
-          <DevfolioButton />
-        </div>
-
         {/* Join Discord Button - Better mobile positioning */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -371,12 +367,16 @@ export default function HeroSection() {
           transition={{ delay: 2.0, duration: 0.8, ease: "easeOut" }}
           className="absolute bottom-26 sm:bottom-26 md:bottom-26 left-0 right-0 z-50 flex items-center justify-center px-4"
         >
+          <div className="flex flex-col gap-4">
+
+          <DevfolioButton/>
           <CyberButton
             onClick={() => setModalOpen(true)}
             className="text-sm sm:text-lg"
-          >
+            >
             Pre-Register Now
           </CyberButton>
+            </div>
         </motion.div>
 
         {/* Pre-Register Modal */}
