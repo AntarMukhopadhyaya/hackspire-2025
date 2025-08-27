@@ -12,6 +12,7 @@ import RouteChangeAnimation from "@/lib/RouteChangeAnimation";
 import { Toaster } from "@/components/ui/sonner";
 import ConditionalAppLoader from "@/components/ui/ConditionalAppLoader";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import StructuredData from "@/components/SEO/StructuredData";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,7 +29,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "HackSpire 2025 - Biggest Hackathon by FIEM ACM Student Chapter",
+  title: {
+    default: "HackSpire 2025 - Biggest Hackathon by FIEM ACM Student Chapter",
+    template: "%s | HackSpire 2025",
+  },
   description:
     "Join HackSpire 2025, the largest 25-hour hackathon organized by FIEM ACM Student Chapter. Build innovative solutions in AI, Blockchain, Cybersecurity, Agriculture, Robotics, Gaming, Healthcare, and Open Innovation. Future Institute of Engineering's premier hackathon event.",
   keywords: [
@@ -99,10 +103,11 @@ export const metadata: Metadata = {
       "Join HackSpire 2025, the largest 25-hour hackathon organized by FIEM ACM Student Chapter. Build innovative solutions in AI, Blockchain, Cybersecurity, Agriculture, Robotics, Gaming, Healthcare, and Open Innovation.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.svg",
         width: 1200,
         height: 630,
         alt: "HackSpire 2025 - Biggest Hackathon by FIEM ACM Student Chapter",
+        type: "image/svg+xml",
       },
     ],
   },
@@ -111,7 +116,7 @@ export const metadata: Metadata = {
     title: "HackSpire 2025 - Biggest Hackathon by FIEM ACM Student Chapter",
     description:
       "Join HackSpire 2025, the largest 25-hour hackathon organized by FIEM ACM Student Chapter. Build innovative solutions in AI, Blockchain, Cybersecurity, Agriculture, Robotics, Gaming, Healthcare, and Open Innovation.",
-    images: ["/og-image.jpg"],
+    images: ["/og-image.svg"],
     creator: "@hackspire2025",
     site: "@hackspire2025",
   },
@@ -187,52 +192,8 @@ export default function RootLayout({
           href="/feed.xml"
         />
 
-        {/* Structured Data for Hackathon Event */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Event",
-              name: "HackSpire 2025",
-              description:
-                "Join HackSpire 2025, the largest 25-hour hackathon organized by FIEM ACM Student Chapter. Build innovative solutions in AI, Blockchain, Cybersecurity, Agriculture, Robotics, Gaming, Healthcare, and Open Innovation.",
-              startDate: "2025-01-01T00:00:00+05:30",
-              endDate: "2025-01-02T00:00:00+05:30",
-              location: {
-                "@type": "Place",
-                name: "Future Institute of Engineering",
-                address: {
-                  "@type": "PostalAddress",
-                  addressLocality: "Kolkata",
-                  addressRegion: "West Bengal",
-                  addressCountry: "IN",
-                },
-              },
-              organizer: {
-                "@type": "Organization",
-                name: "FIEM ACM Student Chapter",
-                url: "https://hackspire.tech",
-              },
-              performer: {
-                "@type": "Organization",
-                name: "FIEM ACM Student Chapter",
-              },
-              offers: {
-                "@type": "Offer",
-                price: "0",
-                priceCurrency: "INR",
-                availability: "https://schema.org/InStock",
-              },
-              eventStatus: "https://schema.org/EventScheduled",
-              eventAttendanceMode:
-                "https://schema.org/OfflineEventAttendanceMode",
-              category: "Hackathon",
-              keywords:
-                "Hackathon, AI, Blockchain, Cybersecurity, Innovation, Technology",
-            }),
-          }}
-        />
+        {/* Structured Data */}
+        <StructuredData />
 
         {/* Organization Structured Data */}
         <script

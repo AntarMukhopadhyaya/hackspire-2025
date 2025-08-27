@@ -1,0 +1,61 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0a"/>
+      <stop offset="50%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="titleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#eab308"/>
+      <stop offset="50%" style="stop-color:#f59e0b"/>
+      <stop offset="100%" style="stop-color:#ef4444"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#eab308" stroke-width="0.5" opacity="0.1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Main title -->
+  <text x="600" y="200" text-anchor="middle" fill="url(#titleGradient)" font-family="Arial, sans-serif" font-size="72" font-weight="bold">
+    HackSpire 2025
+  </text>
+
+  <!-- Subtitle -->
+  <text x="600" y="260" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="32" opacity="0.9">
+    Biggest Hackathon by FIEM ACM Student Chapter
+  </text>
+
+  <!-- Description -->
+  <text x="600" y="320" text-anchor="middle" fill="#eab308" font-family="Arial, sans-serif" font-size="24" font-weight="500">
+    25-Hour Innovation Marathon
+  </text>
+
+  <!-- Tracks -->
+  <text x="600" y="380" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="18" opacity="0.8">
+    AI • Blockchain • Cybersecurity • Agriculture • Robotics • Gaming • Healthcare
+  </text>
+
+  <!-- Date and venue -->
+  <text x="600" y="450" text-anchor="middle" fill="#f59e0b" font-family="Arial, sans-serif" font-size="20" font-weight="600">
+    March 2025 | Future Institute of Engineering
+  </text>
+
+  <!-- Website -->
+  <text x="600" y="500" text-anchor="middle" fill="#eab308" font-family="Arial, sans-serif" font-size="18">
+    hackspire.tech
+  </text>
+
+  <!-- Decorative elements -->
+  <circle cx="150" cy="150" r="3" fill="#eab308" opacity="0.6"/>
+  <circle cx="1050" cy="150" r="3" fill="#ef4444" opacity="0.6"/>
+  <circle cx="150" cy="480" r="3" fill="#f59e0b" opacity="0.6"/>
+  <circle cx="1050" cy="480" r="3" fill="#eab308" opacity="0.6"/>
+</svg>

@@ -129,7 +129,7 @@ const themes = [
   },
 ];
 
-function Themes() {
+export default function ThemeClient() {
   return (
     <div className="min-h-screen text-white py-20 px-4 relative overflow-hidden">
       {/* Mobile-specific styles for sleek cards */}
@@ -579,5 +579,3 @@ function Themes() {
     </div>
   );
 }
-
-export default Themes;

@@ -2,7 +2,6 @@
 
 import { Turnstile } from "@marsidev/react-turnstile";
 import { useEffect, useState } from "react";
-import { createPortal } from "react-dom";
 
 interface TurnstileWrapperProps {
   onVerify: (token: string) => void;
@@ -18,11 +17,11 @@ export default function TurnstileWrapper({
   onError,
   onExpire,
   className = "",
-  theme = "dark",
+  theme = "light",
   size = "normal",
 }: TurnstileWrapperProps) {
   const [siteKey, setSiteKey] = useState<string>("");
-  const [portalEl, setPortalEl] = useState<HTMLDivElement | null>(null);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     // Get site key from environment variable
@@ -34,38 +33,26 @@ export default function TurnstileWrapper({
         "Cloudflare Turnstile site key not found in environment variables"
       );
     }
+    setMounted(true);
   }, []);
 
-  // Create a portal element on mount so the widget renders at document.body
-  useEffect(() => {
-    const node = document.createElement("div");
-    node.setAttribute("data-turnstile-portal", "true");
-    document.body.appendChild(node);
-    setPortalEl(node);
-    return () => {
-      if (node.parentNode) node.parentNode.removeChild(node);
-    };
-  }, []);
-
-  if (!siteKey || !portalEl) {
+  if (!mounted || !siteKey) {
     return (
       <div
         className={`p-4 border border-gray-600 rounded bg-gray-800/50 ${className}`}
       >
-        <p className="text-gray-400 text-sm">Loading verification...</p>
+        <p className="text-gray-400 text-sm text-center">
+          Loading verification...
+        </p>
       </div>
     );
   }
 
-  const content = (
+  return (
     <div
-      className={`turnstile-root fixed inset-0 flex items-center justify-center pointer-events-none`}
-      style={{ zIndex: 2147483647 }}
+      className={`turnstile-container w-full flex justify-center ${className}`}
     >
-      <div
-        className={`turnstile-container pointer-events-auto ${className}`}
-        style={{ zIndex: 2147483647 }}
-      >
+      <div className="turnstile-widget">
         <Turnstile
           siteKey={siteKey}
           onSuccess={onVerify}
@@ -78,25 +65,33 @@ export default function TurnstileWrapper({
         />
       </div>
       <style jsx>{`
-        .turnstile-container {
+        .turnstile-widget {
           display: flex;
           justify-content: center;
           align-items: center;
-          margin: 0;
+          width: 100%;
         }
 
-        /* Custom styling for cyberpunk theme - ensure iframe sits above everything */
-        .turnstile-container :global(iframe) {
-          position: relative !important;
-          z-index: 2147483647 !important;
-          pointer-events: auto !important;
-          border-radius: 4px;
-          border: 1px solid #facc15;
-          box-shadow: 0 0 10px rgba(250, 204, 21, 0.3);
+        /* Custom styling for cyberpunk theme */
+        .turnstile-widget :global(iframe) {
+          border-radius: 4px !important;
+          border: 2px solid #facc15 !important;
+          box-shadow: 0 0 15px rgba(250, 204, 21, 0.4) !important;
+          filter: brightness(1.3) contrast(1.2) !important;
+          background: rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .turnstile-widget :global(iframe):hover {
+          box-shadow: 0 0 20px rgba(250, 204, 21, 0.6) !important;
+          border-color: #fbbf24 !important;
+          filter: brightness(1.4) contrast(1.25) !important;
+        }
+
+        /* Style the actual checkbox content */
+        .turnstile-widget :global(iframe) :global(*) {
+          filter: brightness(1.2) !important;
         }
       `}</style>
     </div>
   );
-
-  return createPortal(content, portalEl);
 }

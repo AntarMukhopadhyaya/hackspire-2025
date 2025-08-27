@@ -11,7 +11,7 @@ export async function GET() {
     <language>en-US</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <ttl>60</ttl>
-    
+
     <item>
       <title>HackSpire 2025 Registration Now Open!</title>
       <description>Join the biggest hackathon of 2025! Registration is now open for HackSpire 2025, organized by FIEM ACM Student Chapter.</description>
@@ -20,16 +20,16 @@ export async function GET() {
       <pubDate>${new Date().toUTCString()}</pubDate>
       <category>Announcement</category>
     </item>
-    
+
     <item>
-  <title>Explore Innovation Themes at HackSpire 2025</title>
-  <description>Discover the exciting innovation themes including AI, Blockchain, Cybersecurity, Agriculture, Robotics, Gaming, Healthcare, and Open Innovation.</description>
-  <link>https://hackspire.tech/themes</link>
-  <guid>https://hackspire.tech/themes</guid>
+      <title>Explore Innovation Tracks at HackSpire 2025</title>
+      <description>Discover the exciting innovation tracks including AI, Blockchain, Cybersecurity, Agriculture, Robotics, Gaming, Healthcare, and Open Innovation.</description>
+      <link>https://hackspire.tech/tracks</link>
+      <guid>https://hackspire.tech/tracks</guid>
       <pubDate>${new Date().toUTCString()}</pubDate>
       <category>Information</category>
     </item>
-    
+
     <item>
       <title>Meet the Crew Behind HackSpire 2025</title>
       <description>Get to know the amazing team organizing HackSpire 2025 and learn about their vision for the biggest hackathon event.</description>
@@ -38,7 +38,7 @@ export async function GET() {
       <pubDate>${new Date().toUTCString()}</pubDate>
       <category>Team</category>
     </item>
-    
+
     <item>
       <title>Collaboration Opportunities at HackSpire 2025</title>
       <description>Explore partnership and collaboration opportunities with HackSpire 2025, the premier hackathon event of the year.</description>

@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-# Disallow form pages and API routes
+# Disallow form pages and API routes for privacy
 Disallow: /judges-form/
 Disallow: /mentors-form/
 Disallow: /judge-edit-request/
@@ -9,16 +9,21 @@ Disallow: /mentor-edit-request/
 Disallow: /api/
 
 # Allow important pages
-Allow: /about
-Allow: /themes
-Allow: /crews
-Allow: /collabs
-Allow: /glory
+Allow: /tracks
 Allow: /contact
-Allow: /sponsors
+Allow: /crews
 
 # Sitemap location
 Sitemap: https://hackspire.tech/sitemap.xml
 
-# Crawl delay (optional)
+# Crawl delay to be respectful
 Crawl-delay: 1
+
+# Specific bot instructions
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2

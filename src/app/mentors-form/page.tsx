@@ -1050,7 +1050,7 @@ function MentorsForm() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6 }}
-              className="flex justify-center my-6"
+              className="flex justify-center mb-8"
             >
               <TurnstileWrapper
                 onVerify={(token) => setTurnstileToken(token)}
@@ -1062,8 +1062,7 @@ function MentorsForm() {
                   setTurnstileToken("");
                   toast.warning("Verification expired. Please verify again.");
                 }}
-                theme="dark"
-                className="my-4"
+                className="w-full max-w-sm"
               />
             </motion.div>
 
