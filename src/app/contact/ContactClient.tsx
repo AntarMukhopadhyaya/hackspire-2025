@@ -754,7 +754,7 @@ export default function ContactClient() {
                   setTurnstileToken("");
                   toast.warning("Verification expired. Please verify again.");
                 }}
-                className="w-full max-w-sm"
+                className="w-full max-w-sm z-20"
               />
             </motion.div>
 
