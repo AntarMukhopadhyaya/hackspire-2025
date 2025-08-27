@@ -6,6 +6,7 @@ import { Send } from "lucide-react";
 import CyberButton from "@/components/ui/CyberButton";
 import TurnstileWrapper from "@/components/ui/TurnstileWrapper";
 import { toast } from "sonner";
+import MatrixRain from "@/components/ui/MatrixRain";
 
 export default function ContactClient() {
   const [formData, setFormData] = useState({
@@ -110,55 +111,11 @@ export default function ContactClient() {
   return (
     <div className="min-h-screen text-white pt-20 sm:pt-24 md:pt-28 pb-8 sm:pb-12 md:pb-20 px-4 relative bg-transparent">
       {/* Matrix Rain Background */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          {/* Dynamic CSS for matrix columns */}
-          <style>
-            {Array.from({ length: 50 })
-              .map((_, i) => {
-                const delay = Math.random() * 5;
-                const duration = 3 + Math.random() * 4;
-                return `.matrix-column-${i} {
-                left: ${i * 2}%;
-                animation-delay: ${delay}s;
-                animation-duration: ${duration}s;
-                position: absolute;
-                top: 0;
-                z-index: 1;
-                animation-name: matrixRain !important;
-                animation-timing-function: linear !important;
-                animation-iteration-count: infinite !important;
-                animation-fill-mode: both !important;
-              }`;
-              })
-              .join("\n")}
-          </style>
-
-          {/* Matrix columns */}
-          {Array.from({ length: 50 }).map((_, i) => (
-            <div
-              key={i}
-              className={`absolute top-0 text-green-400 font-mono text-xs leading-none matrix-column-animated matrix-column-${i}`}
-              style={{
-                left: `${i * 2}%`,
-                animationDelay: `${Math.random() * 5}s`,
-                animationDuration: `${3 + Math.random() * 4}s`,
-                zIndex: 1,
-                animationName: "matrixRain",
-                animationTimingFunction: "linear",
-                animationIterationCount: "infinite",
-                animationFillMode: "both",
-              }}
-            >
-              {Array.from({ length: 20 }).map((_, j) => (
-                <div key={j} className="opacity-70">
-                  {String.fromCharCode(33 + Math.floor(Math.random() * 94))}
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
+      {/* Matrix Rain Background - Optimized Canvas Version */}
+      <MatrixRain
+        className="!fixed !inset-0 !z-0 !pointer-events-none"
+        isFullScreen={true}
+      />
 
       {/* Yellow Trapezium Background with Clip-Path */}
       <div className="absolute top-0 left-0 right-0 h-96 z-0">
