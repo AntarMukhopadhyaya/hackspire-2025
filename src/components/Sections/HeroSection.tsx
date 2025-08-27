@@ -360,7 +360,9 @@ export default function HeroSection() {
       </motion.div>
 
       <div className="sm:mt-8 md:mt-42 lg:mt-32">
-        <DevfolioButton hackathonSlug="hackspire25" buttonTheme="light" />
+        <div className="z-30 my-5">
+          <DevfolioButton />
+        </div>
 
         {/* Join Discord Button - Better mobile positioning */}
         <motion.div
