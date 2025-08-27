@@ -5,7 +5,6 @@ import MatrixRain from "../ui/MatrixRain";
 import { TechnicalOverlay } from "../ui/TechnicalOverlay";
 import CyberButton from "../ui/CyberButton";
 import CountdownTimer from "../ui/CountdownTimer";
-import DevfolioButton from "../ui/DevfolioButton";
 
 interface PreRegisterModalProps {
   open: boolean;
@@ -360,14 +359,20 @@ export default function HeroSection() {
       </motion.div>
 
       <div className="sm:mt-8 md:mt-42 lg:mt-32">
-        {/* Apply with Devfolio Button - Client-only to prevent hydration mismatch */}
+        {/* Apply with Devfolio Button - Direct implementation */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.8, duration: 0.8, ease: "easeOut" }}
           className="absolute bottom-40 sm:bottom-44 md:bottom-44 left-0 right-0 z-50 flex items-center justify-center px-4"
         >
-          <DevfolioButton hackathonSlug="hackspire25" buttonTheme="light" />
+          <div
+            className="apply-button"
+            data-hackathon-slug="hackspire25"
+            data-button-theme="light"
+            style={{ height: "44px", width: "312px" }}
+            suppressHydrationWarning
+          />
         </motion.div>
 
         {/* Join Discord Button - Better mobile positioning */}
