@@ -166,7 +166,7 @@ function PreRegisterModal({
 }
 import Image from "next/image";
 import NeonXElements from "../ui/NeonXElements";
-import CellTerminal from "../ui/CellTerminal";
+// import CellTerminal from "../ui/CellTerminal";
 import Link from "next/link";
 
 export default function HeroSection() {
@@ -365,13 +365,13 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2.0, duration: 0.8, ease: "easeOut" }}
-          className="absolute bottom-26 sm:bottom-26 md:bottom-26 left-0 right-0 z-50 flex items-center justify-center px-4"
+          className="absolute bottom-20 sm:bottom-24 md:bottom-28 lg:bottom-32 left-0 right-0 z-50 flex items-center justify-center px-4"
         >
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3 sm:gap-4">
             <DevfolioButton />
             <CyberButton
               onClick={() => setModalOpen(true)}
-              className={"text-sm sm:text-lg"}
+              className={"text-xs sm:text-sm px-3 py-0.5 scale-80"}
             >
               Pre-Register Now
             </CyberButton>
@@ -527,7 +527,7 @@ export default function HeroSection() {
         transition={{ delay: 1.5, duration: 0.8 }}
         className="hidden md:block"
       >
-        <CellTerminal />
+        {/* <CellTerminal /> */}
       </motion.div>
     </motion.section>
   );

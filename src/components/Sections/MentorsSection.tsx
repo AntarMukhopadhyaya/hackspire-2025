@@ -82,7 +82,7 @@ function MentorsSection() {
   // Performance optimization: Memoize grid layouts with reduced animations
   const judgesGrid = useMemo(
     () => (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-20 lg:gap-36">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12">
         {visibleJudges.map((judge, index) => (
           <motion.div
             key={`${judge.handle}-${index}`}
@@ -117,7 +117,7 @@ function MentorsSection() {
 
   const mentorsGrid = useMemo(
     () => (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
         {visibleMentors.map((mentor, index) => (
           <motion.div
             key={`${mentor.handle}-${index}`}
