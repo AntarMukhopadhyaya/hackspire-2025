@@ -28,9 +28,9 @@ export default function CyberButton({
 
   const buttonContent = (
     <motion.div
-      className={`cyber-button-container relative inline-block ${
-        shouldGlitch ? "glitch-active" : ""
-      } ${className}`}
+      className={`cyber-button-container relative inline-block${
+        shouldGlitch ? " glitch-active" : ""
+      }${className ? " " + className.trim() : ""}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       whileHover={{
@@ -51,7 +51,7 @@ export default function CyberButton({
 
         {/* Text */}
         <span
-          className={`cyber-button-text ${shouldGlitch ? "glitch-active" : ""}`}
+          className={`cyber-button-text${shouldGlitch ? " glitch-active" : ""}`}
         >
           {children}
         </span>

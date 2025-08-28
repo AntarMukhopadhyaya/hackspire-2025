@@ -219,6 +219,44 @@ const FAQSection: React.FC = () => {
         })}
       </div>
 
+      {/* Code of Conduct Link */}
+      <div className="flex justify-center mt-12 mb-16 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex justify-center w-full"
+        >
+          <a
+            href="https://fancy-brass-700.notion.site/HackSpire-2025-Code-of-Conduct-25b111e6784280b4b3d3e8c4d3ce4ba2"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-3 px-6 py-3 bg-yellow-400/10 border border-yellow-400/30 hover:border-yellow-400 transition-colors duration-300 rounded-lg"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-8 h-8 text-yellow-400 group-hover:text-yellow-300 transition-colors duration-300"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
+            </svg>
+            <span
+              className="text-xl md:text-2xl font-bold text-yellow-400 group-hover:text-yellow-300 transition-colors duration-300"
+              style={{ fontFamily: "'Mokoto Demo', monospace" }}
+            >
+              Click to see CODE OF CONDUCT
+            </span>
+          </a>
+        </motion.div>
+      </div>
+
       {/* Contact CTA */}
       <div className="max-w-4xl mx-auto mt-20 relative z-10">
         <div

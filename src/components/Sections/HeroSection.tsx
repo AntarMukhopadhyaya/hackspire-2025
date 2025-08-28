@@ -368,15 +368,14 @@ export default function HeroSection() {
           className="absolute bottom-26 sm:bottom-26 md:bottom-26 left-0 right-0 z-50 flex items-center justify-center px-4"
         >
           <div className="flex flex-col gap-4">
-
-          <DevfolioButton/>
-          <CyberButton
-            onClick={() => setModalOpen(true)}
-            className="text-sm sm:text-lg"
+            <DevfolioButton />
+            <CyberButton
+              onClick={() => setModalOpen(true)}
+              className={"text-sm sm:text-lg"}
             >
-            Pre-Register Now
-          </CyberButton>
-            </div>
+              Pre-Register Now
+            </CyberButton>
+          </div>
         </motion.div>
 
         {/* Pre-Register Modal */}
