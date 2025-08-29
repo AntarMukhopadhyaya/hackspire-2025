@@ -47,14 +47,62 @@ function Crews() {
     }
   })();
 
+  const [matrixColumns, setMatrixColumns] = useState<
+    Array<{
+      id: number;
+      delay: number;
+      duration: number;
+      chars: string[];
+    }>
+  >([]);
+
+  // Generate matrix columns on client side only
+  useEffect(() => {
+    const columns = Array.from({ length: 50 }).map((_, i) => ({
+      id: i,
+      delay: Math.random() * 5,
+      duration: 3 + Math.random() * 4,
+      chars: Array.from({ length: 20 }).map(() =>
+        String.fromCharCode(33 + Math.floor(Math.random() * 94))
+      ),
+    }));
+    setMatrixColumns(columns);
+  }, []);
+
   return (
     <div className="min-h-screen text-white py-20 px-4 relative">
       {/* Matrix Rain Background */}
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          {/* Dynamic CSS for matrix columns */}
+          <style>
+            {`
+            .matrix-column-animated {
+              animation: matrix-fall linear infinite;
+            }
+          `}
+          </style>
 
-      <MatrixRain
-        className="!fixed !inset-0 !z-0 !pointer-events-none opacity-20"
-        isFullScreen={true}
-      />
+          {/* Matrix columns */}
+          {matrixColumns.map((column) => (
+            <div
+              key={column.id}
+              className={`absolute top-0 text-green-400 font-mono text-xs leading-none matrix-column-animated`}
+              style={{
+                left: `${column.id * 2}%`,
+                animationDelay: `${column.delay}s`,
+                animationDuration: `${column.duration}s`,
+              }}
+            >
+              {column.chars.map((char, j) => (
+                <div key={j} className="opacity-70">
+                  {char}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
       {/* Yellow Trapezium Background with Clip-Path */}
       <div className="absolute top-0 left-0 right-0 h-64 sm:h-80 md:h-96 z-0">
         {/* Main trapezium with clip-path */}
@@ -425,16 +473,20 @@ function Crews() {
             transform: translateY(-100vh);
             opacity: 0;
           }
-          10% {
+          5% {
             opacity: 1;
           }
-          90% {
+          95% {
             opacity: 1;
           }
           100% {
             transform: translateY(100vh);
             opacity: 0;
           }
+        }
+
+        .matrix-column-animated {
+          animation: matrix-fall linear infinite;
         }
 
         .cyber-filter-button {
