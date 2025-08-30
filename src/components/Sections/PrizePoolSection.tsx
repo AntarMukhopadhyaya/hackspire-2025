@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-export default function PrizePullSection() {
+export default function PrizePoolSection() {
   return (
     <section
       id="prize-pull"
@@ -51,7 +51,7 @@ export default function PrizePullSection() {
                 className="mb-4 font-bold text-[clamp(2rem,5vw,4rem)] text-white"
                 style={{ fontFamily: "'Mokoto Demo', monospace" }}
               >
-                EXCITING PRIZE PULL
+                EXCITING PRIZE POOL
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0, y: 40 }}

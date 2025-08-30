@@ -10,7 +10,7 @@ import FAQSection from "@/components/Sections/FAQSection";
 import SponsorsSection from "@/components/Sections/SponsorsSection";
 
 import GlorySection from "@/components/Sections/GlorySection";
-import PrizePullSection from "@/components/Sections/PrizePullSection";
+import PrizePoolSection from "@/components/Sections/PrizePoolSection";
 
 export default function Home() {
   const mainRef = useRef<HTMLElement>(null);
@@ -30,7 +30,7 @@ export default function Home() {
         <SpireCompleters />
         <MentorsSection />
         <ScheduleSection />
-        <PrizePullSection />
+        <PrizePoolSection />
         <GlorySection />
         <SponsorsSection />
         {/* <CollaborationsSection /> */}
