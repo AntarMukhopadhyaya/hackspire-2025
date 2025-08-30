@@ -359,13 +359,13 @@ export default function HeroSection() {
         </div>
       </motion.div>
 
-      <div className="sm:mt-8 md:mt-42 lg:mt-32">
+      <div className="sm:mt-8 md:mt-42 lg:mt-48">
         {/* Join Discord Button - Better mobile positioning */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2.0, duration: 0.8, ease: "easeOut" }}
-          className="absolute bottom-20 sm:bottom-24 md:bottom-28 lg:bottom-32 left-0 right-0 z-50 flex items-center justify-center px-4"
+          className="absolute bottom-20 sm:bottom-24 md:bottom-28 left-0 right-0 z-50 flex items-center justify-center px-4"
         >
           <div className="flex flex-col gap-3 sm:gap-4">
             <DevfolioButton />

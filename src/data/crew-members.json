@@ -61,6 +61,18 @@
   },
   {
     "id": 6,
+    "name": "Sutapa Kanthal",
+    "position": "CC member (Web)",
+    "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699358/IMG-20250701-WA0039_-_SUTAPA_KANTHAL_icw6pu.jpg",
+    "instagram": "https://www.instagram.com/kanthalsutapa_07?igsh=eDViaW04dnBrZXVx",
+    "github": "https://github.com/sutapakanthal12?tab=repositories",
+    "linkedin": "https://www.linkedin.com/in/sutapa-kanthal-218a272a9",
+    "twitter": "",
+    "crew": "spirengineers",
+    "crewfilter": "SPIRENGINEER"
+  },
+  {
+    "id": 7,
     "name": "Ankan Dalui",
     "position": "CC member (Web)",
     "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751771249/IMG_20250619_230208_wmzscg.jpg",
@@ -72,7 +84,7 @@
     "crewfilter": "SPIRENGINEER"
   },
   {
-    "id": 7,
+    "id": 8,
     "name": "Rajdip Ghosh",
     "position": "CC member (Web)",
     "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699355/IMG-20250702-WA0001_-_Rajdip_Ghosh_cnweb5.jpg",
@@ -83,18 +95,7 @@
     "crew": "spirengineers",
     "crewfilter": "SPIRENGINEER"
   },
-  {
-    "id": 8,
-    "name": "Sutapa Kanthal",
-    "position": "CC member (Web)",
-    "image": "https://res.cloudinary.com/dislegzga/image/upload/v1751699358/IMG-20250701-WA0039_-_SUTAPA_KANTHAL_icw6pu.jpg",
-    "instagram": "https://www.instagram.com/kanthalsutapa_07?igsh=eDViaW04dnBrZXVx",
-    "github": "https://github.com/sutapakanthal12?tab=repositories",
-    "linkedin": "https://www.linkedin.com/in/sutapa-kanthal-218a272a9",
-    "twitter": "",
-    "crew": "spirengineers",
-    "crewfilter": "SPIRENGINEER"
-  },
+  
   {
     "id": 9,
     "name": "Soumaydeep Bagchi",
