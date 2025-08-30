@@ -302,7 +302,7 @@ export default function HeroSection() {
             >
               <div className="text-center -mb-8 sm:-mb-12 md:-mb-16 lg:-mb-18 xl:-mb-18">
                 <motion.h1
-                  className="text-[20px] sm:text-[28px] md:text-[32px] lg:text-[36px] xl:text-[40px] font-mokoto text-white leading-tight relative"
+                  className="text-[20px] sm:text-[28px] md:text-[28px] lg:text-[36px] xl:text-[40px] font-mokoto text-white leading-tight relative"
                   style={{ fontFamily: "Mokoto Demo, sans-serif" }}
                   animate={{
                     x: glitchActive ? [0, -2, 2, -1, 1, 0] : 0,
@@ -337,7 +337,7 @@ export default function HeroSection() {
                 alt="Hackspire Logo Main"
                 width={1200}
                 height={300}
-                className="block mx-auto h-[12rem] sm:h-[16rem] md:h-[18rem] lg:h-[22rem] xl:h-[26rem] 2xl:h-[30rem] w-auto object-contain relative z-10 sm:-translate-x-10 "
+                className="block mx-auto h-[12rem] sm:h-[16rem] md:h-[16rem] lg:h-[22rem] xl:h-[26rem] 2xl:h-[30rem] w-auto object-contain relative z-10 sm:-translate-x-10 "
                 draggable={false}
                 priority
                 unoptimized
@@ -350,9 +350,9 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: 50, scale: 0.8 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             transition={{ delay: 1.8, duration: 0.8, ease: "easeOut" }}
-            className="flex justify-center w-full -mt-4 mr-18 sm:-mt-25 sm:ml-46 md:-mt-28 md:ml-54 lg:-mt-34 lg:mr-40 xl:-mt-40"
+            className="flex justify-center w-full -mt-4 mr-18 sm:-mt-25 sm:ml-46 md:-mt-24 md:ml-48 lg:-mt-34 lg:mr-40 xl:-mt-40"
           >
-            <div className="transform translate-x-10 sm:translate-x-16 md:translate-x-20 lg:translate-x-44 xl:translate-x-56">
+            <div className="transform translate-x-10 sm:translate-x-16 md:translate-x-16 lg:translate-x-44 xl:translate-x-56">
               <CountdownTimer />
             </div>
           </motion.div>
