@@ -267,6 +267,7 @@ export default function RootLayout({
             <PageTransition>{children}</PageTransition>
           </div>
           <Footer />
+
           <Toaster />
         </LenisProvider>
         {/* </ConditionalAppLoader> */}

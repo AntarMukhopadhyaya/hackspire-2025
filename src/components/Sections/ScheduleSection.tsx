@@ -276,7 +276,20 @@ const hackathonContent = [
     badge: "30th September",
   },
   {
-    title: "Rolling Approval Phase",
+    title: "PPT Submission Window",
+    description: (
+      <>
+        <p>
+          PPT submission on the registration portal is mandatory — teams must
+          submit their PPTs during this window. Ensure slides are concise and
+          follow the submission guidelines.
+        </p>
+      </>
+    ),
+    badge: "1-7 October",
+  },
+  {
+    title: " First Rolling Approval",
     description: (
       <>
         <p>
@@ -287,6 +300,30 @@ const hackathonContent = [
       </>
     ),
     badge: "15th October",
+  },
+  {
+    title: "Second Rolling Approval",
+    description: (
+      <>
+        <p>
+          Additional approvals from the review panel. If your submission was
+          pending earlier, expect status updates and next-step instructions.
+        </p>
+      </>
+    ),
+    badge: "20th October",
+  },
+  {
+    title: "Last Rolling Approval",
+    description: (
+      <>
+        <p>
+          Last round of approvals before the hackathon kickoff. Ensure all team
+          details and submissions are finalized and compliant.
+        </p>
+      </>
+    ),
+    badge: "23rd October",
   },
   {
     title: "Hack Begins - The Digital Uprising",
