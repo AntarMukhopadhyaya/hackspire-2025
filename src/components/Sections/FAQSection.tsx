@@ -28,59 +28,79 @@ const faqData: FAQItem[] = [
   },
   {
     id: 3,
-    question: "What are the system requirements and tech stack?",
+    question: "Can I participate online?",
     answer:
-      "Participants can use any programming language, framework, or technology stack. We provide cloud credits for AWS, Azure, and GCP. High-speed internet, power outlets, and workstations are available on-site. Bring your own laptop and development environment.",
-    category: "Technical",
-  },
-  {
-    id: 4,
-    question: "Is there a mobile app or online platform?",
-    answer:
-      "Yes! We have a dedicated HackSpire mobile app for real-time updates, team communication, mentor booking, and submission tracking. The app is available on both iOS and Android platforms and includes AR features for venue navigation.",
-    category: "Technical",
-  },
-  {
-    id: 5,
-    question: "What are the participation fees and prizes?",
-    answer:
-      "Registration is completely free! We offer over ₹5 lakhs in prizes including cash rewards, internship opportunities, startup funding, and cutting-edge tech gadgets. Special category prizes are available for AI/ML, blockchain, and sustainability themes.",
-    category: "Prizes",
-  },
-  {
-    id: 6,
-    question: "Can I participate remotely or is it in-person only?",
-    answer:
-      "HackSpire 2025 is primarily an in-person event in Kolkata, but we also offer a hybrid theme for remote participants. Remote teams get access to virtual mentorship, online workshops, and can present their projects via video calls.",
+      "No. HackSpire 2025 is an in-person hackathon. All shortlisted participants must be present at the venue.",
     category: "Participation",
   },
   {
-    id: 7,
-    question: "What kind of mentorship and support is available?",
+    id: 4,
+    question: "Can I come alone or do I need a team?",
     answer:
-      "We have 50+ industry experts, startup founders, and tech leaders as mentors. Mentorship sessions are available 24/7 during the hackathon. We also provide technical workshops, API documentation, and dedicated support channels for each theme.",
-    category: "Support",
+      "You can register solo or in a team (2–4 members). If you don't have a team, you'll have the chance to form one at the event.",
+    category: "Teams",
+  },
+  {
+    id: 5,
+    question: "What is the team size limit?",
+    answer:
+      "Teams can have up to 4 members. Solo participation is also allowed.",
+    category: "Teams",
+  },
+  {
+    id: 6,
+    question: "Will accommodation be provided?",
+    answer:
+      "Accommodation will be arranged only during the hackathon days (October 31 – November 1, 2025).",
+    category: "Logistics",
+  },
+  {
+    id: 7,
+    question: "Do you provide travel reimbursements or support?",
+    answer: "No, we currently do not provide travel reimbursements or support.",
+    category: "Logistics",
   },
   {
     id: 8,
-    question: "How is intellectual property and data security handled?",
+    question: "What should I bring with me?",
     answer:
-      "All participants retain full ownership of their intellectual property. We follow strict data protection guidelines and provide secure development environments. NDAs are available for teams working on sensitive projects, and all submissions are kept confidential.",
-    category: "Legal & Security",
+      "Bring your laptop, charger, valid student ID card, and any specific hardware you want to use. Basic amenities will be provided at the venue.",
+    category: "Logistics",
   },
   {
     id: 9,
-    question: "Can I collaborate with participants from other teams?",
+    question: "Will food be provided?",
     answer:
-      "Cross-team collaboration is encouraged during networking sessions and workshops. However, final submissions must be from your registered team. We facilitate knowledge sharing through our community Discord server and collaborative spaces.",
-    category: "Collaboration",
+      "Yes. Meals and refreshments will be provided free of cost during the hackathon.",
+    category: "Logistics",
   },
   {
     id: 10,
-    question: "What happens after the hackathon ends?",
+    question: "Do I need prior hackathon experience?",
     answer:
-      "Winners get access to our exclusive alumni network, incubation programs, and investor connections. All participants receive certificates, and outstanding projects may be featured in tech publications. We also host quarterly meetups for continued networking.",
-    category: "Post-Event",
+      "Not at all! Beginners are encouraged to participate. We'll also host workshops and mentoring sessions to guide you.",
+    category: "Experience",
+  },
+  {
+    id: 11,
+    question: "Can I start working on my project before the hackathon?",
+    answer:
+      "No. All projects must be built during the hackathon. However, you can brainstorm ideas and explore tech stacks in advance.",
+    category: "Rules",
+  },
+  {
+    id: 12,
+    question: "Will there be mentors to guide us?",
+    answer:
+      "Yes. Industry experts and community mentors will be available throughout the event to guide you.",
+    category: "Support",
+  },
+  {
+    id: 13,
+    question: "Are there different tracks or problem statements?",
+    answer:
+      "Yes. HackSpire will have multiple tracks, including software and hardware. Problem statements will be shared at the event.",
+    category: "Event Format",
   },
 ];
 
