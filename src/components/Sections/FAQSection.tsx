@@ -23,7 +23,7 @@ const faqData: FAQItem[] = [
     id: 2,
     question: "How do I register for the hackathon?",
     answer:
-      "Registration is simple! Visit our registration portal, fill out the application form, and submit your team details. Early bird registration is open until March 1st, 2025. Teams can have 2-4 members, and individual participants will be matched with teams.",
+      "Registration is simple! Visit our registration portal, fill out the application form, and submit your team details. Early bird registration is open until March 1st, 2025. Teams can have 2-6 members, and individual participants will be matched with teams.",
     category: "Registration",
   },
   {
@@ -37,7 +37,7 @@ const faqData: FAQItem[] = [
     id: 4,
     question: "Can I come alone or do I need a team?",
     answer:
-      "You can register solo or in a team (2–4 members). If you don't have a team, you'll have the chance to form one at the event.",
+      "You can register solo or in a team (2–6 members). If you don't have a team, you'll have the chance to form one at the event.",
     category: "Teams",
   },
   {
