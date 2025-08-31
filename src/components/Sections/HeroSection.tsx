@@ -11,6 +11,7 @@ import Image from "next/image";
 import NeonXElements from "../ui/NeonXElements";
 // import CellTerminal from "../ui/CellTerminal";
 import Link from "next/link";
+import CustomDevfolioButton from "../ui/CustomDevfolioButton";
 
 export default function HeroSection() {
   const [text, setText] = useState("");
@@ -208,7 +209,8 @@ export default function HeroSection() {
           className="absolute bottom-20 sm:bottom-24 md:bottom-28 left-0 right-0 z-50 flex items-center justify-center px-4"
         >
           <div className="flex flex-col gap-3 sm:gap-4">
-            <DevfolioButton />
+            {/* <DevfolioButton /> */}
+            <CustomDevfolioButton />
             <CyberButton
               onClick={handleGuidelinesClick}
               className={"text-xs sm:text-sm px-3 py-0.5 scale-80"}
