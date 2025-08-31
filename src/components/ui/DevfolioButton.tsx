@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
 // components/DevfolioButton.jsx
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
 const DevfolioButton = () => {
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://apply.devfolio.co/v2/sdk.js';
+    const script = document.createElement("script");
+    script.src = "https://apply.devfolio.co/v2/sdk.js";
     script.async = true;
     script.defer = true;
     document.body.appendChild(script);
@@ -17,11 +17,11 @@ const DevfolioButton = () => {
   }, []);
 
   return (
-    <div 
-      className="apply-button" 
-      data-hackathon-slug="hackspire25"
+    <div
+      className="apply-button"
+      data-hackathon-slug="https://hackspire25.devfolio.co/"
       data-button-theme="light"
-      style={{ height: '44px', width: '312px' }}
+      style={{ height: "44px", width: "312px" }}
     ></div>
   );
 };
