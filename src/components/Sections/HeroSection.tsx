@@ -57,14 +57,14 @@ export default function HeroSection() {
       className="relative w-full h-screen overflow-hidden flex flex-col justify-center items-center"
     >
       {/* Technical Overlay - Desktop Only */}
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8, duration: 0.8 }}
         className="hidden md:block"
       >
         <TechnicalOverlay />
-      </motion.div>
+      </motion.div> */}
 
       {/* Matrix Rain Background */}
       <motion.div
@@ -141,9 +141,9 @@ export default function HeroSection() {
                 ease: "easeOut",
               }}
             >
-              <div className="text-center -mb-8 sm:-mb-12 md:-mb-16 lg:-mb-18 xl:-mb-18">
+              <div className="text-center -mb-8 sm:-mb-12 md:-mb-16 lg:-mb-18 xl:-mb-18 sm:mt-20 md:mt-20 lg:mt-0">
                 <motion.h1
-                  className="text-[20px] sm:text-[28px] md:text-[28px] lg:text-[36px] xl:text-[40px] font-mokoto text-white leading-tight relative"
+                  className="text-[20px]  sm:text-[28px] md:text-[28px] lg:text-[36px] xl:text-[40px] font-mokoto text-white leading-tight relative"
                   style={{ fontFamily: "Mokoto Demo, sans-serif" }}
                   animate={{
                     x: glitchActive ? [0, -2, 2, -1, 1, 0] : 0,
