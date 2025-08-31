@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 
 export function TechnicalOverlay() {
-  const [time, setTime] = useState("");
   const [systemData, setSystemData] = useState({
     cpu: 0,
     memory: 0,
@@ -17,16 +16,6 @@ export function TechnicalOverlay() {
   });
 
   useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      setTime(
-        now.toLocaleTimeString("en-US", {
-          hour12: false,
-          timeZone: "Asia/Tokyo",
-        })
-      );
-    };
-
     // Generate dynamic system data
     const updateSystemData = () => {
       setSystemData({
@@ -42,41 +31,16 @@ export function TechnicalOverlay() {
       });
     };
 
-    updateTime();
     updateSystemData();
-
-    const timeInterval = setInterval(updateTime, 1000);
     const dataInterval = setInterval(updateSystemData, 3000); // Update every 3 seconds
 
     return () => {
-      clearInterval(timeInterval);
       clearInterval(dataInterval);
     };
   }, []);
 
   return (
     <>
-      {/* Top Technical Bar */}
-      <div className="absolute top-20 left-0 right-0 z-30 pointer-events-none">
-        <div
-          className="flex justify-between items-center px-8 py-4 font-mono text-sm border-b border-yellow-400/20 bg-black/20 backdrop-blur-sm"
-          style={{ color: "#FCFF3F" }}
-        >
-          <div className="flex space-x-12">
-            <span className="tracking-wider">SYS.STATUS: ONLINE</span>
-            <span className="tracking-wider">CONN.TYPE: SECURE_TLS</span>
-            <span className="tracking-wider">PROTOCOL: HTTPS/2.0</span>
-          </div>
-          <div className="flex space-x-12">
-            <span className="tracking-wider">JST: {time}</span>
-            <span className="tracking-wider">USER.AUTH: GRANTED</span>
-            <span className="tracking-wider">
-              SESSION: {systemData.sessionId}
-            </span>
-          </div>
-        </div>
-      </div>
-
       {/* Corner Elements */}
       <div className="absolute top-4 left-4 z-40 pointer-events-none">
         <div

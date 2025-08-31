@@ -57,14 +57,14 @@ export default function HeroSection() {
       className="relative w-full h-screen overflow-hidden flex flex-col justify-center items-center"
     >
       {/* Technical Overlay - Desktop Only */}
-      {/* <motion.div
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8, duration: 0.8 }}
         className="hidden md:block"
       >
         <TechnicalOverlay />
-      </motion.div> */}
+      </motion.div>
 
       {/* Matrix Rain Background */}
       <motion.div
