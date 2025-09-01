@@ -562,17 +562,17 @@ export default function ThemeClient() {
             className="text-2xl md:text-4xl font-bold text-white mb-4"
             style={{ fontFamily: "'Mokoto Demo', monospace" }}
           >
-            Ready to Build the Future?
+            Here's our Presentation Template
           </h3>
           <p
             className="text-yellow-300 mb-8 max-w-2xl mx-auto text-sm md:text-lg"
             style={{ fontFamily: "'Mokoto Demo', monospace" }}
           >
-            Choose your theme and start building innovative solutions that will
-            shape tomorrow's technology landscape.
+            Download our professionally designed PowerPoint templates to create
+            stunning presentations for your hackathon projects.
           </p>
-          <CyberButton href="/register">
-            <span className="flex items-center gap-3">Register Now</span>
+          <CyberButton href="https://www.notion.so/HackSpire-2025-Participant-Guide-13c111e6784280f8bfd0e74faca3a592?source=copy_link#261111e6784280a1b539db873e773039">
+            <span className="flex items-center gap-3">Download</span>
           </CyberButton>
         </div>
       </div>
