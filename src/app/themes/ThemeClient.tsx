@@ -571,7 +571,7 @@ export default function ThemeClient() {
             Download our professionally designed PowerPoint templates to create
             stunning presentations for your hackathon projects.
           </p>
-          <CyberButton href="https://file.notion.so/f/f/d8ca173c-7130-4e22-9f21-104cd4dedebb/701c21b3-3d56-4966-8db1-19e7393a2e7c/HACKSPIRE25_PPT_TEMPLATE.pptx?table=block&id=261111e6-7842-80a1-b539-db873e773039&spaceId=d8ca173c-7130-4e22-9f21-104cd4dedebb&expirationTimestamp=1756713600000&signature=9IA3KjWA8IHMBniKhYtc6tnb_7D-Gv79YOhM-Qk_EkU&downloadName=HACKSPIRE%2725_PPT+TEMPLATE.pptx">
+          <CyberButton href="https://res.cloudinary.com/dkc5idctm/raw/upload/v1756793345/Hackspire_PPT_1_ihito9.pptx">
             <span className="flex items-center gap-3">Download</span>
           </CyberButton>
         </div>
