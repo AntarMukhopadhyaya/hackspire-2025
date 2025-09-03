@@ -40,63 +40,57 @@ const faqData: FAQItem[] = [
       "You can register solo or in a team (2–6 members). If you don't have a team, you'll have the chance to form one at the event.",
     category: "Teams",
   },
+
   {
     id: 5,
-    question: "What is the team size limit?",
-    answer:
-      "Teams can have up to 4 members. Solo participation is also allowed.",
-    category: "Teams",
-  },
-  {
-    id: 6,
     question: "Will accommodation be provided?",
     answer:
       "Accommodation will be arranged only during the hackathon days (October 31 – November 1, 2025).",
     category: "Logistics",
   },
   {
-    id: 7,
+    id: 6,
     question: "Do you provide travel reimbursements or support?",
     answer: "No, we currently do not provide travel reimbursements or support.",
     category: "Logistics",
   },
   {
-    id: 8,
+    id: 7,
     question: "What should I bring with me?",
     answer:
       "Bring your laptop, charger, valid student ID card, and any specific hardware you want to use. Basic amenities will be provided at the venue.",
     category: "Logistics",
   },
   {
-    id: 9,
+    id: 8,
     question: "Will food be provided?",
     answer:
       "Yes. Meals and refreshments will be provided free of cost during the hackathon.",
     category: "Logistics",
   },
   {
-    id: 10,
+    id: 9,
     question: "Do I need prior hackathon experience?",
     answer:
       "Not at all! Beginners are encouraged to participate. We'll also host workshops and mentoring sessions to guide you.",
     category: "Experience",
   },
   {
-    id: 11,
+    id: 10,
     question: "Can I start working on my project before the hackathon?",
     answer:
       "No. All projects must be built during the hackathon. However, you can brainstorm ideas and explore tech stacks in advance.",
     category: "Rules",
   },
   {
-    id: 12,
+    id: 11,
     question: "Will there be mentors to guide us?",
     answer:
       "Yes. Industry experts and community mentors will be available throughout the event to guide you.",
     category: "Support",
   },
   {
-    id: 13,
+    id: 12,
     question: "Are there different tracks or problem statements?",
     answer:
       "Yes. HackSpire will have multiple tracks, including software and hardware. Problem statements will be shared at the event.",
