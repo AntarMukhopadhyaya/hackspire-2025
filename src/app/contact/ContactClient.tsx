@@ -579,7 +579,7 @@ export default function ContactClient() {
                   className="text-black text-sm sm:text-base md:text-lg font-medium"
                   style={{ fontFamily: "'Mokoto Demo', monospace" }}
                 >
-                  +91 7074757878
+                  +91 7074757878 / 9007358520
                 </p>
               </div>
             </div>
