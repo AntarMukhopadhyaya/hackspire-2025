@@ -11,6 +11,7 @@ import SponsorsSection from "@/components/Sections/SponsorsSection";
 
 import GlorySection from "@/components/Sections/GlorySection";
 import PrizePoolSection from "@/components/Sections/PrizePoolSection";
+import ComingSoon from "@/components/Sections/ComingSoon";
 
 export default function Home() {
   const mainRef = useRef<HTMLElement>(null);
@@ -28,7 +29,8 @@ export default function Home() {
         <HeroSection />
 
         <SpireCompleters />
-        <MentorsSection />
+        <ComingSoon />
+        {/* <MentorsSection /> */}
         <ScheduleSection />
         <PrizePoolSection />
         <GlorySection />
