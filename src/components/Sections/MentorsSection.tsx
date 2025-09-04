@@ -96,7 +96,7 @@ function MentorsSection() {
             }}
             className="flex justify-center"
           >
-            <ProfileCard
+            {/* <ProfileCard
               name={judge.name}
               title={judge.title}
               handle={judge.handle}
@@ -107,7 +107,7 @@ function MentorsSection() {
               enableTilt={false} // Disabled tilt for performance
               enableMobileTilt={false}
               onContactClick={() => handleContactClick(judge.name)}
-            />
+            /> */}
           </motion.div>
         ))}
       </div>
@@ -131,7 +131,7 @@ function MentorsSection() {
             }}
             className="flex justify-center"
           >
-            <ProfileCard
+            {/* <ProfileCard
               name={mentor.name}
               title={mentor.title}
               handle={mentor.handle}
@@ -144,7 +144,7 @@ function MentorsSection() {
               enableTilt={false} // Disabled tilt for performance
               enableMobileTilt={false}
               onContactClick={() => handleContactClick(mentor.name)}
-            />
+            /> */}
           </motion.div>
         ))}
       </div>
@@ -474,6 +474,23 @@ function MentorsSection() {
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
           >
             <CategoryBadge label="JUDGES" />
+
+            {/* Coming Soon Text for Judges */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
+              className="flex justify-center mb-8"
+            >
+              <div
+                className="text-white text-3xl md:text-4xl lg:text-5xl font-bold tracking-wider text-center"
+                style={{ fontFamily: "'Mokoto Demo', monospace" }}
+              >
+                COMING SOON
+              </div>
+            </motion.div>
+
             {visibleJudges.length > 0 ? (
               judgesGrid
             ) : (
@@ -546,6 +563,23 @@ function MentorsSection() {
             transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
           >
             <CategoryBadge label="MENTORS" />
+
+            {/* Coming Soon Text for Mentors */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.7, ease: "easeOut" }}
+              className="flex justify-center mb-8"
+            >
+              <div
+                className="text-white text-3xl md:text-4xl lg:text-5xl font-bold tracking-wider text-center"
+                style={{ fontFamily: "'Mokoto Demo', monospace" }}
+              >
+                COMING SOON
+              </div>
+            </motion.div>
+
             {loadingState === "complete" ? (
               mentorsGrid
             ) : (
@@ -569,7 +603,7 @@ function MentorsSection() {
                         }}
                         className="flex justify-center"
                       >
-                        <ProfileCard
+                        {/* <ProfileCard
                           name={mentor.name}
                           title={mentor.title}
                           handle={mentor.handle}
@@ -582,7 +616,7 @@ function MentorsSection() {
                           enableTilt={false}
                           enableMobileTilt={false}
                           onContactClick={() => handleContactClick(mentor.name)}
-                        />
+                        /> */}
                       </motion.div>
                     ))}
                   </div>
