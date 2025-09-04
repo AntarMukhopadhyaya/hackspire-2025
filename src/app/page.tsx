@@ -26,7 +26,6 @@ export default function Home() {
       {/* Content Wrapper */}
       <div className="relative z-10">
         <HeroSection />
-
         <SpireCompleters />
         <MentorsSection />
         <ScheduleSection />
