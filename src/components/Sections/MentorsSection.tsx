@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { useState, useEffect, useMemo, useCallback } from "react";
+// Import ProfileCard but keep it commented in the JSX as requested
 import ProfileCard from "../blocks/Components/ProfileCard/ProfileCard";
 import judgesData from "@/data/judges.json";
 import mentorsData from "@/data/mentors.json";
@@ -96,7 +97,8 @@ function MentorsSection() {
             }}
             className="flex justify-center"
           >
-            <ProfileCard
+            {/* ProfileCard commented out as requested */}
+            {/* <ProfileCard
               name={judge.name}
               title={judge.title}
               handle={judge.handle}
@@ -104,10 +106,10 @@ function MentorsSection() {
               contactText="Contact Me"
               avatarUrl={judge.avatarUrl}
               showUserInfo={true}
-              enableTilt={false} // Disabled tilt for performance
+              enableTilt={false}
               enableMobileTilt={false}
               onContactClick={() => handleContactClick(judge.name)}
-            />
+            /> */}
           </motion.div>
         ))}
       </div>
@@ -131,7 +133,8 @@ function MentorsSection() {
             }}
             className="flex justify-center"
           >
-            <ProfileCard
+            {/* ProfileCard commented out as requested */}
+            {/* <ProfileCard
               name={mentor.name}
               title={mentor.title}
               handle={mentor.handle}
@@ -141,10 +144,10 @@ function MentorsSection() {
               iconUrl="https://res.cloudinary.com/dislegzga/image/upload/v1755362336/codeicon_wetmk9.png"
               grainUrl="https://res.cloudinary.com/dislegzga/image/upload/v1755362435/grain_ck2vv1.jpg"
               showUserInfo={true}
-              enableTilt={false} // Disabled tilt for performance
+              enableTilt={false}
               enableMobileTilt={false}
               onContactClick={() => handleContactClick(mentor.name)}
-            />
+            /> */}
           </motion.div>
         ))}
       </div>
@@ -474,6 +477,23 @@ function MentorsSection() {
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
           >
             <CategoryBadge label="JUDGES" />
+
+            {/* Coming Soon Text for Judges */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
+              className="flex justify-center mb-8"
+            >
+              <div
+                className="text-white text-3xl md:text-4xl lg:text-5xl font-bold tracking-wider text-center"
+                style={{ fontFamily: "'Mokoto Demo', monospace" }}
+              >
+                COMING SOON
+              </div>
+            </motion.div>
+
             {visibleJudges.length > 0 ? (
               judgesGrid
             ) : (
@@ -546,6 +566,23 @@ function MentorsSection() {
             transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
           >
             <CategoryBadge label="MENTORS" />
+
+            {/* Coming Soon Text for Mentors */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.7, ease: "easeOut" }}
+              className="flex justify-center mb-8"
+            >
+              <div
+                className="text-white text-3xl md:text-4xl lg:text-5xl font-bold tracking-wider text-center"
+                style={{ fontFamily: "'Mokoto Demo', monospace" }}
+              >
+                COMING SOON
+              </div>
+            </motion.div>
+
             {loadingState === "complete" ? (
               mentorsGrid
             ) : (
@@ -553,7 +590,7 @@ function MentorsSection() {
                 <div className="text-yellow-400 font-mono text-lg animate-pulse">
                   {loadingState === "judges"
                     ? "Preparing mentors..."
-                    : `Loading mentors... (${visibleMentors.length}/6)`}
+                    : `Loading mentors... (${visibleMentors.length}/${mentors.length})`}
                 </div>
                 {visibleMentors.length > 0 && (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -569,7 +606,8 @@ function MentorsSection() {
                         }}
                         className="flex justify-center"
                       >
-                        <ProfileCard
+                        {/* ProfileCard commented out as requested */}
+                        {/* <ProfileCard
                           name={mentor.name}
                           title={mentor.title}
                           handle={mentor.handle}
@@ -582,7 +620,7 @@ function MentorsSection() {
                           enableTilt={false}
                           enableMobileTilt={false}
                           onContactClick={() => handleContactClick(mentor.name)}
-                        />
+                        /> */}
                       </motion.div>
                     ))}
                   </div>

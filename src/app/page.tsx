@@ -29,8 +29,8 @@ export default function Home() {
         <HeroSection />
 
         <SpireCompleters />
-        <ComingSoon />
-        {/* <MentorsSection /> */}
+
+        <MentorsSection />
         <ScheduleSection />
         <PrizePoolSection />
         <GlorySection />
