@@ -38,7 +38,7 @@ const CustomDevfolioButton: React.FC<CustomDevfolioButtonProps> = ({
             {/* Devfolio Icon */}
             <div className="custom-devfolio-icon">
               <Image
-                src="/devfolio.svg"
+                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1756994465/devfolio_m4ngvz.svg"
                 alt="Devfolio"
                 width={24}
                 height={24}
@@ -97,7 +97,7 @@ const CustomDevfolioButton: React.FC<CustomDevfolioButtonProps> = ({
           left: 0;
           right: 0;
           bottom: 0;
-          background: #0070f3;
+          background: #3770ff;
           border-radius: 4px;
           transition: all 0.3s ease;
         }
@@ -157,7 +157,7 @@ const CustomDevfolioButton: React.FC<CustomDevfolioButtonProps> = ({
 
         /* Active/pressed state */
         .custom-devfolio-button-container:active .custom-devfolio-button-bg {
-          background: #004099;
+          background: #3770ff;
           transform: translateY(1px);
         }
 

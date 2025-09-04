@@ -35,7 +35,7 @@ const faqData: FAQItem[] = [
   },
   {
     id: 4,
-    question: "Can I come alone or do I need a team?",
+    question: "What is the team size limit?",
     answer:
       "You can register solo or in a team (2–6 members). If you don't have a team, you'll have the chance to form one at the event.",
     category: "Teams",

@@ -215,7 +215,7 @@ export default function SponsorsSection() {
             <TierTitle label="Gold" />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
               <SponsorCard
-                src="/images/DevFolio.png"
+                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1756993339/DevFolio_nkqr5b.png"
                 alt="DEVFOLIO LOGO"
                 tier="Gold"
                 sponsorName="Devfolio"
@@ -244,7 +244,7 @@ export default function SponsorsSection() {
             <TierTitle label="Silver" />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
               <SponsorCard
-                src="/images/ETHIndia.png"
+                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1756993340/ETHIndia_yhpy5k.png"
                 alt="ETHINDIA LOGO"
                 tier="Silver"
                 sponsorName="ETHIndia"

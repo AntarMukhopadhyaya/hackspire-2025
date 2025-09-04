@@ -25,7 +25,7 @@
 
   <!-- Main title -->
   <text x="600" y="200" text-anchor="middle" fill="url(#titleGradient)" font-family="Arial, sans-serif" font-size="72" font-weight="bold">
-    HackSpire 2025
+    HackSpire'25
   </text>
 
   <!-- Subtitle -->
