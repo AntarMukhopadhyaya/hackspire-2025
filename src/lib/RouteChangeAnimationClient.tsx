@@ -1,23 +1,17 @@
 "use client";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
-export default function RouteChangeAnimation() {
+export default function RouteChangeAnimationClient() {
   const pathname = usePathname();
   const progress = useMotionValue(0);
   const width = useTransform(progress, [0, 100], ["0%", "100%"]);
   const opacity = useTransform(progress, [0, 100], [0, 1]);
-  const [mounted, setMounted] = useState(false);
-
-  // Ensure component is mounted before rendering motion components
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
-    // Skip animation for home page or if not mounted
-    if (pathname === "/" || !mounted) return;
+    // Skip animation for home page
+    if (pathname === "/") return;
 
     // Animate progress bar on route change
     const controls = animate(progress, [0, 100], {
@@ -32,34 +26,15 @@ export default function RouteChangeAnimation() {
     });
 
     return controls.stop;
-  }, [pathname, progress, mounted]);
-
-  // Don't render motion components until mounted
-  if (!mounted) {
-    return (
-      <div
-        className="fixed top-0 left-0 w-full h-0.5 z-50 pointer-events-none"
-        style={{ opacity: 0 }}
-      />
-    );
-  }
-
-  // Don't show animation on home page
-  if (pathname === "/") {
-    return (
-      <div
-        className="fixed top-0 left-0 w-full h-0.5 z-50 pointer-events-none"
-        style={{ opacity: 0 }}
-      />
-    );
-  }
+  }, [pathname, progress]);
 
   return (
     <motion.div
       className="fixed top-0 left-0 w-full h-0.5 z-50 pointer-events-none"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      style={{ pointerEvents: "auto" }}
+      style={{
+        opacity,
+        pointerEvents: "auto",
+      }}
     >
       {/* Main progress bar */}
       <motion.div

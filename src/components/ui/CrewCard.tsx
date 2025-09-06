@@ -100,7 +100,7 @@ export function CrewCard({ member }: CrewCardProps) {
 
           {/* SVG card overlay */}
           <img
-            src="https://res.cloudinary.com/dislegzga/image/upload/v1755361827/crewcard4_bzzzbf.png"
+            src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757169131/crewcard4_bzzzbf_dznanu.png"
             alt="Crew Card"
             className="absolute inset-0 w-80 h-auto z-15"
             style={{ width: "320px", height: "387px" }}

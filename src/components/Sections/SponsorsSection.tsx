@@ -46,8 +46,7 @@ export default function SponsorsSection() {
       id="sponsors"
       className="relative py-12 md:py-16 text-white overflow-hidden"
     >
-      {/* Polygon header/background commented out for sponsor logo visibility */}
-      {/*
+      {/* Polygon header/background */}
       <div className="absolute top-0 left-0 right-0 h-64 md:h-80 z-0">
         <div
           className="w-full h-full bg-yellow-400 relative"
@@ -78,7 +77,6 @@ export default function SponsorsSection() {
           </div>
         </div>
       </div>
-      */}
 
       {/* Multiple Left Side Vertical Trapezium Shapes - match SpireCompleters */}
       <div className="absolute left-0 top-1/4 w-12 md:w-20 h-48 md:h-64 z-0">
@@ -131,12 +129,12 @@ export default function SponsorsSection() {
       {/* Logos are now only on their respective sponsor cards below. Removed from header polygon. */}
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-10 md:mb-14">
-          <h2 className="text-5xl sm:text-7xl md:text-[5rem] lg:text-[6rem] xl:text-8xl 2xl:text-[8rem] font-bold text-white font-sddystopiandemo">
+        <div className="text-center mb-10 md:mb-14 pt-8 md:pt-12">
+          <h2 className="text-5xl sm:text-7xl md:text-[5rem] lg:text-[6rem] xl:text-8xl 2xl:text-[8rem] font-bold text-black font-sddystopiandemo">
             SPONSORS
           </h2>
           <p
-            className="text-center max-w-4xl mx-auto -mt-2 text-sm sm:text-base md:text-xl text-white leading-relaxed"
+            className="text-center max-w-4xl mx-auto -mt-2 text-sm sm:text-base md:text-xl text-black leading-relaxed"
             style={{ fontFamily: "Mokoto Demo" }}
           >
             Powered by our allies in innovation — Platinum, Diamond, Gold,
@@ -144,7 +142,7 @@ export default function SponsorsSection() {
           </p>
         </div>
         {/* Restore original card grid UI, but use hard-coded sponsor data */}
-        <div className="relative z-10 mt-8 sm:mt-8 md:mt-12 lg:mt-12 space-y-10 md:space-y-14">
+        <div className="relative z-10 mt-32 sm:mt-36 md:mt-40 lg:mt-44 space-y-10 md:space-y-14">
           {/* Diamond Tier commented out for now */}
           {/*
           <motion.div

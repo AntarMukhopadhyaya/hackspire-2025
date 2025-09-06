@@ -331,7 +331,7 @@ function SpireCompleters() {
               className="w-24 md:w-32 lg:w-40"
             >
               <img
-                src="https://res.cloudinary.com/dislegzga/image/upload/v1755067912/new_fiem_logo_iq0bn8.jpg"
+                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757169130/new_fiem_logo_iq0bn8_oh8hx6.jpg"
                 alt="Future"
                 className="w-full h-auto scale-150"
               />
@@ -344,7 +344,7 @@ function SpireCompleters() {
               className="w-20 md:w-24 lg:w-32"
             >
               <img
-                src="https://res.cloudinary.com/dislegzga/image/upload/v1755362334/starcyber_q6jkev.png"
+                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757167595/starcyber_q6jkev_xqsecp.png"
                 alt="Logo Icon"
                 className="sm:translate-x-3 md:translate-x-6 md:scale-150 mt-3 sm:mt-0 scale-120 lg:translate-x-10 h-auto"
               />
@@ -357,7 +357,7 @@ function SpireCompleters() {
               className="w-24 md:w-32 lg:w-40"
             >
               <img
-                src="https://res.cloudinary.com/dislegzga/image/upload/v1755068141/fiemacm_mx8uox.jpg"
+                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757169130/fiemacm_mx8uox_fchcgm.jpg"
                 alt="ACM"
                 className="w-full h-auto"
               />
@@ -387,7 +387,7 @@ function SpireCompleters() {
               className="w-24 md:w-32 lg:w-40"
             >
               <img
-                src="https://res.cloudinary.com/dislegzga/image/upload/v1755616154/AICTE_lqh1yw.jpg"
+                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757167614/AICTE_lqh1yw_wg9syn.jpg"
                 alt="Future"
                 className="w-40 h-auto"
               />
@@ -400,7 +400,7 @@ function SpireCompleters() {
               className="w-20 md:w-24 lg:w-32"
             >
               <img
-                src="https://res.cloudinary.com/dislegzga/image/upload/v1755616152/Council_eyi2wu.jpg"
+                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757167613/Council_eyi2wu_qklcby.jpg"
                 alt="Logo Icon"
                 className="scale-120 md:scale-133 lg:scale-125 h-auto"
               />
@@ -413,7 +413,7 @@ function SpireCompleters() {
               className="w-24 md:w-32 lg:w-40"
             >
               <img
-                src="https://res.cloudinary.com/dislegzga/image/upload/v1755616152/moe_-_Copy_jlr5fv.jpg"
+                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757167613/moe_tcoq9v_w2okv5.jpg"
                 alt="ACM"
                 className="w-full h-auto"
               />

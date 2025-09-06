@@ -8,6 +8,7 @@ import SpireCompleters from "@/components/Sections/SpireCompleters";
 import MentorsSection from "@/components/Sections/MentorsSection";
 import FAQSection from "@/components/Sections/FAQSection";
 import SponsorsSection from "@/components/Sections/SponsorsSection";
+import DiscordSection from "@/components/Sections/DiscordSection";
 
 import GlorySection from "@/components/Sections/GlorySection";
 import PrizePoolSection from "@/components/Sections/PrizePoolSection";
@@ -34,6 +35,7 @@ export default function Home() {
         <SponsorsSection />
         {/* <CollaborationsSection /> */}
         <FAQSection />
+        <DiscordSection />
       </div>
     </main>
   );

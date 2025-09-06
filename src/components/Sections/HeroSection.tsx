@@ -122,7 +122,7 @@ export default function HeroSection() {
               className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
             >
               <Image
-                src="https://res.cloudinary.com/dislegzga/image/upload/v1755362204/worldmap_ozh3jv.svg"
+                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757167598/worldmap_ozh3jv_uhg7dc.svg"
                 alt="World Map Background"
                 width={900}
                 height={225}

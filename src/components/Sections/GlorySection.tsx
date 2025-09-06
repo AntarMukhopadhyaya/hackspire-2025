@@ -6,15 +6,14 @@ import GloryAnimatedText from "../ui/GloryAnimatedText";
 
 export default function GlorySection() {
   const galleryImages: string[] = [
-    "https://res.cloudinary.com/dislegzga/image/upload/v1755364153/image_4_jaz4td.png",
-    "https://res.cloudinary.com/dislegzga/image/upload/v1755364567/IMG_9309_cdh2b4.jpg",
-    "https://res.cloudinary.com/dislegzga/image/upload/v1755364155/image_3_o9uvuh.png",
-    "https://res.cloudinary.com/dislegzga/image/upload/v1755364157/image_bgxxll.png",
-    "https://res.cloudinary.com/dislegzga/image/upload/v1755364155/image_1_i7dozz.png",
-    "https://res.cloudinary.com/dislegzga/image/upload/v1755364564/image_11_q4f5tg.png",
-    "https://res.cloudinary.com/dislegzga/image/upload/v1755364556/image_10_l8ihja.png",
-    "https://res.cloudinary.com/dislegzga/image/upload/v1755364555/image_9_kb0u5t.png",
-    "https://res.cloudinary.com/dislegzga/image/upload/v1755364554/image_12_yxhmnm.png",
+    "https://res.cloudinary.com/dkc5idctm/image/upload/v1757168726/image_4_jaz4td_slhvmg.png",
+    "https://res.cloudinary.com/dkc5idctm/image/upload/v1757168281/IMG_9309_cdh2b4_tx50xv.jpg",
+    "https://res.cloudinary.com/dkc5idctm/image/upload/v1757168267/image_3_o9uvuh_pwmcdc.png",
+    "https://res.cloudinary.com/dkc5idctm/image/upload/v1757168278/image_bgxxll_gz7vfg.png",
+    "https://res.cloudinary.com/dkc5idctm/image/upload/v1757167599/image_11_q4f5tg_pdm70f.png",
+    "https://res.cloudinary.com/dkc5idctm/image/upload/v1757167786/image_10_l8ihja_x7fa1f.png",
+    "https://res.cloudinary.com/dkc5idctm/image/upload/v1757167599/image_9_kb0u5t_pcn175.png",
+    "https://res.cloudinary.com/dkc5idctm/image/upload/v1757167598/image_12_yxhmnm_i7746v.png",
   ];
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isImageLoaded, setIsImageLoaded] = useState<boolean>(true);
