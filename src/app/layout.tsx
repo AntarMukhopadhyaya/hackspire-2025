@@ -8,7 +8,6 @@ import { Analytics } from "@vercel/analytics/next";
 
 import LenisProvider from "@/components/ui/LenisProvider";
 import PageTransition from "@/lib/PageTransition";
-import RouteChangeAnimation from "@/lib/RouteChangeAnimation";
 import { Toaster } from "@/components/ui/sonner";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import StructuredData from "@/components/SEO/StructuredData";
@@ -249,7 +248,6 @@ export default function RootLayout({
 
         {/* <ConditionalAppLoader> */}
         <LenisProvider>
-          <RouteChangeAnimation />
           <Navbar />
 
           {/* Global Cyberpunk Yellow Spotlight */}
