@@ -311,7 +311,7 @@ function SpireCompleters() {
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-5xl mt-48 sm:mb-1 md:-mb-40 -mb-40 lg:-mb-32 sm:text-7xl md:text-[5rem] lg:text-[6rem] xl:text-8xl 2xl:text-[7rem] font-bold text-white"
+            className="text-5xl mt-20 sm:mt-48 sm:mb-1 md:-mb-40 -mb-40 lg:-mb-32 sm:text-7xl md:text-[5rem] lg:text-[6rem] xl:text-8xl 2xl:text-[7rem] font-bold text-white"
             style={{ fontFamily: "'Mokoto Demo', monospace" }}
           >
             HOSTS
@@ -321,19 +321,19 @@ function SpireCompleters() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-            className="flex items-center justify-center gap-8 sm:gap-16 flex-wrap flex-col sm:flex-row sm:flex-nowrap mt-44 sm:mt-20 md:mt-48 lg:mt-40"
+            className="flex items-center justify-center gap-4 sm:gap-16 flex-row flex-nowrap mt-44 sm:mt-20 md:mt-48 lg:mt-40"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
-              className="w-24 md:w-32 lg:w-40"
+              className="w-20 md:w-32 lg:w-40"
             >
               <img
                 src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757169130/new_fiem_logo_iq0bn8_oh8hx6.jpg"
-                alt="Future"
-                className="w-full h-auto scale-150"
+                alt="FIEM"
+                className="w-full h-auto"
               />
             </motion.div>
             <motion.div
@@ -341,12 +341,12 @@ function SpireCompleters() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.5, ease: "easeOut" }}
-              className="w-20 md:w-24 lg:w-32"
+              className="w-14 md:w-24 lg:w-32"
             >
               <img
                 src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757167595/starcyber_q6jkev_xqsecp.png"
-                alt="Logo Icon"
-                className="sm:translate-x-3 md:translate-x-6 md:scale-150 mt-3 sm:mt-0 scale-120 lg:translate-x-10 h-auto"
+                alt="StarCyber"
+                className="w-full h-auto"
               />
             </motion.div>
             <motion.div
@@ -354,11 +354,11 @@ function SpireCompleters() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.6, ease: "easeOut" }}
-              className="w-24 md:w-32 lg:w-40"
+              className="w-16 md:w-32 lg:w-40"
             >
               <img
                 src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757169130/fiemacm_mx8uox_fchcgm.jpg"
-                alt="ACM"
+                alt="FIEM ACM"
                 className="w-full h-auto"
               />
             </motion.div>
@@ -377,19 +377,19 @@ function SpireCompleters() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-            className="flex items-center justify-center gap-8 sm:gap-16 flex-wrap flex-col sm:flex-row sm:flex-nowrap mt-44 sm:mt-20 md:mt-48 lg:mt-40"
+            className="flex items-center justify-center gap-4 sm:gap-16 flex-row flex-nowrap mt-44 sm:mt-20 md:mt-48 lg:mt-40"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
-              className="w-24 md:w-32 lg:w-40"
+              className="w-18 md:w-32 lg:w-40"
             >
               <img
                 src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757167614/AICTE_lqh1yw_wg9syn.jpg"
-                alt="Future"
-                className="w-40 h-auto"
+                alt="AICTE"
+                className="w-full h-auto"
               />
             </motion.div>
             <motion.div
@@ -397,12 +397,12 @@ function SpireCompleters() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.5, ease: "easeOut" }}
-              className="w-20 md:w-24 lg:w-32"
+              className="w-18 md:w-24 lg:w-32"
             >
               <img
                 src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757167613/Council_eyi2wu_qklcby.jpg"
-                alt="Logo Icon"
-                className="scale-120 md:scale-133 lg:scale-125 h-auto"
+                alt="Council"
+                className="w-full h-auto"
               />
             </motion.div>
             <motion.div
@@ -410,11 +410,11 @@ function SpireCompleters() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.6, ease: "easeOut" }}
-              className="w-24 md:w-32 lg:w-40"
+              className="w-18 md:w-32 lg:w-40"
             >
               <img
                 src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757167613/moe_tcoq9v_w2okv5.jpg"
-                alt="ACM"
+                alt="MOE"
                 className="w-full h-auto"
               />
             </motion.div>
@@ -630,23 +630,66 @@ function SpireCompleters() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 1.3, ease: "easeOut" }}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6"
+            className="text-xl md:text-4xl lg:text-5xl font-bold text-white mb-3 md:mb-6"
             style={{ fontFamily: "'Mokoto Demo', monospace" }}
           >
             Community Partners
           </motion.h3>
 
-          {/* Coming Soon Text */}
-          <motion.p
+          {/* Community Partner Logo */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 1.4, ease: "easeOut" }}
+            className="flex justify-center mb-4 md:mb-8"
+          >
+            <div className="w-20 md:w-40 lg:w-48">
+              <img
+                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757268156/image_13_fdf5wq.png"
+                alt="Community Partner"
+                className="w-full h-auto"
+              />
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Games Partner Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 1.5, ease: "easeOut" }}
+          className="text-center mt-8 md:mt-12"
+        >
+          {/* Games Partner Heading */}
+          <motion.h3
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 1.4, ease: "easeOut" }}
-            className="text-lg md:text-xl lg:text-2xl font-semibold text-white/80 mb-6 md:mb-8"
+            transition={{ duration: 0.5, delay: 1.6, ease: "easeOut" }}
+            className="text-xl md:text-4xl lg:text-5xl font-bold text-white mb-3 md:mb-6"
             style={{ fontFamily: "'Mokoto Demo', monospace" }}
           >
-            Coming soon...
-          </motion.p>
+            Games Partner
+          </motion.h3>
+
+          {/* Games Partner Logo */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 1.7, ease: "easeOut" }}
+            className="flex justify-center mb-4 md:mb-8"
+          >
+            <div className="w-20 md:w-40 lg:w-48">
+              <img
+                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757268157/SPORTIVO_LOGO_hfbltv.png"
+                alt="Games Partner - Sportivo"
+                className="w-full h-auto"
+              />
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* Large Decorative Trapezium - Adjusted for mobile */}
