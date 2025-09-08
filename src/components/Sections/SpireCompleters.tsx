@@ -321,14 +321,14 @@ function SpireCompleters() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-            className="flex items-center justify-center gap-4 sm:gap-16 flex-row flex-nowrap mt-44 sm:mt-20 md:mt-48 lg:mt-40"
+            className="flex items-center justify-center gap-4 sm:gap-16 flex-col sm:flex-row flex-nowrap mt-44 sm:mt-20 md:mt-48 lg:mt-40"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
-              className="w-20 md:w-32 lg:w-40"
+              className="w-28 md:w-48 lg:w-56"
             >
               <img
                 src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757169130/new_fiem_logo_iq0bn8_oh8hx6.jpg"
@@ -341,7 +341,7 @@ function SpireCompleters() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.5, ease: "easeOut" }}
-              className="w-14 md:w-24 lg:w-32"
+              className="w-20 md:w-32 lg:w-40"
             >
               <img
                 src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757167595/starcyber_q6jkev_xqsecp.png"
@@ -384,7 +384,7 @@ function SpireCompleters() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
-              className="w-18 md:w-32 lg:w-40"
+              className="w-20 md:w-32 lg:w-40"
             >
               <img
                 src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757167614/AICTE_lqh1yw_wg9syn.jpg"
@@ -397,7 +397,7 @@ function SpireCompleters() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.5, ease: "easeOut" }}
-              className="w-18 md:w-24 lg:w-32"
+              className="w-20 md:w-32 lg:w-40"
             >
               <img
                 src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757167613/Council_eyi2wu_qklcby.jpg"
@@ -410,7 +410,7 @@ function SpireCompleters() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.6, ease: "easeOut" }}
-              className="w-18 md:w-32 lg:w-40"
+              className="w-20 md:w-32 lg:w-40"
             >
               <img
                 src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757167613/moe_tcoq9v_w2okv5.jpg"
