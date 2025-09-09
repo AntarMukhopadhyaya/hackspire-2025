@@ -6,6 +6,7 @@ interface SponsorCardProps {
   alt: string;
   tier: string;
   sponsorName: string;
+  link?: string; // Optional link for sponsors
 }
 
 const SponsorCard: React.FC<SponsorCardProps> = ({
@@ -13,6 +14,7 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
   alt,
   tier,
   sponsorName,
+  link,
 }) => {
   const borderStyle: React.CSSProperties | undefined =
     tier === "Platinum"
@@ -23,6 +25,8 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
       ? { background: "linear-gradient(135deg, #B06A2B 0%, #7A4A1E 100%)" }
       : tier === "Diamond"
       ? { background: "linear-gradient(135deg, #7FE8FF 0%, #19C7FF 100%)" }
+      : tier === "In Kind"
+      ? { background: "linear-gradient(135deg, #10B981 0%, #059669 100%)" }
       : undefined;
   const isDiamond = tier === "Diamond";
   const isPlatinum = tier === "Platinum";
@@ -48,6 +52,11 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
         }
       : tier === "Diamond"
       ? { background: "linear-gradient(135deg, #7FE8FF 0%, #19C7FF 100%)" }
+      : tier === "In Kind"
+      ? {
+          background:
+            "linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 50%, #6EE7B7 100%)",
+        }
       : undefined;
 
   // Card size classes
@@ -56,18 +65,32 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
   const sponsorFont = "text-sm sm:text-base md:text-lg";
   const comingSoonFont = "text-xl sm:text-2xl md:text-3xl lg:text-4xl";
 
+  // Handle click for sponsors with links
+  const handleClick = () => {
+    if (link && !src.includes("placeholder")) {
+      window.open(link, "_blank", "noopener,noreferrer");
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className={`relative ${cardPadding} group cursor-pointer transition-all duration-300 hover:scale-105`}
+      className={`relative ${cardPadding} group transition-all duration-300 hover:scale-105 ${
+        link && !src.includes("placeholder")
+          ? "cursor-pointer"
+          : "cursor-default"
+      }`}
+      onClick={handleClick}
     >
       <div
         className={
           tier === "Gold"
             ? "absolute inset-0 bg-yellow-400 transition-all duration-300 group-hover:animate-pulse"
+            : tier === "In Kind"
+            ? "absolute inset-0 transition-all duration-300 group-hover:animate-pulse"
             : "absolute inset-0 transition-all duration-300 group-hover:animate-pulse"
         }
         style={{
@@ -79,6 +102,8 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
         className={
           tier === "Gold"
             ? "absolute -inset-0.5 md:-inset-1 bg-yellow-500 transition-all duration-300 group-hover:bg-orange-500"
+            : tier === "In Kind"
+            ? "absolute -inset-0.5 md:-inset-1 transition-all duration-300 group-hover:bg-green-600"
             : "absolute -inset-0.5 md:-inset-1 transition-all duration-300"
         }
         style={{

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import {
   FaShieldAlt,
@@ -174,40 +174,6 @@ export default function ThemeClient() {
           }
         }
       `}</style>
-
-      {/* Matrix Rain Background */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          {/* Dynamic CSS for matrix columns */}
-          <style>
-            {Array.from({ length: 50 })
-              .map((_, i) => {
-                const delay = Math.random() * 5;
-                const duration = 3 + Math.random() * 4;
-                return `.matrix-column-${i} {
-                left: ${i * 2}%;
-                animation-delay: ${delay}s;
-                animation-duration: ${duration}s;
-              }`;
-              })
-              .join("\n")}
-          </style>
-
-          {/* Matrix columns */}
-          {Array.from({ length: 50 }).map((_, i) => (
-            <div
-              key={i}
-              className={`absolute top-0 text-green-400 font-mono text-xs leading-none matrix-column-animated matrix-column-${i}`}
-            >
-              {Array.from({ length: 20 }).map((_, j) => (
-                <div key={j} className="opacity-70">
-                  {String.fromCharCode(33 + Math.floor(Math.random() * 94))}
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
 
       {/* Yellow Trapezium Background with Clip-Path - Responsive */}
       <div className="absolute top-0 left-0 right-0 h-64 sm:h-80 md:h-96 z-0">
@@ -538,6 +504,151 @@ export default function ThemeClient() {
               </motion.div>
             );
           })}
+        </div>
+      </div>
+
+      {/* Glowing Yellow Underline */}
+      <motion.div
+        initial={{ opacity: 0, scaleX: 0 }}
+        whileInView={{ opacity: 1, scaleX: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+        className="flex justify-center my-12 md:my-16"
+      >
+        <div className="w-full max-w-4xl mx-8 md:mx-16 relative">
+          {/* Main line with enhanced glow and shadow */}
+          <div className="h-0.5 bg-yellow-400 relative shadow-2xl shadow-yellow-400/80">
+            {/* Tapered glow layers - stronger at center, fading to edges */}
+            <div
+              className="absolute inset-0 h-0.5 blur-sm shadow-lg shadow-yellow-400/60"
+              style={{
+                background:
+                  "linear-gradient(to right, transparent 0%, rgba(250, 204, 21, 0.8) 20%, rgba(250, 204, 21, 1) 50%, rgba(250, 204, 21, 0.8) 80%, transparent 100%)",
+              }}
+            ></div>
+            <div
+              className="absolute inset-0 h-1 blur-md shadow-xl shadow-yellow-300/50"
+              style={{
+                background:
+                  "linear-gradient(to right, transparent 0%, rgba(253, 224, 71, 0.6) 25%, rgba(253, 224, 71, 0.9) 50%, rgba(253, 224, 71, 0.6) 75%, transparent 100%)",
+              }}
+            ></div>
+            <div
+              className="absolute inset-0 h-2 blur-lg shadow-2xl shadow-yellow-200/40"
+              style={{
+                background:
+                  "linear-gradient(to right, transparent 0%, rgba(254, 240, 138, 0.3) 30%, rgba(254, 240, 138, 0.6) 50%, rgba(254, 240, 138, 0.3) 70%, transparent 100%)",
+              }}
+            ></div>
+            <div
+              className="absolute inset-0 h-3 blur-xl shadow-2xl shadow-yellow-100/30"
+              style={{
+                background:
+                  "linear-gradient(to right, transparent 0%, rgba(254, 249, 195, 0.1) 35%, rgba(254, 249, 195, 0.3) 50%, rgba(254, 249, 195, 0.1) 65%, transparent 100%)",
+              }}
+            ></div>
+
+            {/* Core bright line with center emphasis */}
+            <div
+              className="absolute inset-0 h-px shadow-md shadow-yellow-200/80"
+              style={{
+                background:
+                  "linear-gradient(to right, transparent 0%, rgba(254, 240, 138, 0.7) 25%, rgba(254, 240, 138, 1) 50%, rgba(254, 240, 138, 0.7) 75%, transparent 100%)",
+              }}
+            ></div>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Tracks Section */}
+      <div className="max-w-7xl mx-auto mt-8 md:mt-12 mb-4 relative z-50">
+        <div className="text-center mb-6 relative z-50">
+          <motion.h2
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-6xl sm:text-7xl md:text-[6rem] lg:text-[8rem] xl:text-[10rem] font-bold text-white font-sddystopiandemo"
+          >
+            TRACKS
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-center max-w-4xl mx-auto -mt-4 pb-8 text-xs sm:text-sm md:text-lg lg:text-xl text-white leading-relaxed font-mokoto px-6 sm:px-12 md:px-20"
+          >
+            <span className="hidden md:inline">
+              Special collaboration tracks with industry partners offering
+              exclusive rewards and mentorship opportunities.
+            </span>
+            <span className="md:hidden">
+              Special tracks with exclusive rewards and mentorship.
+            </span>
+          </motion.p>
+        </div>
+
+        {/* Simple Aptos Track Design */}
+        <div className="flex justify-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-center"
+          >
+            <div className="flex flex-col items-center gap-0">
+              {/* Large Aptos Logo */}
+              <div className="relative -mb-8">
+                <img
+                  src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757435308/aptos-CdAiFgNh_w7hscv.png"
+                  alt="Aptos Logo"
+                  className="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 object-contain"
+                />
+              </div>
+
+              {/* Company Name with Arrow Link */}
+              <motion.a
+                href="https://aptosfoundation.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-white text-2xl md:text-3xl lg:text-4xl font-bold inline-flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer -mb-1 -mt-4 relative z-50"
+                style={{ fontFamily: "'Mokoto Demo', monospace" }}
+              >
+                <span className="hover:border-b hover:border-dotted hover:border-white transition-all duration-300 relative z-50">
+                  Aptos
+                </span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 relative z-50"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M7 17L17 7M17 7H7M17 7V17"
+                  />
+                </svg>
+              </motion.a>
+
+              {/* Track Motto */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-white text-base md:text-lg lg:text-xl font-medium max-w-2xl mx-auto leading-relaxed text-center"
+                style={{ fontFamily: "'Mokoto Demo', monospace" }}
+              >
+                $25 bounty per team
+              </motion.p>
+            </div>
+          </motion.div>
         </div>
       </div>
 
