@@ -513,7 +513,7 @@ export default function ThemeClient() {
         whileInView={{ opacity: 1, scaleX: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-        className="flex justify-center my-12 md:my-16"
+        className="flex justify-center mt-16 mb-12 md:my-16"
       >
         <div className="w-full max-w-4xl mx-8 md:mx-16 relative">
           {/* Main line with enhanced glow and shadow */}
@@ -561,8 +561,8 @@ export default function ThemeClient() {
       </motion.div>
 
       {/* Tracks Section */}
-      <div className="max-w-7xl mx-auto mt-8 md:mt-12 mb-4 relative z-50">
-        <div className="text-center mb-6 relative z-50">
+      <div className="max-w-7xl mx-auto -mt-2 md:mt-12 mb-4 relative z-50">
+        <div className="text-center mb-0 md:mb-6 relative z-50">
           <motion.h2
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -597,7 +597,7 @@ export default function ThemeClient() {
           >
             <div className="flex flex-col items-center gap-0">
               {/* Large Aptos Logo */}
-              <div className="relative -mb-8">
+              <div className="relative -mb-8 -mt-4 md:mt-0">
                 <img
                   src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757435308/aptos-CdAiFgNh_w7hscv.png"
                   alt="Aptos Logo"

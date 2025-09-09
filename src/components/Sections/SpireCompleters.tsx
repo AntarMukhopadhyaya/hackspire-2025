@@ -311,7 +311,7 @@ function SpireCompleters() {
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-5xl mt-16 sm:mt-24 md:mt-32 lg:mt-40 mb-8 sm:mb-12 md:mb-16 lg:mb-20 sm:text-7xl md:text-[5rem] lg:text-[6rem] xl:text-8xl 2xl:text-[7rem] font-bold text-white"
+            className="text-5xl mt-20 sm:mt-24 md:mt-32 lg:mt-40 mb-8 sm:mb-12 md:mb-16 lg:mb-20 sm:text-7xl md:text-[5rem] lg:text-[6rem] xl:text-8xl 2xl:text-[7rem] font-bold text-white"
             style={{ fontFamily: "'Mokoto Demo', monospace" }}
           >
             HOSTS
