@@ -28,11 +28,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "HackSpire 2025 - Biggest Hackathon by FIEM ACM Student Chapter",
-    template: "%s | HackSpire 2025",
+    default: "HackSpire'25 - Biggest Hackathon by FIEM ACM Student Chapter",
+    template: "%s | HackSpire'25",
   },
   description:
-    "Join HackSpire 2025, the largest 25-hour hackathon organized by FIEM ACM Student Chapter. Build innovative solutions in AI, Blockchain, Cybersecurity, Agriculture, Robotics, Gaming, Healthcare, and Open Innovation. Future Institute of Engineering's premier hackathon event.",
+    "Join HackSpire'25, the largest 25-hour hackathon organized by FIEM ACM Student Chapter. Build innovative solutions in AI, Blockchain, Cybersecurity, Agriculture, Robotics, Gaming, Healthcare, and Open Innovation. Future Institute of Engineering's premier hackathon event.",
   keywords: [
     "Hackspire",
     "Hackspire2025",
@@ -95,25 +95,25 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://hackspire.tech",
-    siteName: "HackSpire 2025",
-    title: "HackSpire 2025 - Biggest Hackathon by FIEM ACM Student Chapter",
+    siteName: "HackSpire'25",
+    title: "HackSpire'25 - Biggest Hackathon by FIEM ACM Student Chapter",
     description:
-      "Join HackSpire 2025, the largest 25-hour hackathon organized by FIEM ACM Student Chapter. Build innovative solutions in AI, Blockchain, Cybersecurity, Agriculture, Robotics, Gaming, Healthcare, and Open Innovation.",
+      "Join HackSpire'25, the largest 25-hour hackathon organized by FIEM ACM Student Chapter. Build innovative solutions in AI, Blockchain, Cybersecurity, Agriculture, Robotics, Gaming, Healthcare, and Open Innovation.",
     images: [
       {
         url: "/og-image.svg",
         width: 1200,
         height: 630,
-        alt: "HackSpire 2025 - Biggest Hackathon by FIEM ACM Student Chapter",
+        alt: "HackSpire'25 - Biggest Hackathon by FIEM ACM Student Chapter",
         type: "image/svg+xml",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "HackSpire 2025 - Biggest Hackathon by FIEM ACM Student Chapter",
+    title: "HackSpire'25 - Biggest Hackathon by FIEM ACM Student Chapter",
     description:
-      "Join HackSpire 2025, the largest 25-hour hackathon organized by FIEM ACM Student Chapter. Build innovative solutions in AI, Blockchain, Cybersecurity, Agriculture, Robotics, Gaming, Healthcare, and Open Innovation.",
+      "Join HackSpire'25, the largest 25-hour hackathon organized by FIEM ACM Student Chapter. Build innovative solutions in AI, Blockchain, Cybersecurity, Agriculture, Robotics, Gaming, Healthcare, and Open Innovation.",
     images: ["/og-image.svg"],
     creator: "@hackspire2025",
     site: "@hackspire2025",
@@ -141,8 +141,8 @@ export const metadata: Metadata = {
     "msapplication-TileColor": "#EAB308",
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "default",
-    "apple-mobile-web-app-title": "HackSpire 2025",
-    "application-name": "HackSpire 2025",
+    "apple-mobile-web-app-title": "HackSpire'25",
+    "application-name": "HackSpire'25",
     "msapplication-config": "/browserconfig.xml",
   },
 };
@@ -176,7 +176,7 @@ export default function RootLayout({
 
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="HackSpire 2025" />
+        <meta name="apple-mobile-web-app-title" content="HackSpire'25" />
 
         {/* Windows Tiles */}
         <meta name="msapplication-TileColor" content="#EAB308" />
@@ -186,7 +186,7 @@ export default function RootLayout({
         <link
           rel="alternate"
           type="application/rss+xml"
-          title="HackSpire 2025 RSS Feed"
+          title="HackSpire'25 RSS Feed"
           href="/feed.xml"
         />
 
@@ -204,7 +204,7 @@ export default function RootLayout({
               url: "https://hackspire.tech",
               logo: "https://hackspire.tech/logo.png",
               description:
-                "FIEM ACM Student Chapter is dedicated to promoting computer science education and fostering innovation through events like HackSpire 2025.",
+                "FIEM ACM Student Chapter is dedicated to promoting computer science education and fostering innovation through events like HackSpire'25.",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Kolkata",

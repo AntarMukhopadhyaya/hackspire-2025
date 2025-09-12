@@ -5,7 +5,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "Get in touch with HackSpire 2025 organizers. Contact FIEM ACM Student Chapter for sponsorship opportunities, partnership inquiries, media coverage, or general questions about the hackathon.",
+    "Get in touch with HackSpire'25 organizers. Contact FIEM ACM Student Chapter for sponsorship opportunities, partnership inquiries, media coverage, or general questions about the hackathon.",
   keywords: [
     "contact hackspire",
     "hackspire contact",
@@ -23,17 +23,17 @@ export const metadata: Metadata = {
   creator: "FIEM ACM Student Chapter",
   publisher: "Future Institute of Engineering",
   openGraph: {
-    title: "Contact HackSpire 2025",
+    title: "Contact HackSpire'25",
     description:
-      "Get in touch with HackSpire 2025 organizers for sponsorship, partnerships, media inquiries, or general questions.",
+      "Get in touch with HackSpire'25 organizers for sponsorship, partnerships, media inquiries, or general questions.",
     url: "https://hackspire.tech/contact",
-    siteName: "HackSpire 2025",
+    siteName: "HackSpire'25",
     images: [
       {
         url: "/og-image.svg",
         width: 1200,
         height: 630,
-        alt: "Contact HackSpire 2025 - Get in Touch",
+        alt: "Contact HackSpire'25 - Get in Touch",
         type: "image/svg+xml",
       },
     ],
@@ -42,9 +42,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact HackSpire 2025",
+    title: "Contact HackSpire'25",
     description:
-      "Get in touch with HackSpire 2025 organizers for sponsorship, partnerships, media inquiries, or general questions.",
+      "Get in touch with HackSpire'25 organizers for sponsorship, partnerships, media inquiries, or general questions.",
     images: ["/og-image.svg"],
     creator: "@hackspire2025",
     site: "@hackspire2025",

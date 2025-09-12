@@ -4,9 +4,9 @@ export default function StructuredData() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Event",
-    name: "HackSpire 2025",
+    name: "HackSpire'25",
     description:
-      "Join HackSpire 2025, the largest 25-hour hackathon organized by FIEM ACM Student Chapter. Build innovative solutions in AI, Blockchain, Cybersecurity, Agriculture, Robotics, Gaming, Healthcare, and Open Innovation.",
+      "Join HackSpire'25, the largest 25-hour hackathon organized by FIEM ACM Student Chapter. Build innovative solutions in AI, Blockchain, Cybersecurity, Agriculture, Robotics, Gaming, Healthcare, and Open Innovation.",
     startDate: "2025-03-15T09:00:00+05:30",
     endDate: "2025-03-16T10:00:00+05:30",
     eventStatus: "https://schema.org/EventScheduled",
