@@ -46,8 +46,8 @@ export const metadata: Metadata = {
     description:
       "Get in touch with HackSpire'25 organizers for sponsorship, partnerships, media inquiries, or general questions.",
     images: ["/og-image.svg"],
-    creator: "@hackspire2025",
-    site: "@hackspire2025",
+    creator: "@acmfiem",
+    site: "@acmfiem",
   },
   alternates: {
     canonical: "/contact",
