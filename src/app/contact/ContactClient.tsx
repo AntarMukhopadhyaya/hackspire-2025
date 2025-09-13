@@ -6,7 +6,6 @@ import { Send } from "lucide-react";
 import CyberButton from "@/components/ui/CyberButton";
 import TurnstileWrapper from "@/components/ui/TurnstileWrapper";
 import { toast } from "sonner";
-import MatrixRain from "@/components/ui/MatrixRain";
 
 export default function ContactClient() {
   const [formData, setFormData] = useState({
@@ -447,7 +446,28 @@ export default function ContactClient() {
             {/* Cyberpunk Yellow Container with Clip-Path Cut Edges */}
             <div
               className="relative p-4 sm:p-5 md:p-6 group cursor-pointer transition-all duration-300 hover:scale-105"
-              onClick={handleMobileTouch}
+              onClick={(e) => {
+                handleMobileTouch(e);
+                // Handle email click functionality
+                if (window.innerWidth > 768) {
+                  // For desktop/web browsers, try Gmail web first
+                  const gmailUrl =
+                    "https://mail.google.com/mail/?view=cm&fs=1&to=acmfiem@gmail.com&su=HackSpire%202025%20Inquiry";
+                  const newWindow = window.open(gmailUrl, "_blank");
+
+                  // Fallback to mailto if Gmail doesn't work
+                  setTimeout(() => {
+                    if (!newWindow || newWindow.closed) {
+                      window.location.href =
+                        "mailto:acmfiem@gmail.com?subject=HackSpire%202025%20Inquiry";
+                    }
+                  }, 1000);
+                } else {
+                  // On mobile, use default mailto behavior
+                  window.location.href =
+                    "mailto:acmfiem@gmail.com?subject=HackSpire%202025%20Inquiry";
+                }
+              }}
             >
               {/* Background with clip-path cuts */}
               <div
@@ -500,9 +520,10 @@ export default function ContactClient() {
                   Email
                 </h3>
                 <a
-                  href="mailto:acmfiem@gmail.com"
+                  href="mailto:acmfiem@gmail.com?subject=HackSpire%202025%20Inquiry"
                   className="text-black text-sm sm:text-base md:text-lg font-medium hover:text-blue-600 transition-colors cursor-pointer"
                   style={{ fontFamily: "'Mokoto Demo', monospace" }}
+                  onClick={(e) => e.preventDefault()} // Prevent double-click since card handles it
                 >
                   acmfiem@gmail.com
                 </a>
