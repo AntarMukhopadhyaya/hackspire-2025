@@ -500,11 +500,11 @@ export default function ContactClient() {
                   Email
                 </h3>
                 <a
-                  href="mailto:fiemacm@gmail.com"
+                  href="mailto:acmfiem@gmail.com"
                   className="text-black text-sm sm:text-base md:text-lg font-medium hover:text-blue-600 transition-colors cursor-pointer"
                   style={{ fontFamily: "'Mokoto Demo', monospace" }}
                 >
-                  fiemacm@gmail.com
+                  acmfiem@gmail.com
                 </a>
               </div>
             </div>

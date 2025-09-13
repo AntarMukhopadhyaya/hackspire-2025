@@ -97,17 +97,8 @@ export function CrewCard({ member }: CrewCardProps) {
               transition: "clip-path 0s, border-radius 0s",
             }}
           />
-
-          {/* SVG card overlay */}
-          <img
-            src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757169131/crewcard4_bzzzbf_dznanu.png"
-            alt="Crew Card"
-            className="absolute inset-0 w-80 h-auto z-15"
-            style={{ width: "320px", height: "387px" }}
-          />
         </div>
 
-        {/* Content overlays */}
         {/* Instagram icon at top left corner */}
         <div
           className="absolute top-2 left-2 z-[25]"
@@ -153,12 +144,12 @@ export function CrewCard({ member }: CrewCardProps) {
           }}
         >
           <span
-            className="text-neutral-500 text-base font-medium tracking-wide"
+            className="text-black text-base font-medium tracking-wide"
             style={{
               fontFamily: "Blanka, Impact, Arial Black, sans-serif",
             }}
           >
-            HACKSPIRE 2025
+            HACKSPIRE'25
           </span>
         </div>
 
@@ -214,7 +205,7 @@ export function CrewCard({ member }: CrewCardProps) {
         </div>
         {/* SVG card overlay - now guaranteed to stay above the image */}
         <img
-          src="https://res.cloudinary.com/dislegzga/image/upload/v1755361827/crewcard4_bzzzbf.png"
+          src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757169131/crewcard4_bzzzbf_dznanu.png"
           alt="Crew Card"
           className="absolute inset-0 w-80 h-auto z-[15] pointer-events-none"
           style={{ width: "320px", height: "387px" }}

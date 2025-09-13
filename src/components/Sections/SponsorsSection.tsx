@@ -181,27 +181,7 @@ export default function SponsorsSection() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6, delay: 0.02 }}
           >
-            <div className="flex items-center justify-center mb-6">
-              <div className="relative inline-block">
-                <div
-                  className="absolute -inset-1 bg-gradient-to-r from-yellow-500 to-orange-500 opacity-80"
-                  style={{
-                    clipPath:
-                      "polygon(14px 0%, 100% 0%, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0% 100%, 0% 14px)",
-                  }}
-                />
-                <div
-                  className="relative px-6 py-2 bg-black text-yellow-300 border border-yellow-500"
-                  style={{
-                    fontFamily: "'Mokoto Demo', monospace",
-                    clipPath:
-                      "polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
-                  }}
-                >
-                  TRACKS SPONSORS TIER
-                </div>
-              </div>
-            </div>
+            <TierTitle label="Tracks Sponsors" />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-4xl mx-auto">
               <SponsorCard
                 src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757435308/aptos-CdAiFgNh_w7hscv.png"

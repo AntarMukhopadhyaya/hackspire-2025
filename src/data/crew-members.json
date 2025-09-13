@@ -194,6 +194,30 @@
   },
   {
     "id": 17,
+    "name": "Nandini Das",
+    "position": "Co-Ordinator",
+    "image": "https://res.cloudinary.com/dkc5idctm/image/upload/v1757788390/WhatsApp_Image_2025-09-13_at_23.41.14_b1acfc35_lozy8a.jpg",
+    "instagram": "",
+    "github": "",
+    "linkedin": "",
+    "twitter": "",
+    "crew": "hackbuilders",
+    "crewfilter": "HACKBUILDERS"
+  },
+  {
+    "id": 18,
+    "name": "Saikat Tanti",
+    "position": "Co-Ordinator",
+    "image": "https://res.cloudinary.com/dkc5idctm/image/upload/v1757788403/1000226021-02-01-1101.jpeg_wk3p54.jpg",
+    "instagram": "",
+    "github": "",
+    "linkedin": "",
+    "twitter": "",
+    "crew": "hackbuilders",
+    "crewfilter": "HACKBUILDERS"
+  },
+  {
+    "id": 19,
     "name": "Abhishek Das",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dkc5idctm/image/upload/v1757169705/ABHISHEK_DAs_bffzpu.jpg",
@@ -205,7 +229,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 18,
+    "id": 20,
     "name": "Sourav Saha",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dkc5idctm/image/upload/v1757169711/Sourav_Saha_wsjmri.jpg",
@@ -217,7 +241,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 19,
+    "id": 21,
     "name": "Rohan Sharma",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dkc5idctm/image/upload/v1757169664/Rohan_Sharma_xmbrmz.jpg",
@@ -229,7 +253,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 20,
+    "id": 22,
     "name": "Shuvam Dutta",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dkc5idctm/image/upload/v1757170199/Shuvam_Dutta_wetafh.jpg",
@@ -241,7 +265,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 21,
+    "id": 23,
     "name": "Sounak Bhattacharya",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dkc5idctm/image/upload/v1757169706/Sounak_Bhattacharya_yrwvqq.jpg",
@@ -253,7 +277,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 22,
+    "id": 24,
     "name": "Most Soha Sabnam",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dkc5idctm/image/upload/v1757170197/IMG-20250822-WA0019_jv2k3n.jpg",
@@ -266,7 +290,7 @@
   },
 
   {
-    "id": 23,
+    "id": 25,
     "name": "Sankhadip Maity",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dkc5idctm/image/upload/v1757170976/WhatsApp_Image_2025-09-06_at_20.32.33_ea5f06e0_cccmtf.jpg",
@@ -278,7 +302,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 24,
+    "id": 26,
     "name": "Shreya Das",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dkc5idctm/image/upload/v1757170983/WhatsApp_Image_2025-09-01_at_17.04.21_8adb2adb_ayjzum.jpg",
@@ -290,7 +314,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 25,
+    "id": 27,
     "name": "Akash Ghosh",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dkc5idctm/image/upload/v1757169672/WhatsApp_Image_2025-08-25_at_06.59.46_e3db1a31_bdhzdi_q2nyla.jpg",
@@ -302,7 +326,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 26,
+    "id": 28,
     "name": "Tanish Kar",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dkc5idctm/image/upload/v1757169667/WhatsApp_Image_2025-08-24_at_22.46.07_16d69220_cai6hg_jrzzff.jpg",
@@ -314,7 +338,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 27,
+    "id": 29,
     "name": "Suman Parui",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dkc5idctm/image/upload/v1757169666/WhatsApp_Image_2025-08-24_at_22.35.46_940deb35_ln8toa_yxxhpu.jpg",
@@ -326,7 +350,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 28,
+    "id": 30,
     "name": "SHREEJIT DAS",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dkc5idctm/image/upload/v1757169669/WhatsApp_Image_2025-08-24_at_23.55.41_c9070c94_cgkuwg_kgck09.jpg",
@@ -338,7 +362,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 29,
+    "id": 31,
     "name": "Chandranshu Dutta",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dkc5idctm/image/upload/v1757169674/WhatsApp_Image_2025-08-25_at_23.41.27_414f8966_e60chv_dkme16.jpg",

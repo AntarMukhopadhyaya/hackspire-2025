@@ -1,17 +1,15 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Filter, Users, Code, Wrench, Star } from "lucide-react";
+import { Filter, Users, Code, Wrench } from "lucide-react";
 import { CrewCard, type CrewMember } from "../../components/ui/CrewCard";
 import crewMembersData from "../../data/crew-members.json";
-import MatrixRain from "@/components/ui/MatrixRain";
 
 const filterOptions = [
   { id: "all", label: "All Crews", icon: Filter },
   // { id: "spireorgs", label: "SpireOrgs", icon: Users }, // commented out for now
   { id: "hackbuilders", label: "HackBuilders", icon: Code },
   { id: "spirengineers", label: "Spirengineers", icon: Wrench },
-  { id: "spireteers", label: "Spireteers", icon: Star },
 ];
 
 function Crews() {
@@ -38,7 +36,11 @@ function Crews() {
 
   const filteredMembers = (() => {
     if (activeFilter === "all") {
-      return crewMembers;
+      // Exclude spireteers/volunteers from "all" display
+      return crewMembers.filter((member) => {
+        const pos = member.position ? member.position.toLowerCase() : "";
+        return !pos.includes("volunteer") && member.crew !== "spireteers";
+      });
     } else if (activeFilter === "spireorgs") {
       // SpireOrgs commented out for now
       return [];
@@ -56,14 +58,14 @@ function Crews() {
     }>
   >([]);
 
-  // Generate matrix columns on client side only
+  // Generate matrix columns on client side only with fixed values to prevent hydration issues
   useEffect(() => {
     const columns = Array.from({ length: 50 }).map((_, i) => ({
       id: i,
-      delay: Math.random() * 5,
-      duration: 3 + Math.random() * 4,
-      chars: Array.from({ length: 20 }).map(() =>
-        String.fromCharCode(33 + Math.floor(Math.random() * 94))
+      delay: (i * 0.1) % 5, // Fixed pattern instead of random
+      duration: 3 + ((i * 0.2) % 4), // Fixed pattern instead of random
+      chars: Array.from({ length: 20 }).map(
+        (_, j) => String.fromCharCode(33 + ((i + j * 2) % 94)) // Fixed pattern instead of random
       ),
     }));
     setMatrixColumns(columns);
@@ -419,39 +421,12 @@ function Crews() {
         transition={{ duration: 0.8, delay: 0.9 }}
         className="max-w-7xl mx-auto mt-16"
       >
-        {/* Custom layout for 'All Crew' filter: center last row of CC Members, Volunteers in new row */}
-        {activeFilter === "all" ? (
-          <>
-            {/* All except Volunteers */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 justify-items-center">
-              {filteredMembers
-                .filter((m) => {
-                  const pos = m.position ? m.position.toLowerCase() : "";
-                  return !pos.includes("volunteer");
-                })
-                .map((member) => (
-                  <CrewCard key={member.id} member={member} />
-                ))}
-            </div>
-            {/* Volunteers in new row with consistent vertical gap */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 justify-items-center mt-12 sm:mt-12 md:mt-12">
-              {filteredMembers
-                .filter(
-                  (m) =>
-                    m.position && m.position.toLowerCase().includes("volunteer")
-                )
-                .map((member) => (
-                  <CrewCard key={member.id} member={member} />
-                ))}
-            </div>
-          </>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 justify-items-center">
-            {filteredMembers.map((member) => (
-              <CrewCard key={member.id} member={member} />
-            ))}
-          </div>
-        )}
+        {/* Standard grid layout since volunteers/spireteers are excluded */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 justify-items-center">
+          {filteredMembers.map((member) => (
+            <CrewCard key={member.id} member={member} />
+          ))}
+        </div>
 
         {filteredMembers.length === 0 && (
           <div className="text-center mt-16">

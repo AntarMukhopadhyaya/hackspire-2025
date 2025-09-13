@@ -24,11 +24,23 @@ export const TracingBeam = ({
 
   const contentRef = useRef<HTMLDivElement>(null);
   const [svgHeight, setSvgHeight] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     if (contentRef.current) {
       setSvgHeight(contentRef.current.offsetHeight);
     }
+  }, []);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   const y1 = useSpring(
@@ -52,7 +64,7 @@ export const TracingBeam = ({
       className={cn("relative mx-auto h-full w-full max-w-4xl", className)}
       style={{
         borderRadius: 0,
-        ...(typeof window !== "undefined" && window.innerWidth <= 768
+        ...(isMobile
           ? { maxWidth: "95vw", minWidth: "180px", width: "100%" }
           : {}),
       }}
