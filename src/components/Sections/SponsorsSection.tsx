@@ -182,13 +182,14 @@ export default function SponsorsSection() {
             transition={{ duration: 0.6, delay: 0.02 }}
           >
             <TierTitle label="Tracks Sponsors" />
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
               <SponsorCard
                 src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757435308/aptos-CdAiFgNh_w7hscv.png"
                 alt="Aptos Logo"
                 tier="In Kind"
                 sponsorName="Aptos"
                 link="https://aptosfoundation.org/"
+                hideSponsorName={true}
               />
               <SponsorCard
                 src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757435308/risin-D8eBPb92_dyok04.png"
@@ -196,7 +197,26 @@ export default function SponsorsSection() {
                 tier="In Kind"
                 sponsorName="Rise In"
                 link="https://risein.com/"
+                hideSponsorName={true}
               />
+              <SponsorCard
+                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757818512/Untitled_design_yttxw6.png"
+                alt="Keploy Logo"
+                tier="In Kind"
+                sponsorName="Keploy"
+                link="https://github.com/keploy/keploy"
+                hideSponsorName={true}
+              />
+              <div className="lg:col-start-2">
+                <SponsorCard
+                  src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757828181/Axicov_je0gwg.png"
+                  alt="Axicov Logo"
+                  tier="In Kind"
+                  sponsorName="Axicov"
+                  link="https://axicov.com/"
+                  hideSponsorName={true}
+                />
+              </div>
             </div>
           </motion.div>
           {/* Platinum Tier */}
@@ -213,18 +233,21 @@ export default function SponsorsSection() {
                 alt="Platinum Sponsor Placeholder 1"
                 tier="Platinum"
                 sponsorName="Coming Soon"
+                hideSponsorName={true}
               />
               <SponsorCard
                 src="placeholder"
                 alt="Platinum Sponsor Placeholder 2"
                 tier="Platinum"
                 sponsorName="Coming Soon"
+                hideSponsorName={true}
               />
               <SponsorCard
                 src="placeholder"
                 alt="Platinum Sponsor Placeholder 3"
                 tier="Platinum"
                 sponsorName="Coming Soon"
+                hideSponsorName={true}
               />
             </div>
           </motion.div>
@@ -242,18 +265,21 @@ export default function SponsorsSection() {
                 alt="DEVFOLIO LOGO"
                 tier="Gold"
                 sponsorName="Devfolio"
+                hideSponsorName={true}
               />
               <SponsorCard
                 src="placeholder"
                 alt="Gold Sponsor Placeholder 1"
                 tier="Gold"
                 sponsorName="Coming Soon"
+                hideSponsorName={true}
               />
               <SponsorCard
                 src="placeholder"
                 alt="Gold Sponsor Placeholder 2"
                 tier="Gold"
                 sponsorName="Coming Soon"
+                hideSponsorName={true}
               />
             </div>
           </motion.div>
@@ -271,18 +297,21 @@ export default function SponsorsSection() {
                 alt="ETHINDIA LOGO"
                 tier="Silver"
                 sponsorName="ETHIndia"
+                hideSponsorName={true}
               />
               <SponsorCard
                 src="placeholder"
                 alt="Silver Sponsor Placeholder 1"
                 tier="Silver"
                 sponsorName="Coming Soon"
+                hideSponsorName={true}
               />
               <SponsorCard
                 src="placeholder"
                 alt="Silver Sponsor Placeholder 2"
                 tier="Silver"
                 sponsorName="Coming Soon"
+                hideSponsorName={true}
               />
             </div>
           </motion.div>
@@ -300,30 +329,35 @@ export default function SponsorsSection() {
                 alt="Bronze Sponsor Placeholder 1"
                 tier="Bronze"
                 sponsorName="Coming Soon"
+                hideSponsorName={true}
               />
               <SponsorCard
                 src="placeholder"
                 alt="Bronze Sponsor Placeholder 2"
                 tier="Bronze"
                 sponsorName="Coming Soon"
+                hideSponsorName={true}
               />
               <SponsorCard
                 src="placeholder"
                 alt="Bronze Sponsor Placeholder 3"
                 tier="Bronze"
                 sponsorName="Coming Soon"
+                hideSponsorName={true}
               />
               <SponsorCard
                 src="placeholder"
                 alt="Bronze Sponsor Placeholder 4"
                 tier="Bronze"
                 sponsorName="Coming Soon"
+                hideSponsorName={true}
               />
               <SponsorCard
                 src="placeholder"
                 alt="Bronze Sponsor Placeholder 5"
                 tier="Bronze"
                 sponsorName="Coming Soon"
+                hideSponsorName={true}
               />
             </div>
           </motion.div>

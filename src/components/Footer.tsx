@@ -135,6 +135,25 @@ const FooterContent = () => {
               <br />
               <span>FIEM ACM STUDENT CHAPTER</span>
             </motion.div>
+
+            {/* Mobile Brand Assets Link */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="text-center mt-2"
+            >
+              <a
+                href="/brand-assets"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-base text-black font-medium px-2"
+                style={{ fontFamily: "'Mokoto Demo', monospace" }}
+              >
+                Brand Assets
+              </a>
+            </motion.div>
           </div>
         </div>
       </div>
@@ -434,6 +453,25 @@ const FooterContent = () => {
                 style={{ fontFamily: "'Mokoto Demo', monospace" }}
               >
                 © 2025 HACKSPIRE • FIEM ACM STUDENT CHAPTER
+              </motion.div>
+
+              {/* Brand Assets Link */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                className="text-center"
+              >
+                <a
+                  href="/brand-assets"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-base text-black hover:text-gray-800 transition-colors duration-300 font-medium"
+                  style={{ fontFamily: "'Mokoto Demo', monospace" }}
+                >
+                  Brand Assets
+                </a>
               </motion.div>
             </motion.div>
           </motion.div>

@@ -636,56 +636,88 @@ function SpireCompleters() {
             Community Partners
           </motion.h3>
 
-          {/* Community Partner Logo */}
+          {/* Community Partners Logos */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 1.4, ease: "easeOut" }}
-            className="flex justify-center mb-4 md:mb-8"
+            className="flex justify-center items-center gap-6 md:gap-12 lg:gap-20 mb-4 md:mb-8 flex-wrap sm:flex-nowrap"
           >
-            <div className="w-20 md:w-40 lg:w-48">
+            <div className="w-20 md:w-32 lg:w-40">
               <img
                 src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757268156/image_13_fdf5wq.png"
-                alt="Community Partner"
+                alt="LME"
                 className="w-full h-auto"
               />
             </div>
-          </motion.div>
-        </motion.div>
-
-        {/* Games Partner Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 1.5, ease: "easeOut" }}
-          className="text-center mt-8 md:mt-12"
-        >
-          {/* Games Partner Heading */}
-          <motion.h3
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 1.6, ease: "easeOut" }}
-            className="text-xl md:text-4xl lg:text-5xl font-bold text-white mb-3 md:mb-6"
-            style={{ fontFamily: "'Mokoto Demo', monospace" }}
-          >
-            Games Partner
-          </motion.h3>
-
-          {/* Games Partner Logo */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 1.7, ease: "easeOut" }}
-            className="flex justify-center mb-4 md:mb-8"
-          >
-            <div className="w-20 md:w-40 lg:w-48">
+            <div className="w-20 md:w-32 lg:w-40">
+              <img
+                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757821175/Untitled_design_4_px1vbc.png"
+                alt="GDGFIEM"
+                className="w-full h-auto"
+              />
+            </div>
+            <div className="w-20 md:w-32 lg:w-40">
+              <img
+                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757821174/Untitled_design_3_vr0vyg.png"
+                alt="GDGGCLT"
+                className="w-full h-auto"
+              />
+            </div>
+            <div className="w-20 md:w-32 lg:w-40">
+              <img
+                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757826081/Devnest_grrtik.png"
+                alt="Devnest"
+                className="w-full h-auto"
+              />
+            </div>
+            <div className="w-20 md:w-32 lg:w-40">
+              <img
+                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757826177/Apexcircle_wlzikj.png"
+                alt="Apexcircle"
+                className="w-full h-auto"
+              />
+            </div>
+            <div className="w-20 md:w-32 lg:w-40">
+              <img
+                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757836224/TV_rf5gpy.png"
+                alt="Tech Verse"
+                className="w-full h-auto"
+              />
+            </div>
+            <div className="w-20 md:w-32 lg:w-40">
+              <img
+                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757836224/Devdotcom_zho9gc.png"
+                alt="Devdotcom"
+                className="w-full h-auto"
+              />
+            </div>
+            <div className="w-20 md:w-32 lg:w-40">
+              <img
+                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757836373/Repository_iw09hw.png"
+                alt="Repository"
+                className="w-full h-auto"
+              />
+            </div>
+            <div className="w-20 md:w-32 lg:w-40">
+              <img
+                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757836224/Sourcify_rju5bs.png"
+                alt="Sourcify"
+                className="w-full h-auto"
+              />
+            </div>
+            <div className="w-20 md:w-32 lg:w-40">
+              <img
+                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757836224/AiZenera_hsu2nr.png"
+                alt="AiZenera"
+                className="w-full h-auto"
+              />
+            </div>
+            <div className="w-20 md:w-32 lg:w-40">
               <img
                 src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757268157/SPORTIVO_LOGO_hfbltv.png"
-                alt="Games Partner - Sportivo"
+                alt="Sportivo"
                 className="w-full h-auto"
               />
             </div>

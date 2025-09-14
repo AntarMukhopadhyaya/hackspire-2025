@@ -7,6 +7,7 @@ interface SponsorCardProps {
   tier: string;
   sponsorName: string;
   link?: string; // Optional link for sponsors
+  hideSponsorName?: boolean; // Optional prop to hide sponsor name
 }
 
 const SponsorCard: React.FC<SponsorCardProps> = ({
@@ -15,6 +16,7 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
   tier,
   sponsorName,
   link,
+  hideSponsorName = false,
 }) => {
   const borderStyle: React.CSSProperties | undefined =
     tier === "Platinum"
@@ -151,15 +153,19 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
               alt={alt}
               width={400}
               height={200}
-              className="h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 w-auto object-contain mb-2"
+              className={`h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 w-auto object-contain ${
+                hideSponsorName ? "" : "mb-2"
+              }`}
             />
-            <div className="text-center">
-              <div
-                className={`${sponsorFont} text-gray-700 font-medium font-mokoto`}
-              >
-                {sponsorName}
+            {!hideSponsorName && (
+              <div className="text-center">
+                <div
+                  className={`${sponsorFont} text-gray-700 font-medium font-mokoto`}
+                >
+                  {sponsorName}
+                </div>
               </div>
-            </div>
+            )}
           </>
         )}
       </div>
