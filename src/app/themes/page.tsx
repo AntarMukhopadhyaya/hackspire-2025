@@ -562,7 +562,7 @@ export default function TracksPage() {
 
       {/* Tracks Section */}
       <div className="max-w-7xl mx-auto mt-16 md:mt-20 mb-4 relative z-50">
-        <div className="text-center mb-16 relative z-50">
+        <div className="text-center mb-4 md:mb-16 relative z-50">
           <motion.h2
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -575,7 +575,7 @@ export default function TracksPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-center max-w-4xl mx-auto -mt-4 pb-8 text-xs sm:text-sm md:text-lg lg:text-xl text-white leading-relaxed font-mokoto px-6 sm:px-12 md:px-20"
+            className="text-center max-w-4xl mx-auto mt-2 md:-mt-4 mb-2 md:mb-0 pb-0 md:pb-8 text-xs sm:text-sm md:text-lg lg:text-xl text-white leading-relaxed font-mokoto px-6 sm:px-12 md:px-20"
           >
             <span className="hidden md:inline">
               Special collaboration tracks with industry partners offering
@@ -588,7 +588,7 @@ export default function TracksPage() {
         </div>
 
         {/* Track Sponsors Grid */}
-        <div className="flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-16 xl:gap-20">
+        <div className="flex flex-col lg:flex-row justify-center items-center gap-4 lg:gap-16 xl:gap-20">
           {/* Aptos Track */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
