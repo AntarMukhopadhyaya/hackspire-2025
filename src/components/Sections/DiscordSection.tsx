@@ -25,7 +25,7 @@ export default function DiscordSection() {
               className="relative"
             >
               <img
-                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757174455/ChatGPT_Image_Sep_6_2025_09_05_42_PM_owuz2p.png"
+                src="https://ik.imagekit.io/k2pkqd50y/ChatGPT_Image_Sep_6_2025_09_05_42_PM_owuz2p.png?updatedAt=1757998404580"
                 alt="Discord Icon"
                 className="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 object-contain cursor-pointer hover:opacity-80 transition-opacity duration-300"
               />

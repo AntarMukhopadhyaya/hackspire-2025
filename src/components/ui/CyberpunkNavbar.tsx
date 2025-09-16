@@ -223,7 +223,7 @@ export function CyberpunkNavbar() {
               className="flex items-center space-x-2 -ml-4 md:ml-0"
             >
               <Image
-                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757167599/logomain_g62cor_filvte.png"
+                src="https://ik.imagekit.io/k2pkqd50y/Web%20Assets/logomain_dhgked_dt18mp.png?updatedAt=1757995736033"
                 alt="Hackspire Logo"
                 width={600}
                 height={150}

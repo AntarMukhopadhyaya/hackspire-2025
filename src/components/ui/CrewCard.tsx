@@ -205,7 +205,7 @@ export function CrewCard({ member }: CrewCardProps) {
         </div>
         {/* SVG card overlay - now guaranteed to stay above the image */}
         <img
-          src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757169131/crewcard4_bzzzbf_dznanu.png"
+          src="https://ik.imagekit.io/k2pkqd50y/Web%20Assets/crewcard4_bzzzbf_dznanu.png?updatedAt=1757995741660"
           alt="Crew Card"
           className="absolute inset-0 w-80 h-auto z-[15] pointer-events-none"
           style={{ width: "320px", height: "387px" }}

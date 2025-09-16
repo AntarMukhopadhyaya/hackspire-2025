@@ -17,6 +17,12 @@ export default {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "ik.imagekit.io",
+        port: "",
+        pathname: "/**",
+      },
     ],
     // Modern image formats for better compression
     formats: ["image/webp", "image/avif"],

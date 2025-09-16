@@ -184,7 +184,7 @@ export default function SponsorsSection() {
             <TierTitle label="Tracks Sponsors" />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
               <SponsorCard
-                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757435308/aptos-CdAiFgNh_w7hscv.png"
+                src="https://ik.imagekit.io/k2pkqd50y/Brand%20Assets/aptos.png?updatedAt=1757994394211"
                 alt="Aptos Logo"
                 tier="In Kind"
                 sponsorName="Aptos"
@@ -192,7 +192,7 @@ export default function SponsorsSection() {
                 hideSponsorName={true}
               />
               <SponsorCard
-                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757435308/risin-D8eBPb92_dyok04.png"
+                src="https://ik.imagekit.io/k2pkqd50y/Brand%20Assets/risin.png?updatedAt=1757994394528"
                 alt="Rise In Logo"
                 tier="In Kind"
                 sponsorName="Rise In"
@@ -200,7 +200,7 @@ export default function SponsorsSection() {
                 hideSponsorName={true}
               />
               <SponsorCard
-                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757818512/Untitled_design_yttxw6.png"
+                src="https://ik.imagekit.io/k2pkqd50y/Brand%20Assets/keploy.png?updatedAt=1757994394415"
                 alt="Keploy Logo"
                 tier="In Kind"
                 sponsorName="Keploy"
@@ -209,7 +209,7 @@ export default function SponsorsSection() {
               />
               <div className="lg:col-start-2">
                 <SponsorCard
-                  src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757828181/Axicov_je0gwg.png"
+                  src="https://ik.imagekit.io/k2pkqd50y/Brand%20Assets/Axicov.png?updatedAt=1757994394425"
                   alt="Axicov Logo"
                   tier="In Kind"
                   sponsorName="Axicov"
@@ -261,7 +261,7 @@ export default function SponsorsSection() {
             <TierTitle label="Gold" />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
               <SponsorCard
-                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1756993339/DevFolio_nkqr5b.png"
+                src="https://ik.imagekit.io/k2pkqd50y/Brand%20Assets/DevFolio_nkqr5b.png?updatedAt=1757995504661"
                 alt="DEVFOLIO LOGO"
                 tier="Gold"
                 sponsorName="Devfolio"
@@ -293,7 +293,7 @@ export default function SponsorsSection() {
             <TierTitle label="Silver" />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
               <SponsorCard
-                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1756993340/ETHIndia_yhpy5k.png"
+                src="https://ik.imagekit.io/k2pkqd50y/Brand%20Assets/ETHIndia_yhpy5k.png?updatedAt=1757995504666"
                 alt="ETHINDIA LOGO"
                 tier="Silver"
                 sponsorName="ETHIndia"

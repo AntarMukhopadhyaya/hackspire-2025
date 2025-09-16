@@ -1268,12 +1268,12 @@ function MentorsForm() {
       >
         <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
           <img
-            src="https://res.cloudinary.com/dislegzga/image/upload/v1755067912/new_fiem_logo_iq0bn8.jpg"
+            src="https://ik.imagekit.io/k2pkqd50y/Web%20Assets/new_fiem_logo_iq0bn8_oh8hx6.jpg?updatedAt=1757995736005"
             alt="FIEM Logo"
             className="w-40 h-40 md:w-48 md:h-48 object-contain"
           />
           <img
-            src="https://res.cloudinary.com/dislegzga/image/upload/v1755068141/fiemacm_mx8uox.jpg"
+            src="https://ik.imagekit.io/k2pkqd50y/Web%20Assets/fiemacm_mx8uox_fchcgm.jpg?updatedAt=1757995743294"
             alt="ACM Student Chapter Logo"
             className="w-32 h-32 md:w-40 md:h-40 object-contain"
           />

@@ -600,7 +600,7 @@ export default function TracksPage() {
               {/* Large Aptos Logo */}
               <div className="relative -mb-8">
                 <img
-                  src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757435308/aptos-CdAiFgNh_w7hscv.png"
+                  src="https://ik.imagekit.io/k2pkqd50y/Brand%20Assets/aptos.png?updatedAt=1757994394211"
                   alt="Aptos Logo"
                   className="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 object-contain"
                 />
@@ -662,7 +662,7 @@ export default function TracksPage() {
               {/* Large Keploy Logo */}
               <div className="relative -mb-8">
                 <img
-                  src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757818512/Untitled_design_yttxw6.png"
+                  src="https://ik.imagekit.io/k2pkqd50y/Brand%20Assets/keploy.png?updatedAt=1757994394415"
                   alt="Keploy Logo"
                   className="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 object-contain"
                 />
@@ -723,7 +723,7 @@ export default function TracksPage() {
               {/* Large Axicov Logo */}
               <div className="relative -mb-8">
                 <img
-                  src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757828181/Axicov_je0gwg.png"
+                  src="https://ik.imagekit.io/k2pkqd50y/Brand%20Assets/Axicov.png?updatedAt=1757994394425"
                   alt="Axicov"
                   className="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 object-contain"
                 />
@@ -779,9 +779,7 @@ export default function TracksPage() {
       {/* Problem Statements and Tracks Link */}
       <div className="flex justify-center mt-20 md:mt-32 mb-12 md:mb-16 relative z-10">
         <a
-          href="https://befitting-lens-774.notion.site/Problem-Statements-Tracks-26ec78e1cf6380fab8e8d1dd8a2ae05d"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/tracks"
           className="inline-flex items-center justify-center gap-2 text-yellow-400 hover:text-yellow-300 text-lg md:text-xl lg:text-2xl font-mokoto transition-all duration-300 hover:scale-105 group"
         >
           <span>Problem Statements & Tracks</span>
@@ -834,7 +832,7 @@ export default function TracksPage() {
             Download our professionally designed PowerPoint templates to create
             stunning presentations for your hackathon projects.
           </p>
-          <CyberButton href="https://res.cloudinary.com/dkc5idctm/raw/upload/v1756793345/Hackspire_PPT_1_ihito9.pptx">
+          <CyberButton href="https://docs.google.com/presentation/d/1jWKJSNX9mBzcWjO_JQtoqDjZKPOkjokX/export/pptx">
             <span className="flex items-center gap-3">Download</span>
           </CyberButton>
         </div>

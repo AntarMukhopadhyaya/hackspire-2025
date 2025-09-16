@@ -79,7 +79,7 @@ const throttle = (func: Function, limit: number) => {
 
 const ProfileCardComponent: React.FC<ProfileCardProps> = ({
   avatarUrl = "",
-  iconUrl = "https://res.cloudinary.com/dislegzga/image/upload/v1755362336/codeicon_wetmk9.png",
+  iconUrl = "https://ik.imagekit.io/k2pkqd50y/Web%20Assets/concept-portrait-overstimulated-person_wwlzqg_xamtnf.png?updatedAt=1757995741540",
   grainUrl = "",
   behindGradient,
   innerGradient,

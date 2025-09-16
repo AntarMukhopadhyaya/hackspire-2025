@@ -38,7 +38,7 @@ const CustomDevfolioButton: React.FC<CustomDevfolioButtonProps> = ({
             {/* Devfolio Icon */}
             <div className="custom-devfolio-icon">
               <Image
-                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1756994465/devfolio_m4ngvz.svg"
+                src="https://ik.imagekit.io/k2pkqd50y/Web%20Assets/devfolio_m4ngvz.svg?updatedAt=1757995742822"
                 alt="Devfolio"
                 width={24}
                 height={24}

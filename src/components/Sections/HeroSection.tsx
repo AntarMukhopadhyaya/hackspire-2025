@@ -122,7 +122,7 @@ export default function HeroSection() {
               className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
             >
               <Image
-                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757167598/worldmap_ozh3jv_uhg7dc.svg"
+                src="https://ik.imagekit.io/k2pkqd50y/Web%20Assets/worldmap_ozh3jv_uhg7dc.svg?updatedAt=1757995737113"
                 alt="World Map Background"
                 width={900}
                 height={225}
@@ -174,7 +174,7 @@ export default function HeroSection() {
                 </motion.h1>
               </div>
               <Image
-                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1756997405/This_October_31st_be_ready_pv8jwp.gif"
+                src="https://res.cloudinary.com/dyg7rbugo/image/upload/v1757996170/HERO_r7kbas_kbvliu.gif"
                 alt="Hackspire Logo Main"
                 width={1200}
                 height={300}

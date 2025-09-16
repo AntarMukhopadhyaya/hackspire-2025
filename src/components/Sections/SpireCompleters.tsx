@@ -331,7 +331,7 @@ function SpireCompleters() {
               className="w-28 md:w-48 lg:w-56"
             >
               <img
-                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757169130/new_fiem_logo_iq0bn8_oh8hx6.jpg"
+                src="https://ik.imagekit.io/k2pkqd50y/Web%20Assets/new_fiem_logo_iq0bn8_oh8hx6.jpg?updatedAt=1757995736005"
                 alt="FIEM"
                 className="w-full h-auto"
               />
@@ -344,7 +344,7 @@ function SpireCompleters() {
               className="w-20 md:w-32 lg:w-40"
             >
               <img
-                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757167595/starcyber_q6jkev_xqsecp.png"
+                src="https://ik.imagekit.io/k2pkqd50y/Web%20Assets/starcyber_q6jkev_xqsecp.png?updatedAt=1757995736110"
                 alt="StarCyber"
                 className="w-full h-auto"
               />
@@ -357,7 +357,7 @@ function SpireCompleters() {
               className="w-16 md:w-32 lg:w-40"
             >
               <img
-                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757169130/fiemacm_mx8uox_fchcgm.jpg"
+                src="https://ik.imagekit.io/k2pkqd50y/Web%20Assets/fiemacm_mx8uox_fchcgm.jpg?updatedAt=1757995743294"
                 alt="FIEM ACM"
                 className="w-full h-auto"
               />
@@ -387,7 +387,7 @@ function SpireCompleters() {
               className="w-20 md:w-32 lg:w-40"
             >
               <img
-                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757167614/AICTE_lqh1yw_wg9syn.jpg"
+                src="https://ik.imagekit.io/k2pkqd50y/Web%20Assets/AICTE_lqh1yw_wg9syn.jpg?updatedAt=1757995741211"
                 alt="AICTE"
                 className="w-full h-auto"
               />
@@ -400,7 +400,7 @@ function SpireCompleters() {
               className="w-20 md:w-32 lg:w-40"
             >
               <img
-                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757167613/Council_eyi2wu_qklcby.jpg"
+                src="https://ik.imagekit.io/k2pkqd50y/Web%20Assets/Council_eyi2wu_qklcby.jpg?updatedAt=1757995741547"
                 alt="Council"
                 className="w-full h-auto"
               />
@@ -413,7 +413,7 @@ function SpireCompleters() {
               className="w-20 md:w-32 lg:w-40"
             >
               <img
-                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757167613/moe_tcoq9v_w2okv5.jpg"
+                src="https://ik.imagekit.io/k2pkqd50y/Web%20Assets/moe_tcoq9v_w2okv5.jpg?updatedAt=1757995736201"
                 alt="MOE"
                 className="w-full h-auto"
               />
@@ -642,83 +642,90 @@ function SpireCompleters() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 1.4, ease: "easeOut" }}
-            className="flex justify-center items-center gap-6 md:gap-12 lg:gap-20 mb-4 md:mb-8 flex-wrap sm:flex-nowrap"
+            className="flex justify-center items-center gap-3 sm:gap-6 md:gap-8 lg:gap-12 mb-4 md:mb-8 flex-wrap"
           >
-            <div className="w-20 md:w-32 lg:w-40">
+            <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0">
               <img
-                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757268156/image_13_fdf5wq.png"
+                src="https://ik.imagekit.io/k2pkqd50y/Community%20Partners/image_13_fdf5wq.png?updatedAt=1757994683653"
                 alt="LME"
-                className="w-full h-auto"
+                className="w-full h-auto object-contain"
               />
             </div>
-            <div className="w-20 md:w-32 lg:w-40">
+            <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0">
               <img
-                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757821175/Untitled_design_4_px1vbc.png"
+                src="https://ik.imagekit.io/k2pkqd50y/Community%20Partners/GDGFIEM.png?updatedAt=1757994684050"
                 alt="GDGFIEM"
-                className="w-full h-auto"
+                className="w-full h-auto object-contain"
               />
             </div>
-            <div className="w-20 md:w-32 lg:w-40">
+            <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0">
               <img
-                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757821174/Untitled_design_3_vr0vyg.png"
+                src="https://ik.imagekit.io/k2pkqd50y/Community%20Partners/GDGGLT.png?updatedAt=1757994688237"
                 alt="GDGGCLT"
-                className="w-full h-auto"
+                className="w-full h-auto object-contain"
               />
             </div>
-            <div className="w-20 md:w-32 lg:w-40">
+            <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0">
               <img
-                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757826081/Devnest_grrtik.png"
+                src="https://ik.imagekit.io/k2pkqd50y/Community%20Partners/Hacktropica.png?updatedAt=1757994684066"
+                alt="Hacktropica"
+                className="w-full h-auto object-contain"
+              />
+            </div>
+            <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0">
+              <img
+                src="https://ik.imagekit.io/k2pkqd50y/Community%20Partners/Devnest_grrtik.png?updatedAt=1757994683901"
                 alt="Devnest"
-                className="w-full h-auto"
+                className="w-full h-auto object-contain"
               />
             </div>
-            <div className="w-20 md:w-32 lg:w-40">
+            <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0">
               <img
-                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757826177/Apexcircle_wlzikj.png"
+                src="https://ik.imagekit.io/k2pkqd50y/Community%20Partners/Apexcircle_wlzikj.png?updatedAt=1757994683603"
                 alt="Apexcircle"
-                className="w-full h-auto"
+                className="w-full h-auto object-contain"
               />
             </div>
-            <div className="w-20 md:w-32 lg:w-40">
+            <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0">
               <img
-                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757836224/TV_rf5gpy.png"
+                src="https://ik.imagekit.io/k2pkqd50y/Community%20Partners/TV_rf5gpy.png?updatedAt=1757994688885"
                 alt="Tech Verse"
-                className="w-full h-auto"
+                className="w-full h-auto object-contain"
               />
             </div>
-            <div className="w-20 md:w-32 lg:w-40">
+            <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0">
               <img
-                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757836224/Devdotcom_zho9gc.png"
+                src="https://ik.imagekit.io/k2pkqd50y/Community%20Partners/Devdotcom_zho9gc.png?updatedAt=1757994683757"
                 alt="Devdotcom"
-                className="w-full h-auto"
+                className="w-full h-auto object-contain"
               />
             </div>
-            <div className="w-20 md:w-32 lg:w-40">
+            <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0">
               <img
-                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757836373/Repository_iw09hw.png"
+                src="https://ik.imagekit.io/k2pkqd50y/Community%20Partners/Repository_iw09hw.png?updatedAt=1757994684043"
                 alt="Repository"
-                className="w-full h-auto"
+                className="w-full h-auto object-contain"
               />
             </div>
-            <div className="w-20 md:w-32 lg:w-40">
+            <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0">
               <img
-                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757836224/Sourcify_rju5bs.png"
+                src="https://ik.imagekit.io/k2pkqd50y/Community%20Partners/Sourcify_rju5bs.png?updatedAt=1757994683724"
                 alt="Sourcify"
-                className="w-full h-auto"
+                className="w-full h-auto object-contain"
               />
             </div>
-            <div className="w-20 md:w-32 lg:w-40">
+            <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0">
               <img
-                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757836224/AiZenera_hsu2nr.png"
+                src="https://ik.imagekit.io/k2pkqd50y/Community%20Partners/AiZenera_hsu2nr.png?updatedAt=1757994684066"
                 alt="AiZenera"
-                className="w-full h-auto"
+                className="w-full h-auto object-contain"
               />
             </div>
-            <div className="w-20 md:w-32 lg:w-40">
+            <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0">
               <img
-                src="https://res.cloudinary.com/dkc5idctm/image/upload/v1757268157/SPORTIVO_LOGO_hfbltv.png"
+                src="https://ik.imagekit.io/k2pkqd50y/Community%20Partners/SPORTIVO_LOGO_hfbltv.png?updatedAt=1757994684017"
                 alt="Sportivo"
-                className="w-full h-auto"
+                className="w-full h-auto object-contain"
               />
             </div>
           </motion.div>

@@ -6,14 +6,14 @@ import GloryAnimatedText from "../ui/GloryAnimatedText";
 
 export default function GlorySection() {
   const galleryImages: string[] = [
-    "https://res.cloudinary.com/dkc5idctm/image/upload/v1757168726/image_4_jaz4td_slhvmg.png",
-    "https://res.cloudinary.com/dkc5idctm/image/upload/v1757168281/IMG_9309_cdh2b4_tx50xv.jpg",
-    "https://res.cloudinary.com/dkc5idctm/image/upload/v1757168267/image_3_o9uvuh_pwmcdc.png",
-    "https://res.cloudinary.com/dkc5idctm/image/upload/v1757168278/image_bgxxll_gz7vfg.png",
-    "https://res.cloudinary.com/dkc5idctm/image/upload/v1757167599/image_11_q4f5tg_pdm70f.png",
-    "https://res.cloudinary.com/dkc5idctm/image/upload/v1757167786/image_10_l8ihja_x7fa1f.png",
-    "https://res.cloudinary.com/dkc5idctm/image/upload/v1757167599/image_9_kb0u5t_pcn175.png",
-    "https://res.cloudinary.com/dkc5idctm/image/upload/v1757167598/image_12_yxhmnm_i7746v.png",
+    "https://ik.imagekit.io/k2pkqd50y/Web%20Assets/image_4_jaz4td_slhvmg.png?updatedAt=1757995741804",
+    "https://ik.imagekit.io/k2pkqd50y/Web%20Assets/IMG_9309_cdh2b4_tx50xv.jpg?updatedAt=1757995737938",
+    "https://ik.imagekit.io/k2pkqd50y/Web%20Assets/image_3_o9uvuh_pwmcdc.png?updatedAt=1757995741804",
+    "https://ik.imagekit.io/k2pkqd50y/Web%20Assets/image_bgxxll_gz7vfg.png?updatedAt=1757995741804",
+    "https://ik.imagekit.io/k2pkqd50y/Web%20Assets/image_11_q4f5tg_pdm70f.png?updatedAt=1757995741804",
+    "https://ik.imagekit.io/k2pkqd50y/Web%20Assets/image_10_l8ihja_x7fa1f.png?updatedAt=1757995741804",
+    "https://ik.imagekit.io/k2pkqd50y/Web%20Assets/image_9_kb0u5t_pcn175.png?updatedAt=1757995741804",
+    "https://ik.imagekit.io/k2pkqd50y/Web%20Assets/image_12_yxhmnm_i7746v.png?updatedAt=1757995907467",
   ];
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isImageLoaded, setIsImageLoaded] = useState<boolean>(true);
