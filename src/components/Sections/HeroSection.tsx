@@ -174,7 +174,7 @@ export default function HeroSection() {
                 </motion.h1>
               </div>
               <Image
-                src="https://res.cloudinary.com/dyg7rbugo/image/upload/v1757996170/HERO_r7kbas_kbvliu.gif"
+                src="https://res.cloudinary.com/dyg7rbugo/image/upload/v1758015842/This_October_31st_be_ready_pv8jwp_i6diyy.gif"
                 alt="Hackspire Logo Main"
                 width={1200}
                 height={300}
