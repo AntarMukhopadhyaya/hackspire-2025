@@ -654,7 +654,7 @@ function SpireCompleters() {
             <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0">
               <img
                 src="https://ik.imagekit.io/k2pkqd50y/Community%20Partners/GDGFIEM.png?updatedAt=1757994684050"
-                alt="GDGFIEM"
+                alt="GDG"
                 className="w-full h-auto object-contain"
               />
             </div>
