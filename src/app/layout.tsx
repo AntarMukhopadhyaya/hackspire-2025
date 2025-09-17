@@ -36,6 +36,8 @@ export const metadata: Metadata = {
   keywords: [
     "Hackspire",
     "Hackspire2025",
+    "Hackspire'25",
+    "Hackspire 25",
     "Hackathon",
     "Hackathons",
     "Hackathon 2025",
@@ -101,11 +103,11 @@ export const metadata: Metadata = {
       "Join HackSpire'25, the largest 25-hour hackathon organized by FIEM ACM Student Chapter. Build innovative solutions in AI, Blockchain, Cybersecurity, Agriculture, Robotics, Gaming, Healthcare, and Open Innovation.",
     images: [
       {
-        url: "/og-image.svg",
+        url: "https://hackspire.tech/og-image.png",
         width: 1200,
         height: 630,
         alt: "HackSpire'25 - Biggest Hackathon by FIEM ACM Student Chapter",
-        type: "image/svg+xml",
+        type: "image/png",
       },
     ],
   },
@@ -114,9 +116,9 @@ export const metadata: Metadata = {
     title: "HackSpire'25 - Biggest Hackathon by FIEM ACM Student Chapter",
     description:
       "Join HackSpire'25, the largest 25-hour hackathon organized by FIEM ACM Student Chapter. Build innovative solutions in AI, Blockchain, Cybersecurity, Agriculture, Robotics, Gaming, Healthcare, and Open Innovation.",
-    images: ["/og-image.svg"],
-    creator: "@hackspire2025",
-    site: "@hackspire2025",
+    images: ["https://hackspire.tech/og-image.png"],
+    creator: "@acmfiem",
+    site: "@acmfiem",
   },
   robots: {
     index: true,
@@ -212,9 +214,9 @@ export default function RootLayout({
                 addressCountry: "IN",
               },
               sameAs: [
-                "https://twitter.com/hackspire2025",
-                "https://linkedin.com/company/hackspire2025",
-                "https://instagram.com/hackspire2025",
+                "https://twitter.com/acmfiem",
+                "https://www.linkedin.com/company/acmfiem",
+                "https://instagram.com/acmfiem",
               ],
             }),
           }}
