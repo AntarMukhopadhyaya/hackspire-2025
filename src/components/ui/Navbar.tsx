@@ -18,6 +18,9 @@ export function Navbar() {
   if (pathname === "/judges-edit-request") {
     return null;
   }
+  if (pathname === "/security-policy") {
+    return null;
+  }
 
   return <CyberpunkNavbar />;
 }
