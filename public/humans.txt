@@ -1,6 +1,6 @@
 /* TEAM */
     Developer: FIEM ACM Student Chapter
-    Contact: hackspire@fiem.ac.in
+    Contact: acmfiem@gmail.com
     From: Kolkata, West Bengal, India
 
 /* SITE */

@@ -5,7 +5,6 @@ import MatrixRain from "../ui/MatrixRain";
 import { TechnicalOverlay } from "../ui/TechnicalOverlay";
 import CyberButton from "../ui/CyberButton";
 import CountdownTimer from "../ui/CountdownTimer";
-import DevfolioButton from "../ui/DevfolioButton";
 
 import Image from "next/image";
 import NeonXElements from "../ui/NeonXElements";
@@ -20,11 +19,7 @@ export default function HeroSection() {
   const fullText = "Innovate to Inspire ";
 
   const handleGuidelinesClick = () => {
-    window.open(
-      "https://fancy-brass-700.notion.site/HackSpire-2025-Participant-Guide-13c111e6784280f8bfd0e74faca3a592?source=copy_link",
-      "_blank",
-      "noopener,noreferrer"
-    );
+    window.location.href = "/guide";
   };
 
   useEffect(() => {

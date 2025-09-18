@@ -9,9 +9,14 @@ Disallow: /mentor-edit-request/
 Disallow: /api/
 
 # Allow important pages
-Allow: /tracks
+Allow: /themes
 Allow: /contact
 Allow: /crews
+Allow: /guide
+Allow: /download-ppt
+Allow: /tracks
+Allow: /tracks
+Allow: /brand-assets
 
 # Sitemap location
 Sitemap: https://hackspire.tech/sitemap.xml

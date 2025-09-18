@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<browserconfig>
+<browserconfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="browserconfig.xsd">
     <msapplication>
         <tile>
-            <square150x150logo src="/mstile-150x150.png"/>
+            <square150x150logo src="/title.png"/>
             <TileColor>#EAB308</TileColor>
         </tile>
     </msapplication>

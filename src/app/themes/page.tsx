@@ -832,7 +832,7 @@ export default function TracksPage() {
             Download our professionally designed PowerPoint templates to create
             stunning presentations for your hackathon projects.
           </p>
-          <CyberButton href="https://docs.google.com/presentation/d/1jWKJSNX9mBzcWjO_JQtoqDjZKPOkjokX/export/pptx">
+          <CyberButton href="/download-ppt">
             <span className="flex items-center gap-3">Download</span>
           </CyberButton>
         </div>
