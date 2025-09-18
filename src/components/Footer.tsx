@@ -92,7 +92,7 @@ const FooterContent = () => {
                     </svg>
                   </a>
                   <a
-                    href="https://www.facebook.com/share/14LCXi3MXQH/"
+                    href="https://www.facebook.com/acmfiem"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-black hover:text-gray-800 transition-colors duration-300"
@@ -250,7 +250,7 @@ const FooterContent = () => {
                 </svg>
               </motion.a>
               <motion.a
-                href="https://www.facebook.com/share/14LCXi3MXQH/"
+                href="https://www.facebook.com/acmfiem"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-black hover:text-gray-800 transition-colors duration-300"
@@ -554,7 +554,7 @@ const FooterContent = () => {
                 </motion.a>
                 {/* Facebook */}
                 <motion.a
-                  href="https://www.facebook.com/share/14LCXi3MXQH/"
+                  href="https://www.facebook.com/acmfiem"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-black hover:text-gray-800 transition-colors duration-300"

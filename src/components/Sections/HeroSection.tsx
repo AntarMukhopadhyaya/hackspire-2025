@@ -251,7 +251,7 @@ export default function HeroSection() {
                 <div className="flex space-x-3 sm:space-x-6">
                   {/* Facebook */}
                   <Link
-                    href="https://www.facebook.com/share/14LCXi3MXQH/"
+                    href="https://www.facebook.com/acmfiem"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-black hover:text-gray-700 transition-colors"
