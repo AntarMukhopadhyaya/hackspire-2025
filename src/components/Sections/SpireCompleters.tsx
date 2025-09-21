@@ -735,6 +735,13 @@ function SpireCompleters() {
                 className="w-full h-auto object-contain"
               />
             </div>
+            <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0">
+              <img
+                src="https://ik.imagekit.io/k2pkqd50y/Community%20Partners/tcu.png?updatedAt=1758429166115"
+                alt="TCU"
+                className="w-full h-auto object-contain"
+              />
+            </div>
           </motion.div>
         </motion.div>
 

@@ -773,6 +773,67 @@ export default function TracksPage() {
               </motion.p>
             </div>
           </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-center flex-shrink-0"
+          >
+            <div className="flex flex-col items-center gap-0">
+              {/* Large Not Zero Logo */}
+              <div className="relative -mb-8">
+                <img
+                  src="https://ik.imagekit.io/k2pkqd50y/Brand%20Assets/Not%20Zero.png?updatedAt=1758433374430"
+                  alt="Axicov"
+                  className="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 object-contain"
+                />
+              </div>
+
+              {/* Company Name with Arrow Link */}
+              <motion.a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="text-white text-2xl md:text-3xl lg:text-4xl font-bold inline-flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer -mb-1 -mt-4 relative z-50"
+                style={{ fontFamily: "'Mokoto Demo', monospace" }}
+              >
+                <span className="hover:border-b hover:border-dotted hover:border-white transition-all duration-300 relative z-50">
+                  Not Zero
+                </span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 relative z-50"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M7 17L17 7M17 7H7M17 7V17"
+                  />
+                </svg>
+              </motion.a>
+
+              {/* Track Motto */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="text-white text-base md:text-lg lg:text-xl font-medium max-w-2xl mx-auto leading-relaxed text-center"
+                style={{ fontFamily: "'Mokoto Demo', monospace" }}
+              >
+                Best Innovative Idea
+              </motion.p>
+            </div>
+          </motion.div>
         </div>
       </div>
 

@@ -207,7 +207,7 @@ export default function SponsorsSection() {
                 link="https://github.com/keploy/keploy"
                 hideSponsorName={true}
               />
-              <div className="lg:col-start-2">
+              <div className="lg:col-start-1">
                 <SponsorCard
                   src="https://ik.imagekit.io/k2pkqd50y/Brand%20Assets/Axicov.png?updatedAt=1757994394425"
                   alt="Axicov Logo"
@@ -217,6 +217,15 @@ export default function SponsorsSection() {
                   hideSponsorName={true}
                 />
               </div>
+
+              <SponsorCard
+                src="https://ik.imagekit.io/k2pkqd50y/Brand%20Assets/Not%20Zero.png?updatedAt=1758433374430"
+                alt="Axicov Logo"
+                tier="In Kind"
+                sponsorName="Axicov"
+                link="https://axicov.com/"
+                hideSponsorName={true}
+              />
             </div>
           </motion.div>
           {/* Platinum Tier */}
