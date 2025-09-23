@@ -742,6 +742,27 @@ function SpireCompleters() {
                 className="w-full h-auto object-contain"
               />
             </div>
+            <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0">
+              <img
+                src="https://ik.imagekit.io/k2pkqd50y/Community%20Partners/GDGAOT.png?updatedAt=1758610015985"
+                alt="GDGAOT"
+                className="w-full h-auto object-contain"
+              />
+            </div>
+            <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0">
+              <img
+                src="https://ik.imagekit.io/k2pkqd50y/Community%20Partners/GDGIEM.png?updatedAt=1758610015966"
+                alt="GDGIEM"
+                className="w-full h-auto object-contain"
+              />
+            </div>
+            <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0">
+              <img
+                src="https://ik.imagekit.io/k2pkqd50y/Community%20Partners/innovatex.png?updatedAt=1758610016006"
+                alt="InnovateX"
+                className="w-full h-auto object-contain"
+              />
+            </div>
           </motion.div>
         </motion.div>
 
