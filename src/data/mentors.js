@@ -107,33 +107,6 @@ export const mentorsData = [
       "https://ik.imagekit.io/k2pkqd50y/Judges/mock.png?updatedAt=1758738151175",
     linkedin: "https://www.linkedin.com/",
   },
-  {
-    name: "Coming Soon",
-    title: "Unknown",
-    handle: "Mentors-10",
-    status: "Soon",
-    avatarUrl:
-      "https://ik.imagekit.io/k2pkqd50y/Judges/mock.png?updatedAt=1758738151175",
-    linkedin: "https://www.linkedin.com/",
-  },
-  {
-    name: "Coming Soon",
-    title: "Unknown",
-    handle: "Mentors-11",
-    status: "Soon",
-    avatarUrl:
-      "https://ik.imagekit.io/k2pkqd50y/Judges/mock.png?updatedAt=1758738151175",
-    linkedin: "https://www.linkedin.com/",
-  },
-  {
-    name: "Coming Soon",
-    title: "Unknown",
-    handle: "Mentors-12",
-    status: "Soon",
-    avatarUrl:
-      "https://ik.imagekit.io/k2pkqd50y/Judges/mock.png?updatedAt=1758738151175",
-    linkedin: "https://www.linkedin.com/",
-  },
 ];
 
 export default mentorsData;
