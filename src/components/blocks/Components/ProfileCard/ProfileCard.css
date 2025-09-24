@@ -430,7 +430,7 @@
 }
 
 .pc-handle {
-  font-family: "Mokoto", sans-serif;
+  font-family: "Mokoto Demo", monospace;
   font-size: 14px;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.9);
@@ -443,7 +443,7 @@
 }
 
 .pc-status {
-  font-family: "Mokoto", sans-serif;
+  font-family: "Mokoto Demo", monospace;
   font-size: 18px;
   color: rgba(255, 255, 255, 0.7);
   line-height: 1;
@@ -556,7 +556,7 @@
 }
 
 .pc-details h3 {
-  font-family: "Mokoto", sans-serif;
+  font-family: "Mokoto Demo", monospace;
   font-weight: 600;
   margin: 0;
   font-size: min(5svh, 3em);
@@ -569,7 +569,7 @@
 }
 
 .pc-details p {
-  font-family: "Mokoto", sans-serif;
+  font-family: "Mokoto Demo", monospace;
   font-weight: 600;
   position: relative;
   top: -12px;
