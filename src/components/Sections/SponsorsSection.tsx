@@ -270,22 +270,24 @@ export default function SponsorsSection() {
             <TierTitle label="Gold" />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
               <SponsorCard
-                src="https://ik.imagekit.io/k2pkqd50y/Brand%20Assets/DevFolio_nkqr5b.png?updatedAt=1757995504661"
+                src="https://ik.imagekit.io/k2pkqd50y/Brand%20Assets/DevFolio.png?updatedAt=1758636945278"
                 alt="DEVFOLIO LOGO"
                 tier="Gold"
                 sponsorName="Devfolio"
+                link="https://devfolio.co"
                 hideSponsorName={true}
               />
               <SponsorCard
                 src="placeholder"
-                alt="Gold Sponsor Placeholder 1"
+                alt="Gold Sponsor Placeholder 3"
                 tier="Gold"
-                sponsorName="Coming Soon"
+                sponsorName="Coming soon"
+                link="#"
                 hideSponsorName={true}
               />
               <SponsorCard
                 src="placeholder"
-                alt="Gold Sponsor Placeholder 2"
+                alt="Gold Sponsor Placeholder 3"
                 tier="Gold"
                 sponsorName="Coming Soon"
                 hideSponsorName={true}
@@ -302,17 +304,19 @@ export default function SponsorsSection() {
             <TierTitle label="Silver" />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
               <SponsorCard
-                src="https://ik.imagekit.io/k2pkqd50y/Brand%20Assets/ETHIndia_yhpy5k.png?updatedAt=1757995504666"
+                src="https://ik.imagekit.io/k2pkqd50y/Brand%20Assets/ETH.png?updatedAt=1758739652708"
                 alt="ETHINDIA LOGO"
                 tier="Silver"
                 sponsorName="ETHIndia"
+                link="https://ethindia2024.devfolio.co"
                 hideSponsorName={true}
               />
               <SponsorCard
-                src="placeholder"
-                alt="Silver Sponsor Placeholder 1"
+                src="https://ik.imagekit.io/k2pkqd50y/Brand%20Assets/Github.png?updatedAt=1758635827539"
+                alt="Github"
                 tier="Silver"
-                sponsorName="Coming Soon"
+                sponsorName="Github"
+                link="https://github.com"
                 hideSponsorName={true}
               />
               <SponsorCard

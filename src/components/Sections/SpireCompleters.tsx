@@ -644,56 +644,80 @@ function SpireCompleters() {
             transition={{ duration: 0.5, delay: 1.4, ease: "easeOut" }}
             className="flex justify-center items-center gap-3 sm:gap-6 md:gap-8 lg:gap-12 mb-4 md:mb-8 flex-wrap"
           >
-            <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0">
+            <div
+              key="lme"
+              className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0"
+            >
               <img
                 src="https://ik.imagekit.io/k2pkqd50y/Community%20Partners/image_13_fdf5wq.png?updatedAt=1757994683653"
                 alt="LME"
                 className="w-full h-auto object-contain"
               />
             </div>
-            <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0">
+            <div
+              key="gdg-fiem"
+              className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0"
+            >
               <img
                 src="https://ik.imagekit.io/k2pkqd50y/Community%20Partners/GDGFIEM.png?updatedAt=1757994684050"
                 alt="GDG"
                 className="w-full h-auto object-contain"
               />
             </div>
-            <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0">
+            <div
+              key="gdg-glt"
+              className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0"
+            >
               <img
                 src="https://ik.imagekit.io/k2pkqd50y/Community%20Partners/GDGGLT.png?updatedAt=1757994688237"
                 alt="GDGGCLT"
                 className="w-full h-auto object-contain"
               />
             </div>
-            <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0">
+            <div
+              key="hacktropica"
+              className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0"
+            >
               <img
                 src="https://ik.imagekit.io/k2pkqd50y/Community%20Partners/Hacktropica.png?updatedAt=1757994684066"
                 alt="Hacktropica"
                 className="w-full h-auto object-contain"
               />
             </div>
-            <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0">
+            <div
+              key="devnest"
+              className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0"
+            >
               <img
                 src="https://ik.imagekit.io/k2pkqd50y/Community%20Partners/Devnest_grrtik.png?updatedAt=1757994683901"
                 alt="Devnest"
                 className="w-full h-auto object-contain"
               />
             </div>
-            <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0">
+            <div
+              key="apexcircle"
+              className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0"
+            >
               <img
                 src="https://ik.imagekit.io/k2pkqd50y/Community%20Partners/Apexcircle_wlzikj.png?updatedAt=1757994683603"
                 alt="Apexcircle"
                 className="w-full h-auto object-contain"
               />
             </div>
-            <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0">
+            <div
+              key="tv"
+              className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0"
+            >
               <img
                 src="https://ik.imagekit.io/k2pkqd50y/Community%20Partners/TV_rf5gpy.png?updatedAt=1757994688885"
                 alt="Tech Verse"
                 className="w-full h-auto object-contain"
               />
             </div>
-            <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0">
+            <div
+              key="devdotcom"
+              className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0"
+            >
               <img
                 src="https://ik.imagekit.io/k2pkqd50y/Community%20Partners/Devdotcom_zho9gc.png?updatedAt=1757994683757"
                 alt="Devdotcom"
@@ -763,6 +787,27 @@ function SpireCompleters() {
                 className="w-full h-auto object-contain"
               />
             </div>
+            <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0">
+              <img
+                src="https://ik.imagekit.io/k2pkqd50y/Community%20Partners/Byte%20Brigade.png?updatedAt=1758739055521"
+                alt="Byte Brigade"
+                className="w-full h-auto object-contain"
+              />
+            </div>
+            <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0">
+              <img
+                src="https://ik.imagekit.io/k2pkqd50y/Community%20Partners/Samarth%20tmsl.png?updatedAt=1758739209126"
+                alt="Samarth Tmsl"
+                className="w-full h-auto object-contain"
+              />
+            </div>
+            <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 flex-shrink-0">
+              <img
+                src="https://ik.imagekit.io/k2pkqd50y/Community%20Partners/Lnc%20community.png?updatedAt=1758739317761"
+                alt="LNC Community"
+                className="w-full h-auto object-contain"
+              />
+            </div>
           </motion.div>
         </motion.div>
 
@@ -824,7 +869,7 @@ function SpireCompleters() {
               {/* Mission Text - Adjusted for mobile */}
               <div className="absolute inset-0 flex items-center justify-center z-20 px-2">
                 <span
-                  className="text-black text-xs sm:text-sm md:text-4xl lg:text-xl xl:text-2xl font-bold tracking-wider glitch-text md:glitch-text-large text-center whitespace-normal sm:whitespace-nowrap px-1  "
+                  className="text-black text-xs sm:text-sm md:text-4xl lg:text-xl xl:text-2xl font-bold tracking-wider glitch-text md:glitch-text-large text-center whitespace-normal sm:whitespace-nowrap px-1"
                   style={{ fontFamily: "'Mokoto Demo', monospace" }}
                 >
                   MISSION ACCOMPLISHED

@@ -25,6 +25,7 @@ interface ProfileCardProps {
   status?: string;
   contactText?: string;
   showUserInfo?: boolean;
+  linkedin?: string;
   onContactClick?: () => void;
 }
 
@@ -95,6 +96,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
   status = "Online",
   contactText = "Contact",
   showUserInfo = true,
+  linkedin = "",
   onContactClick,
 }) => {
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -362,8 +364,12 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
   );
 
   const handleContactClick = useCallback(() => {
-    onContactClick?.();
-  }, [onContactClick]);
+    if (linkedin) {
+      window.open(linkedin, "_blank", "noopener,noreferrer");
+    } else {
+      onContactClick?.();
+    }
+  }, [linkedin, onContactClick]);
 
   return (
     <div
@@ -395,24 +401,8 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
             {showUserInfo && (
               <div className="pc-user-info">
                 <div className="pc-user-details">
-                  <div className="pc-mini-avatar">
-                    <img
-                      src={miniAvatarUrl || avatarUrl}
-                      alt={`${name || "User"} mini avatar`}
-                      loading="lazy"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.style.opacity = "0.5";
-                        // Prevent infinite loop by only setting fallback if different
-                        if (target.src !== avatarUrl) {
-                          target.src = avatarUrl;
-                        }
-                      }}
-                    />
-                  </div>
                   <div className="pc-user-text">
-                    <div className="pc-handle">@{handle}</div>
-                    <div className="pc-status">{status}</div>
+                    <div className="pc-handle">{handle}</div>
                   </div>
                 </div>
                 <button
@@ -438,7 +428,6 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
           <div className="pc-content">
             <div className="pc-details">
               <h3>{name}</h3>
-              <p>{title}</p>
             </div>
           </div>
         </div>

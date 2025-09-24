@@ -2,8 +2,8 @@
 import { motion } from "framer-motion";
 import { useState, useEffect, useMemo, useCallback } from "react";
 import ProfileCard from "../blocks/Components/ProfileCard/ProfileCard";
-import judgesData from "@/data/judges.json";
-import mentorsData from "@/data/mentors.json";
+import judgesData from "@/data/judges.js";
+import mentorsData from "@/data/mentors.js";
 
 function CategoryBadge({ label }: { label: string }) {
   return (
@@ -31,50 +31,34 @@ function CategoryBadge({ label }: { label: string }) {
   );
 }
 
+// Type definitions for the data
+interface PersonData {
+  name: string;
+  title: string;
+  handle: string;
+  status: string;
+  avatarUrl: string;
+  linkedin: string;
+}
+
 function MentorsSection() {
-  // Import data from separate JSON files
-  const judges = judgesData;
-  const mentors = mentorsData;
+  // Import data from separate JS files
+  const judges = judgesData as PersonData[];
+  const mentors = mentorsData as PersonData[];
 
   // Performance optimization: Memoize contact handler
   const handleContactClick = useCallback((name: string) => {
     console.log(`Contact ${name} clicked`);
   }, []);
 
-  // Performance optimization: Use progressive loading
-  const [visibleJudges, setVisibleJudges] = useState<typeof judges>([]);
-  const [visibleMentors, setVisibleMentors] = useState<typeof mentors>([]);
-  const [loadingState, setLoadingState] = useState<
-    "judges" | "mentors" | "complete"
-  >("judges");
+  // Simplified loading - no progressive loading to avoid conflicts
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    // Load judges first (smaller set)
-    setVisibleJudges(judges);
-
-    // Load mentors progressively to prevent hanging
+    // Simple loading with a small delay for smooth animation
     const timer = setTimeout(() => {
-      setLoadingState("mentors");
-      // Load mentors in batches to prevent UI blocking
-      const batchSize = 2;
-      let currentIndex = 0;
-
-      const loadBatch = () => {
-        const nextBatch = mentors.slice(currentIndex, currentIndex + batchSize);
-        if (nextBatch.length > 0) {
-          setVisibleMentors((prev) => [...prev, ...nextBatch]);
-          currentIndex += batchSize;
-
-          if (currentIndex < mentors.length) {
-            setTimeout(loadBatch, 100); // Small delay between batches
-          } else {
-            setLoadingState("complete");
-          }
-        }
-      };
-
-      loadBatch();
-    }, 300);
+      setIsLoaded(true);
+    }, 100);
 
     return () => clearTimeout(timer);
   }, [judges, mentors]);
@@ -83,9 +67,9 @@ function MentorsSection() {
   const judgesGrid = useMemo(
     () => (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12">
-        {visibleJudges.map((judge, index) => (
+        {judges.map((judge, index) => (
           <motion.div
-            key={`${judge.handle}-${index}`}
+            key={judge.handle || `judge-${index}`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -96,31 +80,32 @@ function MentorsSection() {
             }}
             className="flex justify-center"
           >
-            {/* <ProfileCard
+            <ProfileCard
               name={judge.name}
               title={judge.title}
               handle={judge.handle}
               status={judge.status}
               contactText="Contact Me"
               avatarUrl={judge.avatarUrl}
+              linkedin={judge.linkedin}
               showUserInfo={true}
               enableTilt={false} // Disabled tilt for performance
               enableMobileTilt={false}
               onContactClick={() => handleContactClick(judge.name)}
-            /> */}
+            />
           </motion.div>
         ))}
       </div>
     ),
-    [visibleJudges, handleContactClick]
+    [judges, handleContactClick]
   );
 
   const mentorsGrid = useMemo(
     () => (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
-        {visibleMentors.map((mentor, index) => (
+        {mentors.map((mentor, index) => (
           <motion.div
-            key={`${mentor.handle}-${index}`}
+            key={mentor.handle || `mentor-${index}`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -131,25 +116,26 @@ function MentorsSection() {
             }}
             className="flex justify-center"
           >
-            {/* <ProfileCard
+            <ProfileCard
               name={mentor.name}
               title={mentor.title}
               handle={mentor.handle}
               status={mentor.status}
               contactText="Contact Me"
               avatarUrl={mentor.avatarUrl}
+              linkedin={mentor.linkedin}
               iconUrl="https://res.cloudinary.com/dislegzga/image/upload/v1755362336/codeicon_wetmk9.png"
               grainUrl="https://res.cloudinary.com/dislegzga/image/upload/v1755362435/grain_ck2vv1.jpg"
               showUserInfo={true}
               enableTilt={false} // Disabled tilt for performance
               enableMobileTilt={false}
               onContactClick={() => handleContactClick(mentor.name)}
-            /> */}
+            />
           </motion.div>
         ))}
       </div>
     ),
-    [visibleMentors, handleContactClick]
+    [mentors, handleContactClick]
   );
 
   return (
@@ -475,23 +461,7 @@ function MentorsSection() {
           >
             <CategoryBadge label="JUDGES" />
 
-            {/* Coming Soon Text for Judges */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
-              className="flex justify-center mb-8"
-            >
-              <div
-                className="text-white text-3xl md:text-4xl lg:text-5xl font-bold tracking-wider text-center"
-                style={{ fontFamily: "'Mokoto Demo', monospace" }}
-              >
-                COMING SOON
-              </div>
-            </motion.div>
-
-            {visibleJudges.length > 0 ? (
+            {isLoaded ? (
               judgesGrid
             ) : (
               <div className="flex justify-center items-center min-h-[300px]">
@@ -564,63 +534,13 @@ function MentorsSection() {
           >
             <CategoryBadge label="MENTORS" />
 
-            {/* Coming Soon Text for Mentors */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.7, ease: "easeOut" }}
-              className="flex justify-center mb-8"
-            >
-              <div
-                className="text-white text-3xl md:text-4xl lg:text-5xl font-bold tracking-wider text-center"
-                style={{ fontFamily: "'Mokoto Demo', monospace" }}
-              >
-                COMING SOON
-              </div>
-            </motion.div>
-
-            {loadingState === "complete" ? (
+            {isLoaded ? (
               mentorsGrid
             ) : (
-              <div className="flex flex-col justify-center items-center min-h-[300px] space-y-4">
+              <div className="flex justify-center items-center min-h-[300px]">
                 <div className="text-yellow-400 font-mono text-lg animate-pulse">
-                  {loadingState === "judges"
-                    ? "Preparing mentors..."
-                    : `Loading mentors... (${visibleMentors.length}/6)`}
+                  Loading mentors...
                 </div>
-                {visibleMentors.length > 0 && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                    {visibleMentors.map((mentor, index) => (
-                      <motion.div
-                        key={`${mentor.handle}-${index}`}
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{
-                          duration: 0.4,
-                          delay: index * 0.1,
-                          ease: "easeOut",
-                        }}
-                        className="flex justify-center"
-                      >
-                        {/* <ProfileCard
-                          name={mentor.name}
-                          title={mentor.title}
-                          handle={mentor.handle}
-                          status={mentor.status}
-                          contactText="Contact Me"
-                          avatarUrl={mentor.avatarUrl}
-                          iconUrl="https://res.cloudinary.com/dislegzga/image/upload/v1755362336/codeicon_wetmk9.png"
-                          grainUrl="https://res.cloudinary.com/dislegzga/image/upload/v1755362435/grain_ck2vv1.jpg"
-                          showUserInfo={true}
-                          enableTilt={false}
-                          enableMobileTilt={false}
-                          onContactClick={() => handleContactClick(mentor.name)}
-                        /> */}
-                      </motion.div>
-                    ))}
-                  </div>
-                )}
               </div>
             )}
           </motion.div>

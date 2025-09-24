@@ -153,9 +153,8 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
               alt={alt}
               width={400}
               height={200}
-              className={`h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 w-auto object-contain ${
-                hideSponsorName ? "" : "mb-2"
-              }`}
+              className="h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 w-auto object-contain"
+              style={{ marginBottom: hideSponsorName ? 0 : "0.5rem" }}
             />
             {!hideSponsorName && (
               <div className="text-center">
