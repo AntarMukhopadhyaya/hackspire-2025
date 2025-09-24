@@ -395,14 +395,15 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
               loading="lazy"
               decoding="async"
               onLoad={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.style.opacity = "1";
+                console.log(
+                  `Successfully loaded image for ${name}: ${avatarUrl}`
+                );
               }}
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
+                console.error(`Failed to load image for ${name}: ${avatarUrl}`);
                 target.style.display = "none";
               }}
-              style={{ opacity: 0, transition: "opacity 0.3s ease" }}
             />
             {showUserInfo && (
               <div className="pc-user-info">
