@@ -1,6 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useMemo, useCallback, useRef } from "react";
 import ProfileCard from "../blocks/Components/ProfileCard/ProfileCard";
 import judgesData from "@/data/judges.js";
 import mentorsData from "@/data/mentors.js";
@@ -45,39 +44,19 @@ function MentorsSection() {
   // Import data from separate JS files
   const judges = judgesData as PersonData[];
   const mentors = mentorsData as PersonData[];
-
+  const sectionRef = useRef<HTMLElement>(null);
   // Performance optimization: Memoize contact handler
   const handleContactClick = useCallback((name: string) => {
     console.log(`Contact ${name} clicked`);
   }, []);
 
-  // Simplified loading - no progressive loading to avoid conflicts
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    // Simple loading with a small delay for smooth animation
-    const timer = setTimeout(() => {
-      setIsLoaded(true);
-    }, 100);
-
-    return () => clearTimeout(timer);
-  }, [judges, mentors]);
-
-  // Performance optimization: Memoize grid layouts with reduced animations
+  // Performance optimization: Memoize grid layouts without animations
   const judgesGrid = useMemo(
     () => (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12">
         {judges.map((judge, index) => (
-          <motion.div
-            key={judge.handle || `judge-${index}`}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{
-              duration: 0.4,
-              delay: index * 0.1,
-              ease: "easeOut",
-            }}
+          <div
+            key={`judge-${index}-${judge.name}`}
             className="flex justify-center"
           >
             <ProfileCard
@@ -89,11 +68,12 @@ function MentorsSection() {
               avatarUrl={judge.avatarUrl}
               linkedin={judge.linkedin}
               showUserInfo={true}
-              enableTilt={false} // Disabled tilt for performance
-              enableMobileTilt={false}
+              showBehindGradient={true} // Enable background glow effect
+              enableTilt={false} // Disable tilt effect
+              enableMobileTilt={false} // Keep mobile tilt disabled for performance
               onContactClick={() => handleContactClick(judge.name)}
             />
-          </motion.div>
+          </div>
         ))}
       </div>
     ),
@@ -104,16 +84,8 @@ function MentorsSection() {
     () => (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
         {mentors.map((mentor, index) => (
-          <motion.div
-            key={mentor.handle || `mentor-${index}`}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{
-              duration: 0.4,
-              delay: index * 0.1,
-              ease: "easeOut",
-            }}
+          <div
+            key={`mentor-${index}-${mentor.name}`}
             className="flex justify-center"
           >
             <ProfileCard
@@ -127,11 +99,12 @@ function MentorsSection() {
               iconUrl="https://res.cloudinary.com/dislegzga/image/upload/v1755362336/codeicon_wetmk9.png"
               grainUrl="https://res.cloudinary.com/dislegzga/image/upload/v1755362435/grain_ck2vv1.jpg"
               showUserInfo={true}
-              enableTilt={false} // Disabled tilt for performance
-              enableMobileTilt={false}
+              showBehindGradient={true} // Enable background glow effect
+              enableTilt={false} // Disable tilt effect
+              enableMobileTilt={false} // Keep mobile tilt disabled for performance
               onContactClick={() => handleContactClick(mentor.name)}
             />
-          </motion.div>
+          </div>
         ))}
       </div>
     ),
@@ -140,6 +113,7 @@ function MentorsSection() {
 
   return (
     <section
+      ref={sectionRef}
       id="experts"
       className="relative py-12 md:py-16 text-white overflow-hidden"
     >
@@ -252,192 +226,13 @@ function MentorsSection() {
         </div>
       </div>
 
-      {/* Background Typing Effect - Adjusted for mobile */}
-      <div className="absolute inset-0 z-5 pointer-events-none overflow-hidden">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.4 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 1 }}
-          className="absolute left-2 sm:left-4 md:left-6 top-1/2 transform -translate-y-1/2 text-green-400/90 font-mono text-xs sm:text-sm md:text-sm lg:text-base select-none max-w-[90vw] sm:max-w-[85vw] md:max-w-[80vw]"
-        >
-          <motion.div
-            animate={{
-              opacity: [0.4, 0.8, 0.4],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="space-y-1 sm:space-y-2"
-          >
-            {/* Continuous typing animation loop */}
-            <motion.div
-              animate={{
-                width: ["0%", "100%", "100%", "0%"],
-                opacity: [0, 1, 1, 0],
-              }}
-              transition={{
-                duration: 12,
-                repeat: Infinity,
-                times: [0, 0.3, 0.7, 1],
-                ease: "easeInOut",
-              }}
-              className="overflow-hidden whitespace-nowrap"
-            >
-              <span className="text-green-300/90">
-                $ sudo ./mentor_network.sh --initialize --mode=guidance
-              </span>
-            </motion.div>
-
-            <motion.div
-              animate={{
-                width: ["0%", "100%", "100%", "0%"],
-                opacity: [0, 1, 1, 0],
-              }}
-              transition={{
-                duration: 12,
-                repeat: Infinity,
-                delay: 1.5,
-                times: [0, 0.3, 0.7, 1],
-                ease: "easeInOut",
-              }}
-              className="overflow-hidden whitespace-nowrap"
-            >
-              <span className="text-cyan-300/90">
-                $ python3 expert_finder.py --scan-mentors
-              </span>
-            </motion.div>
-
-            <motion.div
-              animate={{
-                width: ["0%", "100%", "100%", "0%"],
-                opacity: [0, 1, 1, 0],
-              }}
-              transition={{
-                duration: 12,
-                repeat: Infinity,
-                delay: 3,
-                times: [0, 0.3, 0.7, 1],
-                ease: "easeInOut",
-              }}
-              className="overflow-hidden whitespace-nowrap"
-            >
-              <span className="text-blue-300/90">
-                $ ./verify_expertise.exe --check-credentials
-              </span>
-            </motion.div>
-
-            <motion.div
-              animate={{
-                width: ["0%", "100%", "100%", "0%"],
-                opacity: [0, 1, 1, 0],
-              }}
-              transition={{
-                duration: 12,
-                repeat: Infinity,
-                delay: 4.5,
-                times: [0, 0.3, 0.7, 1],
-                ease: "easeInOut",
-              }}
-              className="overflow-hidden whitespace-nowrap"
-            >
-              <span className="text-purple-300/90">
-                $ access_granted: mentor_database
-              </span>
-            </motion.div>
-
-            <motion.div
-              animate={{
-                width: ["0%", "100%", "100%", "0%"],
-                opacity: [0, 1, 1, 0],
-              }}
-              transition={{
-                duration: 12,
-                repeat: Infinity,
-                delay: 6,
-                times: [0, 0.3, 0.7, 1],
-                ease: "easeInOut",
-              }}
-              className="overflow-hidden whitespace-nowrap"
-            >
-              <span className="text-yellow-300/90">
-                $ node guidance_system.js --activate
-              </span>
-            </motion.div>
-
-            <motion.div
-              animate={{
-                width: ["0%", "100%", "100%", "0%"],
-                opacity: [0, 1, 1, 0],
-              }}
-              transition={{
-                duration: 12,
-                repeat: Infinity,
-                delay: 7.5,
-                times: [0, 0.3, 0.7, 1],
-                ease: "easeInOut",
-              }}
-              className="overflow-hidden whitespace-nowrap"
-            >
-              <motion.span
-                animate={{
-                  width: ["0%", "100%"],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="inline-block text-green-300/70 bg-green-400/10 px-1 text-xs sm:text-sm"
-              >
-                [████████████████████████████] 100% READY
-              </motion.span>
-            </motion.div>
-          </motion.div>
-
-          {/* Enhanced blinking cursor */}
-          <motion.span
-            animate={{
-              opacity: [0, 1, 1, 0],
-              scale: [0.8, 1, 1, 0.8],
-            }}
-            transition={{
-              duration: 1.2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="text-green-400/90 text-sm md:text-lg font-bold ml-1"
-          >
-            _
-          </motion.span>
-        </motion.div>
-      </div>
-
       <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 80 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-center mb-8 md:mb-12"
-        >
-          <motion.h2
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-            className="text-6xl sm:text-7xl md:text-[5rem] lg:text-[6rem] xl:text-8xl 2xl:text-[8rem] font-bold text-black font-sddystopiandemo"
-          >
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-6xl sm:text-7xl md:text-[5rem] lg:text-[6rem] xl:text-8xl 2xl:text-[8rem] font-bold text-black font-sddystopiandemo">
             EXPERTS
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+          <p
             className="text-black mx-auto mb-4 md:mb-8 font-medium text-sm sm:text-base md:text-lg lg:text-xl px-4 sm:px-8 md:px-0 text-center max-w-[95%] sm:max-w-[85%] md:max-w-none leading-tight sm:leading-normal"
             style={{ fontFamily: "Mokoto Demo" }}
           >
@@ -447,114 +242,34 @@ function MentorsSection() {
             <span className="block sm:inline sm:ml-1">
               ready to guide your coding journey to success.
             </span>
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
         {/* Profile Cards Sections */}
         <div className="mt-40 sm:mt-44 md:mt-40 space-y-16 md:space-y-20">
           {/* Judges Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-30px" }}
-            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-          >
+          <div>
             <CategoryBadge label="JUDGES" />
+            {judgesGrid}
+          </div>
 
-            {isLoaded ? (
-              judgesGrid
-            ) : (
-              <div className="flex justify-center items-center min-h-[300px]">
-                <div className="text-yellow-400 font-mono text-lg animate-pulse">
-                  Loading judges...
-                </div>
-              </div>
-            )}
-          </motion.div>
-
-          {/* Glowing Yellow Underline */}
-          <motion.div
-            initial={{ opacity: 0, scaleX: 0 }}
-            whileInView={{ opacity: 1, scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="flex justify-center my-12 md:my-16"
-          >
-            <div className="w-full max-w-4xl mx-8 md:mx-16 relative">
-              {/* Main line with enhanced glow and shadow */}
-              <div className="h-0.5 bg-yellow-400 relative shadow-2xl shadow-yellow-400/80">
-                {/* Tapered glow layers - stronger at center, fading to edges */}
-                <div
-                  className="absolute inset-0 h-0.5 blur-sm shadow-lg shadow-yellow-400/60"
-                  style={{
-                    background:
-                      "linear-gradient(to right, transparent 0%, rgba(250, 204, 21, 0.8) 20%, rgba(250, 204, 21, 1) 50%, rgba(250, 204, 21, 0.8) 80%, transparent 100%)",
-                  }}
-                ></div>
-                <div
-                  className="absolute inset-0 h-1 blur-md shadow-xl shadow-yellow-300/50"
-                  style={{
-                    background:
-                      "linear-gradient(to right, transparent 0%, rgba(253, 224, 71, 0.6) 25%, rgba(253, 224, 71, 0.9) 50%, rgba(253, 224, 71, 0.6) 75%, transparent 100%)",
-                  }}
-                ></div>
-                <div
-                  className="absolute inset-0 h-2 blur-lg shadow-2xl shadow-yellow-200/40"
-                  style={{
-                    background:
-                      "linear-gradient(to right, transparent 0%, rgba(254, 240, 138, 0.3) 30%, rgba(254, 240, 138, 0.6) 50%, rgba(254, 240, 138, 0.3) 70%, transparent 100%)",
-                  }}
-                ></div>
-                <div
-                  className="absolute inset-0 h-3 blur-xl shadow-2xl shadow-yellow-100/30"
-                  style={{
-                    background:
-                      "linear-gradient(to right, transparent 0%, rgba(254, 249, 195, 0.1) 35%, rgba(254, 249, 195, 0.3) 50%, rgba(254, 249, 195, 0.1) 65%, transparent 100%)",
-                  }}
-                ></div>
-
-                {/* Core bright line with center emphasis */}
-                <div
-                  className="absolute inset-0 h-px shadow-md shadow-yellow-200/80"
-                  style={{
-                    background:
-                      "linear-gradient(to right, transparent 0%, rgba(254, 240, 138, 0.7) 25%, rgba(254, 240, 138, 1) 50%, rgba(254, 240, 138, 0.7) 75%, transparent 100%)",
-                  }}
-                ></div>
-              </div>
+          {/* Simple Yellow Divider */}
+          <div className="flex justify-center my-12 md:my-16">
+            <div className="w-full max-w-4xl mx-8 md:mx-16">
+              <div className="h-px bg-gradient-to-r from-transparent via-yellow-400 to-transparent opacity-60"></div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Mentors Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-30px" }}
-            transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
-          >
+          <div>
             <CategoryBadge label="MENTORS" />
-
-            {isLoaded ? (
-              mentorsGrid
-            ) : (
-              <div className="flex justify-center items-center min-h-[300px]">
-                <div className="text-yellow-400 font-mono text-lg animate-pulse">
-                  Loading mentors...
-                </div>
-              </div>
-            )}
-          </motion.div>
+            {mentorsGrid}
+          </div>
         </div>
       </div>
 
       {/* Large Decorative Trapezium - Adjusted for mobile */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 1.2, ease: "easeOut" }}
-        className="flex justify-center mt-8 md:mt-16"
-      >
+      <div className="flex justify-center mt-8 md:mt-16">
         <div className="relative w-full max-w-3xl md:max-w-4xl h-16 md:h-24">
           {/* Main large trapezium background */}
           <div className="w-full h-full bg-yellow-400 relative large-trapezium-decorative py-12">
@@ -613,7 +328,7 @@ function MentorsSection() {
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

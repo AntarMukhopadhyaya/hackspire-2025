@@ -147,8 +147,8 @@
 .pc-card:hover,
 .pc-card.active {
   transition: none;
-  transform: translate3d(0, 0, 0.1px) rotateX(var(--rotate-y))
-    rotateY(var(--rotate-x));
+  transform: translate3d(0, 0, 0.1px);
+  /* Removed tilt rotation: rotateX(var(--rotate-y)) rotateY(var(--rotate-x)) */
 }
 
 .pc-card * {
