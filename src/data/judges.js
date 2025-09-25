@@ -60,7 +60,7 @@ export const judgesData = [
     status: "Soon",
     avatarUrl:
       "https://ik.imagekit.io/k2pkqd50y/Judges/Gourav.png?updatedAt=1758737746715",
-    linkedin: "https://www.linkedin.com/in/jyotirmoyroy69",
+    linkedin: "https://www.linkedin.com/in/gourav-ghosal/",
   },
   {
     name: "Coming Soon",
