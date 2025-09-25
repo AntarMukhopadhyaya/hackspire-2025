@@ -56,7 +56,7 @@ export const judgesData = [
   {
     name: "Gourav",
     title: "Unknown",
-    handle: "Software Engineer @Crownpeak (Genweb2)",
+    handle: "Software Engineer @Trux AI",
     status: "Soon",
     avatarUrl:
       "https://ik.imagekit.io/k2pkqd50y/Judges/Gourav.png?updatedAt=1758737746715",
