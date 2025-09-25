@@ -3,6 +3,8 @@ import { Material, BufferGeometry } from "three";
 
 declare module "*.glb";
 declare module "*.png";
+declare module "*.css";
+declare module "*.module.css";
 
 declare module "meshline" {
   export const MeshLineGeometry: any;
