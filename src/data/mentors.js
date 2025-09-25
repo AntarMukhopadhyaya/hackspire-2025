@@ -65,7 +65,7 @@ export const mentorsData = [
   {
     name: "Subinoy",
     title: "Unknown",
-    handle: "Accuknox & Forward Deployed Engineer",
+    handle: "Accuknox & Forward Deployed Engineer, Ex-Intern @ISRO",
     status: "Soon",
     avatarUrl:
       "https://ik.imagekit.io/k2pkqd50y/Mentors/New%20Images/Subinoy.png?updatedAt=1758725008802",
@@ -74,7 +74,7 @@ export const mentorsData = [
   {
     name: "Tarak Nath",
     title: "Unknown",
-    handle: "Graphics Designer @Metamorph",
+    handle: "Frontend Dev & Graphic designer @metamorph",
     status: "Soon",
     avatarUrl:
       "https://ik.imagekit.io/k2pkqd50y/Mentors/New%20Images/Taraknath.png?updatedAt=1758727973020",
