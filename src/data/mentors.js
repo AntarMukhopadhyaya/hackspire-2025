@@ -20,16 +20,16 @@ export const mentorsData = [
   {
     name: "Megh",
     title: "Unknown",
-    handle: "Hexonav AI",
+    handle: " Backend Dev @Hexonav AI",
     status: "Soon",
     avatarUrl:
       "https://ik.imagekit.io/k2pkqd50y/Mentors/New%20Images/Megh.png?updatedAt=1758724732151",
     linkedin: "https://www.linkedin.com/in/megh-deb",
   },
   {
-    name: "Dhrubajyoti",
+    name: "Dhrubojyoti",
     title: "Unknown",
-    handle: "Mentor @SSOC 2025",
+    handle: "Front-End Developer, Mentor @SSOC 2025",
     status: "Soon",
     avatarUrl:
       "https://ik.imagekit.io/k2pkqd50y/Mentors/New%20Images/Dhrubajyoti.png?updatedAt=1758724593893",
@@ -38,7 +38,7 @@ export const mentorsData = [
   {
     name: "Aditya",
     title: "Unknown",
-    handle: "Intern @Cromtek",
+    handle: "Intern @Cromtek, Mentee @LFX",
     status: "Soon",
     avatarUrl:
       "https://ik.imagekit.io/k2pkqd50y/Mentors/New%20Images/Aditya.png?updatedAt=1758724535005",
@@ -47,7 +47,7 @@ export const mentorsData = [
   {
     name: "Chirag",
     title: "Unknown",
-    handle: "AI/ML & Web dev intern @HairCoaction",
+    handle: "AI/ML & Web dev Intern @Sure4Job",
     status: "Soon",
     avatarUrl:
       "https://ik.imagekit.io/k2pkqd50y/Mentors/New%20Images/Chirag%20Pandit.png?updatedAt=1758724835793",
@@ -56,7 +56,7 @@ export const mentorsData = [
   {
     name: "Kanak",
     title: "Unknown",
-    handle: "AI/ML intern @HairCoaction",
+    handle: "AI/ML intern @ODDOMASTER ",
     status: "Soon",
     avatarUrl:
       "https://ik.imagekit.io/k2pkqd50y/Mentors/New%20Images/Kanak.png?updatedAt=1758724931868",
