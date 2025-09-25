@@ -61,7 +61,7 @@ export default function HeroSection() {
         <TechnicalOverlay />
       </motion.div>
 
-      {/* Matrix Rain Background */}
+      {/* Matrix Rain Background - Optimized for performance */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -70,6 +70,9 @@ export default function HeroSection() {
         <MatrixRain
           className="!absolute !inset-0 !w-full !h-full"
           isFullScreen={true}
+          opacity={0.15}
+          animationSpeed={50}
+          density={0.7}
         />
       </motion.div>
 

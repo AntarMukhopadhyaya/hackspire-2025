@@ -150,12 +150,12 @@ const MatrixRain = memo(function MatrixRain({
     }
   }, [matrixConfig, charArray]);
 
-  // Optimized animation loop using requestAnimationFrame
+  // Optimized animation loop with reduced frequency
   const animate = useCallback(() => {
     draw();
     animationRef.current = setTimeout(() => {
       requestAnimationFrame(animate);
-    }, matrixConfig.animationSpeed);
+    }, matrixConfig.animationSpeed * 1.5); // Slower animation for better performance
   }, [draw, matrixConfig.animationSpeed]);
 
   // Main effect with proper cleanup

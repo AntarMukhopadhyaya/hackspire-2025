@@ -115,7 +115,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
 
     let rafId: number | null = null;
     let lastUpdate = 0;
-    const THROTTLE_MS = 16; // ~60fps
+    const THROTTLE_MS = 32; // ~30fps for better performance
 
     const updateCardTransform = (
       offsetX: number,
@@ -208,7 +208,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
           wrap
         );
       }
-    }, 32), // Increased throttle to 32ms (~30fps) for better performance
+    }, 50), // Increased throttle to 50ms (~20fps) for better performance
     [animationHandlers, enableMobileTilt]
   );
 

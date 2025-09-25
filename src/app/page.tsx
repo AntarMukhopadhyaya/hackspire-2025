@@ -1,17 +1,61 @@
 "use client";
-import { useRef } from "react";
+import { useRef, Suspense } from "react";
+import dynamic from "next/dynamic";
 import HeroSection from "@/components/Sections/HeroSection";
 
-import ScheduleSection from "@/components/Sections/ScheduleSection";
+// Lazy load heavy components for better performance
+const ScheduleSection = dynamic(
+  () => import("@/components/Sections/ScheduleSection"),
+  {
+    loading: () => <div className="h-96 bg-black/20 animate-pulse" />,
+  }
+);
 
-import SpireCompleters from "@/components/Sections/SpireCompleters";
-import MentorsSection from "@/components/Sections/MentorsSection";
-import FAQSection from "@/components/Sections/FAQSection";
-import SponsorsSection from "@/components/Sections/SponsorsSection";
-import DiscordSection from "@/components/Sections/DiscordSection";
+const SpireCompleters = dynamic(
+  () => import("@/components/Sections/SpireCompleters"),
+  {
+    loading: () => <div className="h-96 bg-black/20 animate-pulse" />,
+  }
+);
 
-import GlorySection from "@/components/Sections/GlorySection";
-import PrizePoolSection from "@/components/Sections/PrizePoolSection";
+const MentorsSection = dynamic(
+  () => import("@/components/Sections/MentorsSection"),
+  {
+    loading: () => <div className="h-96 bg-black/20 animate-pulse" />,
+  }
+);
+
+const FAQSection = dynamic(() => import("@/components/Sections/FAQSection"), {
+  loading: () => <div className="h-96 bg-black/20 animate-pulse" />,
+});
+
+const SponsorsSection = dynamic(
+  () => import("@/components/Sections/SponsorsSection"),
+  {
+    loading: () => <div className="h-96 bg-black/20 animate-pulse" />,
+  }
+);
+
+const DiscordSection = dynamic(
+  () => import("@/components/Sections/DiscordSection"),
+  {
+    loading: () => <div className="h-96 bg-black/20 animate-pulse" />,
+  }
+);
+
+const GlorySection = dynamic(
+  () => import("@/components/Sections/GlorySection"),
+  {
+    loading: () => <div className="h-96 bg-black/20 animate-pulse" />,
+  }
+);
+
+const PrizePoolSection = dynamic(
+  () => import("@/components/Sections/PrizePoolSection"),
+  {
+    loading: () => <div className="h-96 bg-black/20 animate-pulse" />,
+  }
+);
 
 export default function Home() {
   const mainRef = useRef<HTMLElement>(null);
@@ -27,15 +71,31 @@ export default function Home() {
       {/* Content Wrapper */}
       <div className="relative z-10">
         <HeroSection />
-        <SpireCompleters />
-        <MentorsSection />
-        <ScheduleSection />
-        <PrizePoolSection />
-        <GlorySection />
-        <SponsorsSection />
+        <Suspense fallback={<div className="h-96 bg-black/20 animate-pulse" />}>
+          <SpireCompleters />
+        </Suspense>
+        <Suspense fallback={<div className="h-96 bg-black/20 animate-pulse" />}>
+          <MentorsSection />
+        </Suspense>
+        <Suspense fallback={<div className="h-96 bg-black/20 animate-pulse" />}>
+          <ScheduleSection />
+        </Suspense>
+        <Suspense fallback={<div className="h-96 bg-black/20 animate-pulse" />}>
+          <PrizePoolSection />
+        </Suspense>
+        <Suspense fallback={<div className="h-96 bg-black/20 animate-pulse" />}>
+          <GlorySection />
+        </Suspense>
+        <Suspense fallback={<div className="h-96 bg-black/20 animate-pulse" />}>
+          <SponsorsSection />
+        </Suspense>
         {/* <CollaborationsSection /> */}
-        <FAQSection />
-        <DiscordSection />
+        <Suspense fallback={<div className="h-96 bg-black/20 animate-pulse" />}>
+          <FAQSection />
+        </Suspense>
+        <Suspense fallback={<div className="h-96 bg-black/20 animate-pulse" />}>
+          <DiscordSection />
+        </Suspense>
       </div>
     </main>
   );

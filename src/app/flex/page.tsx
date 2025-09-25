@@ -74,9 +74,9 @@ export default function FlexPage() {
       // Create a NEW canvas element to ensure no interference
       const canvas = document.createElement("canvas");
 
-      // FORCE exact dimensions - this is the ONLY size the output will be
-      canvas.width = 1080;
-      canvas.height = 1350;
+      // Optimized dimensions for better performance
+      canvas.width = 540; // Reduced from 1080
+      canvas.height = 675; // Reduced from 1350
 
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
@@ -99,9 +99,9 @@ export default function FlexPage() {
       const userWidth = userImg.naturalWidth;
       const userHeight = userImg.naturalHeight;
 
-      // Calculate how to fit user image in our FIXED 1080x1350 canvas
-      const canvasWidth = 1080;
-      const canvasHeight = 1350;
+      // Calculate how to fit user image in our FIXED 540x675 canvas
+      const canvasWidth = 540;
+      const canvasHeight = 675;
 
       const scaleX = canvasWidth / userWidth;
       const scaleY = canvasHeight / userHeight;
@@ -128,21 +128,21 @@ export default function FlexPage() {
           "https://ik.imagekit.io/k2pkqd50y/Flex/Flex.png?updatedAt=1758205801260";
       });
 
-      // Draw frame overlay to cover ENTIRE canvas (1080x1350)
-      ctx.drawImage(frameImg, 0, 0, 1080, 1350);
+      // Draw frame overlay to cover ENTIRE canvas (540x675)
+      ctx.drawImage(frameImg, 0, 0, 540, 675);
 
       // Add text overlay
       ctx.fillStyle = "#000000"; // Black color
       ctx.textAlign = "left"; // Left aligned
       // Remove shadow properties - no shadow needed
 
-      // Add name text (38px, Mokoto font)
-      ctx.font = "38px 'Mokoto Demo', monospace";
-      ctx.fillText(formData.name, 30, 1350 - 100); // Very left (30px from edge)
+      // Add name text (19px, Mokoto font) - scaled down
+      ctx.font = "19px 'Mokoto Demo', monospace";
+      ctx.fillText(formData.name, 15, 675 - 50); // Scaled position
 
-      // Add team name text (40px, Mokoto font)
-      ctx.font = "40px 'Mokoto Demo', monospace";
-      ctx.fillText(formData.teamName, 30, 1350 - 50); // Very left (30px from edge)
+      // Add team name text (20px, Mokoto font) - scaled down
+      ctx.font = "20px 'Mokoto Demo', monospace";
+      ctx.fillText(formData.teamName, 15, 675 - 25); // Scaled position
 
       // Convert to data URL
       const dataUrl = canvas.toDataURL("image/png", 1.0);

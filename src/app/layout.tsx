@@ -11,6 +11,7 @@ import PageTransition from "@/lib/PageTransition";
 import { Toaster } from "@/components/ui/sonner";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import StructuredData from "@/components/SEO/StructuredData";
+import PerformanceMonitor from "@/components/ui/PerformanceMonitor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -276,6 +277,7 @@ export default function RootLayout({
         {/* <script defer async src="https://apply.devfolio.co/v2/sdk.js"></script> */}
         <SpeedInsights />
         <Analytics />
+        <PerformanceMonitor />
       </body>
     </html>
   );
