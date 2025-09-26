@@ -11,7 +11,7 @@ export const judgesData = [
   {
     name: "Abhay",
     title: "Unknown",
-    handle: "Research Scientist @CHARUSAT",
+    handle: "AI-ML RESEARCH SCIENTIST @CHARUSAT",
     status: "Soon",
     avatarUrl:
       "https://ik.imagekit.io/k2pkqd50y/Judges/Abhay%20Nath.png?updatedAt=1758731877962",
