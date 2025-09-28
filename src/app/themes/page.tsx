@@ -608,7 +608,7 @@ export default function TracksPage() {
 
               {/* Company Name with Arrow Link */}
               <motion.a
-                href="https://aptosfoundation.org/"
+                href="tracks"
                 target="_blank"
                 rel="noopener noreferrer"
                 initial={{ opacity: 0 }}
@@ -670,7 +670,7 @@ export default function TracksPage() {
 
               {/* Company Name with Arrow Link */}
               <motion.a
-                href="https://github.com/keploy/keploy"
+                href="/tracks"
                 target="_blank"
                 rel="noopener noreferrer"
                 initial={{ opacity: 0 }}
@@ -731,7 +731,7 @@ export default function TracksPage() {
 
               {/* Company Name with Arrow Link */}
               <motion.a
-                href="https://axicov.com/"
+                href="/tracks"
                 target="_blank"
                 rel="noopener noreferrer"
                 initial={{ opacity: 0 }}
@@ -792,7 +792,7 @@ export default function TracksPage() {
 
               {/* Company Name with Arrow Link */}
               <motion.a
-                href="#"
+                href="/tracks"
                 target="_blank"
                 rel="noopener noreferrer"
                 initial={{ opacity: 0 }}
@@ -840,10 +840,11 @@ export default function TracksPage() {
       {/* Problem Statements and Tracks Link */}
       <div className="flex justify-center mt-20 md:mt-32 mb-12 md:mb-16 relative z-10">
         <a
-          href="/tracks"
+          href="/problem-statements"
+          target="_blank"
           className="inline-flex items-center justify-center gap-2 text-yellow-400 hover:text-yellow-300 text-lg md:text-xl lg:text-2xl font-mokoto transition-all duration-300 hover:scale-105 group"
         >
-          <span>Problem Statements & Tracks</span>
+          <span>Problem Statements</span>
           <span className="inline-flex items-center group-hover:translate-x-1 transition-transform duration-300">
             <svg
               xmlns="http://www.w3.org/2000/svg"

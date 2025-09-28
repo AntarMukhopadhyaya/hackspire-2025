@@ -25,18 +25,6 @@
   },
   {
     "id": 3,
-    "name": "Saikat Prasad Naru",
-    "position": "Secretary",
-    "image": "https://ik.imagekit.io/k2pkqd50y/Crew%20Members/Saikat_Naru_hdwttx.jpg?updatedAt=1757997774092",
-    "instagram": "https://www.instagram.com/_naru.___?igsh=N3E0bTc2NzNlNmd1",
-    "github": "https://github.com/DeathBed20",
-    "linkedin": "https://www.linkedin.com/in/saikat-prasad-naru-517487203?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    "twitter": "",
-    "crew": "hackbuilders",
-    "crewfilter": "HACKBUILDERS"
-  },
-  {
-    "id": 4,
     "name": "Rishav Biswas",
     "position": "Treasurer",
     "image": "https://ik.imagekit.io/k2pkqd50y/Crew%20Members/Rishav_Biswas_qo4bzk.webp?updatedAt=1757997775273",
@@ -48,7 +36,7 @@
     "crewfilter": "HACKBUILDERS"
   },
   {
-    "id": 5,
+    "id": 4,
     "name": "Antar Mukhopadhyay",
     "position": "Web Master",
     "image": "https://ik.imagekit.io/k2pkqd50y/Crew%20Members/Antar_Mukhapadhay_ajzkiu.jpg?updatedAt=1757169698",
@@ -60,7 +48,7 @@
     "crewfilter": "SPIRENGINEER"
   },
   {
-    "id": 6,
+    "id": 5,
     "name": "Sutapa Kanthal",
     "position": "CC member (Web)",
     "image": "https://ik.imagekit.io/k2pkqd50y/Crew%20Members/Sutapa_kanthal_t5as09.jpg?updatedAt=1757169683",
@@ -72,7 +60,7 @@
     "crewfilter": "SPIRENGINEER"
   },
   {
-    "id": 7,
+    "id": 6,
     "name": "Ankan Dalui",
     "position": "CC member (Web)",
     "image": "https://ik.imagekit.io/k2pkqd50y/Crew%20Members/Ankan_Dalui_lqkxyz.jpg?updatedAt=1757169684",
@@ -84,7 +72,7 @@
     "crewfilter": "SPIRENGINEER"
   },
   {
-    "id": 8,
+    "id": 7,
     "name": "Rajdip Ghosh",
     "position": "CC member (Web)",
     "image": "https://ik.imagekit.io/k2pkqd50y/Crew%20Members/Rajdip_Ghosh_tk1trp.jpg?updatedAt=1757169679",
@@ -97,7 +85,7 @@
   },
 
   {
-    "id": 9,
+    "id": 8,
     "name": "Arnab Das",
     "position": "CC member",
     "image": "https://ik.imagekit.io/k2pkqd50y/Crew%20Members/123456789_ile8he_ed9gi5.jpg?updatedAt=1757169694",
@@ -109,7 +97,7 @@
     "crewfilter": "HACKBUILDERS"
   },
   {
-    "id": 10,
+    "id": 9,
     "name": "Bristi Sen",
     "position": "CC member",
     "image": "https://ik.imagekit.io/k2pkqd50y/Crew%20Members/Bristi_Sen_kjbvog.jpg?updatedAt=1757169675",
@@ -121,7 +109,7 @@
     "crewfilter": "HACKBUILDERS"
   },
   {
-    "id": 11,
+    "id": 10,
     "name": "Debjit Ganguly",
     "position": "CC member",
     "image": "https://ik.imagekit.io/k2pkqd50y/Crew%20Members/WhatsApp_Image_2025-08-20_at_20.21.34_e12d97ad_dbagny_ycguuu.jpg?updatedAt=1757169665",
@@ -133,7 +121,7 @@
     "crewfilter": "HACKBUILDERS"
   },
   {
-    "id": 12,
+    "id": 11,
     "name": "Esha Dalal",
     "position": "CC member",
     "image": "https://ik.imagekit.io/k2pkqd50y/Crew%20Members/Esha_Dalal_p9a2pp.jpg?updatedAt=1757169676",
@@ -145,7 +133,7 @@
     "crewfilter": "HACKBUILDERS"
   },
   {
-    "id": 13,
+    "id": 12,
     "name": "Rikita Roy",
     "position": "CC member",
     "image": "https://ik.imagekit.io/k2pkqd50y/Crew%20Members/WhatsApp_Image_2025-08-25_at_13.45.18_15638845_vyu2wt_na5nh8.jpg?updatedAt=1757169671",
@@ -157,7 +145,7 @@
     "crewfilter": "HACKBUILDERS"
   },
   {
-    "id": 14,
+    "id": 13,
     "name": "Sayantani Chowdhury",
     "position": "CC member",
     "image": "https://ik.imagekit.io/k2pkqd50y/Crew%20Members/WhatsApp_Image_2025-09-07_at_02.22.03_accdb9db_nbaeos.jpg?updatedAt=1757309551",
@@ -169,7 +157,7 @@
     "crewfilter": "HACKBUILDERS"
   },
   {
-    "id": 15,
+    "id": 14,
     "name": "Soumaydeep Bagchi",
     "position": "CC member",
     "image": "https://ik.imagekit.io/k2pkqd50y/Crew%20Members/Soumyadeep_Bagchi_ovpd2y.jpg?updatedAt=1757169682",
@@ -181,7 +169,7 @@
     "crewfilter": "HACKBUILDERS"
   },
   {
-    "id": 16,
+    "id": 15,
     "name": "Srija Mondal",
     "position": "CC member",
     "image": "https://ik.imagekit.io/k2pkqd50y/Crew%20Members/WhatsApp_Image_2025-08-24_at_23.53.27_9e9ecc84_mqq7vt_o1kjoq.jpg?updatedAt=1757169668",
@@ -193,7 +181,7 @@
     "crewfilter": "HACKBUILDERS"
   },
   {
-    "id": 17,
+    "id": 16,
     "name": "Nandini Das",
     "position": "Co-Ordinator",
     "image": "https://ik.imagekit.io/k2pkqd50y/Crew%20Members/WhatsApp_Image_2025-09-14_at_03.49.19_46727f17_pyeevv.jpg?updatedAt=1757823900",
@@ -205,7 +193,7 @@
     "crewfilter": "HACKBUILDERS"
   },
   {
-    "id": 18,
+    "id": 17,
     "name": "Saikat Tanti",
     "position": "Co-Ordinator",
     "image": "https://ik.imagekit.io/k2pkqd50y/Crew%20Members/1000226021-02-01-1101.jpeg_wk3p54.jpg?updatedAt=1757788403",
@@ -217,7 +205,7 @@
     "crewfilter": "HACKBUILDERS"
   },
   {
-    "id": 19,
+    "id": 18,
     "name": "Abhishek Das",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dkc5idctm/image/upload/v1757169705/ABHISHEK_DAs_bffzpu.jpg",
@@ -229,7 +217,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 20,
+    "id": 19,
     "name": "Akash Ghosh",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dkc5idctm/image/upload/v1757169672/WhatsApp_Image_2025-08-25_at_06.59.46_e3db1a31_bdhzdi_q2nyla.jpg",
@@ -241,7 +229,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 21,
+    "id": 20,
     "name": "Chandranshu Dutta",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dkc5idctm/image/upload/v1757169674/WhatsApp_Image_2025-08-25_at_23.41.27_414f8966_e60chv_dkme16.jpg",
@@ -253,7 +241,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 22,
+    "id": 21,
     "name": "Most Soha Sabnam",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dkc5idctm/image/upload/v1757170197/IMG-20250822-WA0019_jv2k3n.jpg",
@@ -265,7 +253,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 23,
+    "id": 22,
     "name": "Rohan Sharma",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dkc5idctm/image/upload/v1757169664/Rohan_Sharma_xmbrmz.jpg",
@@ -277,7 +265,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 24,
+    "id": 23,
     "name": "Sankhadip Maity",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dkc5idctm/image/upload/v1757170976/WhatsApp_Image_2025-09-06_at_20.32.33_ea5f06e0_cccmtf.jpg",
@@ -289,7 +277,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 25,
+    "id": 24,
     "name": "SHREEJIT DAS",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dkc5idctm/image/upload/v1757169669/WhatsApp_Image_2025-08-24_at_23.55.41_c9070c94_cgkuwg_kgck09.jpg",
@@ -301,7 +289,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 26,
+    "id": 25,
     "name": "Shreya Das",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dkc5idctm/image/upload/v1757170983/WhatsApp_Image_2025-09-01_at_17.04.21_8adb2adb_ayjzum.jpg",
@@ -313,7 +301,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 27,
+    "id": 26,
     "name": "Shuvam Dutta",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dkc5idctm/image/upload/v1757170199/Shuvam_Dutta_wetafh.jpg",
@@ -325,7 +313,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 28,
+    "id": 27,
     "name": "Sounak Bhattacharya",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dkc5idctm/image/upload/v1757169706/Sounak_Bhattacharya_yrwvqq.jpg",
@@ -337,7 +325,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 29,
+    "id": 28,
     "name": "Sourav Saha",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dkc5idctm/image/upload/v1757169711/Sourav_Saha_wsjmri.jpg",
@@ -349,7 +337,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 30,
+    "id": 29,
     "name": "Suman Parui",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dkc5idctm/image/upload/v1757169666/WhatsApp_Image_2025-08-24_at_22.35.46_940deb35_ln8toa_yxxhpu.jpg",
@@ -361,7 +349,7 @@
     "crewfilter": "SPIRETEERS"
   },
   {
-    "id": 31,
+    "id": 30,
     "name": "Tanish Kar",
     "position": "Volunteer",
     "image": "https://res.cloudinary.com/dkc5idctm/image/upload/v1757169667/WhatsApp_Image_2025-08-24_at_22.46.07_16d69220_cai6hg_jrzzff.jpg",
