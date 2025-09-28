@@ -2,18 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import {
-  Send,
-  User,
-  Mail,
-  Phone,
-  Briefcase,
-  Globe,
-  Award,
-  Upload,
-  Image as ImageIcon,
-  X,
-} from "lucide-react";
+import { Send, Mail, Phone, Globe, X } from "lucide-react";
 import CyberButton from "@/components/ui/CyberButton";
 import TurnstileWrapper from "@/components/ui/TurnstileWrapper";
 import { UploadButton } from "@/utils/uploadthing";

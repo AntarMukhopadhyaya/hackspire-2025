@@ -211,19 +211,19 @@ export async function POST(request: NextRequest) {
         </div>
       `,
       text: `
-New Contact Form Submission
+          New Contact Form Submission
 
-Contact Details:
-- Name: ${name}
-- Email: ${email}
-- Subject: ${subject}
+          Contact Details:
+          - Name: ${name}
+          - Email: ${email}
+          - Subject: ${subject}
 
-Message:
-${message}
+          Message:
+          ${message}
 
----
-This email was sent from the HackSpire 2025 contact form.
-Timestamp: ${new Date().toLocaleString()}
+          ---
+          This email was sent from the HackSpire 2025 contact form.
+          Timestamp: ${new Date().toLocaleString()}
       `,
     };
 
@@ -328,23 +328,25 @@ Timestamp: ${new Date().toLocaleString()}
         </div>
       `,
       text: `
-Thank you for contacting us!
+          Thank you for contacting us!
 
-Dear ${name},
+          Dear ${name},
 
-Thank you for reaching out to HackSpire 2025. We have received your message and will get back to you as soon as possible.
+          Thank you for reaching out to HackSpire 2025. We have received your message and will get back to you as soon as possible.
 
-Your Message Summary:
-- Subject: ${subject}
-- Message: ${message.substring(0, 100)}${message.length > 100 ? "..." : ""}
+          Your Message Summary:
+          - Subject: ${subject}
+          - Message: ${message.substring(0, 100)}${
+        message.length > 100 ? "..." : ""
+      }
 
-If you have any urgent inquiries, please feel free to reach out to us through our Discord server or other social media channels.
+          If you have any urgent inquiries, please feel free to reach out to us through our Discord server or other social media channels.
 
-Join Our Discord Community: https://discord.gg/8qpHgECDH3
+          Join Our Discord Community: https://discord.gg/8qpHgECDH3
 
----
-Best regards,
-The HackSpire 2025 Team
+          ---
+          Best regards,
+          The HackSpire 2025 Team
       `,
     };
 
