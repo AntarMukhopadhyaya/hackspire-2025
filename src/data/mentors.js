@@ -56,7 +56,7 @@ export const mentorsData = [
   {
     name: "Kanak",
     title: "Unknown",
-    handle: "AI/ML intern @ODDOMASTER ",
+    handle: "AI/ML intern @ODDSMASTER ",
     status: "Soon",
     avatarUrl:
       "https://ik.imagekit.io/k2pkqd50y/Mentors/New%20Images/Kanak.png?updatedAt=1758724931868",
