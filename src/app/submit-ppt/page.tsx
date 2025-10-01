@@ -10,7 +10,7 @@ export const metadata: Metadata = {
       "Welcome to the HackSpire'25 PPT Submission Portal. Submit your presentation for the hackathon here.",
     images: [
       {
-        url: "/submission-preview.png",
+        url: "https://ik.imagekit.io/k2pkqd50y/Web%20Assets/submission%20preview.png?updatedAt=1759227945988",
         width: 1200,
         height: 630,
         alt: "HackSpire'25 PPT Submission Portal",
@@ -24,7 +24,9 @@ export const metadata: Metadata = {
     title: "HackSpire'25 - PPT Submission",
     description:
       "Welcome to the HackSpire'25 PPT Submission Portal. Submit your presentation for the hackathon here.",
-    images: ["/submission-preview.png"],
+    images: [
+      "https://ik.imagekit.io/k2pkqd50y/Web%20Assets/submission%20preview.png?updatedAt=1759227945988",
+    ],
   },
 };
 

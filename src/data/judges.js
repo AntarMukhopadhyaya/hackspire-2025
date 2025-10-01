@@ -59,17 +59,17 @@ export const judgesData = [
     handle: "Software Engineer @Truxt AI",
     status: "Soon",
     avatarUrl:
-      "https://ik.imagekit.io/k2pkqd50y/Judges/Gourav.png?updatedAt=1758737746715",
+      "https://ik.imagekit.io/k2pkqd50y/Judges/Gourav_1.png?updatedAt=1759293020519",
     linkedin: "https://www.linkedin.com/in/gourav-ghosal/",
   },
   {
-    name: "Coming Soon",
+    name: "Soham",
     title: "Unknown",
-    handle: "Judge-8",
+    handle: "Software Engineer @HTCD",
     status: "Soon",
     avatarUrl:
-      "https://ik.imagekit.io/k2pkqd50y/Judges/mock.png?updatedAt=1758738151175",
-    linkedin: "https://www.linkedin.com/",
+      "https://ik.imagekit.io/k2pkqd50y/Judges/Soham%20Banerjee.png?updatedAt=1759232237208",
+    linkedin: "https://www.linkedin.com/in/soham4abc/",
   },
   {
     name: "Coming Soon",
