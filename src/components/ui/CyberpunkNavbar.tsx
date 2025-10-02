@@ -171,10 +171,6 @@ export function CyberpunkNavbar() {
       link: "#schedule",
     },
     {
-      name: "Glory",
-      link: "#glory",
-    },
-    {
       name: "Sponsors",
       link: "#sponsors",
     },
@@ -186,6 +182,10 @@ export function CyberpunkNavbar() {
     {
       name: "Crews",
       link: "/crews",
+    },
+    {
+      name: "Guide",
+      link: "/guide",
     },
 
     // {
