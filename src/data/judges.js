@@ -72,13 +72,13 @@ export const judgesData = [
     linkedin: "https://www.linkedin.com/in/soham4abc/",
   },
   {
-    name: "Coming Soon",
+    name: "Shubhayu",
     title: "Unknown",
-    handle: "Judge-9",
+    handle: "Cloud Engineer @BlueVector AI",
     status: "Soon",
     avatarUrl:
-      "https://ik.imagekit.io/k2pkqd50y/Judges/mock.png?updatedAt=1758738151175",
-    linkedin: "https://www.linkedin.com/",
+      "https://ik.imagekit.io/k2pkqd50y/Judges/Subhayu.png?updatedAt=1759518427614",
+    linkedin: "https://www.linkedin.com/in/shubhayu64/",
   },
   {
     name: "Coming Soon",
