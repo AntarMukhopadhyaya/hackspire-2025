@@ -228,7 +228,8 @@ export default function SponsorsSection() {
               />
             </div>
           </motion.div>
-          {/* Platinum Tier */}
+          {/* Platinum Tier - COMMENTED OUT */}
+          {/*
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -260,6 +261,7 @@ export default function SponsorsSection() {
               />
             </div>
           </motion.div>
+          */}
           {/* Gold Tier */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -269,17 +271,21 @@ export default function SponsorsSection() {
           >
             <TierTitle label="Gold" />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-              <SponsorCard
-                src="https://ik.imagekit.io/k2pkqd50y/Brand%20Assets/DevFolio.png?updatedAt=1758636945278"
-                alt="DEVFOLIO LOGO"
-                tier="Gold"
-                sponsorName="Devfolio"
-                link="https://devfolio.co"
-                hideSponsorName={true}
-              />
+              <div className="sm:col-start-1 lg:col-start-2">
+                <SponsorCard
+                  src="https://ik.imagekit.io/k2pkqd50y/Brand%20Assets/DevFolio.png?updatedAt=1758636945278"
+                  alt="DEVFOLIO LOGO"
+                  tier="Gold"
+                  sponsorName="Devfolio"
+                  link="https://devfolio.co"
+                  hideSponsorName={true}
+                />
+              </div>
+              {/* Coming Soon cards commented out */}
+              {/*
               <SponsorCard
                 src="placeholder"
-                alt="Gold Sponsor Placeholder 3"
+                alt="Gold Sponsor Placeholder 2"
                 tier="Gold"
                 sponsorName="Coming soon"
                 link="#"
@@ -292,6 +298,7 @@ export default function SponsorsSection() {
                 sponsorName="Coming Soon"
                 hideSponsorName={true}
               />
+              */}
             </div>
           </motion.div>
           {/* Silver Tier */}
@@ -302,33 +309,41 @@ export default function SponsorsSection() {
             transition={{ duration: 0.6, delay: 0.15 }}
           >
             <TierTitle label="Silver" />
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-              <SponsorCard
-                src="https://ik.imagekit.io/k2pkqd50y/Brand%20Assets/ETH.png?updatedAt=1758739652708"
-                alt="ETHINDIA LOGO"
-                tier="Silver"
-                sponsorName="ETHIndia"
-                link="https://ethindia2024.devfolio.co"
-                hideSponsorName={true}
-              />
-              <SponsorCard
-                src="https://ik.imagekit.io/k2pkqd50y/Brand%20Assets/Github.png?updatedAt=1758635827539"
-                alt="Github"
-                tier="Silver"
-                sponsorName="Github"
-                link="https://github.com"
-                hideSponsorName={true}
-              />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+              <div className="sm:col-start-1 lg:col-start-2">
+                <SponsorCard
+                  src="https://ik.imagekit.io/k2pkqd50y/Brand%20Assets/ETH.png?updatedAt=1758739652708"
+                  alt="ETHINDIA LOGO"
+                  tier="Silver"
+                  sponsorName="ETHIndia"
+                  link="https://ethindia2024.devfolio.co"
+                  hideSponsorName={true}
+                />
+              </div>
+              <div className="sm:col-start-2 lg:col-start-3">
+                <SponsorCard
+                  src="https://ik.imagekit.io/k2pkqd50y/Brand%20Assets/Github.png?updatedAt=1758635827539"
+                  alt="Github"
+                  tier="Silver"
+                  sponsorName="Github"
+                  link="https://github.com"
+                  hideSponsorName={true}
+                />
+              </div>
+              {/* Coming Soon card commented out */}
+              {/*
               <SponsorCard
                 src="placeholder"
-                alt="Silver Sponsor Placeholder 2"
+                alt="Silver Sponsor Placeholder 3"
                 tier="Silver"
                 sponsorName="Coming Soon"
                 hideSponsorName={true}
               />
+              */}
             </div>
           </motion.div>
-          {/* Bronze Tier */}
+          {/* Bronze Tier - COMMENTED OUT */}
+          {/*
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -374,6 +389,7 @@ export default function SponsorsSection() {
               />
             </div>
           </motion.div>
+          */}
         </div>
 
         {/* Sponsorship CTA */}
