@@ -273,7 +273,7 @@ const hackathonContent = [
         </p>
       </>
     ),
-    badge: "30th September",
+    badge: "7th October",
   },
   {
     title: "PPT Submission Window",

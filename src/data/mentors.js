@@ -90,22 +90,22 @@ export const mentorsData = [
     linkedin: "https://www.linkedin.com/in/soumyadeep-roy-b5a4a91b3/",
   },
   {
-    name: "Coming Soon",
+    name: "Soumyaraj",
     title: "Unknown",
-    handle: "Mentors-8",
+    handle: "SDE @Trumio Inc.",
     status: "Soon",
     avatarUrl:
-      "https://ik.imagekit.io/k2pkqd50y/Judges/mock.png?updatedAt=1758738151175",
-    linkedin: "https://www.linkedin.com/",
+      "https://ik.imagekit.io/k2pkqd50y/Mentors/New%20Images/Soumaraj.png?updatedAt=1759672183515",
+    linkedin: "https://linkedin.com/in/soumyarajbag",
   },
   {
-    name: "Coming Soon",
+    name: "Souradip",
     title: "Unknown",
-    handle: "Mentors-9",
+    handle: "AI Engineer @The CloudOps Community, Ex-Intern @ISRO",
     status: "Soon",
     avatarUrl:
-      "https://ik.imagekit.io/k2pkqd50y/Judges/mock.png?updatedAt=1758738151175",
-    linkedin: "https://www.linkedin.com/",
+      "https://ik.imagekit.io/k2pkqd50y/Mentors/New%20Images/Souradip.png?updatedAt=1759672183635",
+    linkedin: "https://www.linkedin.com/in/souradip-pal-codes/",
   },
 ];
 

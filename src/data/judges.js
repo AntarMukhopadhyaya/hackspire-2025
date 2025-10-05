@@ -81,31 +81,31 @@ export const judgesData = [
     linkedin: "https://www.linkedin.com/in/shubhayu64/",
   },
   {
-    name: "Coming Soon",
+    name: "Dr. Sudipta",
     title: "Unknown",
-    handle: "Judge-10",
+    handle: "Assistant Professor @Techno International NewTown",
     status: "Soon",
     avatarUrl:
-      "https://ik.imagekit.io/k2pkqd50y/Judges/mock.png?updatedAt=1758738151175",
+      "https://ik.imagekit.io/k2pkqd50y/Judges/Sudipta%20Chaterjee.png?updatedAt=1759671527683",
     linkedin: "https://www.linkedin.com/",
   },
   {
-    name: "Coming Soon",
+    name: "Amitesh",
     title: "Unknown",
-    handle: "Judge-11",
+    handle: "Assistant Professor @Brainware University",
     status: "Soon",
     avatarUrl:
-      "https://ik.imagekit.io/k2pkqd50y/Judges/mock.png?updatedAt=1758738151175",
+      "https://ik.imagekit.io/k2pkqd50y/Judges/Amitesh%20Das.png?updatedAt=1759671527374",
     linkedin: "https://www.linkedin.com/",
   },
   {
-    name: "Coming Soon",
+    name: "Sumanta",
     title: "Unknown",
-    handle: "Judge-12",
+    handle: "AVP – Technology @Finarb Consulting",
     status: "Soon",
     avatarUrl:
-      "https://ik.imagekit.io/k2pkqd50y/Judges/mock.png?updatedAt=1758738151175",
-    linkedin: "https://www.linkedin.com/",
+      "https://ik.imagekit.io/k2pkqd50y/Judges/Sumanta.png?updatedAt=1759672787554",
+    linkedin: "https://www.linkedin.com/in/msumanta/",
   },
 ];
 
