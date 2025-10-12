@@ -207,33 +207,13 @@ export default function HeroSection() {
           className="absolute bottom-20 sm:bottom-24 md:bottom-28 left-0 right-0 z-50 flex items-center justify-center px-4"
         >
           <div className="flex flex-col gap-3 sm:gap-4">
-            {/* Buttons commented out because registration is closed
-              <CustomDevfolioButton />
-              <CyberButton
-                onClick={handleGuidelinesClick}
-                className={"text-xs sm:text-sm px-3 py-0.5 scale-80"}
-              >
-                Submit-PPT
-              </CyberButton>
-            */}
-
-            <div
-              className="text-center flex flex-col items-center gap-2"
-              suppressHydrationWarning={true}
+            <CustomDevfolioButton />
+            <CyberButton
+              onClick={handleGuidelinesClick}
+              className={"text-xs sm:text-sm px-3 py-0.5 scale-80"}
             >
-              <div
-                className="font-mokoto text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-wide"
-                style={{ fontFamily: "Mokoto Demo, sans-serif" }}
-              >
-                Registration has closed
-              </div>
-              <div
-                className="font-mokoto text-cyan-200 text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide"
-                style={{ fontFamily: "Mokoto Demo, sans-serif" }}
-              >
-                Stay tuned for the show!
-              </div>
-            </div>
+              Submit-PPT
+            </CyberButton>
           </div>
         </motion.div>
 
