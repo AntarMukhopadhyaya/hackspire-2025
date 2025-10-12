@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface NeonXProps {
   size: number;
@@ -9,6 +9,7 @@ interface NeonXProps {
   id: string;
   delay1: number;
   delay2: number;
+  isMobile?: boolean;
 }
 
 const NeonX = ({
@@ -18,6 +19,7 @@ const NeonX = ({
   id,
   delay1,
   delay2,
+  isMobile,
 }: NeonXProps) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
@@ -40,6 +42,7 @@ const NeonX = ({
         fontSize: `${size}px`,
         width: `${size}px`,
         height: `${size}px`,
+        opacity: isMobile ? 0.65 : 1,
       }}
       initial={{ opacity: 0, scale: 0 }}
       animate={{
@@ -115,7 +118,7 @@ const NeonX = ({
 
 export default function NeonXElements() {
   // Generate fixed positions and sizes for 5 X elements (avoiding center logo area)
-  const xElements = [
+  const baseElements = [
     { id: "x1", size: 60, x: "5%", y: "10%", delay1: 0.2, delay2: 0.4 },
     { id: "x2", size: 45, x: "90%", y: "15%", delay1: 0.6, delay2: 0.8 },
     { id: "x3", size: 80, x: "15%", y: "85%", delay1: 1.0, delay2: 1.2 },
@@ -123,9 +126,54 @@ export default function NeonXElements() {
     { id: "x5", size: 55, x: "8%", y: "70%", delay1: 1.8, delay2: 2.0 },
   ];
 
+  // Detect mobile (client-only) and adjust sizes/positions slightly so Xs don't overlap the bottom-center message
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(max-width: 640px)");
+    const onChange = (e: MediaQueryListEvent | MediaQueryList) =>
+      setIsMobile((e as any).matches ?? mq.matches);
+    // Set initial
+    setIsMobile(mq.matches);
+    // Add listener (use addEventListener if available)
+    if (typeof mq.addEventListener === "function") {
+      mq.addEventListener("change", onChange as any);
+      return () => mq.removeEventListener("change", onChange as any);
+    } else if (typeof mq.addListener === "function") {
+      // deprecated but covers older browsers
+      // @ts-ignore
+      mq.addListener(onChange);
+      return () => {
+        // @ts-ignore
+        mq.removeListener(onChange);
+      };
+    }
+  }, []);
+
+  const adjustedElements = baseElements.map((el) => {
+    if (!isMobile) return el;
+    // On mobile: shrink size, push elements further towards edges and slightly lower so they don't overlap bottom-center text
+    // make Xs slightly larger on mobile compared to previous change but still a bit smaller than desktop
+    const size = Math.round(el.size * 0.9);
+    const xNum = parseFloat(el.x.replace("%", ""));
+    const yNum = parseFloat(el.y.replace("%", ""));
+
+    // push further to edges on mobile to avoid center/bottom overlap
+    const newX = xNum < 50 ? Math.max(0, xNum - 12) : Math.min(100, xNum + 12);
+    // nudge slightly down but less than before so visual balance remains
+    const newY = Math.min(100, yNum + 6);
+
+    return {
+      ...el,
+      size,
+      x: `${newX}%`,
+      y: `${newY}%`,
+    };
+  });
+
   return (
     <>
-      {xElements.map((element) => (
+      {adjustedElements.map((element) => (
         <NeonX
           key={element.id}
           id={element.id}
@@ -134,6 +182,7 @@ export default function NeonXElements() {
           initialY={element.y}
           delay1={element.delay1}
           delay2={element.delay2}
+          isMobile={isMobile}
         />
       ))}
     </>
