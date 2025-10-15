@@ -157,7 +157,7 @@ export default function FlexPage() {
 
   return (
     <div className="min-h-screen text-white">
-      <div className="container mx-auto px-4 py-16 mt-20">
+      <div className="container mx-auto px-4 py-16 mt-20 flex flex-col items-center">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -179,15 +179,15 @@ export default function FlexPage() {
         </motion.div>
 
         {/* Side by side layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start max-w-6xl mx-auto">
           {/* Left side - Demo/Generated Image */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col items-center"
+            className="flex flex-col items-center justify-center"
           >
-            <div className="w-full max-w-md">
+            <div className="w-full max-w-lg">
               {generatedImage ? (
                 <div className="space-y-4">
                   <div>
@@ -238,7 +238,7 @@ export default function FlexPage() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="w-full max-w-md mx-auto lg:mx-0"
+            className="w-full max-w-lg mx-auto lg:mx-0 flex flex-col items-center justify-center"
           >
             <div
               className="relative bg-black/90 border-2 border-yellow-400 p-6"
