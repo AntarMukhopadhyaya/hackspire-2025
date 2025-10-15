@@ -19,7 +19,7 @@ export default function HeroSection() {
   const fullText = "Innovate to Inspire ";
 
   const handleGuidelinesClick = () => {
-    window.location.href = "/submit-ppt";
+    window.location.href = "/join-discord";
   };
 
   useEffect(() => {
@@ -212,7 +212,7 @@ export default function HeroSection() {
               onClick={handleGuidelinesClick}
               className={"text-xs sm:text-sm px-3 py-0.5 scale-80"}
             >
-              Submit-PPT
+              Join Discord
             </CyberButton>
           </div>
         </motion.div>

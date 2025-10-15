@@ -33,7 +33,7 @@ function TierTitle({ label }: { label: SponsorTier["tier"] }) {
               "polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px)",
           }}
         >
-          {label.toUpperCase()} TIER
+          {label === "CLOUD SPONSOR" || label === "Domain Partner" ? label : `${label.toUpperCase()} TIER`}
         </div>
       </div>
     </div>
@@ -138,7 +138,7 @@ export default function SponsorsSection() {
             style={{ fontFamily: "Mokoto Demo" }}
           >
             Powered by our allies in innovation — Platinum, Diamond, Gold,
-            Silver and Bronze tiers.
+            Cloud, Silver and Bronze tiers.
           </p>
         </div>
         {/* Restore original card grid UI, but use hard-coded sponsor data */}
@@ -262,6 +262,27 @@ export default function SponsorsSection() {
             </div>
           </motion.div>
           */}
+          {/* Cloud Sponsor */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, delay: 0.08 }}
+          >
+            <TierTitle label="CLOUD SPONSOR" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+              <div className="sm:col-start-1 lg:col-start-2">
+                <SponsorCard
+                  src="https://ik.imagekit.io/k2pkqd50y/Brand%20Assets/Aws.png?updatedAt=1760522319087"
+                  alt="AWS Logo"
+                  tier="Cloud"
+                  sponsorName="AWS"
+                  link="https://aws.amazon.com"
+                  hideSponsorName={true}
+                />
+              </div>
+            </div>
+          </motion.div>
           {/* Gold Tier */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -340,6 +361,27 @@ export default function SponsorsSection() {
                 hideSponsorName={true}
               />
               */}
+            </div>
+          </motion.div>
+          {/* Domain Partner */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, delay: 0.18 }}
+          >
+            <TierTitle label="Domain Partner" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+              <div className="sm:col-start-1 lg:col-start-2">
+                <SponsorCard
+                  src="https://ik.imagekit.io/k2pkqd50y/Brand%20Assets/xyz_logo.svg.png?updatedAt=1758719231827"
+                  alt="XYZ Logo"
+                  tier="Domain Partner"
+                  sponsorName="XYZ"
+                  link="https://xyz"
+                  hideSponsorName={true}
+                />
+              </div>
             </div>
           </motion.div>
           {/* Bronze Tier - COMMENTED OUT */}

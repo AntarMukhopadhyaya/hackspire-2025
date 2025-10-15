@@ -13,8 +13,6 @@ interface FormData {
 }
 
 export default function FlexPage() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isResultModalOpen, setIsResultModalOpen] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     name: "",
     teamName: "",
@@ -24,21 +22,6 @@ export default function FlexPage() {
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-    setGeneratedImage(null);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setPreviewImage(null);
-  };
-
-  const handleCloseResultModal = () => {
-    setIsResultModalOpen(false);
-    setGeneratedImage(null);
-  };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -125,7 +108,7 @@ export default function FlexPage() {
         frameImg.onload = () => resolve();
         frameImg.onerror = reject;
         frameImg.src =
-          "https://ik.imagekit.io/k2pkqd50y/Flex/Flex.png?updatedAt=1758205801260";
+          "https://ik.imagekit.io/k2pkqd50y/Flex/flex-frame.png?updatedAt=1760521472299";
       });
 
       // Draw frame overlay to cover ENTIRE canvas (540x675)
@@ -136,12 +119,12 @@ export default function FlexPage() {
       ctx.textAlign = "left"; // Left aligned
       // Remove shadow properties - no shadow needed
 
-      // Add name text (19px, Mokoto font) - scaled down
-      ctx.font = "19px 'Mokoto Demo', monospace";
+      // Add name text (25px, Mokoto font) - increased size
+      ctx.font = "25px 'Mokoto Demo', monospace";
       ctx.fillText(formData.name, 15, 675 - 50); // Scaled position
 
-      // Add team name text (20px, Mokoto font) - scaled down
-      ctx.font = "20px 'Mokoto Demo', monospace";
+      // Add team name text (28px, Mokoto font) - increased size
+      ctx.font = "28px 'Mokoto Demo', monospace";
       ctx.fillText(formData.teamName, 15, 675 - 25); // Scaled position
 
       // Convert to data URL
@@ -152,14 +135,23 @@ export default function FlexPage() {
       console.log("Data URL length:", dataUrl.length);
 
       setGeneratedImage(dataUrl);
-
-      // Close the form modal and open the result modal
-      setIsModalOpen(false);
-      setIsResultModalOpen(true);
     } catch (error) {
       console.error("Error generating image:", error);
     } finally {
       setIsGenerating(false);
+    }
+  };
+
+  const handleCreateAnother = () => {
+    setGeneratedImage(null);
+    setFormData({
+      name: "",
+      teamName: "",
+      image: null,
+    });
+    setPreviewImage(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
     }
   };
 
@@ -170,22 +162,11 @@ export default function FlexPage() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col items-center justify-center text-center"
+          className="text-center mb-12"
         >
-          <div className="mb-8 w-full max-w-md mx-auto">
-            <Image
-              src="https://ik.imagekit.io/k2pkqd50y/Flex/DevX.png?updatedAt=1758206777146"
-              alt="HackSpire Flex"
-              width={500}
-              height={281}
-              className="w-full h-auto"
-              priority
-            />
-          </div>
-
           <h2
             className="text-3xl md:text-4xl font-bold mb-6"
-            style={{ fontFamily: "'Mokoto Demo', monospace" }} // Font name from project's font files
+            style={{ fontFamily: "'Mokoto Demo', monospace" }}
           >
             Ready to flex yourself at HackSpire'25?
           </h2>
@@ -195,27 +176,70 @@ export default function FlexPage() {
             personalized HackSpire'25 flex frame and let everyone know you're
             building the future. 🚀
           </p>
-
-          <div className="mt-4">
-            <CyberButton onClick={handleOpenModal}>
-              Create Your Flex Frame
-            </CyberButton>
-          </div>
         </motion.div>
-      </div>
 
-      {/* Modal */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
+        {/* Side by side layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          {/* Left side - Demo/Generated Image */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.3 }}
-            className="relative w-full max-w-md mx-auto p-4"
-            onClick={(e) => e.stopPropagation()}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex flex-col items-center"
           >
-            {/* Cyberpunk Modal Container */}
+            <div className="w-full max-w-md">
+              {generatedImage ? (
+                <div className="space-y-4">
+                  <div>
+                    <img
+                      src={generatedImage}
+                      alt="Generated Flex Frame"
+                      className="w-full h-auto object-contain"
+                      style={{
+                        aspectRatio: "1080/1350",
+                        maxHeight: "500px",
+                      }}
+                    />
+                  </div>
+                  <a
+                    href={generatedImage}
+                    download="hackspire-flex.png"
+                    className="block w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-6 text-center transition-colors duration-200"
+                    style={{
+                      clipPath:
+                        "polygon(10px 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 10px)",
+                      fontFamily: "'Mokoto Demo', monospace",
+                    }}
+                  >
+                    Download Image
+                  </a>
+                </div>
+              ) : (
+                <div>
+                  <Image
+                    src="/flex-image.png"
+                    alt="Demo Flex Frame"
+                    width={500}
+                    height={625}
+                    className="w-full h-auto object-contain"
+                    style={{
+                      aspectRatio: "1080/1350",
+                      maxHeight: "500px",
+                    }}
+                    priority
+                  />
+                </div>
+              )}
+            </div>
+          </motion.div>
+
+          {/* Right side - Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="w-full max-w-md mx-auto lg:mx-0"
+          >
             <div
               className="relative bg-black/90 border-2 border-yellow-400 p-6"
               style={{
@@ -223,19 +247,6 @@ export default function FlexPage() {
                   "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
               }}
             >
-              {/* Close Button */}
-              <button
-                type="button"
-                onClick={handleCloseModal}
-                className="absolute top-4 right-4 z-50 w-8 h-8 bg-red-500 hover:bg-red-600 text-white font-bold text-lg flex items-center justify-center transition-colors duration-200 cursor-pointer"
-                style={{
-                  clipPath:
-                    "polygon(20% 0%, 100% 0%, 100% 80%, 80% 100%, 0% 100%, 0% 20%)",
-                }}
-              >
-                ×
-              </button>
-
               {/* Cyberpunk Circuit Overlay */}
               <div className="absolute inset-0 opacity-30">
                 <div className="absolute top-2 left-2 w-8 h-px bg-yellow-400 opacity-60"></div>
@@ -247,7 +258,7 @@ export default function FlexPage() {
               <div className="relative z-10">
                 <h3
                   className="text-2xl font-bold text-yellow-400 mb-6 text-center"
-                  style={{ fontFamily: "'Mokoto Demo', monospace" }} // Font name from project's font files
+                  style={{ fontFamily: "'Mokoto Demo', monospace" }}
                 >
                   Flex Your Team
                 </h3>
@@ -307,159 +318,61 @@ export default function FlexPage() {
                     >
                       Upload Image
                     </label>
-                    <label
-                      htmlFor="imageUpload"
-                      className="w-full bg-gray-900 border border-gray-700 text-white px-4 py-6 flex flex-col items-center justify-center cursor-pointer"
-                      style={{
-                        clipPath:
-                          "polygon(10px 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 10px)",
-                      }}
-                    >
-                      <Upload className="w-8 h-8 text-yellow-400 mb-2" />
-                      <span className="text-sm text-gray-400">
-                        {formData.image
-                          ? formData.image.name
-                          : "Click to upload image"}
-                      </span>
-                      <input
-                        type="file"
-                        id="imageUpload"
-                        accept="image/*"
-                        className="hidden"
-                        onChange={handleImageUpload}
-                        ref={fileInputRef}
-                      />
-                    </label>
-                    {previewImage && (
-                      <div className="mt-4">
-                        <p className="text-sm text-white mb-2">Preview:</p>
-                        <div className="relative w-full max-w-[200px] mx-auto border border-yellow-400">
-                          <img
-                            src={previewImage}
-                            alt="Preview"
-                            className="w-full h-auto object-contain"
-                            style={{ maxHeight: "250px" }}
-                          />
-                        </div>
+                    {previewImage ? (
+                      <div className="relative w-full max-w-[300px] mx-auto">
+                        <img
+                          src={previewImage}
+                          alt="Preview"
+                          className="w-full h-auto object-contain border border-gray-600"
+                          style={{ maxHeight: "300px" }}
+                        />
                       </div>
+                    ) : (
+                      <label
+                        htmlFor="imageUpload"
+                        className="w-full bg-gray-900 border border-gray-700 text-white px-4 py-6 flex flex-col items-center justify-center cursor-pointer"
+                        style={{
+                          clipPath:
+                            "polygon(10px 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 10px)",
+                        }}
+                      >
+                        <Upload className="w-8 h-8 text-yellow-400 mb-2" />
+                        <span className="text-sm text-gray-400">
+                          Click to upload image
+                        </span>
+                        <input
+                          type="file"
+                          id="imageUpload"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={handleImageUpload}
+                          ref={fileInputRef}
+                        />
+                      </label>
                     )}
                   </div>
 
                   <div className="flex justify-center mt-6">
                     <CyberButton
                       type="button"
-                      onClick={generateImage}
-                      disabled={isGenerating || !formData.image}
+                      onClick={generatedImage ? handleCreateAnother : generateImage}
+                      disabled={isGenerating || (!formData.image && !generatedImage)}
                     >
-                      {isGenerating ? "Generating..." : "Generate Flex Image"}
+                      {isGenerating 
+                        ? "Generating..." 
+                        : generatedImage 
+                        ? "Create Another" 
+                        : "Generate Flex Image"
+                      }
                     </CyberButton>
                   </div>
-
-                  {/* Canvas is now created dynamically in generateImage function */}
                 </div>
               </div>
             </div>
           </motion.div>
         </div>
-      )}
+      </div>
 
-      {/* Result Modal */}
-      {isResultModalOpen && generatedImage && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.3 }}
-            className="relative w-full max-w-2xl mx-auto p-4"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Cyberpunk Modal Container */}
-            <div
-              className="relative bg-black/90 border-2 border-yellow-400 p-6"
-              style={{
-                clipPath:
-                  "polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)",
-              }}
-            >
-              {/* Close Button */}
-              <button
-                type="button"
-                onClick={handleCloseResultModal}
-                className="absolute top-4 right-4 z-50 w-8 h-8 bg-red-500 hover:bg-red-600 text-white font-bold text-lg flex items-center justify-center transition-colors duration-200 cursor-pointer"
-                style={{
-                  clipPath:
-                    "polygon(20% 0%, 100% 0%, 100% 80%, 80% 100%, 0% 100%, 0% 20%)",
-                }}
-              >
-                ×
-              </button>
-
-              {/* Cyberpunk Circuit Overlay */}
-              <div className="absolute inset-0 opacity-30">
-                <div className="absolute top-2 left-2 w-8 h-px bg-yellow-400 opacity-60"></div>
-                <div className="absolute top-2 left-2 w-px h-8 bg-yellow-400 opacity-60"></div>
-                <div className="absolute bottom-2 right-2 w-8 h-px bg-yellow-400 opacity-60"></div>
-                <div className="absolute bottom-2 right-2 w-px h-8 bg-yellow-400 opacity-60"></div>
-              </div>
-
-              <div className="relative z-10">
-                <h3
-                  className="text-2xl font-bold text-yellow-400 mb-6 text-center"
-                  style={{ fontFamily: "'Mokoto Demo', monospace" }}
-                >
-                  Your Flex Frame is Ready!
-                </h3>
-
-                <div className="flex flex-col items-center space-y-6">
-                  <div className="border-2 border-yellow-400 p-2 flex justify-center items-center">
-                    <img
-                      src={generatedImage}
-                      alt="Generated Flex Frame"
-                      className="max-w-[300px] h-auto object-contain"
-                      style={{
-                        aspectRatio: "1080/1350",
-                        width: "auto",
-                        maxHeight: "400px",
-                      }}
-                    />
-                  </div>
-
-                  <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md">
-                    <a
-                      href={generatedImage}
-                      download="hackspire-flex.png"
-                      className="flex-1 bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-6 text-center transition-colors duration-200"
-                      style={{
-                        clipPath:
-                          "polygon(10px 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 10px)",
-                        fontFamily: "'Mokoto Demo', monospace",
-                      }}
-                    >
-                      Download Image
-                    </a>
-
-                    <button
-                      onClick={() => {
-                        handleCloseResultModal();
-                        handleOpenModal();
-                      }}
-                      className="flex-1 bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 text-center transition-colors duration-200"
-                      style={{
-                        clipPath:
-                          "polygon(10px 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 10px)",
-                        fontFamily: "'Mokoto Demo', monospace",
-                      }}
-                    >
-                      Create Another
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      )}
     </div>
   );
 }

@@ -29,6 +29,10 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
       ? { background: "linear-gradient(135deg, #7FE8FF 0%, #19C7FF 100%)" }
       : tier === "In Kind"
       ? { background: "linear-gradient(135deg, #10B981 0%, #059669 100%)" }
+      : tier === "Cloud"
+      ? { background: "linear-gradient(135deg, #FF8C00 0%, #FF6B35 100%)" }
+      : tier === "Domain Partner"
+      ? { background: "linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%)" }
       : undefined;
   const isDiamond = tier === "Diamond";
   const isPlatinum = tier === "Platinum";
@@ -58,6 +62,16 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
       ? {
           background:
             "linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 50%, #6EE7B7 100%)",
+        }
+      : tier === "Cloud"
+      ? {
+          background:
+            "linear-gradient(135deg, #FFB366 0%, #FF8C42 50%, #FF6B35 100%)",
+        }
+      : tier === "Domain Partner"
+      ? {
+          background:
+            "linear-gradient(135deg, #A78BFA 0%, #8B5CF6 50%, #7C3AED 100%)",
         }
       : undefined;
 
@@ -91,19 +105,27 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
         className={
           tier === "Gold"
             ? "absolute inset-0 bg-yellow-400 transition-all duration-300 group-hover:animate-pulse"
+            : tier === "Cloud"
+            ? "absolute inset-0 bg-orange-400 transition-all duration-300 group-hover:animate-pulse"
+            : tier === "Domain Partner"
+            ? "absolute inset-0 bg-purple-400 transition-all duration-300 group-hover:animate-pulse"
             : tier === "In Kind"
             ? "absolute inset-0 transition-all duration-300 group-hover:animate-pulse"
             : "absolute inset-0 transition-all duration-300 group-hover:animate-pulse"
         }
         style={{
           clipPath: clipPathRect,
-          ...(tier === "Gold" ? {} : backgroundStyle),
+          ...(tier === "Gold" || tier === "Cloud" || tier === "Domain Partner" ? {} : backgroundStyle),
         }}
       ></div>
       <div
         className={
           tier === "Gold"
             ? "absolute -inset-0.5 md:-inset-1 bg-yellow-500 transition-all duration-300 group-hover:bg-orange-500"
+            : tier === "Cloud"
+            ? "absolute -inset-0.5 md:-inset-1 bg-orange-500 transition-all duration-300 group-hover:bg-red-500"
+            : tier === "Domain Partner"
+            ? "absolute -inset-0.5 md:-inset-1 bg-purple-500 transition-all duration-300 group-hover:bg-violet-600"
             : tier === "In Kind"
             ? "absolute -inset-0.5 md:-inset-1 transition-all duration-300 group-hover:bg-green-600"
             : "absolute -inset-0.5 md:-inset-1 transition-all duration-300"
@@ -111,7 +133,7 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
         style={{
           clipPath: clipPathRect,
           zIndex: -1,
-          ...(tier === "Gold" ? {} : borderStyle),
+          ...(tier === "Gold" || tier === "Cloud" || tier === "Domain Partner" ? {} : borderStyle),
         }}
       ></div>
       <div
