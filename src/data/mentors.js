@@ -18,15 +18,6 @@ export const mentorsData = [
     linkedin: "http://www.linkedin.com/in/subham2409",
   },
   {
-    name: "Megh",
-    title: "Unknown",
-    handle: " Backend Dev @Hexonav AI",
-    status: "Soon",
-    avatarUrl:
-      "https://ik.imagekit.io/k2pkqd50y/Mentors/New%20Images/Megh.png?updatedAt=1758724732151",
-    linkedin: "https://www.linkedin.com/in/megh-deb",
-  },
-  {
     name: "Dhrubojyoti",
     title: "Unknown",
     handle: "Front-End Developer, Mentor @SSOC 2025",
